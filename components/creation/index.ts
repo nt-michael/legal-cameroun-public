@@ -1,0 +1,11 @@
+export { default as CreationHero } from './CreationHero';
+export { default as PricingCards } from './PricingCards';
+export { default as StepsTimeline } from './StepsTimeline';
+export { default as FAQSection } from './FAQSection';
+export { default as TrustBadges } from './TrustBadges';
+export { default as ComparisonTable } from './ComparisonTable';
+export { default as WhyChooseUsSection } from './WhyChooseUsSection';
+export { default as LegalFormsComparison } from './LegalFormsComparison';
+export { default as SubpagesGrid } from './SubpagesGrid';
+export { default as AidesAvantages } from './AidesAvantages';
+export { default as SubpageLayout } from './SubpageLayout';
