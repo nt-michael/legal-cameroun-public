@@ -32,7 +32,7 @@ export default function CTASection() {
           className={`relative overflow-hidden rounded-3xl p-8 sm:p-12 lg:p-16 ${
             inView ? 'animate-scale-in' : 'opacity-0'
           }`}
-          style={{ background: 'linear-gradient(to right, #2563eb, #1e40af)' }}
+          style={{ background: 'linear-gradient(to right, #0a3d4f, #062735)' }}
         >
           <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full animate-bubble-1" />
           <div className="absolute bottom-0 left-0 w-48 h-48 bg-white/10 rounded-full animate-bubble-2" />
@@ -46,7 +46,7 @@ export default function CTASection() {
               <h2 className="text-3xl sm:text-4xl font-bold mb-4" style={{ color: '#ffffff' }}>
                 {ctaText.title[language]}
               </h2>
-              <p className="text-lg max-w-xl" style={{ color: '#dbeafe' }}>
+              <p className="text-lg max-w-xl" style={{ color: '#b3d4dd' }}>
                 {ctaText.subtitle[language]}
               </p>
             </div>
@@ -83,7 +83,7 @@ export default function CTASection() {
                   </svg>
                 </div>
                 <div>
-                  <p className="text-sm" style={{ color: '#bfdbfe' }}>{ctaText.address[language]}</p>
+                  <p className="text-sm" style={{ color: '#80b8c7' }}>{ctaText.address[language]}</p>
                   <p className="font-medium" style={{ color: '#ffffff' }}>Bonanjo, Douala</p>
                 </div>
               </div>
@@ -94,7 +94,7 @@ export default function CTASection() {
                   </svg>
                 </div>
                 <div>
-                  <p className="text-sm" style={{ color: '#bfdbfe' }}>{ctaText.hours[language]}</p>
+                  <p className="text-sm" style={{ color: '#80b8c7' }}>{ctaText.hours[language]}</p>
                   <p className="font-medium" style={{ color: '#ffffff' }}>{ctaText.hoursValue[language]}</p>
                 </div>
               </div>
@@ -105,7 +105,7 @@ export default function CTASection() {
                   </svg>
                 </div>
                 <div>
-                  <p className="text-sm" style={{ color: '#bfdbfe' }}>Email</p>
+                  <p className="text-sm" style={{ color: '#80b8c7' }}>Email</p>
                   <p className="font-medium" style={{ color: '#ffffff' }}>contact@legalcameroun.com</p>
                 </div>
               </div>

@@ -115,7 +115,7 @@ export default function AboutHero() {
       ref={heroRef}
       className="relative min-h-[90vh] flex items-center overflow-hidden"
       style={{
-        background: 'linear-gradient(to bottom right, #111827, #1e3a8a, #111827)',
+        background: 'linear-gradient(to bottom right, #041c28, #0a3d4f, #041c28)',
       }}
     >
       {/* Floating particles */}

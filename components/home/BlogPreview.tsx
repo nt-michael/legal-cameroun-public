@@ -35,7 +35,7 @@ const blogPosts = [
 ];
 
 const categoryColors: Record<string, string> = {
-  'Droit du Travail': 'bg-blue-100 text-blue-600',
+  'Droit du Travail': 'bg-primary-100 text-primary-600',
   'Droit des Affaires': 'bg-green-100 text-green-600',
   'Droit Numerique': 'bg-purple-100 text-purple-600',
 };

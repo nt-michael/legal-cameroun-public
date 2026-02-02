@@ -51,22 +51,11 @@ const menuItems: MenuItem[] = [
   },
   {
     name: { fr: 'Accompagnement', en: 'Support' },
-    href: '/accompagnement',
+    href: '/prendre-un-rendez-vous',
     rubriques: [
       { name: { fr: 'Devis', en: 'Quote' }, href: '/devis' },
       { name: { fr: 'Avec un expert', en: 'With an Expert' }, href: '/prendre-un-rendez-vous' },
-      { name: { fr: 'Simulateurs Fiscaux', en: 'Tax Simulators' }, href: '/simulateurs' },
       { name: { fr: 'Assistance LegalCameroun', en: 'LegalCameroun Assistance' }, href: '/contact' },
-    ],
-  },
-  {
-    name: { fr: 'Fiches Pratiques', en: 'Practical Guides' },
-    href: '/fiches-pratiques',
-    rubriques: [
-      { name: { fr: 'Prix de Transfert', en: 'Transfer Pricing' }, href: '/fiches-pratiques/prix-des-transferts' },
-      { name: { fr: 'Société vs Établissement', en: 'Company vs Branch' }, href: '/fiches-pratiques/presentation-societe-etablissement' },
-      { name: { fr: 'Immatriculation ATOM', en: 'ATOM Registration' }, href: '/fiches-pratiques/immatriculation-avec-atom' },
-      { name: { fr: 'Tutoriel Consultation', en: 'Consultation Tutorial' }, href: '/fiches-pratiques/tutoriel-consultation' },
     ],
   },
 ];
@@ -75,6 +64,9 @@ const navigation: NavItem[] = [
   { name: { fr: 'Accueil', en: 'Home' }, href: '/' },
   { name: { fr: 'Nos Offres', en: 'Our Services' }, href: '#', hasDropdown: true },
   { name: { fr: 'A propos', en: 'About' }, href: '/a-propos' },
+  { name: { fr: 'Actualité', en: 'Blog' }, href: '/actualite' },
+  { name: { fr: 'Simulateurs', en: 'Simulators' }, href: '/simulateurs' },
+  { name: { fr: 'Fiches Pratiques', en: 'Practical Guides' }, href: '/fiches-pratiques' },
   { name: { fr: 'Contact', en: 'Contact' }, href: '/contact' },
 ];
 

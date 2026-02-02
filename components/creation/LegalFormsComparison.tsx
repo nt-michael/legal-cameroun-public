@@ -156,7 +156,7 @@ export default function LegalFormsComparison() {
                     ? 'opacity-0 translate-x-4'
                     : 'opacity-100 translate-x-0'
                 }`}
-                style={{ background: 'linear-gradient(to bottom right, #2563eb, #1e40af)' }}
+                style={{ background: 'linear-gradient(to bottom right, #0a3d4f, #062735)' }}
               >
                 <div className="text-center text-white">
                   <div className={`w-24 h-24 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-6 backdrop-blur-sm transition-transform duration-500 ${

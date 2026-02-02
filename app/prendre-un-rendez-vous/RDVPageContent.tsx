@@ -46,7 +46,7 @@ export default function RDVPageContent() {
       {/* Hero Section */}
       <section
         className="relative py-16 lg:py-24 overflow-hidden"
-        style={{ background: 'linear-gradient(to bottom right, #111827, #1e3a8a, #111827)' }}
+        style={{ background: 'linear-gradient(to bottom right, #041c28, #0a3d4f, #041c28)' }}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">

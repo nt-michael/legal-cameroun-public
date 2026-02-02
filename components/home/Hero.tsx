@@ -69,7 +69,7 @@ export default function Hero() {
 
     const particlesMaterial = new THREE.PointsMaterial({
       size: 0.02,
-      color: 0x3b82f6,
+      color: 0x26819b,
       transparent: true,
       opacity: 0.8,
       blending: THREE.AdditiveBlending,
@@ -146,7 +146,7 @@ export default function Hero() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative min-h-screen flex items-center justify-center overflow-hidden" style={{ background: 'linear-gradient(to bottom right, #111827, #1e3a8a, #111827)' }}>
+    <section ref={sectionRef} className="relative min-h-screen flex items-center justify-center overflow-hidden" style={{ background: 'linear-gradient(to bottom right, #041c28, #0a3d4f, #041c28)' }}>
       {/* Three.js Canvas */}
       <canvas
         ref={canvasRef}

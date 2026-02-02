@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
@@ -7,14 +7,17 @@ import { LanguageProvider } from "@/contexts/LanguageContext";
 import { ThemeProvider } from "@/contexts/ThemeContext";
 import LanguageHtmlSetter from "@/components/seo/LanguageHtmlSetter";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+const inriaSans = localFont({
+  src: [
+    { path: '../public/fonts/inria_sans/InriaSans-Light.ttf', weight: '300', style: 'normal' },
+    { path: '../public/fonts/inria_sans/InriaSans-LightItalic.ttf', weight: '300', style: 'italic' },
+    { path: '../public/fonts/inria_sans/InriaSans-Regular.ttf', weight: '400', style: 'normal' },
+    { path: '../public/fonts/inria_sans/InriaSans-Italic.ttf', weight: '400', style: 'italic' },
+    { path: '../public/fonts/inria_sans/InriaSans-Bold.ttf', weight: '700', style: 'normal' },
+    { path: '../public/fonts/inria_sans/InriaSans-BoldItalic.ttf', weight: '700', style: 'italic' },
+  ],
+  variable: '--font-inria-sans',
+  display: 'swap',
 });
 
 export const metadata: Metadata = {
@@ -38,7 +41,7 @@ export default function RootLayout({
   return (
     <html lang="fr" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${inriaSans.variable} antialiased`}
       >
         <ThemeProvider>
           <LanguageProvider>

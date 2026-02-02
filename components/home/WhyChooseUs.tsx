@@ -123,7 +123,7 @@ export default function WhyChooseUs() {
           </div>
 
           <div className="relative">
-            <div className="relative z-10 rounded-3xl p-8 text-white" style={{ background: 'linear-gradient(to bottom right, #2563eb, #1e40af)' }}>
+            <div className="relative z-10 rounded-3xl p-8 text-white" style={{ background: 'linear-gradient(to bottom right, #0a3d4f, #062735)' }}>
               <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -translate-y-1/2 translate-x-1/2" />
               <div className="absolute bottom-0 left-0 w-24 h-24 bg-white/10 rounded-full translate-y-1/2 -translate-x-1/2" />
 

@@ -37,7 +37,7 @@ export default function AboutPageContent() {
       <section
         className="py-20 lg:py-32 relative overflow-hidden"
         style={{
-          background: 'linear-gradient(to right, #2563eb, #1e40af)',
+          background: 'linear-gradient(to right, #0a3d4f, #062735)',
         }}
       >
         {/* Decorative elements */}

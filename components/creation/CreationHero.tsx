@@ -42,7 +42,7 @@ export default function CreationHero({
   return (
     <section
       className="relative min-h-[70vh] flex items-center overflow-hidden"
-      style={{ background: 'linear-gradient(to bottom right, #111827, #1e3a8a, #111827)' }}
+      style={{ background: 'linear-gradient(to bottom right, #041c28, #0a3d4f, #041c28)' }}
     >
       {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">

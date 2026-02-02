@@ -37,7 +37,7 @@ export default function DissolutionContent() {
       {/* Hero Section */}
       <section
         className="relative py-20 lg:py-32 overflow-hidden"
-        style={{ background: 'linear-gradient(to bottom right, #111827, #7f1d1d, #111827)' }}
+        style={{ background: 'linear-gradient(to bottom right, #041c28, #7f1d1d, #041c28)' }}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-4xl mx-auto">

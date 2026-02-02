@@ -435,14 +435,14 @@ export default function SalaireSimulator() {
 
           {/* Reverse calculation accuracy notice */}
           {isReverseMode && result && 'isEstimate' in result && result.isEstimate && (
-            <div className="mt-4 p-3 bg-blue-50 border border-blue-200 rounded-xl">
+            <div className="mt-4 p-3 bg-primary-50 border border-primary-200 rounded-xl">
               <div className="flex items-start gap-2">
-                <svg className="w-5 h-5 text-blue-600 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-5 h-5 text-primary-600 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
-                <div className="text-sm text-blue-800">
+                <div className="text-sm text-primary-800">
                   <strong>{simText.estimate[language]}</strong>
-                  <p className="text-blue-700 text-xs mt-1">
+                  <p className="text-primary-700 text-xs mt-1">
                     {simText.estimateAccuracy[language]} \u00b1{formatFCFA(result.accuracy)}
                   </p>
                 </div>

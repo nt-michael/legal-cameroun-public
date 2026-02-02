@@ -100,7 +100,7 @@ export default function Testimonials() {
   }, [isPaused, inView, nextTestimonial]);
 
   return (
-    <section className="section-padding text-white overflow-hidden relative" style={{ background: 'linear-gradient(to bottom right, #1e3a8a, #1e40af, #111827)' }}>
+    <section className="section-padding text-white overflow-hidden relative" style={{ background: 'linear-gradient(to bottom right, #0a3d4f, #083242, #041c28)' }}>
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-20 left-10 w-2 h-2 bg-primary-400/30 rounded-full animate-ping" style={{ animationDuration: '3s' }} />
         <div className="absolute top-40 right-20 w-3 h-3 bg-secondary-400/20 rounded-full animate-ping" style={{ animationDuration: '4s', animationDelay: '1s' }} />

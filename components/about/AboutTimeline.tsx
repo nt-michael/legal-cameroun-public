@@ -15,7 +15,7 @@ const sectionText = {
 gsap.registerPlugin(ScrollTrigger);
 
 const locationColors: Record<string, string> = {
-  Paris: 'bg-blue-500',
+  Paris: 'bg-primary-500',
   Douala: 'bg-amber-500',
   Cotonou: 'bg-green-500',
   Cameroun: 'bg-orange-500',

@@ -42,11 +42,10 @@ const menuSections: FooterSection[] = [
   },
   {
     name: { fr: 'Accompagnement', en: 'Support' },
-    href: '/accompagnement',
+    href: '/prendre-un-rendez-vous',
     rubriques: [
       { name: { fr: 'Devis', en: 'Quote' }, href: '/devis' },
       { name: { fr: 'Avec un expert', en: 'With an Expert' }, href: '/prendre-un-rendez-vous' },
-      { name: { fr: 'Simulateurs Fiscaux', en: 'Tax Simulators' }, href: '/simulateurs' },
       { name: { fr: 'Assistance LegalCameroun', en: 'LegalCameroun Assistance' }, href: '/contact' },
     ],
   },
@@ -66,7 +65,6 @@ const menuSections: FooterSection[] = [
     rubriques: [
       { name: { fr: 'Accueil', en: 'Home' }, href: '/' },
       { name: { fr: 'A propos', en: 'About' }, href: '/a-propos' },
-      { name: { fr: 'Nos Services', en: 'Our Services' }, href: '/services' },
       { name: { fr: 'Actualité', en: 'News' }, href: '/actualite' },
       { name: { fr: 'Nous contacter', en: 'Contact Us' }, href: '/contact' },
     ],

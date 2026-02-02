@@ -85,7 +85,7 @@ export default function Stats() {
       <div className="max-w-7xl mx-auto">
         <div
           ref={ref}
-          className="rounded-3xl p-8 sm:p-12 lg:p-16" style={{ background: 'linear-gradient(to bottom right, #f9fafb, #eff6ff)' }}
+          className="rounded-3xl p-8 sm:p-12 lg:p-16" style={{ background: 'linear-gradient(to bottom right, #f9fafb, #e6f0f3)' }}
         >
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
             {stats.map((stat, index) => (
@@ -95,7 +95,7 @@ export default function Stats() {
                 style={{ animationDelay: `${index * 100}ms` }}
               >
                 <AnimatedCounter value={stat.value} suffix={stat.suffix} inView={inView} />
-                <h3 className="text-lg font-bold mt-2 mb-1" style={{ color: '#111827' }}>
+                <h3 className="text-lg font-bold mt-2 mb-1" style={{ color: '#0a3d4f' }}>
                   {stat.label[language]}
                 </h3>
                 <p className="text-sm" style={{ color: '#4b5563' }}>

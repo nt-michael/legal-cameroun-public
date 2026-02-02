@@ -269,7 +269,7 @@ export default function SubpageLayout({ data, pricingTiers }: SubpageLayoutProps
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div
             className="rounded-3xl p-8 sm:p-12"
-            style={{ background: 'linear-gradient(to right, #2563eb, #1e40af)' }}
+            style={{ background: 'linear-gradient(to right, #0a3d4f, #062735)' }}
           >
             <h2 className="text-2xl sm:text-3xl font-bold text-white mb-4">
               {layoutText.readyTitle[language]}

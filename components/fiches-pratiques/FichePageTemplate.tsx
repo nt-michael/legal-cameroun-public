@@ -176,7 +176,7 @@ export default function FichePageTemplate({ fiche }: FichePageTemplateProps) {
         ref={heroRef}
         className="relative py-16 lg:py-24 overflow-hidden"
         style={{
-          background: 'linear-gradient(to bottom right, #111827, #1e3a8a, #111827)',
+          background: 'linear-gradient(to bottom right, #041c28, #0a3d4f, #041c28)',
         }}
       >
         {/* Decorative elements */}

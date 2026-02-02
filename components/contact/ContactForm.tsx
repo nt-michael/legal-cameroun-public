@@ -70,7 +70,7 @@ export default function ContactForm() {
   // Input focus animation
   const handleFocus = (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     gsap.to(e.target, {
-      borderColor: '#2563eb',
+      borderColor: '#0a3d4f',
       boxShadow: '0 0 0 3px rgba(37,99,235,0.2)',
       duration: 0.3,
     });

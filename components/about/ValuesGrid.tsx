@@ -40,7 +40,7 @@ const iconMap: Record<string, React.ReactNode> = {
 const cardColors = [
   { bg: 'from-amber-50 to-orange-50', border: 'border-amber-200', hover: 'hover:border-amber-400', icon: 'text-amber-600', darkBg: 'dark:from-amber-900/20 dark:to-orange-900/20', darkBorder: 'dark:border-amber-800' },
   { bg: 'from-green-50 to-teal-50', border: 'border-green-200', hover: 'hover:border-green-400', icon: 'text-green-600', darkBg: 'dark:from-green-900/20 dark:to-teal-900/20', darkBorder: 'dark:border-green-800' },
-  { bg: 'from-blue-50 to-indigo-50', border: 'border-blue-200', hover: 'hover:border-blue-400', icon: 'text-blue-600', darkBg: 'dark:from-blue-900/20 dark:to-indigo-900/20', darkBorder: 'dark:border-blue-800' },
+  { bg: 'from-primary-50 to-primary-100', border: 'border-primary-200', hover: 'hover:border-primary-400', icon: 'text-primary-600', darkBg: 'dark:from-primary-900/20 dark:to-primary-800/20', darkBorder: 'dark:border-primary-800' },
   { bg: 'from-purple-50 to-pink-50', border: 'border-purple-200', hover: 'hover:border-purple-400', icon: 'text-purple-600', darkBg: 'dark:from-purple-900/20 dark:to-pink-900/20', darkBorder: 'dark:border-purple-800' },
 ];
 
