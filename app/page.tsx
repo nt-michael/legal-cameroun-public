@@ -9,8 +9,8 @@ import BlogPreview from '@/components/home/BlogPreview';
 import CTASection from '@/components/home/CTASection';
 
 export const metadata: Metadata = {
-  title: "Legal Cameroun | Cabinet Juridique & Création d'Entreprise au Cameroun",
-  description: "Legal Cameroun par RODEC Conseils. Création d'entreprise, modification de statuts, dissolution. Accompagnement juridique expert au Cameroun.",
+  title: "Legal Cameroun | Plateforme d'accompagnement juridique, comptable et fiscale au Cameroun",
+  description: "Legal Cameroun par RODEC Conseils. Création d'entreprise, modification de statuts, dissolution, liquidation et radiation. Accompagnement juridique, comptable et fiscal expert au Cameroun.",
   alternates: {
     languages: {
       'fr': 'https://legalcameroun.com',

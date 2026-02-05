@@ -13,7 +13,7 @@ const testimonials = [
       en: "I want to express my satisfaction with the exceptional services offered by RODEC Conseils, to whom the site redirected me. Their expertise in business transfers and acquisitions greatly facilitated our processes.",
     },
     author: 'Laurent NORTH',
-    role: { fr: 'Directeur, BlueWindow Ltd', en: 'Director, BlueWindow Ltd' },
+    role: { fr: 'Directeur de Stratégie 360 Consulting', en: 'Director of Stratégie 360 Consulting' },
     rating: 5,
     image: '/testimonials/laurent-north.png',
   },
@@ -53,15 +53,15 @@ const testimonials = [
 ];
 
 const sectionText = {
-  badge: { fr: 'Temoignages', en: 'Testimonials' },
-  title: { fr: 'Ce Que Disent Nos Clients', en: 'What Our Clients Say' },
+  badge: { fr: 'Témoignages', en: 'Testimonials' },
+  title: { fr: 'Que disent-ils de nous', en: 'What They Say About Us' },
   subtitle: {
-    fr: 'La satisfaction de nos clients est notre plus belle recompense. Decouvrez leurs experiences avec notre cabinet.',
-    en: 'Our clients\' satisfaction is our greatest reward. Discover their experiences with our firm.',
+    fr: 'La satisfaction de nos clients est notre plus belle récompense. Découvrez leurs expériences avec notre plateforme.',
+    en: 'Our clients\' satisfaction is our greatest reward. Discover their experiences with our platform.',
   },
-  prevLabel: { fr: 'Temoignage precedent', en: 'Previous testimonial' },
-  nextLabel: { fr: 'Temoignage suivant', en: 'Next testimonial' },
-  goToLabel: { fr: 'Aller au temoignage', en: 'Go to testimonial' },
+  prevLabel: { fr: 'Témoignage précédent', en: 'Previous testimonial' },
+  nextLabel: { fr: 'Témoignage suivant', en: 'Next testimonial' },
+  goToLabel: { fr: 'Aller au témoignage', en: 'Go to testimonial' },
   paused: { fr: 'En pause', en: 'Paused' },
   autoplay: { fr: 'Lecture automatique', en: 'Auto-playing' },
 };

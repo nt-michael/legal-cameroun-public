@@ -220,6 +220,9 @@ export const formLabels = {
   successTitle: { fr: 'Merci !', en: 'Thank You!' } as BilingualText,
   successMessage: { fr: 'Un expert vous contacte sous 24h.', en: 'An expert will contact you within 24h.' } as BilingualText,
   successCta: { fr: 'En attendant, réservez un RDV ?', en: 'In the meantime, book an appointment?' } as BilingualText,
+  
+  fullNamePlaceholder: { fr: 'Votre nom complet', en: 'Your Full Name' },
+  emailPlaceholder: { fr: 'votre@email.com', en: 'your@email.com' },
   messagePlaceholder: {
     fr: 'Je souhaite transformer ma SARL en SAS à Douala...',
     en: 'I would like to convert my SARL to a SAS in Douala...',
@@ -228,6 +231,6 @@ export const formLabels = {
 
 // Footer note under offices
 export const officesFooterNote: BilingualText = {
-  fr: 'Nous combinons l\'expertise internationale et la proximité camerounaise. Que vous soyez à Deido, Bonanjo, ou à l\'étranger — on s\'adapte à vous.',
-  en: 'We combine international expertise with Cameroonian proximity. Whether you\'re in Deido, Bonanjo, or abroad — we adapt to you.',
+  fr: 'Nous combinons l\'expertise internationale et la proximité camerounaise. Que vous soyez à Douala, Yaoundé, ou à l\'étranger — on s\'adapte à vous.',
+  en: 'We combine international expertise with Cameroonian proximity. Whether you\'re in Douala, Yaounde, or abroad — we adapt to you.',
 };

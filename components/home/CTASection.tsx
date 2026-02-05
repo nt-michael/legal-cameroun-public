@@ -5,9 +5,9 @@ import { useInView } from 'react-intersection-observer';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 const ctaText = {
-  title: { fr: 'Besoin d\'un Conseil Juridique?', en: 'Need Legal Advice?' },
+  title: { fr: 'Besoin d\'un accompagnement ?', en: 'Need Support?' },
   subtitle: {
-    fr: 'Notre equipe d\'experts est prete a vous accompagner. Beneficiez d\'une consultation initiale gratuite pour discuter de votre situation.',
+    fr: 'Notre équipe d\'experts est prête à vous accompagner. Bénéficiez d\'une consultation initiale gratuite pour discuter de votre situation.',
     en: 'Our team of experts is ready to assist you. Benefit from a free initial consultation to discuss your situation.',
   },
   appointment: { fr: 'Prendre Rendez-vous', en: 'Book an Appointment' },

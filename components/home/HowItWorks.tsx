@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useLanguage } from '@/contexts/LanguageContext';
@@ -13,65 +14,57 @@ const steps = [
     number: '01',
     title: { fr: 'Prise de Contact', en: 'Initial Contact' },
     description: {
-      fr: 'Contactez-nous par telephone, email ou via notre formulaire en ligne pour planifier votre consultation initiale gratuite.',
+      fr: 'Contactez-nous par téléphone, email ou via notre formulaire en ligne pour planifier votre consultation initiale gratuite.',
       en: 'Contact us by phone, email, or through our online form to schedule your free initial consultation.',
     },
     icon: (
-      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-      </svg>
+      <Image src="/custom-icons/SVG/16ICONE_BICHROME.svg" alt="Contact initial" width={32} height={32} />
     ),
   },
   {
     number: '02',
     title: { fr: 'Analyse du Dossier', en: 'Case Analysis' },
     description: {
-      fr: 'Nos avocats analysent votre situation en profondeur et identifient les meilleures strategies juridiques pour votre cas.',
-      en: 'Our lawyers thoroughly analyze your situation and identify the best legal strategies for your case.',
+      fr: 'Nos experts analysent votre situation en profondeur et identifient les meilleures stratégies d\'accompagnement pour votre cas.',
+      en: 'Our experts thoroughly analyze your situation and identify the best support strategies for your case.',
     },
     icon: (
-      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
-      </svg>
+      <Image src="/custom-icons/SVG/11ICONE_BICHROME.svg" alt="Analyse du dossier" width={32} height={32} />
     ),
   },
   {
     number: '03',
-    title: { fr: 'Strategie & Devis', en: 'Strategy & Quote' },
+    title: { fr: 'Stratégie & devis', en: 'Strategy & Quote' },
     description: {
-      fr: 'Nous vous presentons notre plan d\'action detaille et un devis transparent avant de commencer toute procedure.',
+      fr: 'Nous vous présentons notre plan d\'action détaillé et un devis transparent avant de commencer toute procédure.',
       en: 'We present our detailed action plan and a transparent quote before starting any procedure.',
     },
     icon: (
-      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-      </svg>
+      <Image src="/custom-icons/SVG/6ICONE_BICHROME.svg" alt="Stratégie & devis" width={32} height={32} />
     ),
   },
   {
     number: '04',
-    title: { fr: 'Execution & Suivi', en: 'Execution & Follow-up' },
+    title: { fr: 'Exécution & suivi', en: 'Execution & Follow-up' },
     description: {
-      fr: 'Nous executons la strategie avec rigueur et vous tenons informe a chaque etape jusqu\'a la resolution de votre affaire.',
+      fr: 'Nous exécutons la stratégie avec rigueur et vous tenons informé à chaque étape jusqu\'à la résolution de votre affaire.',
       en: 'We execute the strategy rigorously and keep you informed at every step until your case is resolved.',
     },
     icon: (
-      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-      </svg>
+      <Image src="/custom-icons/SVG/9ICONE_BICHROME.svg" alt="Exécution & suivi" width={32} height={32} />
     ),
   },
 ];
 
 const sectionText = {
-  badge: { fr: 'Comment Ca Marche', en: 'How It Works' },
-  title: { fr: 'Un Processus Simple et Efficace', en: 'A Simple and Effective Process' },
+  badge: { fr: 'Comment ça marche', en: 'How It Works' },
+  title: { fr: 'Un processus simple et efficace', en: 'A Simple and Effective Process' },
   subtitle: {
-    fr: 'De votre premier contact a la resolution de votre affaire, nous vous accompagnons a chaque etape avec professionnalisme.',
+    fr: 'De votre premier contact à la résolution de votre affaire, nous vous accompagnons à chaque étape avec professionnalisme.',
     en: 'From your first contact to the resolution of your case, we support you at every step with professionalism.',
   },
   cta: {
-    fr: 'Pret a commencer? Contactez-nous pour une consultation gratuite.',
+    fr: 'Prêt à commencer ? Contactez-nous pour une consultation gratuite.',
     en: 'Ready to start? Contact us for a free consultation.',
   },
   ctaButton: { fr: 'Prendre Rendez-vous', en: 'Book an Appointment' },
@@ -199,7 +192,7 @@ export default function HowItWorks() {
                 )}
 
                 <div className="step-card bg-white rounded-2xl p-6 pt-10 lg:pt-16 lg:mt-8 border border-gray-100 shadow-sm hover:shadow-xl transition-shadow duration-300 h-full">
-                  <div className="w-14 h-14 bg-primary-50 rounded-xl flex items-center justify-center text-primary-600 mb-4">
+                  <div className="w-14 h-14 bg-primary-50 rounded-xl flex items-center justify-center mb-4">
                     {step.icon}
                   </div>
 

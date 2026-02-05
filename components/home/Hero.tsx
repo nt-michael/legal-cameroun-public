@@ -7,33 +7,37 @@ import { useLanguage } from '@/contexts/LanguageContext';
 
 const heroContent = {
   badge: {
-    fr: 'Cabinet d\'Avocats de Premier Plan au Cameroun',
-    en: 'Leading Law Firm in Cameroon',
+    fr: 'Plateforme d\'accompagnement juridique, comptable et fiscale',
+    en: 'Legal, accounting, and tax support platform',
   },
   title1: {
-    fr: 'Votre Partenaire Juridique',
-    en: 'Your Trusted Legal',
+    fr: 'Votre plateforme LEGALTECH au Cameroun.',
+    en: 'Your LEGALTECH Platform in Cameroon.',
   },
   title2: {
-    fr: 'de Confiance',
-    en: 'Partner',
+    fr: 'Votre partenaire juridique',
+    en: 'Your legal partner',
   },
   subtitle: {
-    fr: 'Expertise juridique d\'excellence pour les entreprises et les particuliers. Plus de 15 ans d\'experience au service de vos interets.',
-    en: 'Excellence in legal expertise for businesses and individuals. Over 15 years of experience serving your interests.',
+    fr: 'Expertise juridique, comptable, fiscale de premier choix pour les entreprises et les particuliers.',
+    en: 'Top-tier legal, accounting, and tax expertise for businesses and individuals.',
+  },
+  description: {
+    fr: 'Que ce soit pour une création d\'entreprise, une déclaration fiscale ou sociale, une modification urgente ou une question urgente, nous sommes à votre écoute.',
+    en: 'Whether it\'s for business creation, a tax or social declaration, an urgent modification, or an urgent question, we are at your service.',
   },
   ctaPrimary: {
-    fr: 'Consultation Gratuite',
-    en: 'Free Consultation',
+    fr: 'Consultation (gratuite 15 minutes)',
+    en: 'Consultation (free 15 minutes)',
   },
   ctaSecondary: {
-    fr: 'Nos Services',
-    en: 'Our Services',
+    fr: 'Réservez votre rendez-vous avec un expert',
+    en: 'Book your appointment with an expert',
   },
   badges: [
-    { fr: '+500 Clients Satisfaits', en: '+500 Satisfied Clients' },
-    { fr: '15+ Ans d\'Experience', en: '15+ Years of Experience' },
-    { fr: '98% Taux de Succes', en: '98% Success Rate' },
+    { fr: '300+ clients satisfaits', en: '300+ satisfied clients' },
+    { fr: '08 années d\'expérience', en: '08 years of experience' },
+    { fr: '15 000 entreprises installées', en: '15,000 businesses established' },
   ],
 };
 
@@ -169,8 +173,12 @@ export default function Hero() {
           <span className="block gradient-text-gold">{heroContent.title2[language]}</span>
         </h1>
 
-        <p className="text-lg sm:text-xl text-gray-300 max-w-3xl mx-auto mb-10 animate-fade-in-up animation-delay-200">
+        <p className="text-lg sm:text-xl text-gray-300 max-w-3xl mx-auto mb-4 animate-fade-in-up animation-delay-200">
           {heroContent.subtitle[language]}
+        </p>
+
+        <p className="text-base sm:text-lg text-gray-400 max-w-3xl mx-auto mb-10 animate-fade-in-up animation-delay-200">
+          {heroContent.description[language]}
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up animation-delay-300">
@@ -180,7 +188,7 @@ export default function Hero() {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>
           </Link>
-          <Link href="/services" className="btn-secondary text-lg px-8 py-4 border-white/30 text-white hover:bg-white hover:text-gray-900">
+          <Link href="/prendre-un-rendez-vous" className="btn-secondary text-lg px-8 py-4 border-white/30! text-white! hover:bg-white hover:text-gray-900">
             {heroContent.ctaSecondary[language]}
           </Link>
         </div>

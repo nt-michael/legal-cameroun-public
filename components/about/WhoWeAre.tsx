@@ -8,7 +8,7 @@ import { useLanguage } from '@/contexts/LanguageContext';
 
 const sectionText = {
   badge: { fr: 'Qui Sommes-Nous ?', en: 'Who Are We?' },
-  titleLine1: { fr: 'Plus Qu\'un Cabinet,', en: 'More Than a Firm,' },
+  titleLine1: { fr: 'Plus qu\'une plateforme,', en: 'More Than a Platform,' },
   titleLine2: { fr: 'Une Famille', en: 'A Family' },
   weLove: { fr: 'Nous aimons :', en: 'We love:' },
   ourPromise: { fr: 'Notre promesse', en: 'Our promise' },

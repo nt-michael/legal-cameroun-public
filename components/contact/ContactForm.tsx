@@ -225,7 +225,7 @@ export default function ContactForm() {
                 className={`w-full px-4 py-3 rounded-xl border ${
                   errors.fullName ? 'border-red-500' : 'border-gray-300 dark:border-gray-600'
                 } bg-white dark:bg-gray-900 text-gray-900 dark:text-white focus:outline-none transition-all duration-300`}
-                placeholder="Votre nom complet"
+                placeholder={formLabels.fullNamePlaceholder[language]}
               />
               {errors.fullName && (
                 <p className="mt-1 text-sm text-red-500">{errors.fullName}</p>
@@ -249,7 +249,7 @@ export default function ContactForm() {
                   className={`w-full px-4 py-3 rounded-xl border ${
                     errors.email ? 'border-red-500' : 'border-gray-300 dark:border-gray-600'
                   } bg-white dark:bg-gray-900 text-gray-900 dark:text-white focus:outline-none transition-all duration-300`}
-                  placeholder="votre@email.com"
+                  placeholder={formLabels.emailPlaceholder[language]}
                 />
                 {errors.email && (
                   <p className="mt-1 text-sm text-red-500">{errors.email}</p>

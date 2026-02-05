@@ -315,7 +315,7 @@ export default function DissolutionContent() {
               {pageText.ctaPrimary[language]}
             </Link>
             <Link href={gestionCtaData.secondaryCta.href} className="btn-secondary">
-              {getText(gestionCtaData.secondaryCta.text, language)}
+             {getText(gestionCtaData.secondaryCta.text, language)}
             </Link>
           </div>
         </div>

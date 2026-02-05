@@ -1,8 +1,9 @@
 'use client';
 
-import { useState, useMemo } from 'react';
+import { useState, useEffect } from 'react';
 import gsap from 'gsap';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { useSearchParams } from 'next/navigation';
 
 interface BookingFormData {
   consultationType: string;
@@ -13,6 +14,8 @@ interface BookingFormData {
   email: string;
   phone: string;
   message: string;
+  slotStartTime: string; // ISO 8601 UTC
+  timezone: string;
 }
 
 const consultationTypes = [
@@ -24,7 +27,7 @@ const consultationTypes = [
   { value: 'autre', label: { fr: 'Autre', en: 'Other' }, icon: '💬', description: { fr: 'Besoin spécifique', en: 'Specific need' } },
 ];
 
-const bookingText = {
+const bookingText: Record<string, any> = {
   // Step 0: Consultation Type
   consultationTitle: { fr: 'Quel type de consultation ?', en: 'What type of consultation?' },
   consultationSubtitle: { fr: 'Sélectionnez le sujet de votre rendez-vous', en: 'Select the topic of your appointment' },
@@ -34,6 +37,8 @@ const bookingText = {
   dateTimeSubtitle: { fr: 'Fuseau horaire: Afrique Centrale (WAT)', en: 'Timezone: West Africa Time (WAT)' },
   dateLabel: { fr: 'Date', en: 'Date' },
   timeLabel: { fr: 'Horaire', en: 'Time' },
+  noSlots: { fr: 'Aucun créneau disponible', en: 'No slots available' },
+  loadingSlots: { fr: 'Chargement des disponibilités...', en: 'Loading availability...' },
 
   // Step 2: Contact Info
   contactTitle: { fr: 'Vos coordonnées', en: 'Your contact details' },
@@ -41,6 +46,7 @@ const bookingText = {
   firstNameLabel: { fr: 'Prénom', en: 'First name' },
   lastNameLabel: { fr: 'Nom', en: 'Last name' },
   emailLabel: { fr: 'Email', en: 'Email' },
+  emailPlaceholder: { fr: 'votre@email.com', en: 'your@email.com' },
   phoneLabel: { fr: 'Téléphone', en: 'Phone' },
   messageLabel: { fr: 'Message (optionnel)', en: 'Message (optional)' },
   messagePlaceholder: { fr: 'Décrivez brièvement votre besoin...', en: 'Briefly describe your need...' },
@@ -51,24 +57,18 @@ const bookingText = {
   consultationLabel: { fr: 'Consultation', en: 'Consultation' },
   nameLabel: { fr: 'Nom', en: 'Name' },
   confirmNote: {
-    fr: 'Vous recevrez un email de confirmation avec les détails du rendez-vous.',
-    en: 'You will receive a confirmation email with the appointment details.',
+    fr: 'Vous serez redirigé vers le paiement pour finaliser la réservation (50,000 FCFA).',
+    en: 'You will be redirected to payment to finalize the booking (50,000 FCFA).',
   },
 
-  // Success state
-  successTitle: { fr: 'Rendez-vous Confirmé !', en: 'Appointment Confirmed!' },
-  successEmailSent: {
-    fr: 'Un email de confirmation a été envoyé à',
-    en: 'A confirmation email has been sent to',
-  },
-  backHome: { fr: "Retour à l'accueil", en: 'Back to Home' },
-  newAppointment: { fr: 'Nouveau rendez-vous', en: 'New appointment' },
-
+  // Success state (Not used directly here as we redirect, but kept if needed for return page)
+  successTitle: { fr: 'Redirection en cours...', en: 'Redirecting...' },
+  
   // Navigation
   back: { fr: 'Retour', en: 'Back' },
   continue: { fr: 'Continuer', en: 'Continue' },
-  confirming: { fr: 'Confirmation...', en: 'Confirming...' },
-  confirmButton: { fr: 'Confirmer le rendez-vous', en: 'Confirm appointment' },
+  confirming: { fr: 'Traitement...', en: 'Processing...' },
+  confirmButton: { fr: 'Payer et Confirmer', en: 'Pay and Confirm' },
 
   // Validation errors
   errSelectConsultation: { fr: 'Veuillez sélectionner un type de consultation', en: 'Please select a consultation type' },
@@ -79,12 +79,8 @@ const bookingText = {
   errEmailRequired: { fr: 'Email requis', en: 'Email required' },
   errEmailInvalid: { fr: 'Format email invalide', en: 'Invalid email format' },
   errPhoneRequired: { fr: 'Téléphone requis', en: 'Phone required' },
+  errGeneral: { fr: 'Une erreur est survenue', en: 'An error occurred' },
 };
-
-const timeSlots = [
-  '09:00', '09:30', '10:00', '10:30', '11:00', '11:30',
-  '14:00', '14:30', '15:00', '15:30', '16:00', '16:30', '17:00',
-];
 
 const initialFormData: BookingFormData = {
   consultationType: '',
@@ -95,29 +91,83 @@ const initialFormData: BookingFormData = {
   email: '',
   phone: '',
   message: '',
+  slotStartTime: '',
+  timezone: '',
 };
 
 export default function BookingForm() {
   const { language } = useLanguage();
+  const searchParams = useSearchParams();
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [step, setStep] = useState(0);
   const [formData, setFormData] = useState<BookingFormData>(initialFormData);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSubmitted, setIsSubmitted] = useState(false);
+  
+  // Availability State
+  const [availableSlots, setAvailableSlots] = useState<any[]>([]);
+  const [isLoadingSlots, setIsLoadingSlots] = useState(false);
+  const [dateMap, setDateMap] = useState<Record<string, Array<{ display: string, value: string }>>>({}); // date -> [{ display, value (iso) }]
 
-  // Generate available dates (next 30 days, excluding Sundays)
-  const availableDates = useMemo(() => {
-    const dates: Date[] = [];
-    const today = new Date();
-    for (let i = 1; i <= 30; i++) {
-      const date = new Date(today);
-      date.setDate(today.getDate() + i);
-      if (date.getDay() !== 0) { // Exclude Sundays
-        dates.push(date);
+  // Check for success param
+  useEffect(() => {
+    // Capture User Timezone
+    try {
+        const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+        setFormData(prev => ({ ...prev, timezone: tz }));
+    } catch (e) {
+        console.error('Failed to get timezone', e);
+    }
+    
+    if (searchParams && searchParams.get('success') === 'true') {
+      setShowSuccessModal(true);
+      if (typeof window !== 'undefined') {
+        window.history.replaceState(null, '', window.location.pathname);
       }
     }
-    return dates;
-  }, []);
+  }, [searchParams]);
+
+  // Fetch Availability when entering Step 1
+  useEffect(() => {
+    if (step === 1 && Object.keys(dateMap).length === 0) {
+      setIsLoadingSlots(true);
+      const today = new Date();
+      const nextMonth = new Date();
+      nextMonth.setDate(today.getDate() + 30);
+      
+      const start = today.toISOString().split('T')[0];
+      const end = nextMonth.toISOString().split('T')[0];
+
+      fetch(`/api/availability?startDate=${start}&endDate=${end}`)
+        .then(res => res.json())
+        .then(data => {
+          if (data.collection) {
+            const map: Record<string, Array<{ display: string, value: string }>> = {};
+            data.collection.forEach((slot: any) => {
+               // Calendly returns start_time in UTC usually or with offset
+               const dateObj = new Date(slot.start_time);
+               const dateKey = dateObj.toISOString().split('T')[0];
+               
+               // Use browser local time for display matching the "UTC+1" requirement if user has that,
+               // OR simply display what the time means in THEIR timezone.
+               // The user said: "if time was display in gmt+1, use gmt+1 when selecting".
+               // This implies we preserve the exact moment.
+               // By storing the ISO string (value), we preserve the exact moment.
+               const timeStr = dateObj.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' });
+               
+               if (!map[dateKey]) map[dateKey] = [];
+               map[dateKey].push({
+                   display: timeStr,
+                   value: slot.start_time // Original ISO string
+               });
+            });
+            setDateMap(map);
+          }
+        })
+        .catch(err => console.error(err))
+        .finally(() => setIsLoadingSlots(false));
+    }
+  }, [step]);
 
   const updateFormData = (updates: Partial<BookingFormData>) => {
     setFormData(prev => ({ ...prev, ...updates }));
@@ -191,82 +241,87 @@ export default function BookingForm() {
     if (!validateStep()) return;
 
     setIsSubmitting(true);
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    setIsSubmitting(false);
-    setIsSubmitted(true);
+    setErrors({}); // Clear previous errors
+
+    try {
+      const res = await fetch('/api/bookings/create', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(data.error || 'Submission failed');
+      }
+
+      if (data.payment_url) {
+        // Redirect to Notch Pay
+        window.location.href = data.payment_url;
+      } else {
+        throw new Error('No payment URL returned');
+      }
+
+    } catch (error: any) {
+      console.error('Booking Error:', error);
+      setErrors({ general: error.message || bookingText.errGeneral[language] });
+      setIsSubmitting(false);
+    }
   };
 
-  const formatDate = (date: Date): string => {
+  const formatDate = (dateString: string): string => {
+    if (!dateString) return '';
+    const date = new Date(dateString);
     return date.toLocaleDateString(language === 'fr' ? 'fr-FR' : 'en-US', {
       weekday: 'long',
       day: 'numeric',
       month: 'long',
     });
   };
-
-  const formatDateValue = (date: Date): string => {
-    return date.toISOString().split('T')[0];
+  
+  const formatDateShort = (dateString: string) => {
+    const date = new Date(dateString);
+    return {
+        weekday: date.toLocaleDateString(language === 'fr' ? 'fr-FR' : 'en-US', { weekday: 'short' }),
+        day: date.getDate(),
+        month: date.toLocaleDateString(language === 'fr' ? 'fr-FR' : 'en-US', { month: 'short' })
+    };
   };
 
-  if (isSubmitted) {
-    const selectedDateObj = new Date(formData.selectedDate);
-    return (
-      <div className="text-center py-12">
-        <div className="w-20 h-20 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center mx-auto mb-6">
-          <svg className="w-10 h-10 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-          </svg>
-        </div>
-        <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-          {bookingText.successTitle[language]}
-        </h2>
-        <div className="bg-gray-50 dark:bg-gray-700 rounded-2xl p-6 max-w-md mx-auto mb-8">
-          <div className="text-left space-y-3">
-            <div className="flex justify-between">
-              <span className="text-gray-500 dark:text-gray-400">{bookingText.dateLabel[language]}</span>
-              <span className="font-medium text-gray-900 dark:text-white">
-                {formatDate(selectedDateObj)}
-              </span>
-            </div>
-            <div className="flex justify-between">
-              <span className="text-gray-500 dark:text-gray-400">{bookingText.timeLabel[language]}</span>
-              <span className="font-medium text-gray-900 dark:text-white">{formData.selectedTime}</span>
-            </div>
-            <div className="flex justify-between">
-              <span className="text-gray-500 dark:text-gray-400">Type</span>
-              <span className="font-medium text-gray-900 dark:text-white">
-                {consultationTypes.find(t => t.value === formData.consultationType)?.label[language]}
-              </span>
-            </div>
-          </div>
-        </div>
-        <p className="text-gray-600 dark:text-gray-300 mb-6">
-          {bookingText.successEmailSent[language]} <strong>{formData.email}</strong>
-        </p>
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <a
-            href="/"
-            className="inline-flex items-center justify-center gap-2 bg-primary-600 hover:bg-primary-700 text-white px-6 py-3 rounded-xl font-semibold transition-all duration-300"
-          >
-            {bookingText.backHome[language]}
-          </a>
-          <button
-            onClick={() => {
-              setIsSubmitted(false);
-              setFormData(initialFormData);
-              setStep(0);
-            }}
-            className="inline-flex items-center justify-center gap-2 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 px-6 py-3 rounded-xl font-semibold transition-all duration-300"
-          >
-            {bookingText.newAppointment[language]}
-          </button>
-        </div>
-      </div>
-    );
-  }
+  const availableDatesList = Object.keys(dateMap).sort();
 
   return (
-    <div className="max-w-2xl mx-auto">
+    <div className="max-w-2xl mx-auto relative">
+      {/* Success Modal */}
+      {showSuccessModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm animate-fade-in">
+          <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl p-8 max-w-sm w-full text-center transform transition-all scale-100 animate-slide-up">
+            <div className="w-16 h-16 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center mx-auto mb-4 text-green-600 dark:text-green-400">
+              <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+              </svg>
+            </div>
+            <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
+              {language === 'fr' ? 'Paiement Réussi !' : 'Payment Successful!'}
+            </h3>
+            <p className="text-gray-600 dark:text-gray-300 mb-6">
+              {language === 'fr' 
+                ? 'Votre rendez-vous a été confirmé. Vous recevrez un email de confirmation.' 
+                : 'Your appointment has been confirmed. You will receive a confirmation email.'}
+            </p>
+            <button
+              onClick={() => setShowSuccessModal(false)}
+              className="w-full bg-primary-600 hover:bg-primary-700 text-white px-6 py-3 rounded-xl font-semibold transition-colors"
+            >
+              {language === 'fr' ? 'Fermer' : 'Close'}
+            </button>
+          </div>
+        </div>
+      )}
+
       {/* Progress */}
       <div className="flex items-center justify-center gap-2 mb-8">
         {[0, 1, 2, 3].map((s) => (
@@ -329,56 +384,65 @@ export default function BookingForm() {
                 <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
                   {bookingText.dateLabel[language]}
                 </label>
-                <div className="grid grid-cols-3 sm:grid-cols-4 gap-2 max-h-48 overflow-y-auto pr-2">
-                  {availableDates.slice(0, 16).map((date) => (
-                    <button
-                      key={formatDateValue(date)}
-                      onClick={() => updateFormData({ selectedDate: formatDateValue(date) })}
-                      className={`p-3 rounded-xl text-center transition-all duration-200 ${
-                        formData.selectedDate === formatDateValue(date)
-                          ? 'bg-primary-600 text-white'
-                          : 'bg-gray-100 dark:bg-gray-700 hover:bg-primary-100 dark:hover:bg-primary-900/30'
-                      }`}
-                    >
-                      <div className="text-xs uppercase opacity-75">
-                        {date.toLocaleDateString(language === 'fr' ? 'fr-FR' : 'en-US', { weekday: 'short' })}
-                      </div>
-                      <div className="text-lg font-bold">{date.getDate()}</div>
-                      <div className="text-xs">
-                        {date.toLocaleDateString(language === 'fr' ? 'fr-FR' : 'en-US', { month: 'short' })}
-                      </div>
-                    </button>
-                  ))}
-                </div>
+                
+                {isLoadingSlots ? (
+                    <div className="text-center py-4 text-gray-500">{bookingText.loadingSlots[language]}</div>
+                ) : availableDatesList.length === 0 ? (
+                    <div className="text-center py-4 text-gray-500">{bookingText.noSlots[language]}</div>
+                ) : (
+                    <div className="grid grid-cols-3 sm:grid-cols-4 gap-2 max-h-48 overflow-y-auto pr-2">
+                    {availableDatesList.map((dateStr) => {
+                        const { weekday, day, month } = formatDateShort(dateStr);
+                        return (
+                            <button
+                            key={dateStr}
+                                onClick={() => updateFormData({ selectedDate: dateStr, selectedTime: '', slotStartTime: '' })}
+                                className={`p-3 rounded-xl text-center transition-all duration-200 ${
+                                    formData.selectedDate === dateStr
+                                ? 'bg-primary-600 text-white'
+                                : 'bg-gray-100 dark:bg-gray-700 hover:bg-primary-100 dark:hover:bg-primary-900/30'
+                            }`}
+                            >
+                            <div className="text-xs uppercase opacity-75">{weekday}</div>
+                            <div className="text-lg font-bold">{day}</div>
+                            <div className="text-xs">{month}</div>
+                            </button>
+                        );
+                    })}
+                    </div>
+                )}
+                
                 {errors.selectedDate && (
                   <p className="text-red-500 text-sm mt-2">{errors.selectedDate}</p>
                 )}
               </div>
 
               {/* Time Selection */}
-              <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
-                  {bookingText.timeLabel[language]}
-                </label>
-                <div className="grid grid-cols-4 sm:grid-cols-5 gap-2">
-                  {timeSlots.map((time) => (
-                    <button
-                      key={time}
-                      onClick={() => updateFormData({ selectedTime: time })}
-                      className={`p-3 rounded-xl text-center font-medium transition-all duration-200 ${
-                        formData.selectedTime === time
-                          ? 'bg-primary-600 text-white'
-                          : 'bg-gray-100 dark:bg-gray-700 hover:bg-primary-100 dark:hover:bg-primary-900/30'
-                      }`}
-                    >
-                      {time}
-                    </button>
-                  ))}
+              {formData.selectedDate && dateMap[formData.selectedDate] && (
+                <div>
+                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
+                    {bookingText.timeLabel[language]}
+                    </label>
+                    <div className="grid grid-cols-4 sm:grid-cols-5 gap-2">
+                    {dateMap[formData.selectedDate].map((item, index) => (
+                        <button
+                        key={index}
+                        onClick={() => updateFormData({ selectedTime: item.display, slotStartTime: item.value })}
+                        className={`p-3 rounded-xl text-center font-medium transition-all duration-200 ${
+                            formData.selectedTime === item.display
+                            ? 'bg-primary-600 text-white'
+                            : 'bg-gray-100 dark:bg-gray-700 hover:bg-primary-100 dark:hover:bg-primary-900/30'
+                        }`}
+                        >
+                        {item.display}
+                        </button>
+                    ))}
+                    </div>
+                    {errors.selectedTime && (
+                    <p className="text-red-500 text-sm mt-2">{errors.selectedTime}</p>
+                    )}
                 </div>
-                {errors.selectedTime && (
-                  <p className="text-red-500 text-sm mt-2">{errors.selectedTime}</p>
-                )}
-              </div>
+              )}
             </div>
           )}
 
@@ -432,7 +496,7 @@ export default function BookingForm() {
                     type="email"
                     value={formData.email}
                     onChange={(e) => updateFormData({ email: e.target.value })}
-                    placeholder="votre@email.com"
+                    placeholder={bookingText.emailPlaceholder[language]}
                     className={`w-full px-4 py-3 rounded-xl border-2 bg-white dark:bg-gray-900 transition-colors ${
                       errors.email ? 'border-red-500' : 'border-gray-200 dark:border-gray-700 focus:border-primary-500'
                     } focus:outline-none`}
@@ -492,12 +556,12 @@ export default function BookingForm() {
                 <div className="flex justify-between items-center pb-4 border-b border-gray-200 dark:border-gray-600">
                   <span className="text-gray-500 dark:text-gray-400">{bookingText.dateLabel[language]}</span>
                   <span className="font-medium text-gray-900 dark:text-white">
-                    {formData.selectedDate && formatDate(new Date(formData.selectedDate))}
+                    {formData.selectedDate && formatDate(formData.selectedDate)}
                   </span>
                 </div>
                 <div className="flex justify-between items-center pb-4 border-b border-gray-200 dark:border-gray-600">
                   <span className="text-gray-500 dark:text-gray-400">{bookingText.timeLabel[language]}</span>
-                  <span className="font-medium text-gray-900 dark:text-white">{formData.selectedTime} (WAT)</span>
+                  <span className="font-medium text-gray-900 dark:text-white">{formData.selectedTime}</span>
                 </div>
                 <div className="flex justify-between items-center pb-4 border-b border-gray-200 dark:border-gray-600">
                   <span className="text-gray-500 dark:text-gray-400">{bookingText.nameLabel[language]}</span>
@@ -518,6 +582,12 @@ export default function BookingForm() {
               <p className="text-sm text-gray-500 dark:text-gray-400 text-center mt-6">
                 {bookingText.confirmNote[language]}
               </p>
+
+              {errors.general && (
+                <div className="mt-4 p-3 bg-red-100 text-red-700 rounded-lg text-center text-sm">
+                    {errors.general}
+                </div>
+              )}
             </div>
           )}
         </div>
@@ -526,7 +596,7 @@ export default function BookingForm() {
         <div className="flex items-center justify-between mt-8 pt-6 border-t border-gray-200 dark:border-gray-700">
           <button
             onClick={prevStep}
-            disabled={step === 0}
+            disabled={step === 0 || isSubmitting}
             className={`inline-flex items-center gap-2 px-6 py-3 rounded-xl font-medium transition-all duration-300 ${
               step === 0
                 ? 'opacity-0 pointer-events-none'

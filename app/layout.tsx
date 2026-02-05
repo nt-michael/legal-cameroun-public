@@ -21,9 +21,9 @@ const inriaSans = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Legal Cameroun | Cabinet d'Avocats - RODEC Conseils",
-  description: "Cabinet d'avocats de premier plan au Cameroun, offrant des services juridiques de qualite superieure aux entreprises et aux particuliers. Expertise en droit des affaires, immobilier, fiscal et plus.",
-  keywords: "avocat cameroun, cabinet d'avocats douala, droit des affaires cameroun, legal cameroun, rodec conseils",
+  title: "Legal Cameroun | Plateforme d'accompagnement juridique, comptable et fiscale - RODEC Conseils",
+  description: "Plateforme d'accompagnement juridique, comptable et fiscale de premier choix au Cameroun, offrant des services de qualité supérieure aux entreprises et aux particuliers. Expertise en droit des affaires, immobilier, fiscal et plus.",
+  keywords: "legaltech cameroun, accompagnement juridique douala, droit des affaires cameroun, legal cameroun, rodec conseils",
   alternates: {
     languages: {
       'fr': 'https://legalcameroun.com',

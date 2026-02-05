@@ -146,8 +146,8 @@ export const timelineEvents: TimelineEvent[] = [
       en: 'Today',
     },
     description: {
-      fr: '+15 000 entreprises accompagnées, des startups de Bonanjo aux PME de Deido, en passant par des projets innovants à Yaoundé.',
-      en: '+15,000 businesses supported, from Bonanjo startups to Deido SMEs, including innovative projects in Yaoundé.',
+      fr: '+15 000 entreprises accompagnées, des startups aux PME, en passant par des projets innovants.',
+      en: '+15,000 businesses supported, from startups to SMEs, including innovative projects.',
     },
     location: 'Cameroun',
   },
