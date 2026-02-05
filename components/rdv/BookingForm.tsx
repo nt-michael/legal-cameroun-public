@@ -19,11 +19,11 @@ interface BookingFormData {
 }
 
 const consultationTypes = [
-  { value: 'creation', label: { fr: 'Création d\'entreprise', en: 'Business Creation' }, icon: '🏢', description: { fr: 'SAS, SARL, SARLU, Association...', en: 'SAS, SARL, SARLU, Association...' } },
-  { value: 'modification', label: { fr: 'Modification de société', en: 'Company Modification' }, icon: '🔄', description: { fr: 'Transfert siège, changement statuts...', en: 'HQ transfer, articles of association changes...' } },
-  { value: 'dissolution', label: { fr: 'Dissolution', en: 'Dissolution' }, icon: '📋', description: { fr: 'Fermeture et liquidation', en: 'Closure and liquidation' } },
-  { value: 'conseil', label: { fr: 'Conseil juridique', en: 'Legal Advice' }, icon: '⚖️', description: { fr: 'Questions légales diverses', en: 'Various legal questions' } },
-  { value: 'comptable', label: { fr: 'Expertise comptable', en: 'Accounting Expertise' }, icon: '📊', description: { fr: 'Comptabilité et fiscalité', en: 'Accounting and taxation' } },
+  { value: 'creation_entreprise', label: { fr: 'Création d\'entreprise', en: 'Business Creation' }, icon: '🏢', description: { fr: 'SAS, SARL, SARLU, Association...', en: 'SAS, SARL, SARLU, Association...' } },
+  { value: 'modification_entreprise', label: { fr: 'Modification de société', en: 'Company Modification' }, icon: '🔄', description: { fr: 'Transfert siège, changement statuts...', en: 'HQ transfer, articles of association changes...' } },
+  { value: 'dissolution_entreprise', label: { fr: 'Dissolution', en: 'Dissolution' }, icon: '📋', description: { fr: 'Fermeture et liquidation', en: 'Closure and liquidation' } },
+  { value: 'conseil_juridique', label: { fr: 'Conseil juridique', en: 'Legal Advice' }, icon: '⚖️', description: { fr: 'Questions légales diverses', en: 'Various legal questions' } },
+  { value: 'expertise_comptable', label: { fr: 'Expertise comptable', en: 'Accounting Expertise' }, icon: '📊', description: { fr: 'Comptabilité et fiscalité', en: 'Accounting and taxation' } },
   { value: 'autre', label: { fr: 'Autre', en: 'Other' }, icon: '💬', description: { fr: 'Besoin spécifique', en: 'Specific need' } },
 ];
 
@@ -298,7 +298,7 @@ export default function BookingForm() {
       {/* Success Modal */}
       {showSuccessModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm animate-fade-in">
-          <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl p-8 max-w-sm w-full text-center transform transition-all scale-100 animate-slide-up">
+          <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl p-8 max-w-sm text-center transform transition-all scale-100 animate-slide-up">
             <div className="w-16 h-16 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center mx-auto mb-4 text-green-600 dark:text-green-400">
               <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
