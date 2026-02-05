@@ -2,6 +2,7 @@
 
 import { useLanguage } from '@/contexts/LanguageContext';
 import BookingForm from '@/components/rdv/BookingForm';
+import { Suspense } from 'react';
 
 const pageText = {
   badge: { fr: 'Consultation Gratuite', en: 'Free Consultation' },
@@ -160,7 +161,10 @@ export default function RDVPageContent() {
       {/* Booking Form Section */}
       <section className="py-12 lg:py-16 -mt-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <BookingForm />
+          <Suspense fallback={<div className="flex justify-center p-12"><div className="w-8 h-8 border-4 border-primary-500 border-t-transparent rounded-full animate-spin"></div></div>}>
+            <BookingForm />
+          </Suspense>
+
         </div>
       </section>
 
