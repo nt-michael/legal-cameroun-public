@@ -8,6 +8,15 @@ const nextConfig: NextConfig = {
         hostname: 'legalcameroun.com',
         pathname: '/wp-content/uploads/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'staging.legalcameroun.com',
+        pathname: '/wp-content/uploads/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'secure.gravatar.com',
+      },
     ],
   },
 };

@@ -7,6 +7,8 @@ import Testimonials from '@/components/home/Testimonials';
 import Stats from '@/components/home/Stats';
 import BlogPreview from '@/components/home/BlogPreview';
 import CTASection from '@/components/home/CTASection';
+import { getFeaturedPosts } from '@/lib/wordpress';
+import { transformPosts } from '@/lib/wordpress-utils';
 
 export const metadata: Metadata = {
   title: "Legal Cameroun | Plateforme d'accompagnement juridique, comptable et fiscale au Cameroun",
@@ -20,7 +22,15 @@ export const metadata: Metadata = {
   },
 };
 
-export default function Home() {
+export default async function Home() {
+  let latestPosts;
+  try {
+    const wpPosts = await getFeaturedPosts(3);
+    latestPosts = wpPosts.length > 0 ? transformPosts(wpPosts) : undefined;
+  } catch {
+    latestPosts = undefined;
+  }
+
   return (
     <>
       <Hero />
@@ -29,7 +39,7 @@ export default function Home() {
       <Stats />
       <HowItWorks />
       <Testimonials />
-      <BlogPreview />
+      <BlogPreview posts={latestPosts} />
       <CTASection />
     </>
   );

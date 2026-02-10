@@ -21,6 +21,7 @@ const inriaSans = localFont({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(process.env.Frontend_SITE_URL || 'https://legalcameroun.com'),
   title: "Legal Cameroun | Plateforme d'accompagnement juridique, comptable et fiscale - RODEC Conseils",
   description: "Plateforme d'accompagnement juridique, comptable et fiscale de premier choix au Cameroun, offrant des services de qualité supérieure aux entreprises et aux particuliers. Expertise en droit des affaires, immobilier, fiscal et plus.",
   keywords: "legaltech cameroun, accompagnement juridique douala, droit des affaires cameroun, legal cameroun, rodec conseils",
