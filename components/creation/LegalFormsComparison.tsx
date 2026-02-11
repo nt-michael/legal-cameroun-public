@@ -16,8 +16,8 @@ const sectionText = {
   advantages: { fr: 'Avantages', en: 'Advantages' },
   cautions: { fr: "Points d'attention", en: 'Points of Caution' },
   learnMore: { fr: 'En savoir plus', en: 'Learn more' },
-  startNow: { fr: 'Demarrer maintenant', en: 'Start now' },
-  talkExpert: { fr: 'Parler a un expert', en: 'Talk to an expert' },
+  startNow: { fr: 'Demarrez maintenant', en: 'Start now' },
+  talkExpert: { fr: 'Parler à un expert', en: 'Talk to an expert' },
 };
 
 export default function LegalFormsComparison() {

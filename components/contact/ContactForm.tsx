@@ -41,6 +41,9 @@ export default function ContactForm() {
   const [errors, setErrors] = useState<FormErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [fileError, setFileError] = useState('');
+  const [submitError, setSubmitError] = useState('');
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -119,8 +122,39 @@ export default function ContactForm() {
     setErrors((prev) => ({ ...prev, [name]: error }));
   };
 
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    setFileError('');
+    setSelectedFile(null);
+
+    if (!file) return;
+
+    if (!file.name.toLowerCase().endsWith('.pdf')) {
+      setFileError(
+        language === 'fr'
+          ? 'Seuls les fichiers PDF sont acceptés'
+          : 'Only PDF files are accepted'
+      );
+      e.target.value = '';
+      return;
+    }
+
+    if (file.size > 2 * 1024 * 1024) {
+      setFileError(
+        language === 'fr'
+          ? 'Le fichier ne doit pas dépasser 2 Mo'
+          : 'File must be less than 2MB'
+      );
+      e.target.value = '';
+      return;
+    }
+
+    setSelectedFile(file);
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setSubmitError('');
 
     // Validate all fields
     const newErrors: FormErrors = {};
@@ -136,19 +170,47 @@ export default function ContactForm() {
 
     setIsSubmitting(true);
 
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1500));
+    try {
+      const body = new window.FormData();
+      body.append('fullName', formData.fullName);
+      body.append('email', formData.email);
+      body.append('phone', formData.phone);
+      body.append('subject', formData.subject);
+      body.append('message', formData.message);
+      if (selectedFile) {
+        body.append('file', selectedFile);
+      }
 
-    setIsSubmitting(false);
-    setIsSuccess(true);
+      const res = await fetch('/api/contact', { method: 'POST', body });
+      const data = await res.json();
 
-    // Animate success modal
-    if (successRef.current) {
-      gsap.fromTo(
-        successRef.current,
-        { scale: 0.9, opacity: 0 },
-        { scale: 1, opacity: 1, duration: 0.5, ease: 'back.out(1.4)' }
+      if (data.success) {
+        setIsSuccess(true);
+        if (successRef.current) {
+          gsap.fromTo(
+            successRef.current,
+            { scale: 0.9, opacity: 0 },
+            { scale: 1, opacity: 1, duration: 0.5, ease: 'back.out(1.4)' }
+          );
+        }
+      } else if (res.status === 422 && data.errors) {
+        setErrors(data.errors);
+      } else {
+        setSubmitError(
+          data.message ||
+            (language === 'fr'
+              ? 'Une erreur est survenue. Veuillez réessayer.'
+              : 'An error occurred. Please try again.')
+        );
+      }
+    } catch {
+      setSubmitError(
+        language === 'fr'
+          ? 'Erreur de connexion. Veuillez réessayer.'
+          : 'Connection error. Please try again.'
       );
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -340,13 +402,30 @@ export default function ContactForm() {
                   <svg className="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
                   </svg>
-                  <span className="mt-2 text-sm text-gray-500 dark:text-gray-400">
-                    {formLabels.filePlaceholder[language]}
-                  </span>
-                  <input type="file" className="hidden" accept=".pdf,.doc,.docx,.jpg,.png" />
+                  {selectedFile ? (
+                    <span className="mt-2 text-sm text-primary-600 dark:text-primary-400 font-medium">
+                      {selectedFile.name} ({(selectedFile.size / 1024).toFixed(0)} Ko)
+                    </span>
+                  ) : (
+                    <span className="mt-2 text-sm text-gray-500 dark:text-gray-400">
+                      {formLabels.filePlaceholder[language]}
+                    </span>
+                  )}
+                  <span className="mt-1 text-xs text-gray-400">PDF, max 2 Mo</span>
+                  <input type="file" className="hidden" accept=".pdf" onChange={handleFileChange} />
                 </label>
               </div>
+              {fileError && (
+                <p className="mt-1 text-sm text-red-500">{fileError}</p>
+              )}
             </div>
+
+            {/* Submit Error */}
+            {submitError && (
+              <div className="p-3 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-xl">
+                <p className="text-sm text-red-600 dark:text-red-400">{submitError}</p>
+              </div>
+            )}
 
             {/* Submit Button */}
             <button

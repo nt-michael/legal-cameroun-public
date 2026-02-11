@@ -9,7 +9,7 @@ export const translations = {
     nav: {
       home: 'Accueil',
       offers: 'Nos Offres',
-      about: 'A propos',
+      about: 'À propos',
       contact: 'Contact',
       appointment: 'Prendre rendez-vous',
     },

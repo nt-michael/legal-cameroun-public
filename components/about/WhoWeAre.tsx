@@ -12,7 +12,7 @@ const sectionText = {
   titleLine2: { fr: 'Une Famille', en: 'A Family' },
   weLove: { fr: 'Nous aimons :', en: 'We love:' },
   ourPromise: { fr: 'Notre promesse', en: 'Our promise' },
-  legalExperts: { fr: 'Juristes experts', en: 'Legal experts' },
+  legalExperts: { fr: 'Experts', en: 'Experts' },
   countriesCovered: { fr: 'Pays couverts', en: 'Countries covered' },
 };
 

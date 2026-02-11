@@ -11,7 +11,7 @@ const layoutText = {
   cautions: { fr: "Points d'attention", en: 'Points of Caution' },
   docsTitle: { fr: 'Documents & Exigences', en: 'Documents & Requirements' },
   docsSubtitle: { fr: 'Voici les elements necessaires pour constituer votre dossier.', en: 'Here are the elements needed to build your file.' },
-  howItWorks: { fr: 'Comment Ca Marche ?', en: 'How It Works?' },
+  howItWorks: { fr: 'Comment Ça Marche ?', en: 'How It Works?' },
   howItWorksSubtitle: { fr: 'Un processus simple et rapide avec notre accompagnement expert.', en: 'A simple and fast process with our expert support.' },
   comparison: { fr: 'Comparatif', en: 'Comparison' },
   comparisonSubtitle: { fr: "Comparez les caracteristiques principales avec d'autres formes juridiques.", en: 'Compare key features with other legal forms.' },
@@ -19,12 +19,12 @@ const layoutText = {
   pricingSubtitle: { fr: 'Choisissez la formule adaptee a vos besoins.', en: 'Choose the plan that suits your needs.' },
   faq: { fr: 'Questions Frequentes', en: 'Frequently Asked Questions' },
   faqSubtitle: { fr: 'Retrouvez les reponses aux questions les plus posees.', en: 'Find answers to the most frequently asked questions.' },
-  readyTitle: { fr: 'Pret a Creer Votre Entreprise ?', en: 'Ready to Create Your Business?' },
+  readyTitle: { fr: 'Prêt à Créer Votre Entreprise ?', en: 'Ready to Create Your Business?' },
   readySubtitle: { fr: 'Lancez-vous des maintenant avec notre accompagnement expert.', en: 'Get started now with our expert support.' },
-  startQuestionnaire: { fr: 'Demarrer le Questionnaire', en: 'Start the Questionnaire' },
+  startQuestionnaire: { fr: 'Demarrez le questionnaire', en: 'Start the questionnaire' },
   viewAllStatuses: { fr: 'Voir tous les statuts', en: 'View all statuses' },
-  startNow: { fr: 'Demarrer maintenant', en: 'Start now' },
-  talkExpert: { fr: 'Parler a un expert', en: 'Talk to an expert' },
+  startNow: { fr: 'Demarrez maintenant', en: 'Start now' },
+  talkExpert: { fr: 'Parler à un expert', en: 'Talk to an expert' },
 };
 import CreationHero from './CreationHero';
 import StepsTimeline from './StepsTimeline';

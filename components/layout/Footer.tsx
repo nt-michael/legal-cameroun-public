@@ -64,7 +64,7 @@ const menuSections: FooterSection[] = [
     href: '/',
     rubriques: [
       { name: { fr: 'Accueil', en: 'Home' }, href: '/' },
-      { name: { fr: 'A propos', en: 'About' }, href: '/a-propos' },
+      { name: { fr: 'À propos', en: 'About' }, href: '/a-propos' },
       { name: { fr: 'Actualité', en: 'News' }, href: '/actualite' },
       { name: { fr: 'Nous contacter', en: 'Contact Us' }, href: '/contact' },
     ],
@@ -80,41 +80,41 @@ const footerLinks = {
 };
 
 const socialLinks = [
-  {
-    name: 'Facebook',
-    href: '#',
-    icon: (
-      <Image src="/custom-icons/SVG/46ICONE_bleue.svg" alt="Facebook" width={20} height={20}
-        className="brightness-0 invert" />
-    ),
-  },
+  // {
+  //   name: 'Facebook',
+  //   href: '#',
+  //   icon: (
+  //     <Image src="/custom-icons/SVG/46ICONE_bleue.svg" alt="Facebook" width={20} height={20}
+  //       className="brightness-0 invert" />
+  //   ),
+  // },
   {
     name: 'LinkedIn',
-    href: '#',
+    href: 'https://www.linkedin.com/company/legal-cameroun/',
     icon: (
       <Image src="/custom-icons/SVG/54ICONE_bleue.svg" alt="LinkedIn" width={20} height={20}
         className="brightness-0 invert" />
     ),
   },
-  {
-    name: 'Twitter',
-    href: '#',
-    icon: (
-      <Image src="/custom-icons/SVG/50ICONE_bleue.svg" alt="Twitter" width={20} height={20}
-        className="brightness-0 invert" />
-    ),
-  },
+  // {
+  //   name: 'Twitter',
+  //   href: '#',
+  //   icon: (
+  //     <Image src="/custom-icons/SVG/50ICONE_bleue.svg" alt="Twitter" width={20} height={20}
+  //       className="brightness-0 invert" />
+  //   ),
+  // },
 ];
 
 const footerText = {
-  byRodec: { fr: 'par RODEC Conseils SAS', en: 'by RODEC Conseils SAS' },
+  byRodec: { fr: 'par RODEC Conseils', en: 'by RODEC Conseils' },
   description: {
     fr: 'Plateforme d\'accompagnement juridique, comptable et fiscale de premier choix au Cameroun, offrant des services de qualité supérieure aux entreprises et aux particuliers depuis plus de 08 ans.',
     en: 'Leading legal, accounting, and tax support platform in Cameroon, offering superior quality services to businesses and individuals for over 08 years.',
   },
   contact: { fr: 'Contact', en: 'Contact' },
-  addressLine1: { fr: 'Douala, Cameroun', en: 'Douala, Cameroon' },
-  addressLine2: { fr: 'Elite Offices Building, Rue Dubois de Saligny, Akwa', en: 'Elite Offices Building, Rue Dubois de Saligny, Akwa' },
+  addressLine1: { fr: 'Immeuble Elite Offices Rue Dubois de Saligny', en: 'Elite Offices Building, Rue Dubois de Saligny' },
+  addressLine2: { fr: 'Akwa, Douala, CM 5e Étage', en: 'Akwa, Douala, CM 5th Floor' },
   rights: { fr: 'Tous droits réservés.', en: 'All rights reserved.' },
 };
 
@@ -195,7 +195,7 @@ export default function Footer() {
                 <svg className="w-5 h-5 text-primary-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                 </svg>
-                <span>+237 233 42 00 00</span>
+                <span>+237 691768285</span>
               </li>
               <li className="flex items-center gap-3">
                 <Image src="/custom-icons/SVG/18ICONE_bleue.svg" alt="Email" width={20} height={20}

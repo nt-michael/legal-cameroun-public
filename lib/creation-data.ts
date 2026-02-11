@@ -65,10 +65,10 @@ export interface SubpageData {
 
 // Trust badges shown throughout the section
 export const trustBadges = [
-  { value: '15 000+', label: { fr: 'Entrepreneurs accompagnés', en: 'Entrepreneurs supported' } },
-  { value: '8 ans', label: { fr: "D'expérience", en: 'Years of experience' } },
-  { value: '50+', label: { fr: 'Juristes diplômés', en: 'Qualified lawyers' } },
-  { value: '48h', label: { fr: 'Traitement Premium', en: 'Premium processing' } },
+  { value: '15 000+', label: { fr: 'Entrepreneurs accompagnées', en: 'Entrepreneurs supported' } },
+  { value: '8', label: { fr: "D'années d'expérience", en: 'Years of experience' } },
+  // { value: '50+', label: { fr: 'Juristes diplômés', en: 'Qualified lawyers' } },
+  // { value: '48h', label: { fr: 'Traitement Premium', en: 'Premium processing' } },
 ];
 
 // Why choose Legal Cameroun - 4 pillars
@@ -99,7 +99,7 @@ export const whyChooseUs = [
 export const pricingTiers: PricingTier[] = [
   {
     name: { fr: 'Starter', en: 'Starter' },
-    price: 150000,
+    price: 250000,
     currency: 'XAF',
     period: { fr: 'HT + frais admin', en: 'Excl. tax + admin fees' },
     features: [
@@ -115,7 +115,7 @@ export const pricingTiers: PricingTier[] = [
   },
   {
     name: { fr: 'Standard', en: 'Standard' },
-    price: 200000,
+    price: 350000,
     currency: 'XAF',
     period: { fr: 'HT + frais admin', en: 'Excl. tax + admin fees' },
     features: [
@@ -132,14 +132,14 @@ export const pricingTiers: PricingTier[] = [
   },
   {
     name: { fr: 'Premium', en: 'Premium' },
-    price: 250000,
+    price: 500000,
     currency: 'XAF',
     period: { fr: 'HT + frais admin', en: 'Excl. tax + admin fees' },
     highlighted: true,
     badge: { fr: 'Choix n°1', en: 'Top choice' },
     features: [
       { fr: 'Tout Standard inclus', en: 'All Standard features included' },
-      { fr: 'Traitement en 48h', en: 'Processing in 48h' },
+      // { fr: 'Traitement en 48h', en: 'Processing in 48h' },
       { fr: 'Assurance anti-rejet', en: 'Rejection insurance' },
       { fr: 'Assistance 30 jours', en: '30-day assistance' },
       { fr: 'Accompagnement personnalisé', en: 'Personalized support' },
@@ -357,9 +357,9 @@ export const subpagesData: Record<string, SubpageData> = {
     slug: 'sas',
     heroTitle: { fr: 'Créez Votre SAS/SASU', en: 'Create Your SAS/SASU' },
     heroSubtitle: { fr: 'Souple et Adaptée à Vos Besoins', en: 'Flexible and Tailored to Your Needs' },
-    heroDescription: { fr: 'Simple, sûr, rapide, économique. Questionnaire en ligne → Dossier complet en 24-48h.', en: 'Simple, safe, fast, affordable. Online questionnaire → Complete file in 24-48h.' },
+    heroDescription: { fr: 'Simple, sûr, rapide, économique. Questionnaire en ligne.', en: 'Simple, safe, fast, affordable. Online questionnaire.' },
     whyCreate: {
-      title: { fr: 'Pourquoi Créer une SAS ?', en: 'Why Create a SAS?' },
+      title: { fr: 'Pourquoi créer une SAS ?', en: 'Why Create a SAS?' },
       content: [
         { fr: 'Souplesse organisationnelle et de gouvernance maximale.', en: 'Maximum organizational and governance flexibility.' },
         { fr: 'Adaptée aux startups innovantes ou projets mixtes.', en: 'Suitable for innovative startups or mixed projects.' },
@@ -432,7 +432,7 @@ export const subpagesData: Record<string, SubpageData> = {
     heroSubtitle: { fr: 'Sécurisée et Encadrée', en: 'Secure and Regulated' },
     heroDescription: { fr: 'Protection du patrimoine, cadre légal strict – Parfait pour les PME stables.', en: 'Asset protection, strict legal framework – Perfect for stable SMEs.' },
     whyCreate: {
-      title: { fr: 'Pourquoi Créer une SARL ?', en: 'Why Create a SARL?' },
+      title: { fr: 'Pourquoi créer une SARL ?', en: 'Why Create a SARL?' },
       content: [
         { fr: 'Protection du patrimoine personnel (responsabilité limitée aux apports).', en: 'Personal asset protection (liability limited to contributions).' },
         { fr: 'Gérant minoritaire ou égalitaire = régime assimilé salarié.', en: 'Minority or equal manager = employee-equivalent status.' },
@@ -509,7 +509,7 @@ export const subpagesData: Record<string, SubpageData> = {
     heroSubtitle: { fr: 'L\'Entreprise Solo Protégée', en: 'The Protected Solo Business' },
     heroDescription: { fr: 'SARLU = Société à Responsabilité Limitée Unipersonnelle. Encadrée par la loi, idéale pour entrepreneur seul.', en: 'SARLU = Single-Member Limited Liability Company. Regulated by law, ideal for solo entrepreneurs.' },
     whyCreate: {
-      title: { fr: 'Pourquoi Créer une SARLU ?', en: 'Why Create a SARLU?' },
+      title: { fr: 'Pourquoi créer une SARLU ?', en: 'Why Create a SARLU?' },
       content: [
         { fr: 'Structure unipersonnelle avec responsabilité limitée.', en: 'Single-member structure with limited liability.' },
         { fr: 'Cotisations sociales faibles grâce au statut TNS.', en: 'Low social contributions thanks to self-employed status.' },
@@ -577,7 +577,7 @@ export const subpagesData: Record<string, SubpageData> = {
     heroSubtitle: { fr: 'Culturelle, Caritative, Éducative', en: 'Cultural, Charitable, Educational' },
     heroDescription: { fr: 'Projets non lucratifs simples et rapides. Idéal pour activités culturelles, humanitaires ou éducatives.', en: 'Simple and fast non-profit projects. Ideal for cultural, humanitarian, or educational activities.' },
     whyCreate: {
-      title: { fr: 'Pourquoi Créer une Association ?', en: 'Why Create an Association?' },
+      title: { fr: 'Pourquoi créer une Association ?', en: 'Why Create an Association?' },
       content: [
         { fr: 'Structure idéale pour projets à but non lucratif.', en: 'Ideal structure for non-profit projects.' },
         { fr: 'Création simple et rapide (récépissé en 5 jours max).', en: 'Simple and fast creation (receipt within 5 days max).' },
@@ -652,7 +652,7 @@ export const hubHero = {
   subtitle: { fr: 'Zéro stress, rapide (48h Premium), économique.', en: 'Zero stress, fast (48h Premium), affordable.' },
   description: { fr: 'SASU, SAS, SARL, SARLU, SCI, Auto-entrepreneur, Entreprise individuelle... +15 000 entrepreneurs accompagnés depuis 8 ans par des juristes basés au Cameroun.', en: 'SASU, SAS, SARL, SARLU, SCI, Self-employed, Sole proprietorship... 15,000+ entrepreneurs supported for 8 years by lawyers based in Cameroon.' },
   primaryCta: {
-    text: { fr: 'C\'est parti ! Démarrer le Questionnaire', en: 'Let\'s go! Start the Questionnaire' },
+    text: { fr: 'C\'est parti ! Démarrer le q uestionnaire', en: 'Let\'s go! Start the questionnaire' },
     href: '/devis',
   },
   secondaryCta: {

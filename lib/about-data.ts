@@ -255,7 +255,7 @@ export const officesData: Office[] = [
       fr: 'Elite Offices Building, Rue Dubois de Saligny, Akwa',
       en: 'Elite Offices Building, Rue Dubois de Saligny, Akwa',
     },
-    phone: '+237 659 810 228',
+    phone: '+237 691 76 82 85',
     email: 'contact-cm@rodecconseils.com',
     mapCoords: { lat: 4.0511, lng: 9.7679 },
   },

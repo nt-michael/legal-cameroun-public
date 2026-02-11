@@ -3,7 +3,7 @@ import CreationPageContent from './CreationPageContent';
 
 export const metadata: Metadata = {
   title: 'Creation d\'Entreprise au Cameroun | Legal Cameroun',
-  description: 'Creez votre entreprise au Cameroun facilement et rapidement. SAS, SARL, SARLU, Association... Accompagnement par des juristes experts. Traitement en 48h.',
+  description: 'Creez votre entreprise au Cameroun facilement et rapidement. SAS, SARL, SARLU, Association... Accompagnement par des experts.',
   keywords: ['creation entreprise cameroun', 'creer societe cameroun', 'sas cameroun', 'sarl cameroun', 'sarlu cameroun', 'association cameroun'],
   alternates: {
     languages: {

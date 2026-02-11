@@ -7,8 +7,8 @@ const reasons = [
   {
     title: { fr: 'Expertise Reconnue', en: 'Recognized Expertise' },
     description: {
-      fr: 'Plus de 15 ans d\'experience et une equipe d\'avocats hautement qualifies dans divers domaines du droit.',
-      en: 'Over 15 years of experience and a team of highly qualified lawyers in various areas of law.',
+      fr: 'Plus de 08 ans d\’expérience et une équipe d\’experts hautement qualifiés dans divers domaines.',
+      en: 'Over 8 years of experience and a team of highly qualified experts across various fields.',
     },
     icon: (
       <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -17,10 +17,10 @@ const reasons = [
     ),
   },
   {
-    title: { fr: 'Approche Personnalisee', en: 'Personalized Approach' },
+    title: { fr: 'Approche Personnalisée', en: 'Personalized Approach' },
     description: {
-      fr: 'Chaque dossier est unique. Nous adaptons notre strategie a vos besoins specifiques pour des resultats optimaux.',
-      en: 'Every case is unique. We adapt our strategy to your specific needs for optimal results.',
+      fr: 'Chaque dossier est unique. Nous adaptons notre stratégie a vos besoins spécifiques pour des résultats optimaux.',
+      en: 'Every case is unique. We tailor our strategy to your specific needs for optimal results.',
     },
     icon: (
       <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -31,7 +31,7 @@ const reasons = [
   {
     title: { fr: 'Tarifs Transparents', en: 'Transparent Pricing' },
     description: {
-      fr: 'Pas de surprises. Nous vous fournissons des devis clairs et detailles avant toute intervention.',
+      fr: 'Pas de surprises. Nous vous fournissons des devis clairs et detaillés avant toute intervention.',
       en: 'No surprises. We provide clear and detailed quotes before any intervention.',
     },
     icon: (
@@ -41,9 +41,9 @@ const reasons = [
     ),
   },
   {
-    title: { fr: 'Disponibilite 24/7', en: '24/7 Availability' },
+    title: { fr: 'Disponibilité 7jrs/7', en: '7/7 Availability' },
     description: {
-      fr: 'Nous restons joignables en cas d\'urgence juridique. Votre tranquillite d\'esprit est notre priorite.',
+      fr: 'Nous restons joignables en cas d\'urgence juridique. Votre tranquillité d\'esprit est notre priorité.',
       en: 'We remain reachable in case of legal emergencies. Your peace of mind is our priority.',
     },
     icon: (
@@ -56,18 +56,18 @@ const reasons = [
 
 const sectionText = {
   badge: { fr: 'Pourquoi Nous Choisir', en: 'Why Choose Us' },
-  title: { fr: 'La Reference du Droit au', en: 'The Legal Reference in' },
-  titleHighlight: { fr: 'Cameroun', en: 'Cameroon' },
+  title: { fr: 'La Référence du Conseil et de l\’Accompagnement', en: 'The reference for consulting and Support' },
+  titleHighlight: { fr: 'au Cameroun', en: 'in Cameroon' },
   subtitle: {
-    fr: 'Chez Legal Cameroun, nous combinons expertise juridique, ethique professionnelle et engagement envers nos clients pour offrir des services juridiques d\'excellence.',
-    en: 'At Legal Cameroun, we combine legal expertise, professional ethics, and commitment to our clients to offer legal services of excellence.',
+    fr: 'Chez Legal Cameroun, nous combinons expertise juridique, comptable, fiscale.',
+    en: 'At Legal Cameroun, we combine legal, accounting, and tax expertise.',
   },
   commitments: { fr: 'Nos Engagements', en: 'Our Commitments' },
   commitmentsList: [
-    { fr: 'Confidentialite absolue de vos dossiers', en: 'Absolute confidentiality of your files' },
-    { fr: 'Communication claire et reguliere', en: 'Clear and regular communication' },
-    { fr: 'Defense acharnee de vos interets', en: 'Fierce defense of your interests' },
-    { fr: 'Respect des delais et procedures', en: 'Respect for deadlines and procedures' },
+    { fr: 'Confidentialité absolue de vos dossiers', en: 'Absolute confidentiality of your files' },
+    { fr: 'Communication claire et régulière', en: 'Clear and regular communication' },
+    { fr: 'Défense acharnée de vos intérêts', en: 'Relentless defense of your interests' },
+    { fr: 'Respect des délais et procédures', en: 'Respect for deadlines and procedures' },
     { fr: 'Satisfaction client garantie', en: 'Guaranteed client satisfaction' },
   ],
   joinOur: { fr: 'Rejoignez nos', en: 'Join our' },

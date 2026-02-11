@@ -65,7 +65,7 @@ const navigation: NavItem[] = [
   { name: { fr: 'Nos Offres', en: 'Our Services' }, href: '#', hasDropdown: true },
   { name: { fr: 'Fiches Pratiques', en: 'Practical Guides' }, href: '/fiches-pratiques' },
   { name: { fr: 'Simulateurs', en: 'Simulators' }, href: '/simulateurs' },
-  { name: { fr: 'A propos', en: 'About' }, href: '/a-propos' },
+  { name: { fr: 'À propos', en: 'About' }, href: '/a-propos' },
   { name: { fr: 'Actualité', en: 'Blog' }, href: '/actualite' },
   { name: { fr: 'Contact', en: 'Contact' }, href: '/contact' },
 ];

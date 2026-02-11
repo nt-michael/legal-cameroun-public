@@ -21,7 +21,8 @@ export default function TrustBadges({ variant = 'light', className = '' }: Trust
   return (
     <div
       ref={ref}
-      className={`grid grid-cols-2 md:grid-cols-4 gap-6 lg:gap-8 ${className}`}
+      // grid-cols-2 md:grid-cols-4 gap-6 lg:gap-8
+      className={`grid grid-cols-1 gap-6 md:flex md:flex-row md:justify-center md:items-center  ${className}`}
     >
       {trustBadges.map((badge, index) => (
         <div

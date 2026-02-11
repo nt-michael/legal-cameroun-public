@@ -10,10 +10,12 @@ const ctaText = {
     fr: 'Notre équipe d\'experts est prête à vous accompagner. Bénéficiez d\'une consultation initiale gratuite pour discuter de votre situation.',
     en: 'Our team of experts is ready to assist you. Benefit from a free initial consultation to discuss your situation.',
   },
-  appointment: { fr: 'Prendre Rendez-vous', en: 'Book an Appointment' },
+  appointment: { fr: 'Prendre un Rendez-vous', en: 'Book an Appointment' },
   address: { fr: 'Adresse', en: 'Address' },
+  addressValue: { fr: 'Immeuble Elite Offices Rue Dubois de Saligny, Akwa, Douala, CM 5e Étage', en: 'Immeuble Elite Offices Rue Dubois de Saligny, Akwa, Douala, CM 5e Étage' },
   hours: { fr: 'Horaires', en: 'Hours' },
   hoursValue: { fr: 'Lun - Ven: 8h - 18h', en: 'Mon - Fri: 8am - 6pm' },
+  phoneValue: { fr: '+237 691768285', en: '+237 691768285' },
 };
 
 export default function CTASection() {
@@ -42,7 +44,7 @@ export default function CTASection() {
           <div className="absolute top-1/3 left-1/4 w-20 h-20 bg-white/10 rounded-full animate-bubble-2 animation-delay-300" />
 
           <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-8">
-            <div className="text-center lg:text-left">
+            <div className="text-center lg:text-left md:max-w-[45%]">
               <h2 className="text-3xl sm:text-4xl font-bold mb-4" style={{ color: '#ffffff' }}>
                 {ctaText.title[language]}
               </h2>
@@ -62,13 +64,13 @@ export default function CTASection() {
                 {ctaText.appointment[language]}
               </Link>
               <a
-                href="tel:+237233420000"
+                href={`tel:${ctaText.phoneValue[language]}`}
                 className="inline-flex items-center justify-center gap-2 bg-white/10 text-white px-8 py-4 rounded-xl font-semibold hover:bg-white/20 hover:scale-105 transition-all duration-300 border border-white/20"
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                 </svg>
-                +237 233 42 00 00
+                {ctaText.phoneValue[language]}
               </a>
             </div>
           </div>
@@ -84,7 +86,7 @@ export default function CTASection() {
                 </div>
                 <div>
                   <p className="text-sm" style={{ color: '#80b8c7' }}>{ctaText.address[language]}</p>
-                  <p className="font-medium" style={{ color: '#ffffff' }}>Bonanjo, Douala</p>
+                  <p className="font-medium" style={{ color: '#ffffff' }}>{ctaText.addressValue[language]}</p>
                 </div>
               </div>
               <div className="flex items-center justify-center sm:justify-start gap-3 group" style={{ color: '#ffffff' }}>

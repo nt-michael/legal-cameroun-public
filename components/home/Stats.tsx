@@ -15,7 +15,7 @@ const stats = [
     value: 8,
     suffix: '+',
     label: { fr: 'Annees d\'Experience', en: 'Years of Experience' },
-    description: { fr: 'Au service du droit camerounais', en: 'Serving Cameroonian law' },
+    description: { fr: 'Au service de nos clients', en: 'At the service of our clients' },
   },
   {
     value: 15000,

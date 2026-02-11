@@ -42,12 +42,12 @@ const fallbackPosts = [
 
 const sectionText = {
   badge: { fr: 'Actualités', en: 'News' },
-  title: { fr: 'Actualites Juridiques', en: 'Legal News' },
+  title: { fr: 'Nos Analyses', en: 'Our Analyses' },
   subtitle: {
-    fr: 'Restez informe des dernieres evolutions du droit camerounais et decouvrez nos conseils pratiques.',
-    en: 'Stay informed about the latest developments in Cameroonian law and discover our practical advice.',
+    fr: 'Ne manquez aucune évolution clé de l\'écosystème business camerounais. Réformes fiscales, nouvelles réglementations, tendances financières et comptables : nous décryptons l\'actualité avec des analyses pointues et la traduisons en recommandations concrètes pour prendre les bonnes décisions au bon moment.',
+    en: 'Never miss a key development in the Cameroonian business ecosystem. Tax reforms, new regulations, financial and accounting trends: we decode the news with sharp analysis and translate it into concrete recommendations to make the right decisions at the right time.',
   },
-  viewAll: { fr: 'Voir Tous les Articles', en: 'View All Articles' },
+  viewAll: { fr: 'Voir Toutes les Analyses', en: 'View All Analyses' },
   readMore: { fr: 'Lire la suite', en: 'Read more' },
 };
 

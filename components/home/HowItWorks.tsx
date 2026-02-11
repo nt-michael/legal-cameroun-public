@@ -57,7 +57,7 @@ const steps = [
 ];
 
 const sectionText = {
-  badge: { fr: 'Comment ça marche', en: 'How It Works' },
+  badge: { fr: 'Comment Ça Marche', en: 'How It Works' },
   title: { fr: 'Un processus simple et efficace', en: 'A Simple and Effective Process' },
   subtitle: {
     fr: 'De votre premier contact à la résolution de votre affaire, nous vous accompagnons à chaque étape avec professionnalisme.',

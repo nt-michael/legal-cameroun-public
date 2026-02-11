@@ -69,10 +69,10 @@ export const companyTypes: CompanyType[] = [
   { value: 'sas', label: 'SAS', description: { fr: 'Société par Actions Simplifiée', en: 'Simplified Joint-Stock Company' } },
   { value: 'sasu', label: 'SASU', description: { fr: 'SAS Unipersonnelle', en: 'Single-Member Simplified Joint-Stock Company' } },
   { value: 'sarl', label: 'SARL', description: { fr: 'Société à Responsabilité Limitée', en: 'Limited Liability Company' } },
-  { value: 'sarlu', label: 'SARLU/EURL', description: { fr: 'SARL Unipersonnelle', en: 'Single-Member Limited Liability Company' } },
+  { value: 'sarlu', label: 'SARLU', description: { fr: 'SARL Unipersonnelle', en: 'Single-Member Limited Liability Company' } },
   { value: 'association', label: 'Association', description: { fr: 'Association loi 1901', en: 'Non-Profit Association' } },
   { value: 'sci', label: 'SCI', description: { fr: 'Société Civile Immobilière', en: 'Real Estate Civil Company' } },
-  { value: 'auto', label: 'Auto-Entrepreneur', description: { fr: 'Micro-entreprise', en: 'Micro-Enterprise' } },
+  { value: 'etablissement', label: 'Etablissement', description: { fr: 'Etablissement', en: 'Establishment' } },
   { value: 'other', label: 'Autre', description: { fr: 'Je ne sais pas encore', en: 'I don\'t know yet' } },
 ];
 
@@ -84,10 +84,10 @@ export interface TimelineOption {
 }
 
 export const timelineOptions: TimelineOption[] = [
-  { value: '48h', label: { fr: '48 heures', en: '48 hours' }, description: { fr: 'Traitement express (Premium)', en: 'Express processing (Premium)' }, premium: true },
-  { value: '1-week', label: { fr: '1 semaine', en: '1 week' }, description: { fr: 'Délai standard', en: 'Standard timeline' } },
-  { value: '2-weeks', label: { fr: '2 semaines', en: '2 weeks' }, description: { fr: 'Délai économique', en: 'Economy timeline' } },
-  { value: 'flexible', label: { fr: 'Flexible', en: 'Flexible' }, description: { fr: 'Pas de contrainte de temps', en: 'No time constraint' } },
+  // { value: '48h', label: { fr: '48 heures', en: '48 hours' }, description: { fr: 'Traitement express (Premium)', en: 'Express processing (Premium)' }, premium: true },
+  { value: '3-week', label: { fr: '3 semaines', en: '3 weeks' }, description: { fr: 'Délai souhaité (Premium)', en: 'Desired timeline (Premium)' }, premium: true },
+  { value: '2-months', label: { fr: '2 mois', en: '2 months' }, description: { fr: 'Délai express', en: 'Express timeline' } },
+  { value: 'flexible', label: { fr: 'Flexible', en: 'Flexible' }, description: { fr: 'Délai standard', en: 'Standard timeline' } },
 ];
 
 export const cities = [

@@ -11,28 +11,28 @@ const heroContent = {
     en: 'Legal, accounting, and tax support platform',
   },
   title1: {
-    fr: 'Votre plateforme LEGALTECH au Cameroun.',
-    en: 'Your LEGALTECH Platform in Cameroon.',
+    fr: 'Votre LEGALTECH au Cameroun.',
+    en: 'Your LEGALTECH in Cameroon.',
   },
   title2: {
     fr: 'Votre partenaire juridique',
     en: 'Your legal partner',
   },
   subtitle: {
-    fr: 'Expertise juridique, comptable, fiscale de premier choix pour les entreprises et les particuliers.',
-    en: 'Top-tier legal, accounting, and tax expertise for businesses and individuals.',
+    fr: 'Expertise juridique, administrative, comptable, fiscale de premier choix pour les entreprises et les particuliers.',
+    en: 'Top-tier legal, admnistrative accounting, and tax expertise for businesses and individuals.',
   },
   description: {
     fr: 'Que ce soit pour une création d\'entreprise, une déclaration fiscale ou sociale, une modification urgente ou une question urgente, nous sommes à votre écoute.',
     en: 'Whether it\'s for business creation, a tax or social declaration, an urgent modification, or an urgent question, we are at your service.',
   },
   ctaPrimary: {
-    fr: 'Consultation (gratuite 15 minutes)',
-    en: 'Consultation (free 15 minutes)',
+    fr: 'Consultation gratuite (10 minutes)',
+    en: 'Free Consultation (10 minutes)',
   },
   ctaSecondary: {
-    fr: 'Réservez votre rendez-vous avec un expert',
-    en: 'Book your appointment with an expert',
+    fr: 'Réservez votre rendez-vous',
+    en: 'Book your appointment',
   },
   badges: [
     { fr: '300+ clients satisfaits', en: '300+ satisfied clients' },
@@ -170,16 +170,16 @@ export default function Hero() {
 
         <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 animate-fade-in-up animation-delay-100">
           {heroContent.title1[language]}
-          <span className="block gradient-text-gold">{heroContent.title2[language]}</span>
+          {/* <span className="block gradient-text-gold">{heroContent.title2[language]}</span> */}
         </h1>
 
         <p className="text-lg sm:text-xl text-gray-300 max-w-3xl mx-auto mb-4 animate-fade-in-up animation-delay-200">
           {heroContent.subtitle[language]}
         </p>
 
-        <p className="text-base sm:text-lg text-gray-400 max-w-3xl mx-auto mb-10 animate-fade-in-up animation-delay-200">
+        {/* <p className="text-base sm:text-lg text-gray-400 max-w-3xl mx-auto mb-10 animate-fade-in-up animation-delay-200">
           {heroContent.description[language]}
-        </p>
+        </p> */}
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up animation-delay-300">
           <Link href="/contact" className="btn-primary text-lg px-8 py-4">

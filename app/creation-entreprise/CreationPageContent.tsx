@@ -23,12 +23,12 @@ const pageText = {
     en: "Our experts are here to support you. Benefit from a free consultation to discuss your project.",
   },
   ctaPrimary: {
-    fr: "D\u00e9marrer le Questionnaire",
-    en: "Start the Questionnaire",
+    fr: "D\u00e9marrez le questionnaire",
+    en: "Start the questionnaire",
   },
   ctaSecondary: {
-    fr: "R\u00e9server une Consultation",
-    en: "Book a Consultation",
+    fr: "R\u00e9server une consultation",
+    en: "Book a consultation",
   },
 };
 
