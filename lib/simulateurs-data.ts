@@ -63,10 +63,12 @@ export const TDL_BRACKETS = [
   { min: 0, max: 62000, amount: 0 },
   { min: 62000, max: 75000, amount: 3000 },
   { min: 75000, max: 100000, amount: 6000 },
-  { min: 100000, max: 150000, amount: 9000 },
-  { min: 150000, max: 200000, amount: 12000 },
-  { min: 200000, max: 300000, amount: 18000 },
-  { min: 300000, max: 500000, amount: 24000 },
+  { min: 100000, max: 125000, amount: 9000 },
+  { min: 125000, max: 150000, amount: 12000 },
+  { min: 150000, max: 200000, amount: 15000 },
+  { min: 200000, max: 250000, amount: 18000 },
+  { min: 250000, max: 300000, amount: 24000 },
+  { min: 300000, max: 500000, amount: 27000 },
   { min: 500000, max: Infinity, amount: 30000 },
 ];
 
@@ -281,9 +283,13 @@ export function calculateSalaire(brutMensuel: number): SalaireResult {
   // ================
   // IMPÔTS SALARIAUX (Employee Taxes)
   // ================
-  // IRPP: Calculate on annual basis, then divide by 12
+  // IRPP: Calculate annual taxable income per CGI, then divide by 12
   const annualGross = brutMensuel * 12;
-  const annualIRPP = calculateIRPP(annualGross);
+  const afterAbatement = Math.max(0, annualGross - 500000);
+  const afterExpenses = afterAbatement * 0.80; // 20% professional expenses deduction
+  const annualCNPS = totalCotisationsSalariales * 12;
+  const annualTaxableIncome = Math.max(0, afterExpenses - annualCNPS);
+  const annualIRPP = calculateIRPP(annualTaxableIncome);
   const monthlyIRPP = annualIRPP / 12;
 
   // Centimes additionnels: 10% of IRPP
