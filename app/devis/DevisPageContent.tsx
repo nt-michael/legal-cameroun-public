@@ -14,7 +14,7 @@ const pageText = {
   loading: { fr: 'Chargement du formulaire...', en: 'Loading form...' },
   stat1Label: { fr: 'Entrepreneurs accompagnés', en: 'Entrepreneurs supported' },
   stat2Label: { fr: 'Délai de réponse', en: 'Response time' },
-  stat3Label: { fr: 'Juristes experts', en: 'Expert lawyers' },
+  stat3Label: { fr: 'Experts', en: 'Experts' },
   stat4Label: { fr: 'Clients satisfaits', en: 'Satisfied clients' },
 };
 
@@ -76,7 +76,7 @@ export default function DevisPageContent() {
               <div className="text-sm text-gray-600 dark:text-gray-400">{pageText.stat3Label[language]}</div>
             </div>
             <div>
-              <div className="text-3xl font-bold text-primary-600 mb-1">98%</div>
+              <div className="text-3xl font-bold text-primary-600 mb-1">300+</div>
               <div className="text-sm text-gray-600 dark:text-gray-400">{pageText.stat4Label[language]}</div>
             </div>
           </div>

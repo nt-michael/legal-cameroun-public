@@ -355,7 +355,7 @@ export const aidesAvantages = [
 export const subpagesData: Record<string, SubpageData> = {
   sas: {
     slug: 'sas',
-    heroTitle: { fr: 'Créez Votre SAS/SASU', en: 'Create Your SAS/SASU' },
+    heroTitle: { fr: 'Créez une SAS/SASU', en: 'Create a SAS/SASU' },
     heroSubtitle: { fr: 'Souple et Adaptée à Vos Besoins', en: 'Flexible and Tailored to Your Needs' },
     heroDescription: { fr: 'Simple, sûr, rapide, économique. Questionnaire en ligne.', en: 'Simple, safe, fast, affordable. Online questionnaire.' },
     whyCreate: {
@@ -364,8 +364,8 @@ export const subpagesData: Record<string, SubpageData> = {
         { fr: 'Souplesse organisationnelle et de gouvernance maximale.', en: 'Maximum organizational and governance flexibility.' },
         { fr: 'Adaptée aux startups innovantes ou projets mixtes.', en: 'Suitable for innovative startups or mixed projects.' },
         { fr: 'Capital minimum de 1 XAF, responsabilité limitée aux apports.', en: 'Minimum capital of 1 XAF, liability limited to contributions.' },
-        { fr: 'Régime social assimilé salarié pour le président.', en: 'Employee-equivalent social security for the president.' },
-        { fr: 'Cession de parts simplifiée sans agrément obligatoire.', en: 'Simplified share transfer without mandatory approval.' },
+        { fr: 'Régime social : affiliation du président ou gérant à la CNPS en tant que mandataire social si rémunéré.', en: 'Social security regime: affiliation of the president or managing director to the CNPS as a corporate officer (mandataire social) if remunerated.' },
+        { fr: 'Cession de parts libre sauf stipulation contraire des statuts prévoyant des conditions particulières d\’agrément.', en: 'Transfer of shares: free transfer unless otherwise provided by the articles of association, which may stipulate specific approval conditions.' },
       ],
     },
     advantages: [
@@ -374,7 +374,7 @@ export const subpagesData: Record<string, SubpageData> = {
       { fr: 'Attractif pour les investisseurs', en: 'Attractive for investors' },
       { fr: 'Possibilité d\'apports en compte courant', en: 'Possibility of current account contributions' },
       { fr: 'Distribution de dividendes possible', en: 'Dividend distribution possible' },
-      { fr: 'Toutes activités autorisées (y compris assurances)', en: 'All activities allowed (including insurance)' },
+      { fr: 'Toutes activités autorisées (sauf certain es activités règlementées qui exigent souvent une forme sociale spécifique)', en: 'All activities are permitted (except for certain regulated activities, which often require a specific legal form).' },
     ],
     steps: [
       {
@@ -400,11 +400,12 @@ export const subpagesData: Record<string, SubpageData> = {
         { fr: 'SARL', en: 'SARL' },
       ],
       rows: [
-        { aspect: { fr: 'Associés', en: 'Partners' }, values: [{ fr: '1+ (SASU solo)', en: '1+ (SASU solo)' }, { fr: '2+', en: '2+' }] },
-        { aspect: { fr: 'Statuts', en: 'Articles' }, values: [{ fr: 'Très libres/flexibles', en: 'Very free/flexible' }, { fr: 'Encadrés par la loi', en: 'Regulated by law' }] },
-        { aspect: { fr: 'Régime Social', en: 'Social Security' }, values: [{ fr: 'Assimilé salarié', en: 'Employee-equivalent' }, { fr: 'TNS majoritaire', en: 'Self-employed (majority)' }] },
-        { aspect: { fr: 'Cession Parts', en: 'Share Transfer' }, values: [{ fr: 'Simple (pas agrément)', en: 'Simple (no approval)' }, { fr: 'Agrément requis', en: 'Approval required' }] },
-        { aspect: { fr: 'Activités', en: 'Activities' }, values: [{ fr: 'Toutes (incl. assurances)', en: 'All (incl. insurance)' }, { fr: 'Limitées', en: 'Limited' }] },
+        { aspect: { fr: 'Nombre d\’Associé', en: 'Number of shareholder' }, values: [{ fr: 'SAS: 2+ | SASU: 1 seul associé', en: 'SAS: 2 or more shareholders\nSASU: 1 single shareholder' }, { fr: '2 à 50 associés', en: '2+' }] },
+        { aspect: { fr: 'Statuts', en: 'Articles' }, values: [{ fr: 'Highly flexible, with articles of association that can be largely customized', en: 'Highly flexible, with articles of association that can be largely customized' }, { fr: 'Encadré par la loi, moins flexible', en: 'Governed by law, less flexible' }] },
+        { aspect: { fr: 'Régime Social du Dirigeant', en: 'Social security regime of the executive' }, values: [{ fr: 'Déterminé par la législation nationale (au Cameroun l’affiliation est possible à la CNPS en tant que mandataire social remunéré)', en: 'Determined by national legislation (in Cameroon, affiliation to the CNPS is possible for a remunerated corporate officer)' }, { fr: 'Gérant soumis au régime national ; affiliation à la CNPS selon rémunération et statut', en: 'Manager subject to the national scheme; affiliation to the CNPS depends on remuneration and status' }] },
+        { aspect: { fr: 'Cession Parts', en: 'Transfer of Shares' }, values: [{ fr: 'Libre par défaut, sauf clause statutaire d’agrément ou restriction', en: 'Free by default, unless restricted or subject to approval by a clause in the articles of association' }, { fr: 'Cession à des tiers soumise à agrément obligatoire des associés', en: 'Transfer to third parties is subject to mandatory approval by the partners/shareholders.' }] },
+        { aspect: { fr: 'Activités Autorisées', en: 'Permitted Activities' }, values: [{ fr: 'Toute activité commerciale licite, sauf réglementations spécifiques (banque, assurance)', en: 'Any lawful commercial activity, except those subject to specific regulations (e.g. banking, insurance).' }, { fr: 'Toute activité commerciale licite, mais également soumise aux mêmes restrictions sectorielles', en: 'Any lawful commercial activity, but also subject to the same sector-specific restrictions' }] },
+        { aspect: { fr: 'Capital Minimum', en: 'Activities' }, values: [{ fr: 'Aucun minimum légal', en: 'No legal minimum' }, { fr: 'Libre mais doit être mentionné dans les statuts. (Au cameroun, le minimum conseillé est de 100 000XAF)', en: 'Free, but must be stated in the articles of association. (In Cameroon, the recommended minimum is XAF 100,000.)' }] },
       ],
     },
     faq: [
@@ -428,25 +429,25 @@ export const subpagesData: Record<string, SubpageData> = {
   },
   sarl: {
     slug: 'sarl',
-    heroTitle: { fr: 'Créez Votre SARL', en: 'Create Your SARL' },
+    heroTitle: { fr: 'Créez une SARL', en: 'Create a SARL' },
     heroSubtitle: { fr: 'Sécurisée et Encadrée', en: 'Secure and Regulated' },
     heroDescription: { fr: 'Protection du patrimoine, cadre légal strict – Parfait pour les PME stables.', en: 'Asset protection, strict legal framework – Perfect for stable SMEs.' },
     whyCreate: {
       title: { fr: 'Pourquoi créer une SARL ?', en: 'Why Create a SARL?' },
       content: [
-        { fr: 'Protection du patrimoine personnel (responsabilité limitée aux apports).', en: 'Personal asset protection (liability limited to contributions).' },
-        { fr: 'Gérant minoritaire ou égalitaire = régime assimilé salarié.', en: 'Minority or equal manager = employee-equivalent status.' },
-        { fr: 'SARL de famille : option IR au lieu de IS, exonérations sur cessions.', en: 'Family SARL: income tax option instead of corporate tax, exemptions on transfers.' },
-        { fr: 'Possibilité d\'intégrer des mineurs comme associés.', en: 'Possibility to include minors as partners.' },
-        { fr: 'Cadre légal strict qui évite les risques de conflits.', en: 'Strict legal framework that avoids conflict risks.' },
+        { fr: 'Protection du patrimoine personnel.', en: 'Protection of personal assets.' },
+        { fr: 'Cadre juridique sécurisé et structuré.', en: 'Secure and structured legal framework.' },
+        { fr: 'Contrôle de l\’entrée des tiers.', en: 'Control over entry of third parties.' },
+        { fr: 'Capital librement fixé.', en: 'Capital freely determined.' },
+        { fr: 'Structure adaptée aux PME.', en: 'Structure suitable for SMEs.' },
       ],
     },
     advantages: [
-      { fr: 'Patrimoine personnel protégé', en: 'Personal assets protected' },
-      { fr: 'Conjoint collaborateur possible', en: 'Collaborating spouse possible' },
-      { fr: 'Cadre légal évite les risques', en: 'Legal framework avoids risks' },
-      { fr: 'SARL famille : avantages fiscaux IR', en: 'Family SARL: income tax advantages' },
-      { fr: 'Structure reconnue et rassurante', en: 'Recognized and reassuring structure' },
+      { fr: 'Responsabilité limitée aux apports', en: 'Liability limited to contributions' },
+      { fr: 'Stabilité du capital social', en: 'Stability of share capital' },
+      { fr: 'Gérance organisée par la loi', en: 'Management organized by law' },
+      { fr: 'Cadre légal rassurant', en: 'Reassuring legal framework' },
+      { fr: 'Constitution possible entre membres d\\’une même famille', en: 'Can be formed among members of the same family' },
     ],
     steps: [
       {
@@ -478,20 +479,22 @@ export const subpagesData: Record<string, SubpageData> = {
     comparison: {
       headers: [
         { fr: 'Aspect', en: 'Aspect' },
+        { fr: 'SAS/SASU', en: 'SAS/SASU' },
         { fr: 'SARL', en: 'SARL' },
-        { fr: 'SAS', en: 'SAS' },
       ],
       rows: [
-        { aspect: { fr: 'Associés', en: 'Partners' }, values: [{ fr: '2+', en: '2+' }, { fr: '1+', en: '1+' }] },
-        { aspect: { fr: 'Statuts', en: 'Articles' }, values: [{ fr: 'Encadrés', en: 'Regulated' }, { fr: 'Libres', en: 'Free' }] },
-        { aspect: { fr: 'Régime Social', en: 'Social Security' }, values: [{ fr: 'TNS majoritaire', en: 'Self-employed (majority)' }, { fr: 'Assimilé salarié', en: 'Employee-equivalent' }] },
-        { aspect: { fr: 'Cession', en: 'Transfer' }, values: [{ fr: 'Agrément obligatoire', en: 'Approval mandatory' }, { fr: 'Flexible', en: 'Flexible' }] },
+        { aspect: { fr: 'Nombre d\’Associé', en: 'Number of shareholder' }, values: [{ fr: 'SAS: 2+ | SASU: 1 seul associé', en: 'SAS: 2 or more shareholders\nSASU: 1 single shareholder' }, { fr: '2 à 50 associés', en: '2+' }] },
+        { aspect: { fr: 'Statuts', en: 'Articles' }, values: [{ fr: 'Highly flexible, with articles of association that can be largely customized', en: 'Highly flexible, with articles of association that can be largely customized' }, { fr: 'Encadré par la loi, moins flexible', en: 'Governed by law, less flexible' }] },
+        { aspect: { fr: 'Régime Social du Dirigeant', en: 'Social security regime of the executive' }, values: [{ fr: 'Déterminé par la législation nationale (au Cameroun l’affiliation est possible à la CNPS en tant que mandataire social remunéré)', en: 'Determined by national legislation (in Cameroon, affiliation to the CNPS is possible for a remunerated corporate officer)' }, { fr: 'Gérant soumis au régime national ; affiliation à la CNPS selon rémunération et statut', en: 'Manager subject to the national scheme; affiliation to the CNPS depends on remuneration and status' }] },
+        { aspect: { fr: 'Cession Parts', en: 'Transfer of Shares' }, values: [{ fr: 'Libre par défaut, sauf clause statutaire d’agrément ou restriction', en: 'Free by default, unless restricted or subject to approval by a clause in the articles of association' }, { fr: 'Cession à des tiers soumise à agrément obligatoire des associés', en: 'Transfer to third parties is subject to mandatory approval by the partners/shareholders.' }] },
+        { aspect: { fr: 'Activités Autorisées', en: 'Permitted Activities' }, values: [{ fr: 'Toute activité commerciale licite, sauf réglementations spécifiques (banque, assurance)', en: 'Any lawful commercial activity, except those subject to specific regulations (e.g. banking, insurance).' }, { fr: 'Toute activité commerciale licite, mais également soumise aux mêmes restrictions sectorielles', en: 'Any lawful commercial activity, but also subject to the same sector-specific restrictions' }] },
+        { aspect: { fr: 'Capital Minimum', en: 'Activities' }, values: [{ fr: 'Aucun minimum légal', en: 'No legal minimum' }, { fr: 'Libre mais doit être mentionné dans les statuts. (Au cameroun, le minimum conseillé est de 100 000XAF)', en: 'Free, but must be stated in the articles of association. (In Cameroon, the recommended minimum is XAF 100,000.)' }] },
       ],
     },
     faq: [
       {
-        question: { fr: 'Quelle différence entre SARL famille et classique ?', en: 'What is the difference between a family SARL and a standard one?' },
-        answer: { fr: 'La SARL de famille permet d\'opter pour l\'impôt sur le revenu (IR) au lieu de l\'IS, offrant des avantages fiscaux significatifs notamment lors de cessions de parts.', en: 'The family SARL allows opting for income tax (IR) instead of corporate tax (IS), offering significant tax advantages especially during share transfers.' },
+        question: { fr: 'Quelle différence entre SARL famille et Classique ?', en: 'What is the difference between a family SARL and a classic SARL?' },
+        answer: { fr: 'Il n\’existe aucune différence entre une SARL de famille et une SARL classique. Car l\’Acte Uniforme OHADA relatif au droit des sociétés commerciales et du groupement d\’intérêt économique ne fait aucune mention d\’un régime spécial des associés liés par (le mariage, filiation, parenté…)', en: 'There is no difference between a family SARL and a classic SARL, because the OHADA Uniform Act on commercial companies and economic interest groups makes no mention of a special regime for partners linked by marriage, descent, or kinship.' },
       },
       {
         question: { fr: 'Peut-on créer une SARL sans activité immédiate ?', en: 'Can you create a SARL without immediate activity?' },
@@ -573,7 +576,7 @@ export const subpagesData: Record<string, SubpageData> = {
   },
   association: {
     slug: 'association',
-    heroTitle: { fr: 'Créez Votre Association', en: 'Create Your Association' },
+    heroTitle: { fr: 'Créez une Association', en: 'Create an Association' },
     heroSubtitle: { fr: 'Culturelle, Caritative, Éducative', en: 'Cultural, Charitable, Educational' },
     heroDescription: { fr: 'Projets non lucratifs simples et rapides. Idéal pour activités culturelles, humanitaires ou éducatives.', en: 'Simple and fast non-profit projects. Ideal for cultural, humanitarian, or educational activities.' },
     whyCreate: {
