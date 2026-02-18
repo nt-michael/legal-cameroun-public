@@ -4,7 +4,7 @@ import ContactPageContent from './ContactPageContent';
 export const metadata: Metadata = {
   title: 'Contact | Legal Cameroun - RODEC Conseils',
   description:
-    'Contactez Legal Cameroun pour vos besoins juridiques au Cameroun. Création d\'entreprise, modifications statutaires, dissolution. Réponse sous 24h garantie.',
+    'Contactez Legal Cameroun pour vos besoins juridiques au Cameroun. Création d\'entreprise, modifications statutaires, dissolution. Réponse sous 48h garantie.',
   keywords: [
     'contact legal cameroun',
     'avocat douala',
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Contactez-nous | Legal Cameroun',
     description:
-      'Parlons de votre projet. Que ce soit pour une création d\'entreprise, une modification de statuts ou une question juridique, nous vous répondons sous 24h.',
+      'Parlons de votre projet. Que ce soit pour une création d\'entreprise, une modification de statuts ou une question juridique, nous vous répondons sous 48h.',
     type: 'website',
   },
   alternates: {

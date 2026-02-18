@@ -10,9 +10,9 @@ import {
 
 const pageText = {
   sendMessage: { fr: 'Envoyez-nous un message', en: 'Send us a message' },
-  describeProject: { fr: 'Décrivez votre projet et nous vous répondrons sous 24h.', en: 'Describe your project and we will respond within 24 hours.' },
+  describeProject: { fr: 'Décrivez votre projet et nous vous répondrons sous 48h.', en: 'Describe your project and we will respond within 48 hours.' },
   quickResponse: { fr: 'Réponse Rapide', en: 'Quick Response' },
-  guaranteed24h: { fr: 'Sous 24h garantie', en: 'Guaranteed within 24h' },
+  guaranteed24h: { fr: 'Sous 48h garantie', en: 'Guaranteed within 48h' },
   teamCommitment: { fr: "Notre équipe s\u2019engage à vous répondre dans les plus brefs délais. Pour les urgences, privilégiez l\u2019appel direct ou WhatsApp.", en: 'Our team is committed to responding as quickly as possible. For emergencies, prefer direct calls or WhatsApp.' },
   whyTrustUs: { fr: 'Pourquoi nous faire confiance ?', en: 'Why trust us?' },
   stat1: { fr: '+15 000 entreprises accompagnées', en: '+15,000 businesses supported' },

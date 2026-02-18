@@ -25,8 +25,8 @@ const devisText = {
   // Success state
   successTitle: { fr: 'Demande Envoyée !', en: 'Request Sent!' },
   successMessage: {
-    fr: 'Merci pour votre demande. Notre équipe vous contactera sous 24h pour discuter de votre projet.',
-    en: 'Thank you for your request. Our team will contact you within 24 hours to discuss your project.',
+    fr: 'Merci pour votre demande. Notre équipe vous contactera sous 48h pour discuter de votre projet.',
+    en: 'Thank you for your request. Our team will contact you within 48 hours to discuss your project.',
   },
   bookNow: { fr: 'Prendre RDV Maintenant', en: 'Book Appointment Now' },
   newRequest: { fr: 'Nouvelle Demande', en: 'New Request' },
@@ -34,8 +34,8 @@ const devisText = {
   // Step 0: Welcome
   welcomeTitle: { fr: 'Obtenez Votre Devis Gratuit', en: 'Get Your Free Quote' },
   welcomeSubtitle: {
-    fr: 'Répondez à quelques questions pour recevoir un devis personnalisé sous 24h.',
-    en: 'Answer a few questions to receive a personalized quote within 24 hours.',
+    fr: 'Répondez à quelques questions pour recevoir un devis personnalisé sous 48h.',
+    en: 'Answer a few questions to receive a personalized quote within 48 hours.',
   },
   welcomeConfidential: {
     fr: 'Vos informations sont confidentielles et sécurisées.',

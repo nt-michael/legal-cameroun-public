@@ -66,7 +66,7 @@ export interface SubpageData {
 // Trust badges shown throughout the section
 export const trustBadges = [
   { value: '15 000+', label: { fr: 'Entrepreneurs accompagnées', en: 'Entrepreneurs supported' } },
-  { value: '8', label: { fr: "d'Années d'expérience", en: 'Years of experience' } },
+  { value: '8', label: { fr: "Années d'expérience", en: 'Years of experience' } },
   // { value: '50+', label: { fr: 'Juristes diplômés', en: 'Qualified lawyers' } },
   // { value: '48h', label: { fr: 'Traitement Premium', en: 'Premium processing' } },
 ];
@@ -231,8 +231,8 @@ export const legalForms: LegalForm[] = [
   },
   {
     id: 'sas',
-    name: { fr: 'SAS / SASU', en: 'SAS / SASU' },
-    shortName: { fr: 'SAS/SASU', en: 'SAS/SASU' },
+    name: { fr: 'SAS', en: 'SAS' },
+    shortName: { fr: 'SAS', en: 'SAS' },
     description: { fr: 'Souplesse et flexibilité pour startups et projets innovants.', en: 'Flexibility for startups and innovative projects.' },
     advantages: [
       { fr: 'Statuts très flexibles et personnalisables', en: 'Very flexible and customizable articles of association' },
@@ -359,7 +359,7 @@ export const aidesAvantages = [
 export const subpagesData: Record<string, SubpageData> = {
   sas: {
     slug: 'sas',
-    heroTitle: { fr: 'Créez une SAS/SASU', en: 'Create a SAS/SASU' },
+    heroTitle: { fr: 'Créez une SAS', en: 'Create a SAS' },
     heroSubtitle: { fr: 'Souple et Adaptée à Vos Besoins', en: 'Flexible and Tailored to Your Needs' },
     heroDescription: { fr: 'Simple, sûr, rapide, économique. Questionnaire en ligne.', en: 'Simple, safe, fast, affordable. Online questionnaire.' },
     whyCreate: {
