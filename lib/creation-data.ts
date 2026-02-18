@@ -66,7 +66,7 @@ export interface SubpageData {
 // Trust badges shown throughout the section
 export const trustBadges = [
   { value: '15 000+', label: { fr: 'Entrepreneurs accompagnées', en: 'Entrepreneurs supported' } },
-  { value: '8', label: { fr: "D'années d'expérience", en: 'Years of experience' } },
+  { value: '8', label: { fr: "d'Années d'expérience", en: 'Years of experience' } },
   // { value: '50+', label: { fr: 'Juristes diplômés', en: 'Qualified lawyers' } },
   // { value: '48h', label: { fr: 'Traitement Premium', en: 'Premium processing' } },
 ];
@@ -86,7 +86,7 @@ export const whyChooseUs = [
   {
     icon: 'reliability',
     title: { fr: 'Fiabilité', en: 'Reliability' },
-    description: { fr: '+50 juristes diplômés basés au Cameroun.', en: '50+ qualified lawyers based in Cameroon.' },
+    description: { fr: '+50 experts diplômés basés au Cameroun.', en: '50+ qualified experts based in Cameroon.' },
   },
   {
     icon: 'price',
@@ -235,11 +235,12 @@ export const legalForms: LegalForm[] = [
     shortName: { fr: 'SAS/SASU', en: 'SAS/SASU' },
     description: { fr: 'Souplesse et flexibilité pour startups et projets innovants.', en: 'Flexibility for startups and innovative projects.' },
     advantages: [
-      { fr: 'Statuts très flexibles', en: 'Very flexible articles of association' },
+      { fr: 'Statuts très flexibles et personnalisables', en: 'Very flexible and customizable articles of association' },
       { fr: 'Responsabilité limitée aux apports', en: 'Liability limited to contributions' },
-      { fr: 'Régime social assimilé salarié', en: 'Employee-equivalent social security' },
-      { fr: 'Cession de parts simplifiée', en: 'Simplified share transfer' },
-      { fr: 'Adapté aux investisseurs', en: 'Suitable for investors' },
+      { fr: 'Attractif pour les investisseurs', en: 'Attractive for investors' },
+      { fr: 'Possibilité d\'apports en compte courant', en: 'Possibility of current account contributions' },
+      { fr: 'Distribution de dividendes possible', en: 'Dividend distribution possible' },
+      { fr: 'Toutes activités autorisées (sauf certain es activités règlementées qui exigent souvent une forme sociale spécifique)', en: 'All activities are permitted (except for certain regulated activities, which often require a specific legal form).' }
     ],
     disadvantages: [
       { fr: 'Charges sociales plus élevées', en: 'Higher social contributions' },
@@ -253,10 +254,11 @@ export const legalForms: LegalForm[] = [
     shortName: { fr: 'SARL', en: 'SARL' },
     description: { fr: 'Cadre sécurisé et encadré pour PME stables.', en: 'Secure and regulated framework for stable SMEs.' },
     advantages: [
-      { fr: 'Protection du patrimoine', en: 'Asset protection' },
-      { fr: 'Cadre légal strict et sécurisant', en: 'Strict and reassuring legal framework' },
-      { fr: 'Conjoint collaborateur possible', en: 'Collaborating spouse possible' },
-      { fr: 'SARL famille : avantages fiscaux', en: 'Family SARL: tax advantages' },
+      { fr: "Responsabilité limitée aux apports", en: "Liability limited to contributions"},
+      { fr: "Stabilité du capital social", en: "Stability of share capital"},
+      { fr: "Gérance organisée par la loi", en: "Management governed by law" },
+      { fr: "Cadre légal rassurant", en: "Reassuring legal framework"},
+      { fr: "Constitution possible entre membres d\’une même famille", en: "Can be formed among members of the same family"},
     ],
     disadvantages: [
       { fr: 'Statuts encadrés par la loi', en: 'Articles regulated by law' },
@@ -267,19 +269,18 @@ export const legalForms: LegalForm[] = [
   },
   {
     id: 'sarlu',
-    name: { fr: 'SARLU / EURL', en: 'SARLU / EURL (Single-Member LLC)' },
+    name: { fr: 'SARLU', en: 'SARLU' },
     shortName: { fr: 'SARLU', en: 'SARLU' },
     description: { fr: 'SARL unipersonnelle pour entrepreneur solo.', en: 'Single-member LLC for solo entrepreneurs.' },
     advantages: [
-      { fr: 'Responsabilité limitée aux apports', en: 'Liability limited to contributions' },
-      { fr: 'Cotisations sociales faibles (TNS)', en: 'Low social contributions (self-employed)' },
-      { fr: 'Statuts protecteurs', en: 'Protective articles of association' },
-      { fr: 'Capital minimum 1 XAF', en: 'Minimum capital 1 XAF' },
+      { fr: 'Patrimoine personnel protégé', en: 'Protection of personal assets' },
+      { fr: 'Simplicité administrative et juridique', en: 'Administrative and legal simplicity' },
+      { fr: 'Structure légale rassurante', en: 'Reassuring legal structure' },
+      { fr: 'Evolution possible vers SARL classique', en: 'Possible evolution into a classic SARL' },
     ],
     disadvantages: [
-      { fr: 'Encadrement strict', en: 'Strict regulatory framework' },
-      { fr: 'Cession de parts complexe', en: 'Complex share transfer' },
-      { fr: 'Protection sociale faible', en: 'Weak social protection' },
+      { fr: 'Cession de parts libre', en: 'Free transfer of shares' },
+      { fr: 'Régime social du gérant dépend du droit national (affiliation à la CNPS possible si rémunération au Cameroun.)', en: 'The manager’s social security regime depends on national law (in Cameroon, affiliation to the CNPS is possible if the manager is remunerated)' }
     ],
     href: '/creation-entreprise/sarlu',
   },
@@ -293,6 +294,9 @@ export const legalForms: LegalForm[] = [
       { fr: 'Pas de capital requis', en: 'No capital required' },
       { fr: 'Publication JOAFE gratuite', en: 'Free JOAFE publication' },
       { fr: 'Peut recevoir des dons', en: 'Can receive donations' },
+      { fr: 'Peut employer des salariés', en: 'Can hire employees' },
+      { fr: 'Exonérations fiscales possibles', en: 'Possible tax exemptions' },
+      { fr: 'Accès à la personnalité juridique', en: 'Access to legal personality' }
     ],
     disadvantages: [
       { fr: 'But non lucratif obligatoire', en: 'Non-profit purpose mandatory' },
@@ -502,36 +506,34 @@ export const subpagesData: Record<string, SubpageData> = {
       },
       {
         question: { fr: 'Quel est le nombre minimum d\'associés ?', en: 'What is the minimum number of partners?' },
-        answer: { fr: 'Une SARL nécessite au minimum 2 associés. Pour un associé unique, optez pour une SARLU (EURL).', en: 'A SARL requires at least 2 partners. For a single partner, opt for a SARLU (EURL).' },
+        answer: { fr: 'Une SARL nécessite au minimum 2 associés. Pour un associé unique, optez pour une SARLU.', en: 'A SARL requires at least 2 partners. For a single partner, opt for a SARLU.' },
       },
     ],
   },
   sarlu: {
     slug: 'sarlu',
-    heroTitle: { fr: 'Créez Votre SARLU/EURL', en: 'Create Your SARLU/EURL' },
+    heroTitle: { fr: 'Créez une SARLU', en: 'Create a SARLU' },
     heroSubtitle: { fr: 'L\'Entreprise Solo Protégée', en: 'The Protected Solo Business' },
     heroDescription: { fr: 'SARLU = Société à Responsabilité Limitée Unipersonnelle. Encadrée par la loi, idéale pour entrepreneur seul.', en: 'SARLU = Single-Member Limited Liability Company. Regulated by law, ideal for solo entrepreneurs.' },
     whyCreate: {
       title: { fr: 'Pourquoi créer une SARLU ?', en: 'Why Create a SARLU?' },
       content: [
-        { fr: 'Structure unipersonnelle avec responsabilité limitée.', en: 'Single-member structure with limited liability.' },
-        { fr: 'Cotisations sociales faibles grâce au statut TNS.', en: 'Low social contributions thanks to self-employed status.' },
-        { fr: 'Statuts protecteurs encadrés par la loi.', en: 'Protective articles of association regulated by law.' },
-        { fr: 'Capital minimum de 1 XAF.', en: 'Minimum capital of 1 XAF.' },
-        { fr: 'Possibilité d\'évoluer vers une SARL en ajoutant des associés.', en: 'Possibility to evolve into a SARL by adding partners.' },
+        { fr: 'Responsabilité aux apports.', en: 'Liability limited to contributions.' },
+        { fr: 'Structure simple et encadrée.', en: 'Simple and well-regulated structure.' },
+        { fr: 'Facilité de création et d’organisation.', en: 'Easy of formation and organization.' },
+        { fr: 'Capital librement fixé.', en: 'Capital freely determined.' },
+        { fr: 'Souplesse pour évoluer.', en: 'Flexibility to evolve.' },
       ],
     },
     advantages: [
-      { fr: 'Capital minimum 1 XAF (plus conseillé pour crédibilité)', en: 'Minimum capital 1 XAF (higher recommended for credibility)' },
-      { fr: 'Responsabilité limitée aux apports', en: 'Liability limited to contributions' },
-      { fr: 'Cotisations sociales faibles (TNS)', en: 'Low social contributions (self-employed)' },
-      { fr: 'Statuts protecteurs', en: 'Protective articles of association' },
-      { fr: 'Évolution possible vers SARL', en: 'Possible evolution to SARL' },
+      { fr: 'Patrimoine personnel protégé', en: 'Protection of personal assets' },
+      { fr: 'Simplicité administrative et juridique', en: 'Administrative and legal simplicity' },
+      { fr: 'Structure légale rassurante', en: 'Reassuring legal structure' },
+      { fr: 'Evolution possible vers SARL classique', en: 'Possible evolution into a classic SARL' },
     ],
     disadvantages: [
-      { fr: 'Encadrement strict des statuts', en: 'Strict regulatory framework for articles' },
-      { fr: 'Cession de parts complexe et onéreuse', en: 'Complex and costly share transfer' },
-      { fr: 'Protection sociale plus faible que SAS', en: 'Weaker social protection than SAS' },
+      { fr: 'Cession de parts libre', en: 'Free transfer of shares' },
+      { fr: 'Régime social du gérant dépend du droit national (affiliation à la CNPS possible si rémunération au Cameroun.)', en: 'The manager’s social security regime depends on national law (in Cameroon, affiliation to the CNPS is possible if the manager is remunerated)' },
     ],
     steps: [
       {
@@ -551,18 +553,15 @@ export const subpagesData: Record<string, SubpageData> = {
       },
     ],
     requirements: [
-      { fr: 'Associé unique', en: 'Single partner' },
-      { fr: 'Capital minimum 1 XAF', en: 'Minimum capital 1 XAF' },
-      { fr: 'Cumul gérant/associé possible', en: 'Manager/partner combination possible' },
-      { fr: 'Justificatif de siège social', en: 'Proof of registered office' },
-      { fr: 'Attestation de dépôt des fonds', en: 'Certificate of deposit of funds' },
-      { fr: 'Statuts signés', en: 'Signed articles of association' },
-      { fr: 'Attestation de non-condamnation', en: 'Certificate of no criminal record' },
+      { fr: 'Statuts de la société', en: 'Articles of association' },
+      { fr: 'Attestation de dépôt du capital', en: 'Certificate of capital deposit' },
+      { fr: 'Justificatif du siège social', en: 'Proof of registered office address' },
+      { fr: 'Publication d\’un avis de constitution dans un journal d\’annonces légales', en: 'Publication of a notice of incorporation in a legal announcements journal' }
     ],
     faq: [
       {
         question: { fr: 'Quelle différence entre SARLU et SASU ?', en: 'What is the difference between SARLU and SASU?' },
-        answer: { fr: 'La principale différence réside dans la cession de parts : plus lourde en SARLU (formalisme + modification des statuts) et le régime social (TNS vs assimilé salarié).', en: 'The main difference lies in share transfer: more burdensome in SARLU (formalism + articles modification) and the social security regime (self-employed vs employee-equivalent).' },
+        answer: { fr: 'La principale différence réside dans la flexibilité et l\’organisation statutaire. La SASU est beaucoup plus modulable que la SARLU qui reste encadrée par la loi.', en: 'The main difference lies in flexibility and statutory organization. The SASU is far more adaptable, whereas the SARLU remains more strictly governed by law.' },
       },
       {
         question: { fr: 'Peut-on passer de SARLU à SARL ?', en: 'Can you switch from SARLU to SARL?' },
@@ -570,7 +569,7 @@ export const subpagesData: Record<string, SubpageData> = {
       },
       {
         question: { fr: 'Quel régime fiscal pour une SARLU ?', en: 'What tax regime for a SARLU?' },
-        answer: { fr: 'Par défaut, la SARLU est soumise à l\'IR (impôt sur le revenu). Vous pouvez opter pour l\'IS (impôt sur les sociétés) de manière irrévocable.', en: 'By default, the SARLU is subject to income tax (IR). You can irrevocably opt for corporate tax (IS).' },
+        answer: { fr: 'Au Cameroun, la SARLU est généralement soumise à l\’impôt sur les sociétés (IS); les dividendes sont soumis à retenue à la source; TVA et autres taxes applicables selon l\’activité.', en: 'In Cameroon, the SARLU is generally subject to corporate income tax (CIT); dividends are subject to withholding tax; VAT and other applicable taxes apply depending on the activity.' },
       },
     ],
   },
@@ -587,6 +586,7 @@ export const subpagesData: Record<string, SubpageData> = {
         { fr: 'Pas de capital social requis.', en: 'No share capital required.' },
         { fr: 'Publication gratuite au JOAFE depuis 2020.', en: 'Free publication in the JOAFE since 2020.' },
         { fr: 'Possibilité de recevoir des dons et subventions.', en: 'Possibility to receive donations and grants.' },
+        { fr: 'Seules les associations reconnues d\’utilité publique par décret peuvent bénéficier de certains dons, legs et subventions.', en: 'Only associations recognized as being of public utility by decree may benefit from certain donations, bequests, and subsidies.' }
       ],
     },
     advantages: [
@@ -596,6 +596,7 @@ export const subpagesData: Record<string, SubpageData> = {
       { fr: 'Peut recevoir des dons', en: 'Can receive donations' },
       { fr: 'Peut employer des salariés', en: 'Can hire employees' },
       { fr: 'Exonérations fiscales possibles', en: 'Possible tax exemptions' },
+      { fr: 'Accès à la personnalité juridique', en: 'Access to legal personality' }
     ],
     steps: [
       {
@@ -679,7 +680,7 @@ export const subpagesGrid = [
     icon: 'shield',
   },
   {
-    title: { fr: 'Créer une SARLU/EURL', en: 'Create a SARLU/EURL' },
+    title: { fr: 'Créer une SARLU', en: 'Create a SARLU' },
     description: { fr: 'Entrepreneur solo protégé', en: 'Protected solo entrepreneur' },
     href: '/creation-entreprise/sarlu',
     icon: 'user',

@@ -3,8 +3,8 @@ import { SubpageLayout } from '@/components/creation';
 import { subpagesData, pricingTiers } from '@/lib/creation-data';
 
 export const metadata: Metadata = {
-  title: 'Creer une SARLU/EURL au Cameroun | Legal Cameroun',
-  description: 'Creez votre SARLU (EURL) au Cameroun. Structure unipersonnelle avec responsabilite limitee. Accompagnement expert, traitement en 48h.',
+  title: 'Creer une SARLU au Cameroun | Legal Cameroun',
+  description: 'Creez une SARLU (EURL) au Cameroun. Structure unipersonnelle avec responsabilite limitee. Accompagnement expert, traitement en 48h.',
   keywords: ['sarlu cameroun', 'eurl cameroun', 'creer sarlu', 'creation eurl cameroun', 'societe unipersonnelle cameroun'],
   alternates: {
     languages: {

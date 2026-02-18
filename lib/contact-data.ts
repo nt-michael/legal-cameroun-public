@@ -117,6 +117,7 @@ export const contactSubjects: ContactSubject[] = [
   { value: 'modification', label: { fr: 'Modification de statuts', en: 'Articles Amendment' } },
   { value: 'dissolution', label: { fr: 'Dissolution d\'entreprise', en: 'Business Dissolution' } },
   { value: 'autre-juridique', label: { fr: 'Autre service juridique', en: 'Other Legal Service' } },
+  { value: 'consultation-gratuite', label: { fr: 'Consultation gratuite', en: 'Free Consultation' } },
   { value: 'question', label: { fr: 'Question générale', en: 'General Inquiry' } },
 ];
 

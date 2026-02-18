@@ -41,7 +41,7 @@ export interface DevisFormData {
 export const initialDevisFormData: DevisFormData = {
   isNewBusiness: null,
   companyType: '',
-  timeline: '1-week',
+  timeline: '3-week',
   businessObject: '',
   capital: 100000,
   managerFirstName: '',

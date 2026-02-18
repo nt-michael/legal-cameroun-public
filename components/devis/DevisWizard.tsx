@@ -185,6 +185,7 @@ export default function DevisWizard() {
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
   const [direction, setDirection] = useState<'next' | 'prev'>('next');
 
   // Load from URL params and localStorage
@@ -329,15 +330,44 @@ export default function DevisWizard() {
     if (!validateStep()) return;
 
     setIsSubmitting(true);
+    setSubmitError(null);
 
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1500));
+    try {
+      const response = await fetch('/api/devis', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
 
-    // Clear localStorage
-    localStorage.removeItem(STORAGE_KEY);
+      const data = await response.json();
 
-    setIsSubmitting(false);
-    setIsSubmitted(true);
+      if (data.success) {
+        localStorage.removeItem(STORAGE_KEY);
+        setIsSubmitted(true);
+      } else if (data.errors) {
+        setErrors(data.errors);
+        setSubmitError(
+          language === 'fr'
+            ? 'Veuillez corriger les erreurs dans le formulaire.'
+            : 'Please fix the errors in the form.'
+        );
+      } else {
+        setSubmitError(
+          data.message ||
+            (language === 'fr'
+              ? "Une erreur est survenue. Veuillez réessayer."
+              : 'An error occurred. Please try again.')
+        );
+      }
+    } catch {
+      setSubmitError(
+        language === 'fr'
+          ? 'Erreur de connexion. Veuillez vérifier votre connexion internet.'
+          : 'Connection error. Please check your internet connection.'
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const resetForm = () => {
@@ -909,6 +939,13 @@ export default function DevisWizard() {
             </div>
           )}
         </div>
+
+        {/* Submit Error */}
+        {submitError && (
+          <div className="mt-4 p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-xl text-red-700 dark:text-red-300 text-sm">
+            {submitError}
+          </div>
+        )}
 
         {/* Navigation */}
         <div className="flex items-center justify-between mt-8 pt-6 border-t border-gray-200 dark:border-gray-700">
