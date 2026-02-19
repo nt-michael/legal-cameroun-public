@@ -364,8 +364,8 @@ export const finalCtaData = {
     en: 'Ready to Write the Next Chapter of Your Story?',
   } as BilingualText,
   description: {
-    fr: 'Que vous lanciez votre première SARL à Bonabéri, transformiez une SAS à Deido, ou clôturiez un chapitre pour en ouvrir un nouveau... nous sommes là, à vos côtés.',
-    en: 'Whether you are launching your first SARL in Bonabéri, transforming a SAS in Deido, or closing one chapter to open a new one... we are here, by your side.',
+    fr: 'Que vous démarriez, transformiez ou transmettiez votre entreprise — où que vous soyez au Cameroun, nous sommes là, à vos côtés.',
+    en: 'Whether you are starting, growing, or passing on your business — wherever you are in Cameroon, we are here, by your side.',
   } as BilingualText,
   primaryCta: {
     text: {

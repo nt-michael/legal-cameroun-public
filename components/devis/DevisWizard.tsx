@@ -79,16 +79,16 @@ const devisText = {
   minimumLabel: { fr: 'Minimum', en: 'Minimum' },
 
   // Step 4: Team
-  teamTitle: { fr: 'Équipe Dirigeante', en: 'Management Team' },
+  teamTitle: { fr: 'Équipe Administrant', en: 'Administrative Team' },
   teamSubtitle: {
-    fr: 'Informations sur le gérant et les associés.',
-    en: 'Information about the manager and partners.',
+    fr: 'Informations sur le principal administrateur et les associés.',
+    en: 'Information about the main administrator and partners.',
   },
-  managerFirstNameLabel: { fr: 'Prénom du gérant', en: 'Manager first name' },
-  managerLastNameLabel: { fr: 'Nom du gérant', en: 'Manager last name' },
+  managerFirstNameLabel: { fr: 'Prénom du principal administrateur', en: 'Main administrator first name' },
+  managerLastNameLabel: { fr: 'Nom du principal administrateur', en: 'Main administrator last name' },
   associatesCountLabel: { fr: "Nombre d'associés", en: 'Number of partners' },
   nonAssociateManagersLabel: {
-    fr: 'Y a-t-il des gérants non-associés ?',
+    fr: 'Y a-t-il des administrateurs non-associés ?',
     en: 'Are there non-partner managers?',
   },
   yes: { fr: 'Oui', en: 'Yes' },

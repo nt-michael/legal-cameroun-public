@@ -31,10 +31,14 @@ const iconMap: Record<string, React.ReactNode> = {
 };
 
 const cardColors = [
-  { bg: 'from-amber-50 to-orange-50', border: 'border-amber-200', hover: 'hover:border-amber-400', icon: 'text-amber-600', darkBg: 'dark:from-amber-900/20 dark:to-orange-900/20', darkBorder: 'dark:border-amber-800' },
-  { bg: 'from-green-50 to-teal-50', border: 'border-green-200', hover: 'hover:border-green-400', icon: 'text-green-600', darkBg: 'dark:from-green-900/20 dark:to-teal-900/20', darkBorder: 'dark:border-green-800' },
+  // Gold/secondary warmth
+  { bg: 'from-amber-50 to-amber-100', border: 'border-amber-200', hover: 'hover:border-amber-400', icon: 'text-amber-700', darkBg: 'dark:from-amber-900/20 dark:to-amber-800/20', darkBorder: 'dark:border-amber-800' },
+  // Primary deep blue
   { bg: 'from-primary-50 to-primary-100', border: 'border-primary-200', hover: 'hover:border-primary-400', icon: 'text-primary-600', darkBg: 'dark:from-primary-900/20 dark:to-primary-800/20', darkBorder: 'dark:border-primary-800' },
-  { bg: 'from-purple-50 to-pink-50', border: 'border-purple-200', hover: 'hover:border-purple-400', icon: 'text-purple-600', darkBg: 'dark:from-purple-900/20 dark:to-pink-900/20', darkBorder: 'dark:border-purple-800' },
+  // Cyan/teal (matches --section-creation #0095bb)
+  { bg: 'from-cyan-50 to-sky-50', border: 'border-cyan-200', hover: 'hover:border-cyan-400', icon: 'text-cyan-600', darkBg: 'dark:from-cyan-900/20 dark:to-sky-900/20', darkBorder: 'dark:border-cyan-800' },
+  // Deep navy/slate
+  { bg: 'from-slate-50 to-primary-50', border: 'border-slate-200', hover: 'hover:border-primary-300', icon: 'text-primary-700', darkBg: 'dark:from-slate-900/20 dark:to-primary-900/20', darkBorder: 'dark:border-slate-700' },
 ];
 
 export default function ValuesGrid() {

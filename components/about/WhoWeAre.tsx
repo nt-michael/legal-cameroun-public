@@ -14,6 +14,7 @@ const sectionText = {
   ourPromise: { fr: 'Notre promesse', en: 'Our promise' },
   legalExperts: { fr: 'Experts', en: 'Experts' },
   countriesCovered: { fr: 'Pays couverts', en: 'Countries covered' },
+  entrepreneursSupported: { fr: 'Entrepreneurs accompagnés', en: 'Entrepreneurs supported' },
 };
 
 gsap.registerPlugin(ScrollTrigger);
@@ -21,7 +22,6 @@ gsap.registerPlugin(ScrollTrigger);
 export default function WhoWeAre() {
   const sectionRef = useRef<HTMLElement>(null);
   const textRef = useRef<HTMLDivElement>(null);
-  const imageRef = useRef<HTMLDivElement>(null);
   const { language } = useLanguage();
 
   useEffect(() => {
@@ -48,37 +48,6 @@ export default function WhoWeAre() {
           }
         );
       }
-
-      // Image parallax effect
-      if (imageRef.current) {
-        gsap.fromTo(
-          imageRef.current,
-          { opacity: 0, scale: 0.95 },
-          {
-            opacity: 1,
-            scale: 1,
-            duration: 1,
-            ease: 'power2.out',
-            scrollTrigger: {
-              trigger: imageRef.current,
-              start: 'top 80%',
-              toggleActions: 'play none none none',
-            },
-          }
-        );
-
-        // Subtle parallax
-        gsap.to(imageRef.current, {
-          yPercent: -10,
-          ease: 'none',
-          scrollTrigger: {
-            trigger: section,
-            start: 'top bottom',
-            end: 'bottom top',
-            scrub: true,
-          },
-        });
-      }
     }, section);
 
     return () => ctx.revert();
@@ -86,32 +55,35 @@ export default function WhoWeAre() {
 
   return (
     <section ref={sectionRef} className="py-20 lg:py-32 bg-white dark:bg-gray-800 overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-          {/* Text Content */}
-          <div ref={textRef} className="space-y-6">
-            <span className="inline-block px-4 py-2 bg-green-100 dark:bg-green-900/30 rounded-full text-green-700 dark:text-green-400 text-sm font-medium">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div ref={textRef} className="space-y-10">
+
+          {/* Child 1 — Badge + Title */}
+          <div>
+            <span className="inline-block px-4 py-2 bg-green-100 dark:bg-green-900/30 rounded-full text-green-700 dark:text-green-400 text-sm font-medium mb-6">
               {sectionText.badge[language]}
             </span>
-
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white">
               {sectionText.titleLine1[language]}<br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-500 to-orange-600">
                 {sectionText.titleLine2[language]}
               </span>
             </h2>
+          </div>
 
-            <p className="text-xl text-gray-700 dark:text-gray-300 font-medium">
-              {whoWeAreData.intro[language]}
-            </p>
-
-            <p className="text-gray-600 dark:text-gray-400">
-              {whoWeAreData.team[language]}
-            </p>
-
-            <p className="text-gray-600 dark:text-gray-400">
-              {whoWeAreData.diversity[language]}
-            </p>
+          {/* Child 2 — Paragraphs + "Nous aimons" box */}
+          <div className="grid md:grid-cols-2 gap-8 items-start">
+            <div className="space-y-4">
+              <p className="text-xl text-gray-700 dark:text-gray-300 font-medium">
+                {whoWeAreData.intro[language]}
+              </p>
+              <p className="text-gray-600 dark:text-gray-400">
+                {whoWeAreData.team[language]}
+              </p>
+              <p className="text-gray-600 dark:text-gray-400">
+                {whoWeAreData.diversity[language]}
+              </p>
+            </div>
 
             {/* What we love */}
             <div className="bg-gradient-to-br from-amber-50 to-orange-50 dark:from-amber-900/20 dark:to-orange-900/20 rounded-2xl p-6 border border-amber-200 dark:border-amber-800">
@@ -130,74 +102,35 @@ export default function WhoWeAre() {
                 ))}
               </ul>
             </div>
+          </div>
 
-            {/* Promise */}
-            <div className="flex items-center gap-4 pt-4">
-              <div className="w-1 h-16 bg-gradient-to-b from-amber-500 to-orange-600 rounded-full" />
-              <div>
-                <p className="text-sm text-gray-500 dark:text-gray-400 mb-1">{sectionText.ourPromise[language]}</p>
-                <p className="text-xl font-bold text-gray-900 dark:text-white">
-                  {whoWeAreData.promise[language]}
-                </p>
-              </div>
+          {/* Child 3 — Stats row */}
+          <div className="grid grid-cols-3 gap-4">
+            <div className="bg-gradient-to-br from-primary-50 to-primary-100 dark:from-primary-900/20 dark:to-primary-800/20 rounded-2xl p-6 border border-primary-200 dark:border-primary-800 text-center">
+              <p className="text-3xl font-bold text-primary-600 dark:text-primary-400">50+</p>
+              <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">{sectionText.legalExperts[language]}</p>
+            </div>
+            <div className="bg-gradient-to-br from-amber-50 to-amber-100 dark:from-amber-900/20 dark:to-amber-800/20 rounded-2xl p-6 border border-amber-200 dark:border-amber-800 text-center">
+              <p className="text-3xl font-bold text-amber-600 dark:text-amber-400">3</p>
+              <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">{sectionText.countriesCovered[language]}</p>
+            </div>
+            <div className="bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 rounded-2xl p-6 border border-green-200 dark:border-green-800 text-center">
+              <p className="text-3xl font-bold text-green-600 dark:text-green-400">15 000+</p>
+              <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">{sectionText.entrepreneursSupported[language]}</p>
             </div>
           </div>
 
-          {/* Visual Element */}
-          <div ref={imageRef} className="relative">
-            {/* Decorative background */}
-            <div className="absolute -inset-4 bg-gradient-to-br from-amber-200 to-orange-200 dark:from-amber-800/30 dark:to-orange-800/30 rounded-3xl blur-xl opacity-50" />
-
-            {/* Main visual card */}
-            <div className="relative bg-gradient-to-br from-gray-900 to-gray-800 rounded-3xl p-8 shadow-2xl overflow-hidden">
-              {/* Pattern overlay */}
-              <div className="absolute inset-0 opacity-10">
-                <svg className="w-full h-full" viewBox="0 0 400 400">
-                  <pattern id="pattern" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
-                    <path d="M0 20 L20 0 L40 20 L20 40 Z" fill="none" stroke="currentColor" strokeWidth="1" className="text-amber-400" />
-                  </pattern>
-                  <rect width="100%" height="100%" fill="url(#pattern)" />
-                </svg>
-              </div>
-
-              {/* Content */}
-              <div className="relative z-10 space-y-6">
-                {/* Team icon grid */}
-                <div className="grid grid-cols-3 gap-4">
-                  {[1, 2, 3, 4, 5, 6].map((i) => (
-                    <div
-                      key={i}
-                      className="aspect-square bg-gradient-to-br from-amber-500/20 to-orange-500/20 rounded-xl flex items-center justify-center"
-                    >
-                      <svg className="w-8 h-8 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                      </svg>
-                    </div>
-                  ))}
-                </div>
-
-                {/* Stats */}
-                <div className="grid grid-cols-2 gap-4 pt-4 border-t border-white/10">
-                  <div className="text-center">
-                    <p className="text-3xl font-bold text-amber-400">50+</p>
-                    <p className="text-sm text-gray-400">{sectionText.legalExperts[language]}</p>
-                  </div>
-                  <div className="text-center">
-                    <p className="text-3xl font-bold text-orange-400">3</p>
-                    <p className="text-sm text-gray-400">{sectionText.countriesCovered[language]}</p>
-                  </div>
-                </div>
-
-                {/* Location badge */}
-                <div className="flex items-center justify-center gap-2 bg-white/10 rounded-full px-4 py-2">
-                  <svg className="w-4 h-4 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                  </svg>
-                  <span className="text-sm text-gray-300">Akwa, Douala</span>
-                </div>
-              </div>
+          {/* Child 4 — Promise */}
+          <div className="flex items-center gap-4 pt-4">
+            <div className="w-1 h-16 bg-gradient-to-b from-amber-500 to-orange-600 rounded-full" />
+            <div>
+              <p className="text-sm text-gray-500 dark:text-gray-400 mb-1">{sectionText.ourPromise[language]}</p>
+              <p className="text-xl font-bold text-gray-900 dark:text-white">
+                {whoWeAreData.promise[language]}
+              </p>
             </div>
           </div>
+
         </div>
       </div>
     </section>
