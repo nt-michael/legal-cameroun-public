@@ -12,7 +12,10 @@ export async function GET(request: Request) {
             return NextResponse.json({ error: 'Missing date range' }, { status: 400 });
         }
 
-        const eventTypeUri = process.env.CALENDLY_EVENT_URI;
+        const type = searchParams.get('type');
+        const eventTypeUri = type === 'free'
+            ? process.env.FREE_CALENDLY_EVENT_URI
+            : process.env.CALENDLY_EVENT_URI;
         if (!eventTypeUri) {
             return NextResponse.json({ error: 'Server configuration error: Missing Event URI' }, { status: 500 });
         }

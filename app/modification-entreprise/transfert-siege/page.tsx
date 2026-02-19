@@ -7,9 +7,9 @@ export const metadata: Metadata = {
   keywords: ['transfert siège social cameroun', 'changement adresse entreprise', 'déménagement siège société'],
   alternates: {
     languages: {
-      'fr': 'https://legalcameroun.com/gestion-entreprise/transfert-siege',
-      'en': 'https://legalcameroun.com/gestion-entreprise/transfert-siege',
-      'x-default': 'https://legalcameroun.com/gestion-entreprise/transfert-siege',
+      'fr': 'https://legalcameroun.com/modification-entreprise/transfert-siege',
+      'en': 'https://legalcameroun.com/modification-entreprise/transfert-siege',
+      'x-default': 'https://legalcameroun.com/modification-entreprise/transfert-siege',
     },
   },
 };

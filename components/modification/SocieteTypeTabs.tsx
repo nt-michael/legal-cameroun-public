@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { societeTypes } from '@/lib/gestion-data';
+import { societeTypes } from '@/lib/modification-data';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 const sectionText = {

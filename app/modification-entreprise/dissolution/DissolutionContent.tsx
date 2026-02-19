@@ -1,16 +1,16 @@
 'use client';
 
 import Link from 'next/link';
-import GestionPricingCards from '@/components/gestion/GestionPricingCards';
-import GestionDocumentsChecklist from '@/components/gestion/GestionDocumentsChecklist';
+import GestionPricingCards from '@/components/modification/GestionPricingCards';
+import GestionDocumentsChecklist from '@/components/modification/GestionDocumentsChecklist';
 import FAQSection from '@/components/creation/FAQSection';
-import { dissolutionData, gestionCtaData } from '@/lib/gestion-data';
+import { dissolutionData, gestionCtaData } from '@/lib/modification-data';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { getText } from '@/lib/translations';
 
 const pageText = {
   breadcrumbHome: { fr: 'Accueil', en: 'Home' },
-  breadcrumbGestion: { fr: "Gestion d'entreprise", en: 'Business Management' },
+  breadcrumbGestion: { fr: "Modification d'entreprise", en: 'Business Modification' },
   breadcrumbCurrent: { fr: 'Dissolution', en: 'Dissolution' },
   ctaPrimary: { fr: 'Dissoudre ma Soci\u00e9t\u00e9', en: 'Dissolve my Company' },
   ctaSecondary: { fr: 'Consultation Gratuite', en: 'Free Consultation' },
@@ -46,7 +46,7 @@ export default function DissolutionContent() {
               <ol className="flex items-center gap-2 text-sm text-gray-400">
                 <li><Link href="/" className="hover:text-white">{pageText.breadcrumbHome[language]}</Link></li>
                 <li>/</li>
-                <li><Link href="/gestion-entreprise" className="hover:text-white">{pageText.breadcrumbGestion[language]}</Link></li>
+                <li><Link href="/modification-entreprise" className="hover:text-white">{pageText.breadcrumbGestion[language]}</Link></li>
                 <li>/</li>
                 <li className="text-white">{pageText.breadcrumbCurrent[language]}</li>
               </ol>

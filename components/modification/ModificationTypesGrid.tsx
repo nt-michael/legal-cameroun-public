@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { modificationTypes } from '@/lib/gestion-data';
+import { modificationTypes } from '@/lib/modification-data';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 const sectionText = {

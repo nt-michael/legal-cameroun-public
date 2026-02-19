@@ -7,6 +7,7 @@ export interface GestionPricingTier {
   name: BilingualText;
   price: string;
   priceNote?: BilingualText;
+  pricePrefix?: BilingualText;
   description: BilingualText;
   features: BilingualText[];
   highlighted?: boolean;
@@ -149,6 +150,7 @@ export const hubPricingTiers: GestionPricingTier[] = [
     name: { fr: 'Starter', en: 'Starter' },
     price: '150 000',
     priceNote: { fr: 'XAF HT + frais admin', en: 'XAF excl. tax + admin fees' },
+    pricePrefix: { fr: 'À partir de', en: 'Starting from' },
     description: { fr: 'Pour les modifications simples', en: 'For simple amendments' },
     features: [
       { fr: 'PV de modification', en: 'Amendment minutes' },
@@ -163,6 +165,7 @@ export const hubPricingTiers: GestionPricingTier[] = [
     name: { fr: 'Standard', en: 'Standard' },
     price: '250 000',
     priceNote: { fr: 'XAF HT + frais admin', en: 'XAF excl. tax + admin fees' },
+    pricePrefix: { fr: 'À partir de', en: 'Starting from' },
     description: { fr: 'La solution complète', en: 'The complete solution' },
     features: [
       { fr: 'Tout Starter inclus', en: 'Everything in Starter included' },
@@ -177,6 +180,7 @@ export const hubPricingTiers: GestionPricingTier[] = [
     name: { fr: 'Premium', en: 'Premium' },
     price: '350 000',
     priceNote: { fr: 'XAF HT + frais admin', en: 'XAF excl. tax + admin fees' },
+    pricePrefix: { fr: 'À partir de', en: 'Starting from' },
     description: { fr: 'Service prioritaire complet', en: 'Complete priority service' },
     features: [
       { fr: 'Tout Standard inclus', en: 'Everything in Standard included' },
@@ -224,28 +228,28 @@ export const modificationTypes: ModificationType[] = [
     name: { fr: 'Transfert de Siège Social', en: 'Registered Office Transfer' },
     description: { fr: 'Changez l\'adresse de votre entreprise facilement', en: 'Change your company\'s address easily' },
     icon: 'location',
-    href: '/gestion-entreprise/transfert-siege',
+    href: '/modification-entreprise/transfert-siege',
   },
   {
     id: 'sas-vers-sarl',
     name: { fr: 'Transformation SAS en SARL', en: 'SAS to SARL Conversion' },
     description: { fr: 'Passez à un cadre plus structuré', en: 'Switch to a more structured framework' },
     icon: 'transform',
-    href: '/gestion-entreprise/sas-vers-sarl',
+    href: '/modification-entreprise/sas-vers-sarl',
   },
   {
     id: 'sarl-vers-sas',
     name: { fr: 'Transformation SARL en SAS', en: 'SARL to SAS Conversion' },
     description: { fr: 'Gagnez en flexibilité et souplesse', en: 'Gain flexibility and agility' },
     icon: 'transform',
-    href: '/gestion-entreprise/sarl-vers-sas',
+    href: '/modification-entreprise/sarl-vers-sas',
   },
   {
     id: 'dissolution',
     name: { fr: 'Dissolution d\'Entreprise', en: 'Company Dissolution' },
     description: { fr: 'Clôturez votre société proprement', en: 'Close your company properly' },
     icon: 'close',
-    href: '/gestion-entreprise/dissolution',
+    href: '/modification-entreprise/dissolution',
   },
 ];
 
@@ -297,6 +301,7 @@ export const transfertSiegeData = {
     {
       name: { fr: 'Starter', en: 'Starter' },
       price: '150 000',
+      pricePrefix: { fr: 'À partir de', en: 'Starting from' },
       priceNote: { fr: 'XAF HT', en: 'XAF excl. tax' },
       description: { fr: 'Transfert simple', en: 'Simple transfer' },
       features: [
@@ -310,6 +315,7 @@ export const transfertSiegeData = {
     {
       name: { fr: 'Standard', en: 'Standard' },
       price: '200 000',
+      pricePrefix: { fr: 'À partir de', en: 'Starting from' },
       priceNote: { fr: 'XAF HT', en: 'XAF excl. tax' },
       description: { fr: 'Transfert accompagné', en: 'Supported transfer' },
       features: [
@@ -324,6 +330,7 @@ export const transfertSiegeData = {
     {
       name: { fr: 'Premium', en: 'Premium' },
       price: '250 000',
+      pricePrefix: { fr: 'À partir de', en: 'Starting from' },
       priceNote: { fr: 'XAF HT', en: 'XAF excl. tax' },
       description: { fr: 'Service prioritaire', en: 'Priority service' },
       features: [
@@ -387,6 +394,7 @@ export const sasVersSarlData = {
     {
       name: { fr: 'Standard', en: 'Standard' },
       price: '200 000',
+      pricePrefix: { fr: 'À partir de', en: 'Starting from' },
       priceNote: { fr: 'XAF HT', en: 'XAF excl. tax' },
       description: { fr: 'Transformation accompagnée', en: 'Supported conversion' },
       features: [
@@ -401,6 +409,7 @@ export const sasVersSarlData = {
     {
       name: { fr: 'Premium', en: 'Premium' },
       price: '250 000',
+      pricePrefix: { fr: 'À partir de', en: 'Starting from' },
       priceNote: { fr: 'XAF HT', en: 'XAF excl. tax' },
       description: { fr: 'Service prioritaire', en: 'Priority service' },
       features: [
@@ -464,6 +473,7 @@ export const sarlVersSasData = {
     {
       name: { fr: 'Standard', en: 'Standard' },
       price: '200 000',
+      pricePrefix: { fr: 'À partir de', en: 'Starting from' },
       priceNote: { fr: 'XAF HT', en: 'XAF excl. tax' },
       description: { fr: 'Transformation accompagnée', en: 'Supported conversion' },
       features: [
@@ -478,6 +488,7 @@ export const sarlVersSasData = {
     {
       name: { fr: 'Premium', en: 'Premium' },
       price: '250 000',
+      pricePrefix: { fr: 'À partir de', en: 'Starting from' },
       priceNote: { fr: 'XAF HT', en: 'XAF excl. tax' },
       description: { fr: 'Service prioritaire', en: 'Priority service' },
       features: [
@@ -587,6 +598,7 @@ export const dissolutionData = {
     {
       name: { fr: 'Starter', en: 'Starter' },
       price: '150 000',
+      pricePrefix: { fr: 'À partir de', en: 'Starting from' },
       priceNote: { fr: 'XAF HT', en: 'XAF excl. tax' },
       description: { fr: 'Dissolution simple', en: 'Simple dissolution' },
       features: [
@@ -600,6 +612,7 @@ export const dissolutionData = {
     {
       name: { fr: 'Standard', en: 'Standard' },
       price: '200 000',
+      pricePrefix: { fr: 'À partir de', en: 'Starting from' },
       priceNote: { fr: 'XAF HT', en: 'XAF excl. tax' },
       description: { fr: 'Dissolution accompagnée', en: 'Supported dissolution' },
       features: [
@@ -614,6 +627,7 @@ export const dissolutionData = {
     {
       name: { fr: 'Premium', en: 'Premium' },
       price: '250 000',
+      pricePrefix: { fr: 'À partir de', en: 'Starting from' },
       priceNote: { fr: 'XAF HT', en: 'XAF excl. tax' },
       description: { fr: 'Service complet', en: 'Complete service' },
       features: [

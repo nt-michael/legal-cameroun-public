@@ -2,11 +2,11 @@
 
 import Link from 'next/link';
 import { useLanguage } from '@/contexts/LanguageContext';
-import GestionTimeline from '@/components/gestion/GestionTimeline';
-import SocieteTypeTabs from '@/components/gestion/SocieteTypeTabs';
-import GestionPricingCards from '@/components/gestion/GestionPricingCards';
-import GestionDocumentsChecklist from '@/components/gestion/GestionDocumentsChecklist';
-import ModificationTypesGrid from '@/components/gestion/ModificationTypesGrid';
+import GestionTimeline from '@/components/modification/GestionTimeline';
+import SocieteTypeTabs from '@/components/modification/SocieteTypeTabs';
+import GestionPricingCards from '@/components/modification/GestionPricingCards';
+import GestionDocumentsChecklist from '@/components/modification/GestionDocumentsChecklist';
+import ModificationTypesGrid from '@/components/modification/ModificationTypesGrid';
 import FAQSection from '@/components/creation/FAQSection';
 import {
   hubHeroData,
@@ -16,7 +16,7 @@ import {
   hubDocuments,
   hubFAQ,
   gestionCtaData,
-} from '@/lib/gestion-data';
+} from '@/lib/modification-data';
 
 const reasonIcons: Record<string, React.ReactNode> = {
   location: (

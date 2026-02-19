@@ -3,7 +3,7 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { GestionDocument } from '@/lib/gestion-data';
+import { GestionDocument } from '@/lib/modification-data';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { BilingualText, getText } from '@/lib/translations';
 

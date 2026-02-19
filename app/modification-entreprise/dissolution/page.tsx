@@ -7,9 +7,9 @@ export const metadata: Metadata = {
   keywords: ['dissolution entreprise cameroun', 'fermer société', 'liquidation amiable cameroun'],
   alternates: {
     languages: {
-      'fr': 'https://legalcameroun.com/gestion-entreprise/dissolution',
-      'en': 'https://legalcameroun.com/gestion-entreprise/dissolution',
-      'x-default': 'https://legalcameroun.com/gestion-entreprise/dissolution',
+      'fr': 'https://legalcameroun.com/modification-entreprise/dissolution',
+      'en': 'https://legalcameroun.com/modification-entreprise/dissolution',
+      'x-default': 'https://legalcameroun.com/modification-entreprise/dissolution',
     },
   },
 };

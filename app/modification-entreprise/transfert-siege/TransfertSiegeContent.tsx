@@ -2,15 +2,15 @@
 
 import Link from 'next/link';
 import { useLanguage } from '@/contexts/LanguageContext';
-import GestionTimeline from '@/components/gestion/GestionTimeline';
-import GestionPricingCards from '@/components/gestion/GestionPricingCards';
-import GestionDocumentsChecklist from '@/components/gestion/GestionDocumentsChecklist';
+import GestionTimeline from '@/components/modification/GestionTimeline';
+import GestionPricingCards from '@/components/modification/GestionPricingCards';
+import GestionDocumentsChecklist from '@/components/modification/GestionDocumentsChecklist';
 import FAQSection from '@/components/creation/FAQSection';
-import { transfertSiegeData, gestionCtaData } from '@/lib/gestion-data';
+import { transfertSiegeData, gestionCtaData } from '@/lib/modification-data';
 
 const pageText = {
   breadcrumbHome: { fr: 'Accueil', en: 'Home' },
-  breadcrumbGestion: { fr: "Gestion d'entreprise", en: 'Business Management' },
+  breadcrumbGestion: { fr: "Modification d'entreprise", en: 'Business Modification' },
   breadcrumbCurrent: { fr: 'Transfert de si\u00e8ge', en: 'Office Transfer' },
   ctaPrimary: { fr: 'Transf\u00e9rer mon Si\u00e8ge', en: 'Transfer my Office' },
   ctaSecondary: { fr: 'Consultation Gratuite', en: 'Free Consultation' },
@@ -70,7 +70,7 @@ export default function TransfertSiegeContent() {
               <ol className="flex items-center gap-2 text-sm text-gray-400">
                 <li><Link href="/" className="hover:text-white">{pageText.breadcrumbHome[language]}</Link></li>
                 <li>/</li>
-                <li><Link href="/gestion-entreprise" className="hover:text-white">{pageText.breadcrumbGestion[language]}</Link></li>
+                <li><Link href="/modification-entreprise" className="hover:text-white">{pageText.breadcrumbGestion[language]}</Link></li>
                 <li>/</li>
                 <li className="text-white">{pageText.breadcrumbCurrent[language]}</li>
               </ol>

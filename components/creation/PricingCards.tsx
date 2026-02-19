@@ -153,6 +153,13 @@ export default function PricingCards({ tiers, title, subtitle }: PricingCardsPro
                 }`}>
                   {tier.name[language]}
                 </h3>
+                {tier.pricePrefix && (
+                  <p className={`text-sm font-medium mb-1 ${
+                    tier.highlighted ? 'text-primary-100' : 'text-gray-500 dark:text-gray-400'
+                  }`}>
+                    {tier.pricePrefix[language]}
+                  </p>
+                )}
                 <div className="flex items-baseline justify-center gap-1">
                   <span className={`text-4xl sm:text-5xl font-bold ${
                     tier.highlighted ? 'text-white' : 'text-gray-900 dark:text-white'

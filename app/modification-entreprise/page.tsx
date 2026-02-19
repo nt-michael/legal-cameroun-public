@@ -7,9 +7,9 @@ export const metadata: Metadata = {
   keywords: ['modification statuts cameroun', 'transfert siege social', 'transformation SAS SARL', 'dissolution entreprise cameroun'],
   alternates: {
     languages: {
-      'fr': 'https://legalcameroun.com/gestion-entreprise',
-      'en': 'https://legalcameroun.com/gestion-entreprise',
-      'x-default': 'https://legalcameroun.com/gestion-entreprise',
+      'fr': 'https://legalcameroun.com/modification-entreprise',
+      'en': 'https://legalcameroun.com/modification-entreprise',
+      'x-default': 'https://legalcameroun.com/modification-entreprise',
     },
   },
 };

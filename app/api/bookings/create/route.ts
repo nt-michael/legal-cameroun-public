@@ -1,18 +1,21 @@
 import { NextResponse } from 'next/server';
-import { createOrder } from '@/lib/woocommerce';
+import { createOrder, updateOrderStatus } from '@/lib/woocommerce';
 import { initializePayment } from '@/lib/notch';
+import { createInvitee } from '@/lib/calendly';
 
 export async function POST(request: Request) {
     try {
         const body = await request.json();
-        const { consultationType, selectedDate, selectedTime, firstName, lastName, email, phone, message, slotStartTime, timezone } = body;
+        const { consultationType, selectedDate, selectedTime, firstName, lastName, email, phone, message, slotStartTime, timezone, isFree } = body;
 
         // 1. Basic Validation
         if (!consultationType || !selectedDate || !selectedTime || !email) {
             return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
         }
 
-        const productId = process.env.CONSULTATION_PRODUCT_ID;
+        const productId = isFree
+            ? process.env.FREE_CONSULTATION_PRODUCT_ID
+            : process.env.CONSULTATION_PRODUCT_ID;
         if (!productId) {
             return NextResponse.json({ error: 'Server configuration error: Product ID missing' }, { status: 500 });
         }
@@ -56,6 +59,37 @@ export async function POST(request: Request) {
 
         if (!order.id) {
             throw new Error('Failed to retrieve Order ID from WooCommerce');
+        }
+
+        // Free consultation: skip payment, book Calendly directly
+        if (isFree) {
+            const freeEventUri = process.env.FREE_CALENDLY_EVENT_URI;
+            if (!freeEventUri) {
+                return NextResponse.json({ error: 'Server configuration error: Free event URI missing' }, { status: 500 });
+            }
+
+            try {
+                await createInvitee({
+                    email,
+                    name: `${firstName} ${lastName}`,
+                    firstName,
+                    lastName,
+                    timezone: timezone || 'Africa/Douala',
+                    slot_start_time: slotStartTime || `${selectedDate}T${selectedTime}:00`,
+                    eventUri: freeEventUri,
+                    answers: message ? [{ question: 'Message', answer: message }] : [],
+                });
+            } catch (calendlyError: any) {
+                await updateOrderStatus(order.id, 'failed').catch(() => {});
+                return NextResponse.json(
+                    { error: calendlyError.message || 'Failed to book consultation' },
+                    { status: 500 }
+                );
+            }
+
+            await updateOrderStatus(order.id, 'completed');
+
+            return NextResponse.json({ success: true, order_id: order.id });
         }
 
         // 3. Initialize Notch Pay

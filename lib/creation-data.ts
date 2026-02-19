@@ -11,6 +11,7 @@ export interface PricingTier {
   features: BilingualText[];
   highlighted?: boolean;
   badge?: BilingualText;
+  pricePrefix?: BilingualText;
   cta: {
     text: BilingualText;
     href: string;
@@ -102,6 +103,7 @@ export const pricingTiers: PricingTier[] = [
     price: 250000,
     currency: 'XAF',
     period: { fr: 'HT + frais admin', en: 'Excl. tax + admin fees' },
+    pricePrefix: { fr: 'À partir de', en: 'Starting from' },
     features: [
       { fr: 'Statuts personnalisés', en: 'Customized articles of association' },
       { fr: 'Dossier complet', en: 'Complete file' },
@@ -118,6 +120,7 @@ export const pricingTiers: PricingTier[] = [
     price: 350000,
     currency: 'XAF',
     period: { fr: 'HT + frais admin', en: 'Excl. tax + admin fees' },
+    pricePrefix: { fr: 'À partir de', en: 'Starting from' },
     features: [
       { fr: 'Tout Starter inclus', en: 'All Starter features included' },
       { fr: 'Validation par un juriste', en: 'Validation by a lawyer' },
@@ -135,6 +138,7 @@ export const pricingTiers: PricingTier[] = [
     price: 500000,
     currency: 'XAF',
     period: { fr: 'HT + frais admin', en: 'Excl. tax + admin fees' },
+    pricePrefix: { fr: 'À partir de', en: 'Starting from' },
     highlighted: true,
     badge: { fr: 'Choix n°1', en: 'Top choice' },
     features: [

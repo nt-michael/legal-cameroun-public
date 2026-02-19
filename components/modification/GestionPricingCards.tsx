@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { GestionPricingTier } from '@/lib/gestion-data';
+import { GestionPricingTier } from '@/lib/modification-data';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { BilingualText, getText } from '@/lib/translations';
 
@@ -104,6 +104,13 @@ export default function GestionPricingCards({
               </div>
 
               <div className="mb-6">
+                {tier.pricePrefix && (
+                  <p className={`text-sm font-medium mb-1 ${
+                    tier.highlighted ? 'text-primary-100' : 'text-gray-500 dark:text-gray-400'
+                  }`}>
+                    {tier.pricePrefix[language]}
+                  </p>
+                )}
                 <div className="flex items-baseline gap-1">
                   <span className={`text-4xl font-bold ${tier.highlighted ? 'text-white' : 'text-gray-900 dark:text-white'}`}>
                     {tier.price}

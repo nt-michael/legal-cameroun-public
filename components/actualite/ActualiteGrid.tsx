@@ -1,5 +1,6 @@
 'use client';
 
+import { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import BlogPostCard from './BlogPostCard';
@@ -27,6 +28,11 @@ const text = {
   },
   emailPlaceholder: { fr: 'Votre adresse email', en: 'Your email address' },
   subscribe: { fr: "S'abonner", en: 'Subscribe' },
+  subscribing: { fr: 'Inscription…', en: 'Subscribing…' },
+  successMsg: { fr: 'Merci ! Vous êtes inscrit.', en: 'Thank you! You are subscribed.' },
+  errorInvalid: { fr: 'Adresse email invalide.', en: 'Invalid email address.' },
+  errorGeneric: { fr: 'Une erreur est survenue. Veuillez réessayer.', en: 'An error occurred. Please try again.' },
+  alreadySub: { fr: 'Vous êtes déjà inscrit.', en: 'You are already subscribed.' },
   previous: { fr: 'Précédent', en: 'Previous' },
   next: { fr: 'Suivant', en: 'Next' },
   page: { fr: 'Page', en: 'Page' },
@@ -48,6 +54,37 @@ export default function ActualiteGrid({
 }: ActualiteGridProps) {
   const { language } = useLanguage();
   const router = useRouter();
+  const [email, setEmail] = useState('');
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const [errorMsg, setErrorMsg] = useState('');
+
+  const handleSubscribe = async () => {
+    setStatus('loading');
+    setErrorMsg('');
+    try {
+      const res = await fetch('/api/newsletter/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email }),
+      });
+      const data = await res.json();
+      if (res.ok) {
+        setStatus('success');
+        setEmail('');
+      } else if (data.error === 'invalid_email') {
+        setStatus('error');
+        setErrorMsg(text.errorInvalid[language]);
+      } else if (data.error === 'already_subscribed') {
+        setStatus('success');
+      } else {
+        setStatus('error');
+        setErrorMsg(text.errorGeneric[language]);
+      }
+    } catch {
+      setStatus('error');
+      setErrorMsg(text.errorGeneric[language]);
+    }
+  };
 
   const handleCategoryClick = (slug: string | null) => {
     if (slug) {
@@ -172,13 +209,26 @@ export default function ActualiteGrid({
           <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
             <input
               type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               placeholder={text.emailPlaceholder[language]}
-              className="flex-1 px-4 py-3 rounded-xl border-0 focus:ring-2 focus:ring-white/50"
+              disabled={status === 'loading'}
+              className="flex-1 px-4 py-3 rounded-xl border-0 bg-white text-gray-900 placeholder:text-gray-400 focus:ring-2 focus:ring-white/50 focus:outline-none disabled:opacity-60"
             />
-            <button className="px-6 py-3 bg-white text-primary-700 rounded-xl font-semibold hover:bg-primary-50 transition-colors">
-              {text.subscribe[language]}
+            <button
+              onClick={handleSubscribe}
+              disabled={status === 'loading'}
+              className="px-6 py-3 bg-white text-primary-700 rounded-xl font-semibold hover:bg-primary-50 transition-colors disabled:opacity-60"
+            >
+              {status === 'loading' ? text.subscribing[language] : text.subscribe[language]}
             </button>
           </div>
+          {status === 'success' && (
+            <p className="mt-4 text-sm text-white font-medium">{text.successMsg[language]}</p>
+          )}
+          {status === 'error' && errorMsg && (
+            <p className="mt-4 text-sm text-red-200 font-medium">{errorMsg}</p>
+          )}
         </div>
       </div>
     </section>

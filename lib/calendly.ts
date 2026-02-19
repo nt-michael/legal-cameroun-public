@@ -32,13 +32,13 @@ export async function createInvitee(data: {
   lastName?: string;
   timezone?: string;
   slot_start_time: string; // ISO 8601
+  eventUri?: string;
   answers?: Array<{
     question: string;
     answer: string;
   }>;
 }) {
-  // Ignore eventUuid, use CALENDLY_EVENT_URI from env
-  const eventUri = process.env.CALENDLY_EVENT_URI;
+  const eventUri = data.eventUri || process.env.CALENDLY_EVENT_URI;
   if (!eventUri) throw new Error('Missing CALENDLY_EVENT_URI');
 
   const customQuestions = (data.answers || []).map((q, index) => ({
@@ -74,7 +74,12 @@ export async function createInvitee(data: {
   if (!response.ok) {
     const errorBody = await response.text();
     console.error('Calendly Booking Error:', errorBody);
-    throw new Error(`Failed to book Calendly event: ${response.statusText}`);
+    let errorMessage = response.statusText;
+    try {
+      const errorJson = JSON.parse(errorBody);
+      errorMessage = errorJson.message || errorJson.title || errorMessage;
+    } catch { /* keep statusText fallback */ }
+    throw new Error(`Calendly: ${errorMessage}`);
   }
 
   return response.json();

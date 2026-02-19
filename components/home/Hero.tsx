@@ -182,7 +182,7 @@ export default function Hero() {
         </p> */}
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up animation-delay-300">
-          <Link href="/contact" className="btn-primary text-lg px-8 py-4">
+          <Link href="/prendre-un-rendez-vous?type=free" className="btn-primary text-lg px-8 py-4">
             {heroContent.ctaPrimary[language]}
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />

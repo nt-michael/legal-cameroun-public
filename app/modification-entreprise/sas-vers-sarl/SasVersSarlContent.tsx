@@ -2,15 +2,15 @@
 
 import Link from 'next/link';
 import { useLanguage } from '@/contexts/LanguageContext';
-import GestionTimeline from '@/components/gestion/GestionTimeline';
-import GestionPricingCards from '@/components/gestion/GestionPricingCards';
-import GestionDocumentsChecklist from '@/components/gestion/GestionDocumentsChecklist';
+import GestionTimeline from '@/components/modification/GestionTimeline';
+import GestionPricingCards from '@/components/modification/GestionPricingCards';
+import GestionDocumentsChecklist from '@/components/modification/GestionDocumentsChecklist';
 import FAQSection from '@/components/creation/FAQSection';
-import { sasVersSarlData, gestionCtaData } from '@/lib/gestion-data';
+import { sasVersSarlData, gestionCtaData } from '@/lib/modification-data';
 
 const pageText = {
   breadcrumbHome: { fr: 'Accueil', en: 'Home' },
-  breadcrumbGestion: { fr: "Gestion d'entreprise", en: 'Business Management' },
+  breadcrumbGestion: { fr: "Modification d'entreprise", en: 'Business Modification' },
   breadcrumbCurrent: { fr: 'SAS vers SARL', en: 'SAS to SARL' },
   ctaPrimary: { fr: 'Transformer ma SAS', en: 'Convert my SAS' },
   ctaSecondary: { fr: 'Consultation Gratuite', en: 'Free Consultation' },
@@ -70,7 +70,7 @@ export default function SasVersSarlContent() {
               <ol className="flex items-center gap-2 text-sm text-gray-400">
                 <li><Link href="/" className="hover:text-white">{pageText.breadcrumbHome[language]}</Link></li>
                 <li>/</li>
-                <li><Link href="/gestion-entreprise" className="hover:text-white">{pageText.breadcrumbGestion[language]}</Link></li>
+                <li><Link href="/modification-entreprise" className="hover:text-white">{pageText.breadcrumbGestion[language]}</Link></li>
                 <li>/</li>
                 <li className="text-white">{pageText.breadcrumbCurrent[language]}</li>
               </ol>

@@ -39,14 +39,14 @@ const menuItems: MenuItem[] = [
     ],
   },
   {
-    name: { fr: 'Gestion d\'entreprise', en: 'Business Management' },
-    href: '/gestion-entreprise',
+    name: { fr: 'Modification d\'entreprise', en: 'Business Modification' },
+    href: '/modification-entreprise',
     rubriques: [
-      { name: { fr: 'Transfert de siège social', en: 'Headquarters Transfer' }, href: '/gestion-entreprise/transfert-siege' },
-      { name: { fr: 'Transformation SAS en SARL', en: 'SAS to SARL Conversion' }, href: '/gestion-entreprise/sas-vers-sarl' },
-      { name: { fr: 'Transformation SARL en SAS', en: 'SARL to SAS Conversion' }, href: '/gestion-entreprise/sarl-vers-sas' },
-      { name: { fr: 'Dissolution d\'entreprise', en: 'Business Dissolution' }, href: '/gestion-entreprise/dissolution' },
-      { name: { fr: 'Toutes les modifications', en: 'All Modifications' }, href: '/gestion-entreprise' },
+      { name: { fr: 'Transfert de siège social', en: 'Headquarters Transfer' }, href: '/modification-entreprise/transfert-siege' },
+      { name: { fr: 'Transformation SAS en SARL', en: 'SAS to SARL Conversion' }, href: '/modification-entreprise/sas-vers-sarl' },
+      { name: { fr: 'Transformation SARL en SAS', en: 'SARL to SAS Conversion' }, href: '/modification-entreprise/sarl-vers-sas' },
+      { name: { fr: 'Dissolution d\'entreprise', en: 'Business Dissolution' }, href: '/modification-entreprise/dissolution' },
+      { name: { fr: 'Toutes les modifications', en: 'All Modifications' }, href: '/modification-entreprise' },
     ],
   },
   {

@@ -91,44 +91,44 @@ export const aboutHeroData = {
 
 // Timeline Events
 export const timelineEvents: TimelineEvent[] = [
+  // {
+  //   year: '2017-2018',
+  //   title: {
+  //     fr: 'Naissance de RODEC Conseils',
+  //     en: 'Birth of RODEC Conseils',
+  //   },
+  //   description: {
+  //     fr: 'Une vision : rapprocher l\'expertise internationale des réalités africaines.',
+  //     en: 'A vision: bringing international expertise closer to African realities.',
+  //   },
+  //   location: 'Paris',
+  // },
+  // {
+  //   year: '2019',
+  //   title: {
+  //     fr: 'Implantation à Douala',
+  //     en: 'Establishment in Douala',
+  //   },
+  //   description: {
+  //     fr: 'Elite Offices, Rue Dubois de Saligny, Akwa – le cœur battant de notre présence camerounaise.',
+  //     en: 'Elite Offices, Rue Dubois de Saligny, Akwa – the beating heart of our Cameroonian presence.',
+  //   },
+  //   location: 'Douala',
+  // },
+  // {
+  //   year: '2020-2022',
+  //   title: {
+  //     fr: 'Expansion régionale',
+  //     en: 'Regional Expansion',
+  //   },
+  //   description: {
+  //     fr: 'Extension à Cotonou + lancement des premiers outils digitaux pour entrepreneurs.',
+  //     en: 'Expansion to Cotonou + launch of the first digital tools for entrepreneurs.',
+  //   },
+  //   location: 'Cotonou',
+  // },
   {
-    year: '2017-2018',
-    title: {
-      fr: 'Naissance de RODEC Conseils',
-      en: 'Birth of RODEC Conseils',
-    },
-    description: {
-      fr: 'Une vision : rapprocher l\'expertise internationale des réalités africaines.',
-      en: 'A vision: bringing international expertise closer to African realities.',
-    },
-    location: 'Paris',
-  },
-  {
-    year: '2019',
-    title: {
-      fr: 'Implantation à Douala',
-      en: 'Establishment in Douala',
-    },
-    description: {
-      fr: 'Elite Offices, Rue Dubois de Saligny, Akwa – le cœur battant de notre présence camerounaise.',
-      en: 'Elite Offices, Rue Dubois de Saligny, Akwa – the beating heart of our Cameroonian presence.',
-    },
-    location: 'Douala',
-  },
-  {
-    year: '2020-2022',
-    title: {
-      fr: 'Expansion régionale',
-      en: 'Regional Expansion',
-    },
-    description: {
-      fr: 'Extension à Cotonou + lancement des premiers outils digitaux pour entrepreneurs.',
-      en: 'Expansion to Cotonou + launch of the first digital tools for entrepreneurs.',
-    },
-    location: 'Cotonou',
-  },
-  {
-    year: '2023',
+    year: '2021',
     title: {
       fr: 'Création de Legal Cameroun',
       en: 'Creation of Legal Cameroun',

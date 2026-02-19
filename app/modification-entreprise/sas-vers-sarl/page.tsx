@@ -7,9 +7,9 @@ export const metadata: Metadata = {
   keywords: ['transformation SAS SARL cameroun', 'changer forme juridique', 'convertir SAS en SARL'],
   alternates: {
     languages: {
-      'fr': 'https://legalcameroun.com/gestion-entreprise/sas-vers-sarl',
-      'en': 'https://legalcameroun.com/gestion-entreprise/sas-vers-sarl',
-      'x-default': 'https://legalcameroun.com/gestion-entreprise/sas-vers-sarl',
+      'fr': 'https://legalcameroun.com/modification-entreprise/sas-vers-sarl',
+      'en': 'https://legalcameroun.com/modification-entreprise/sas-vers-sarl',
+      'x-default': 'https://legalcameroun.com/modification-entreprise/sas-vers-sarl',
     },
   },
 };
