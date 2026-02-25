@@ -273,7 +273,7 @@ export const transfertSiegeData = {
     { number: '01', title: { fr: 'Décision de l\'organe compétent', en: 'Decision by the competent body' }, description: { fr: 'PV de l\'AGE actant le changement de siège', en: 'EGM minutes recording the office change' } },
     { number: '02', title: { fr: 'Mise à jour des statuts', en: 'Update the articles' }, description: { fr: 'Nouvelle adresse, clause signée "certifiés conformes"', en: 'New address, clause signed "certified true copies"' } },
     { number: '03', title: { fr: 'Publication annonce légale', en: 'Legal notice publication' }, description: { fr: 'Dans un JAL (1 mois max après décision)', en: 'In a legal gazette (1 month max after decision)' } },
-    { number: '04', title: { fr: 'Dépôt au greffe en présentiel', en: 'Filing with the court registry in person' }, description: { fr: 'Dossier complet', en: 'Complete file' } },
+    { number: '04', title: { fr: 'Dépôt au greffe', en: 'Filing with the court registry' }, description: { fr: 'Le dépôt au greffe se fait uniquement en présentiel et non en ligne', en: 'Filing at the registry is done in person, not online' } },
   ],
   casTypes: [
     {
