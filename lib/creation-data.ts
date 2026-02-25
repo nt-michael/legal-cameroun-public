@@ -64,6 +64,169 @@ export interface SubpageData {
   requirements?: BilingualText[];
 }
 
+const COMPARISON_ROW_DATA: ComparisonRow[] = [
+  {
+    aspect: {
+      fr: "Nombre d’associés",
+      en: "Number of shareholders",
+    },
+    values: [
+      {
+        fr: "SAS : 2+\n SASU : 1 associé unique",
+        en: "SAS: 2+\n SASU: single shareholder",
+      },
+      {
+        fr: "2 à 50 associés (SARLU : 1 associé possible)",
+        en: "2 to 50 shareholders (SARLU: single shareholder allowed)",
+      },
+    ],
+  },
+  {
+    aspect: {
+      fr: "Responsabilité des associés",
+      en: "Shareholder liability",
+    },
+    values: [
+      {
+        fr: "Limitée aux apports",
+        en: "Limited to contributions",
+      },
+      {
+        fr: "Limitée aux apports",
+        en: "Limited to contributions",
+      },
+    ],
+  },
+  {
+    aspect: {
+      fr: "Régime social du dirigeant",
+      en: "Executive social security regime",
+    },
+    values: [
+      {
+        fr: "Selon le droit national (CNPS si rémunéré)",
+        en: "According to national law (CNPS if remunerated)",
+      },
+      {
+        fr: "Gérant minoritaire ou égalitaire peut relever de la CNPS",
+        en: "Minority or equal manager may be affiliated with CNPS",
+      },
+    ],
+  },
+  {
+    aspect: {
+      fr: "Flexibilité statutaire",
+      en: "Statutory flexibility",
+    },
+    values: [
+      {
+        fr: "Très flexible : organisation et gouvernance libre",
+        en: "Very flexible: free organization and governance",
+      },
+      {
+        fr: "Encadrée par la loi, statuts moins modulables",
+        en: "Regulated by law, less flexible articles",
+      },
+    ],
+  },
+  {
+    aspect: {
+      fr: "Dirigeants",
+      en: "Management",
+    },
+    values: [
+      {
+        fr: "Président ou plusieurs dirigeants selon les statuts",
+        en: "President or multiple managers as defined in the articles",
+      },
+      {
+        fr: "Gérant(s) nommé(s) par les associés",
+        en: "Manager(s) appointed by shareholders",
+      },
+    ],
+  },
+  {
+    aspect: {
+      fr: "Cession de parts",
+      en: "Share transfer",
+    },
+    values: [
+      {
+        fr: "Libre par défaut, sauf clause statutaire",
+        en: "Free by default, unless restricted by the articles",
+      },
+      {
+        fr: "Cession à des tiers soumise à agrément obligatoire",
+        en: "Transfer to third parties subject to mandatory approval",
+      },
+    ],
+  },
+  {
+    aspect: {
+      fr: "Activités autorisées",
+      en: "Authorized activities",
+    },
+    values: [
+      {
+        fr: "Toute activité commerciale licite, sous réserve des restrictions sectorielles",
+        en: "Any lawful commercial activity, subject to sectoral restrictions",
+      },
+      {
+        fr: "Toute activité commerciale licite, sous réserve des restrictions sectorielles",
+        en: "Any lawful commercial activity, subject to sectoral restrictions",
+      },
+    ],
+  },
+  {
+    aspect: {
+      fr: "Capital minimum",
+      en: "Minimum capital",
+    },
+    values: [
+      {
+        fr: "Libre, fixé dans les statuts, sans minimum légal",
+        en: "Freely determined in the articles, no legal minimum",
+      },
+      {
+        fr: "Libre mais mention obligatoire dans les statuts (minimum conseillé : 100 000 XAF)",
+        en: "Freely set but must be stated in the articles (recommended minimum: 100,000 XAF)",
+      },
+    ],
+  },
+  {
+    aspect: {
+      fr: "Adaptée à",
+      en: "Best suited for",
+    },
+    values: [
+      {
+        fr: "Startups, projets innovants, levée de fonds, investisseurs",
+        en: "Startups, innovative projects, fundraising, investors",
+      },
+      {
+        fr: "PME, entreprises familiales, projets nécessitant un cadre sécurisé",
+        en: "SMEs, family businesses, projects requiring a secure legal framework",
+      },
+    ],
+  },
+  {
+    aspect: {
+      fr: "Fiscalité",
+      en: "Taxation",
+    },
+    values: [
+      {
+        fr: "Impôt sur les sociétés (IS) par défaut",
+        en: "Corporate income tax (CIT) by default",
+      },
+      {
+        fr: "Impôt sur les sociétés (IS) par défaut (IRPP possible pour SARLU)",
+        en: "Corporate income tax (CIT) by default (personal income tax possible for SARLU)",
+      },
+    ],
+  },
+];
+
 // Trust badges shown throughout the section
 export const trustBadges = [
   { value: '15 000+', label: { fr: 'Entrepreneurs accompagnées', en: 'Entrepreneurs supported' } },
@@ -217,8 +380,8 @@ export const associationPricingTiers: PricingTier[] = [
 export const legalForms: LegalForm[] = [
   {
     id: 'individual',
-    name: { fr: 'Entreprise Individuelle / Micro-Entreprise', en: 'Sole Proprietorship / Micro-Enterprise' },
-    shortName: { fr: 'Auto-Entrepreneur', en: 'Self-Employed' },
+    name: { fr: 'Établissement Commercial', en: 'Commercial Establishment' },
+    shortName: { fr: 'Établissement Commercial', en: 'Commercial Establishment' },
     description: { fr: 'Idéal pour tester un projet seul (ex. freelance à Douala).', en: 'Ideal for testing a project alone (e.g. freelance in Douala).' },
     advantages: [
       { fr: 'Formalités ultra-simples', en: 'Ultra-simple formalities' },
@@ -244,7 +407,7 @@ export const legalForms: LegalForm[] = [
       { fr: 'Attractif pour les investisseurs', en: 'Attractive for investors' },
       { fr: 'Possibilité d\'apports en compte courant', en: 'Possibility of current account contributions' },
       { fr: 'Distribution de dividendes possible', en: 'Dividend distribution possible' },
-      { fr: 'Toutes activités autorisées (sauf certain es activités règlementées qui exigent souvent une forme sociale spécifique)', en: 'All activities are permitted (except for certain regulated activities, which often require a specific legal form).' }
+      { fr: 'Toutes activités autorisées (sauf certaines activités règlementées qui exigent souvent une forme sociale spécifique)', en: 'All activities are permitted (except for certain regulated activities, which often require a specific legal form).' }
     ],
     disadvantages: [
       { fr: 'Charges sociales plus élevées', en: 'Higher social contributions' },
@@ -258,11 +421,11 @@ export const legalForms: LegalForm[] = [
     shortName: { fr: 'SARL', en: 'SARL' },
     description: { fr: 'Cadre sécurisé et encadré pour PME stables.', en: 'Secure and regulated framework for stable SMEs.' },
     advantages: [
-      { fr: "Responsabilité limitée aux apports", en: "Liability limited to contributions"},
-      { fr: "Stabilité du capital social", en: "Stability of share capital"},
+      { fr: "Responsabilité limitée aux apports", en: "Liability limited to contributions" },
+      { fr: "Stabilité du capital social", en: "Stability of share capital" },
       { fr: "Gérance organisée par la loi", en: "Management governed by law" },
-      { fr: "Cadre légal rassurant", en: "Reassuring legal framework"},
-      { fr: "Constitution possible entre membres d\’une même famille", en: "Can be formed among members of the same family"},
+      { fr: "Cadre légal rassurant", en: "Reassuring legal framework" },
+      { fr: "Constitution possible entre membres d\’une même famille", en: "Can be formed among members of the same family" },
     ],
     disadvantages: [
       { fr: 'Statuts encadrés par la loi', en: 'Articles regulated by law' },
@@ -335,7 +498,7 @@ export const generalSteps: Step[] = [
   {
     number: 5,
     title: { fr: 'Obtenir l\'immatriculation', en: 'Obtain registration' },
-    description: { fr: 'Recevez votre Kbis/RNE et démarrez votre activité.', en: 'Receive your Kbis/RNE and start your business.' },
+    description: { fr: 'Recevez votre RCCM et démarrez votre activité.', en: 'Receive your RCCM and start your business.' },
   },
 ];
 
@@ -363,7 +526,7 @@ export const aidesAvantages = [
 export const subpagesData: Record<string, SubpageData> = {
   sas: {
     slug: 'sas',
-    heroTitle: { fr: 'Créez une SAS', en: 'Create a SAS' },
+    heroTitle: { fr: 'Créer une SAS', en: 'Create a SAS (Simplified Joint-Stock Company)' },
     heroSubtitle: { fr: 'Souple et Adaptée à Vos Besoins', en: 'Flexible and Tailored to Your Needs' },
     heroDescription: { fr: 'Simple, sûr, rapide, économique. Questionnaire en ligne.', en: 'Simple, safe, fast, affordable. Online questionnaire.' },
     whyCreate: {
@@ -382,7 +545,7 @@ export const subpagesData: Record<string, SubpageData> = {
       { fr: 'Attractif pour les investisseurs', en: 'Attractive for investors' },
       { fr: 'Possibilité d\'apports en compte courant', en: 'Possibility of current account contributions' },
       { fr: 'Distribution de dividendes possible', en: 'Dividend distribution possible' },
-      { fr: 'Toutes activités autorisées (sauf certain es activités règlementées qui exigent souvent une forme sociale spécifique)', en: 'All activities are permitted (except for certain regulated activities, which often require a specific legal form).' },
+      { fr: 'Toutes activités autorisées (sauf certaines activités règlementées qui exigent souvent une forme sociale spécifique)', en: 'All activities are permitted (except for certain regulated activities, which often require a specific legal form).' },
     ],
     steps: [
       {
@@ -393,7 +556,7 @@ export const subpagesData: Record<string, SubpageData> = {
       {
         number: 2,
         title: { fr: 'On s\'occupe de tout', en: 'We handle everything' },
-        description: { fr: 'Nos juristes valident, gèrent le greffe et l\'annonce légale → RNE/Kbis.', en: 'Our lawyers validate, manage the court registry and legal notice → RNE/Kbis.' },
+        description: { fr: 'Nos juristes valident, gèrent le greffe et l\'annonce légale → RCCM.', en: 'Our lawyers validate, manage the court registry and legal notice → RCCM.' },
       },
       {
         number: 3,
@@ -407,14 +570,15 @@ export const subpagesData: Record<string, SubpageData> = {
         { fr: 'SAS/SASU', en: 'SAS/SASU' },
         { fr: 'SARL', en: 'SARL' },
       ],
-      rows: [
-        { aspect: { fr: 'Nombre d\’Associé', en: 'Number of shareholder' }, values: [{ fr: 'SAS: 2+ | SASU: 1 seul associé', en: 'SAS: 2 or more shareholders\nSASU: 1 single shareholder' }, { fr: '2 à 50 associés', en: '2+' }] },
-        { aspect: { fr: 'Statuts', en: 'Articles' }, values: [{ fr: 'Highly flexible, with articles of association that can be largely customized', en: 'Highly flexible, with articles of association that can be largely customized' }, { fr: 'Encadré par la loi, moins flexible', en: 'Governed by law, less flexible' }] },
-        { aspect: { fr: 'Régime Social du Dirigeant', en: 'Social security regime of the executive' }, values: [{ fr: 'Déterminé par la législation nationale (au Cameroun l’affiliation est possible à la CNPS en tant que mandataire social remunéré)', en: 'Determined by national legislation (in Cameroon, affiliation to the CNPS is possible for a remunerated corporate officer)' }, { fr: 'Gérant soumis au régime national ; affiliation à la CNPS selon rémunération et statut', en: 'Manager subject to the national scheme; affiliation to the CNPS depends on remuneration and status' }] },
-        { aspect: { fr: 'Cession Parts', en: 'Transfer of Shares' }, values: [{ fr: 'Libre par défaut, sauf clause statutaire d’agrément ou restriction', en: 'Free by default, unless restricted or subject to approval by a clause in the articles of association' }, { fr: 'Cession à des tiers soumise à agrément obligatoire des associés', en: 'Transfer to third parties is subject to mandatory approval by the partners/shareholders.' }] },
-        { aspect: { fr: 'Activités Autorisées', en: 'Permitted Activities' }, values: [{ fr: 'Toute activité commerciale licite, sauf réglementations spécifiques (banque, assurance)', en: 'Any lawful commercial activity, except those subject to specific regulations (e.g. banking, insurance).' }, { fr: 'Toute activité commerciale licite, mais également soumise aux mêmes restrictions sectorielles', en: 'Any lawful commercial activity, but also subject to the same sector-specific restrictions' }] },
-        { aspect: { fr: 'Capital Minimum', en: 'Activities' }, values: [{ fr: 'Aucun minimum légal', en: 'No legal minimum' }, { fr: 'Libre mais doit être mentionné dans les statuts. (Au cameroun, le minimum conseillé est de 100 000XAF)', en: 'Free, but must be stated in the articles of association. (In Cameroon, the recommended minimum is XAF 100,000.)' }] },
-      ],
+      rows: COMPARISON_ROW_DATA
+      // [
+      //   { aspect: { fr: 'Nombre d\’Associé', en: 'Number of shareholder' }, values: [{ fr: 'SAS: 2+ | SASU: 1 seul associé', en: 'SAS: 2 or more shareholders\nSASU: 1 single shareholder' }, { fr: '2 à 50 associés', en: '2+' }] },
+      //   { aspect: { fr: 'Statuts', en: 'Articles' }, values: [{ fr: 'Highly flexible, with articles of association that can be largely customized', en: 'Highly flexible, with articles of association that can be largely customized' }, { fr: 'Encadré par la loi, moins flexible', en: 'Governed by law, less flexible' }] },
+      //   { aspect: { fr: 'Régime Social du Dirigeant', en: 'Social security regime of the executive' }, values: [{ fr: 'Déterminé par la législation nationale (au Cameroun l’affiliation est possible à la CNPS en tant que mandataire social remunéré)', en: 'Determined by national legislation (in Cameroon, affiliation to the CNPS is possible for a remunerated corporate officer)' }, { fr: 'Gérant soumis au régime national ; affiliation à la CNPS selon rémunération et statut', en: 'Manager subject to the national scheme; affiliation to the CNPS depends on remuneration and status' }] },
+      //   { aspect: { fr: 'Cession Parts', en: 'Transfer of Shares' }, values: [{ fr: 'Libre par défaut, sauf clause statutaire d’agrément ou restriction', en: 'Free by default, unless restricted or subject to approval by a clause in the articles of association' }, { fr: 'Cession à des tiers soumise à agrément obligatoire des associés', en: 'Transfer to third parties is subject to mandatory approval by the partners/shareholders.' }] },
+      //   { aspect: { fr: 'Activités Autorisées', en: 'Permitted Activities' }, values: [{ fr: 'Toute activité commerciale licite, sauf réglementations spécifiques (banque, assurance)', en: 'Any lawful commercial activity, except those subject to specific regulations (e.g. banking, insurance).' }, { fr: 'Toute activité commerciale licite, mais également soumise aux mêmes restrictions sectorielles', en: 'Any lawful commercial activity, but also subject to the same sector-specific restrictions' }] },
+      //   { aspect: { fr: 'Capital Minimum', en: 'Activities' }, values: [{ fr: 'Aucun minimum légal', en: 'No legal minimum' }, { fr: 'Libre mais doit être mentionné dans les statuts. (Au cameroun, le minimum conseillé est de 100 000XAF)', en: 'Free, but must be stated in the articles of association. (In Cameroon, the recommended minimum is XAF 100,000.)' }] },
+      // ],
     },
     faq: [
       {
@@ -437,25 +601,26 @@ export const subpagesData: Record<string, SubpageData> = {
   },
   sarl: {
     slug: 'sarl',
-    heroTitle: { fr: 'Créez une SARL', en: 'Create a SARL' },
+    heroTitle: { fr: 'Créer une SARL', en: 'Create a SARL' },
     heroSubtitle: { fr: 'Sécurisée et Encadrée', en: 'Secure and Regulated' },
-    heroDescription: { fr: 'Protection du patrimoine, cadre légal strict – Parfait pour les PME stables.', en: 'Asset protection, strict legal framework – Perfect for stable SMEs.' },
+    heroDescription: { fr: 'Protection du patrimoine, cadre légal strict \– Parfait pour les PME stables.', en: 'Asset protection, strict legal framework – Perfect for stable SMEs.' },
     whyCreate: {
       title: { fr: 'Pourquoi créer une SARL ?', en: 'Why Create a SARL?' },
       content: [
         { fr: 'Protection du patrimoine personnel.', en: 'Protection of personal assets.' },
         { fr: 'Cadre juridique sécurisé et structuré.', en: 'Secure and structured legal framework.' },
         { fr: 'Contrôle de l\’entrée des tiers.', en: 'Control over entry of third parties.' },
-        { fr: 'Capital librement fixé.', en: 'Capital freely determined.' },
+        { fr: 'Souplesse dans le capital social.', en: 'Flexibility in share capital.' },
         { fr: 'Structure adaptée aux PME.', en: 'Structure suitable for SMEs.' },
+        { fr: 'Adaptée à l’évolution.', en: 'Designed to support business growth.' }
       ],
     },
     advantages: [
       { fr: 'Responsabilité limitée aux apports', en: 'Liability limited to contributions' },
-      { fr: 'Stabilité du capital social', en: 'Stability of share capital' },
-      { fr: 'Gérance organisée par la loi', en: 'Management organized by law' },
+      { fr: 'Stabilité du capital social', en: 'Stable share capital' },
+      { fr: 'Gérance organisée par la loi', en: 'Management governed by law' },
       { fr: 'Cadre légal rassurant', en: 'Reassuring legal framework' },
-      { fr: 'Constitution possible entre membres d\\’une même famille', en: 'Can be formed among members of the same family' },
+      { fr: 'Constitution possible entre membres d\’une même famille', en: 'Can be formed among members of the same family' },
     ],
     steps: [
       {
@@ -490,19 +655,20 @@ export const subpagesData: Record<string, SubpageData> = {
         { fr: 'SAS/SASU', en: 'SAS/SASU' },
         { fr: 'SARL', en: 'SARL' },
       ],
-      rows: [
-        { aspect: { fr: 'Nombre d\’Associé', en: 'Number of shareholder' }, values: [{ fr: 'SAS: 2+ | SASU: 1 seul associé', en: 'SAS: 2 or more shareholders\nSASU: 1 single shareholder' }, { fr: '2 à 50 associés', en: '2+' }] },
-        { aspect: { fr: 'Statuts', en: 'Articles' }, values: [{ fr: 'Highly flexible, with articles of association that can be largely customized', en: 'Highly flexible, with articles of association that can be largely customized' }, { fr: 'Encadré par la loi, moins flexible', en: 'Governed by law, less flexible' }] },
-        { aspect: { fr: 'Régime Social du Dirigeant', en: 'Social security regime of the executive' }, values: [{ fr: 'Déterminé par la législation nationale (au Cameroun l’affiliation est possible à la CNPS en tant que mandataire social remunéré)', en: 'Determined by national legislation (in Cameroon, affiliation to the CNPS is possible for a remunerated corporate officer)' }, { fr: 'Gérant soumis au régime national ; affiliation à la CNPS selon rémunération et statut', en: 'Manager subject to the national scheme; affiliation to the CNPS depends on remuneration and status' }] },
-        { aspect: { fr: 'Cession Parts', en: 'Transfer of Shares' }, values: [{ fr: 'Libre par défaut, sauf clause statutaire d’agrément ou restriction', en: 'Free by default, unless restricted or subject to approval by a clause in the articles of association' }, { fr: 'Cession à des tiers soumise à agrément obligatoire des associés', en: 'Transfer to third parties is subject to mandatory approval by the partners/shareholders.' }] },
-        { aspect: { fr: 'Activités Autorisées', en: 'Permitted Activities' }, values: [{ fr: 'Toute activité commerciale licite, sauf réglementations spécifiques (banque, assurance)', en: 'Any lawful commercial activity, except those subject to specific regulations (e.g. banking, insurance).' }, { fr: 'Toute activité commerciale licite, mais également soumise aux mêmes restrictions sectorielles', en: 'Any lawful commercial activity, but also subject to the same sector-specific restrictions' }] },
-        { aspect: { fr: 'Capital Minimum', en: 'Activities' }, values: [{ fr: 'Aucun minimum légal', en: 'No legal minimum' }, { fr: 'Libre mais doit être mentionné dans les statuts. (Au cameroun, le minimum conseillé est de 100 000XAF)', en: 'Free, but must be stated in the articles of association. (In Cameroon, the recommended minimum is XAF 100,000.)' }] },
-      ],
+      rows: COMPARISON_ROW_DATA
+      // [
+      //   { aspect: { fr: 'Nombre d\’Associé', en: 'Number of shareholder' }, values: [{ fr: 'SAS: 2+ | SASU: 1 seul associé', en: 'SAS: 2 or more shareholders\nSASU: 1 single shareholder' }, { fr: '2 à 50 associés', en: '2+' }] },
+      //   { aspect: { fr: 'Statuts', en: 'Articles' }, values: [{ fr: 'Highly flexible, with articles of association that can be largely customized', en: 'Highly flexible, with articles of association that can be largely customized' }, { fr: 'Encadré par la loi, moins flexible', en: 'Governed by law, less flexible' }] },
+      //   { aspect: { fr: 'Régime Social du Dirigeant', en: 'Social security regime of the executive' }, values: [{ fr: 'Déterminé par la législation nationale (au Cameroun l’affiliation est possible à la CNPS en tant que mandataire social remunéré)', en: 'Determined by national legislation (in Cameroon, affiliation to the CNPS is possible for a remunerated corporate officer)' }, { fr: 'Gérant soumis au régime national ; affiliation à la CNPS selon rémunération et statut', en: 'Manager subject to the national scheme; affiliation to the CNPS depends on remuneration and status' }] },
+      //   { aspect: { fr: 'Cession Parts', en: 'Transfer of Shares' }, values: [{ fr: 'Libre par défaut, sauf clause statutaire d’agrément ou restriction', en: 'Free by default, unless restricted or subject to approval by a clause in the articles of association' }, { fr: 'Cession à des tiers soumise à agrément obligatoire des associés', en: 'Transfer to third parties is subject to mandatory approval by the partners/shareholders.' }] },
+      //   { aspect: { fr: 'Activités Autorisées', en: 'Permitted Activities' }, values: [{ fr: 'Toute activité commerciale licite, sauf réglementations spécifiques (banque, assurance)', en: 'Any lawful commercial activity, except those subject to specific regulations (e.g. banking, insurance).' }, { fr: 'Toute activité commerciale licite, mais également soumise aux mêmes restrictions sectorielles', en: 'Any lawful commercial activity, but also subject to the same sector-specific restrictions' }] },
+      //   { aspect: { fr: 'Capital Minimum', en: 'Activities' }, values: [{ fr: 'Aucun minimum légal', en: 'No legal minimum' }, { fr: 'Libre mais doit être mentionné dans les statuts. (Au cameroun, le minimum conseillé est de 100 000XAF)', en: 'Free, but must be stated in the articles of association. (In Cameroon, the recommended minimum is XAF 100,000.)' }] },
+      // ],
     },
     faq: [
       {
         question: { fr: 'Quelle différence entre SARL famille et Classique ?', en: 'What is the difference between a family SARL and a classic SARL?' },
-        answer: { fr: 'Il n\’existe aucune différence entre une SARL de famille et une SARL classique. Car l\’Acte Uniforme OHADA relatif au droit des sociétés commerciales et du groupement d\’intérêt économique ne fait aucune mention d\’un régime spécial des associés liés par (le mariage, filiation, parenté…)', en: 'There is no difference between a family SARL and a classic SARL, because the OHADA Uniform Act on commercial companies and economic interest groups makes no mention of a special regime for partners linked by marriage, descent, or kinship.' },
+        answer: { fr: 'Il n\’existe aucune différence juridique. L\’Acte Uniforme OHADA ne prévoit aucun régime spécial pour les associés liés par le mariage, la filiation ou la parenté', en: 'There is no legal difference. The OHADA Uniform Act does not provide any special regime for shareholders related by marriage or family ties.' },
       },
       {
         question: { fr: 'Peut-on créer une SARL sans activité immédiate ?', en: 'Can you create a SARL without immediate activity?' },
@@ -516,17 +682,18 @@ export const subpagesData: Record<string, SubpageData> = {
   },
   sarlu: {
     slug: 'sarlu',
-    heroTitle: { fr: 'Créez une SARLU', en: 'Create a SARLU' },
+    heroTitle: { fr: 'Créer une SARLU', en: 'Create a SARLU' },
     heroSubtitle: { fr: 'L\'Entreprise Solo Protégée', en: 'The Protected Solo Business' },
     heroDescription: { fr: 'SARLU = Société à Responsabilité Limitée Unipersonnelle. Encadrée par la loi, idéale pour entrepreneur seul.', en: 'SARLU = Single-Member Limited Liability Company. Regulated by law, ideal for solo entrepreneurs.' },
     whyCreate: {
       title: { fr: 'Pourquoi créer une SARLU ?', en: 'Why Create a SARLU?' },
       content: [
-        { fr: 'Responsabilité aux apports.', en: 'Liability limited to contributions.' },
-        { fr: 'Structure simple et encadrée.', en: 'Simple and well-regulated structure.' },
-        { fr: 'Facilité de création et d’organisation.', en: 'Easy of formation and organization.' },
-        { fr: 'Capital librement fixé.', en: 'Capital freely determined.' },
-        { fr: 'Souplesse pour évoluer.', en: 'Flexibility to evolve.' },
+        { fr: 'La SARL et la SARLU obéissent aux mêmes règles. La différence réside uniquement dans le nombre d’associés.', en: 'SARL and SARLU follow the same legal rules. The only difference lies in the number of shareholders.' }
+        // { fr: 'Responsabilité aux apports.', en: 'Liability limited to contributions.' },
+        // { fr: 'Structure simple et encadrée.', en: 'Simple and well-regulated structure.' },
+        // { fr: 'Facilité de création et d’organisation.', en: 'Easy of formation and organization.' },
+        // { fr: 'Capital librement fixé.', en: 'Capital freely determined.' },
+        // { fr: 'Souplesse pour évoluer.', en: 'Flexibility to evolve.' },
       ],
     },
     advantages: [
@@ -573,13 +740,13 @@ export const subpagesData: Record<string, SubpageData> = {
       },
       {
         question: { fr: 'Quel régime fiscal pour une SARLU ?', en: 'What tax regime for a SARLU?' },
-        answer: { fr: 'Au Cameroun, la SARLU est généralement soumise à l\’impôt sur les sociétés (IS); les dividendes sont soumis à retenue à la source; TVA et autres taxes applicables selon l\’activité.', en: 'In Cameroon, the SARLU is generally subject to corporate income tax (CIT); dividends are subject to withholding tax; VAT and other applicable taxes apply depending on the activity.' },
+        answer: { fr: 'Au Cameroun, la SARLU est généralement soumise à l\’impôt sur les sociétés (IS); les dividendes sont soumis à retenue à la source; TVA et autres taxes applicables selon l\’activité exercée.', en: 'In Cameroon, SARLU is generally subject to corporate income tax (CIT). Dividends are subject to withholding tax, as well as VAT and other activity-related taxes.' },
       },
     ],
   },
   association: {
     slug: 'association',
-    heroTitle: { fr: 'Créez une Association', en: 'Create an Association' },
+    heroTitle: { fr: 'Créer une Association', en: 'Create an Association' },
     heroSubtitle: { fr: 'Culturelle, Caritative, Éducative', en: 'Cultural, Charitable, Educational' },
     heroDescription: { fr: 'Projets non lucratifs simples et rapides. Idéal pour activités culturelles, humanitaires ou éducatives.', en: 'Simple and fast non-profit projects. Ideal for cultural, humanitarian, or educational activities.' },
     whyCreate: {
@@ -621,7 +788,7 @@ export const subpagesData: Record<string, SubpageData> = {
       {
         number: 4,
         title: { fr: 'Déclaration préfecture', en: 'Prefecture declaration' },
-        description: { fr: 'Déposez le dossier → Récépissé sous 5 jours (en ligne).', en: 'Submit the file → Receipt within 5 days (online).' },
+        description: { fr: 'Déposez le dossier → Silence vaut acceptation.', en: 'Submit the file → Silence implies acceptance.' },
       },
       {
         number: 5,
@@ -658,7 +825,7 @@ export const subpagesData: Record<string, SubpageData> = {
 export const hubHero = {
   title: { fr: 'Créez l\'Entreprise Faite pour Vous au Cameroun', en: 'Create the Right Business for You in Cameroon' },
   subtitle: { fr: 'Zéro stress, rapide (48h Premium), économique.', en: 'Zero stress, fast (48h Premium), affordable.' },
-  description: { fr: 'SASU, SAS, SARL, SARLU, SCI, Auto-entrepreneur, Entreprise individuelle... +15 000 entrepreneurs accompagnés depuis 8 ans par des juristes basés au Cameroun.', en: 'SASU, SAS, SARL, SARLU, SCI, Self-employed, Sole proprietorship... 15,000+ entrepreneurs supported for 8 years by lawyers based in Cameroon.' },
+  description: { fr: 'SASU, SAS, SARL, SARLU, SCI, Établissement commercial... +15 000 entrepreneurs accompagnés depuis 8 ans par des juristes basés au Cameroun.', en: 'SASU, SAS, SARL, SARLU, SCI, Commercial establishment... 15,000+ entrepreneurs supported for 8 years by lawyers based in Cameroon.' },
   primaryCta: {
     text: { fr: 'C\'est parti ! Démarrer le q uestionnaire', en: 'Let\'s go! Start the questionnaire' },
     href: '/devis',

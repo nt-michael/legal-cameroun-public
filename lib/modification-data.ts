@@ -206,11 +206,11 @@ export const hubDocuments: GestionDocument[] = [
 export const hubFAQ: GestionFAQItem[] = [
   {
     question: { fr: 'Combien coûte une modification de statuts ?', en: 'How much does an articles amendment cost?' },
-    answer: { fr: 'Le coût varie selon le type de modification. Par exemple, un transfert de siège inter-départements nécessite 2 annonces légales, donc un coût plus élevé. Nos forfaits commencent à 150 000 XAF HT.', en: 'The cost varies depending on the type of amendment. For example, an inter-departmental registered office transfer requires 2 legal notices, thus a higher cost. Our packages start at 150,000 XAF excl. tax.' },
+    answer: { fr: 'Le coût varie selon le type de modification. Par exemple, un transfert de siège inter-départements nécessite 2 annonces légales, donc un coût plus élevé. Nos forfaits commencent à partir de 150 000 XAF HT.', en: 'The cost varies depending on the type of amendment. For example, an inter-departmental registered office transfer requires 2 legal notices, thus a higher cost. Our packages start at 150,000 XAF excl. tax.' },
   },
   {
     question: { fr: 'Quel est le délai pour une modification ?', en: 'What is the timeframe for an amendment?' },
-    answer: { fr: 'Le délai standard est de 1 mois maximum pour l\'enregistrement au greffe. Avec notre forfait Premium, le traitement est effectué en 24-48h.', en: 'The standard timeframe is a maximum of 1 month for court registry registration. With our Premium package, processing is completed in 24-48h.' },
+    answer: { fr: 'Nos offres-Modification d\’entreprise -toutes les modifications.vLe délai standard est de 3-4 semaines, avec le forfait premium le délai est de 10 jours.', en: 'The standard timeframe is a maximum of 3-4 weeks for court registry registration. With our Premium package, processing is completed in 10 days.' },
   },
   {
     question: { fr: 'Quelles sont les conditions selon la forme juridique ?', en: 'What are the conditions depending on the legal form?' },
@@ -273,7 +273,7 @@ export const transfertSiegeData = {
     { number: '01', title: { fr: 'Décision de l\'organe compétent', en: 'Decision by the competent body' }, description: { fr: 'PV de l\'AGE actant le changement de siège', en: 'EGM minutes recording the office change' } },
     { number: '02', title: { fr: 'Mise à jour des statuts', en: 'Update the articles' }, description: { fr: 'Nouvelle adresse, clause signée "certifiés conformes"', en: 'New address, clause signed "certified true copies"' } },
     { number: '03', title: { fr: 'Publication annonce légale', en: 'Legal notice publication' }, description: { fr: 'Dans un JAL (1 mois max après décision)', en: 'In a legal gazette (1 month max after decision)' } },
-    { number: '04', title: { fr: 'Dépôt au greffe', en: 'Filing with the court registry' }, description: { fr: 'Dossier complet en ligne', en: 'Complete file online' } },
+    { number: '04', title: { fr: 'Dépôt au greffe en présentiel', en: 'Filing with the court registry in person' }, description: { fr: 'Dossier complet', en: 'Complete file' } },
   ],
   casTypes: [
     {
@@ -356,7 +356,7 @@ export const transfertSiegeData = {
     },
     {
       question: { fr: 'Quel délai pour un transfert de siège ?', en: 'What is the timeframe for an office transfer?' },
-      answer: { fr: 'Comptez environ 2-4 semaines pour un transfert standard. Avec notre forfait Premium, le dossier est traité en 48h.', en: 'Allow approximately 2-4 weeks for a standard transfer. With our Premium package, the file is processed in 48h.' },
+      answer: { fr: 'Environ 3 à 4 semaines. Avec le forfait Premium, le traitement se fait en 10 jours.', en: 'Allow approximately 3-4 weeks for a standard transfer. With the Premium package, processing takes 10 days.' },
     },
   ],
 };
@@ -538,7 +538,7 @@ export const dissolutionData = {
   alternatives: [
     {
       type: { fr: 'Dissolution', en: 'Dissolution' },
-      description: { fr: 'Cessation définitive et radiation du RCS', en: 'Permanent cessation and removal from the trade register' },
+      description: { fr: 'Cessation définitive et radiation du RCCM', en: 'Permanent cessation and removal from the trade register' },
       permanent: true,
     },
     {
@@ -563,7 +563,7 @@ export const dissolutionData = {
         { number: '05', title: { fr: 'Vente des actifs', en: 'Sale of assets' }, description: { fr: 'Réalisation de l\'actif de la société', en: 'Realization of the company\'s assets' } },
         { number: '06', title: { fr: 'Règlement des dettes', en: 'Debt settlement' }, description: { fr: 'Paiement des créanciers', en: 'Payment of creditors' } },
         { number: '07', title: { fr: 'Clôture des comptes', en: 'Closing of accounts' }, description: { fr: 'Établissement du bilan de liquidation', en: 'Preparation of the liquidation balance sheet' } },
-        { number: '08', title: { fr: 'Radiation RCS', en: 'Trade register removal' }, description: { fr: 'Radiation définitive du registre', en: 'Permanent removal from the register' } },
+        { number: '08', title: { fr: 'Radiation RCCM', en: 'Trade register removal' }, description: { fr: 'Radiation définitive du registre', en: 'Permanent removal from the register' } },
       ],
     },
   ],
@@ -648,7 +648,7 @@ export const dissolutionData = {
     },
     {
       question: { fr: 'Quelle différence entre dissolution et mise en sommeil ?', en: 'What is the difference between dissolution and dormancy?' },
-      answer: { fr: 'La dissolution est définitive et mène à la radiation. La mise en sommeil est temporaire (2 ans max), suspend l\'activité mais maintient la société au RCS avec des obligations allégées.', en: 'Dissolution is permanent and leads to removal from the register. Dormancy is temporary (2 years max), suspends activity but keeps the company on the trade register with reduced obligations.' },
+      answer: { fr: 'La dissolution est définitive et mène à la radiation. La mise en sommeil est temporaire (2 ans max), suspend l\'activité mais maintient la société au RCCM avec des obligations allégées.', en: 'Dissolution is permanent and leads to removal from the register. Dormancy is temporary (2 years max), suspends activity but keeps the company on the trade register with reduced obligations.' },
     },
     {
       question: { fr: 'Que faire des dettes de la société ?', en: 'What to do with the company\'s debts?' },

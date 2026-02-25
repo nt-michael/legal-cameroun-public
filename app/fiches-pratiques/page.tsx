@@ -2,9 +2,9 @@ import { Metadata } from 'next';
 import { FichesHero, FichesGrid, FichesFooterCTA } from '@/components/fiches-pratiques';
 
 export const metadata: Metadata = {
-  title: 'Fiches Pratiques | Legal Cameroun - Guides Juridiques & Fiscaux',
+  title: 'Fiches Pratiques | Guides Juridiques et Fiscaux pour le Cameroun',
   description:
-    'Guides simples, clairs et concrets pour vos démarches juridiques et fiscales au Cameroun. Téléchargez nos fiches pratiques gratuites.',
+    'Guides pratiques gratuits pour vos démarches juridiques et fiscales au Cameroun. Immatriculation ATOM, prix de transfert, choix de structure et plus. Téléchargeables en PDF.',
   keywords: [
     'fiches pratiques cameroun',
     'guide juridique cameroun',
@@ -14,10 +14,18 @@ export const metadata: Metadata = {
     'création entreprise cameroun guide',
   ],
   openGraph: {
-    title: 'Fiches Pratiques | Legal Cameroun',
+    title: 'Fiches Pratiques | Guides Juridiques et Fiscaux pour le Cameroun',
     description:
-      'Guides simples, clairs et concrets pour vos démarches juridiques et fiscales au Cameroun.',
+      'Guides pratiques gratuits pour vos démarches juridiques et fiscales au Cameroun. Immatriculation ATOM, prix de transfert, choix de structure et plus. Téléchargeables en PDF.',
     type: 'website',
+    url: 'https://legalcameroun.com/fiches-pratiques',
+    siteName: 'Legal Cameroun',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Fiches Pratiques | Guides Juridiques et Fiscaux pour le Cameroun',
+    description:
+      'Guides pratiques gratuits pour vos démarches juridiques et fiscales au Cameroun. Immatriculation ATOM, prix de transfert, choix de structure et plus. Téléchargeables en PDF.',
   },
   alternates: {
     languages: {

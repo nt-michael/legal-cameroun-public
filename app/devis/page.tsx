@@ -2,9 +2,21 @@ import { Metadata } from 'next';
 import DevisPageContent from './DevisPageContent';
 
 export const metadata: Metadata = {
-  title: 'Demande de Devis Gratuit | Legal Cameroun',
-  description: 'Obtenez un devis gratuit pour la création de votre entreprise au Cameroun. SAS, SARL, SARLU, Association... Réponse sous 24h.',
-  keywords: ['devis creation entreprise', 'devis gratuit cameroun', 'tarif creation societe'],
+  title: "Devis Gratuit | Création d'Entreprise au Cameroun — Legal Cameroun",
+  description: "Obtenez une estimation gratuite pour la création ou modification de votre entreprise au Cameroun. SAS, SARL, SARLU, Association. Réponse personnalisée sous 24h.",
+  keywords: ['devis création entreprise cameroun', 'tarif création société', 'devis gratuit SARL SAS cameroun', 'coût immatriculation'],
+  openGraph: {
+    title: "Devis Gratuit | Création d'Entreprise au Cameroun — Legal Cameroun",
+    description: "Obtenez une estimation gratuite pour la création ou modification de votre entreprise au Cameroun. SAS, SARL, SARLU, Association. Réponse personnalisée sous 24h.",
+    type: 'website',
+    url: 'https://legalcameroun.com/devis',
+    siteName: 'Legal Cameroun',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: "Devis Gratuit | Création d'Entreprise au Cameroun — Legal Cameroun",
+    description: "Obtenez une estimation gratuite pour la création ou modification de votre entreprise au Cameroun. SAS, SARL, SARLU, Association. Réponse personnalisée sous 24h.",
+  },
   alternates: {
     languages: {
       'fr': 'https://legalcameroun.com/devis',

@@ -6,20 +6,28 @@ import { getFicheBySlug } from '@/lib/fiches-pratiques-data';
 const fiche = getFicheBySlug('tutoriel-consultation');
 
 export const metadata: Metadata = {
-  title: 'Comment Réserver une Consultation ? | Legal Cameroun',
+  title: 'Comment Réserver une Consultation Juridique | Legal Cameroun',
   description:
-    'Tutoriel simple pour prendre rendez-vous avec un expert RODEC Conseils. Suivez les étapes pour réserver votre consultation.',
+    'Tutoriel étape par étape pour réserver votre consultation en ligne avec un expert juridique. Simple, rapide et gratuit.',
   keywords: [
-    'réserver consultation juridique',
+    'réserver consultation juridique cameroun',
     'rendez-vous avocat cameroun',
-    'RODEC conseils RDV',
+    'expert juridique en ligne',
     'consultation entreprise cameroun',
   ],
   openGraph: {
-    title: 'Comment Réserver une Consultation ?',
+    title: 'Comment Réserver une Consultation Juridique',
     description:
-      'Tutoriel simple pour prendre rendez-vous avec un expert RODEC Conseils.',
+      'Tutoriel étape par étape pour réserver votre consultation en ligne avec un expert juridique. Simple, rapide et gratuit.',
     type: 'article',
+    url: 'https://legalcameroun.com/fiches-pratiques/tutoriel-consultation',
+    siteName: 'Legal Cameroun',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Comment Réserver une Consultation Juridique | Legal Cameroun',
+    description:
+      'Tutoriel étape par étape pour réserver votre consultation en ligne avec un expert juridique. Simple, rapide et gratuit.',
   },
   alternates: {
     languages: {

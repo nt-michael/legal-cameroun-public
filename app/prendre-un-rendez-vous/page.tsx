@@ -2,9 +2,21 @@ import { Metadata } from 'next';
 import RDVPageContent from './RDVPageContent';
 
 export const metadata: Metadata = {
-  title: 'Prendre un Rendez-vous Gratuit | Legal Cameroun',
-  description: 'Réservez une consultation gratuite avec nos experts juridiques au Cameroun. Création d\'entreprise, conseil juridique, expertise comptable.',
-  keywords: ['rendez-vous juridique cameroun', 'consultation gratuite', 'expert juridique douala'],
+  title: 'Consultation Gratuite avec un Expert Juridique | Legal Cameroun',
+  description: "Réservez votre consultation gratuite avec nos experts juridiques et fiscaux au Cameroun. Conseil en création d'entreprise, droit des affaires et fiscalité.",
+  keywords: ['consultation gratuite cameroun', 'rendez-vous expert juridique douala', "conseil création entreprise", 'expert OHADA'],
+  openGraph: {
+    title: 'Consultation Gratuite avec un Expert Juridique | Legal Cameroun',
+    description: "Réservez votre consultation gratuite avec nos experts juridiques et fiscaux au Cameroun. Conseil en création d'entreprise, droit des affaires et fiscalité.",
+    type: 'website',
+    url: 'https://legalcameroun.com/prendre-un-rendez-vous',
+    siteName: 'Legal Cameroun',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Consultation Gratuite avec un Expert Juridique | Legal Cameroun',
+    description: "Réservez votre consultation gratuite avec nos experts juridiques et fiscaux au Cameroun. Conseil en création d'entreprise, droit des affaires et fiscalité.",
+  },
   alternates: {
     languages: {
       'fr': 'https://legalcameroun.com/prendre-un-rendez-vous',

@@ -3,9 +3,21 @@ import SimulateurPageTemplate from '@/components/simulateurs/SimulateurPageTempl
 import ISSimulator from '@/components/simulateurs/ISSimulator';
 
 export const metadata: Metadata = {
-  title: 'Simulateur Impôt sur les Sociétés (IS) Cameroun - Legal Cameroun',
-  description: 'Calculez votre Impôt sur les Sociétés au Cameroun. Taux 28,5% (CA ≤ 3 milliards) ou 33% (CA > 3 milliards) selon CGI 2024.',
-  keywords: ['impôt sociétés Cameroun', 'IS Cameroun', 'taux IS', 'bénéfice imposable', 'DGI'],
+  title: 'Calculateur IS Cameroun | Impôt sur les Sociétés 2024 — Legal Cameroun',
+  description: 'Estimez votre Impôt sur les Sociétés au Cameroun. Taux de 28,5% (CA ≤ 3 Mds FCFA) ou 33% (CA > 3 Mds). Basé sur le CGI 2024. Calcul instantané.',
+  keywords: ['impôt sociétés cameroun', 'IS cameroun 2024', 'taux IS PME', 'bénéfice imposable', 'calculateur IS', 'DGI Cameroun'],
+  openGraph: {
+    title: 'Calculateur IS Cameroun | Impôt sur les Sociétés 2024 — Legal Cameroun',
+    description: 'Estimez votre Impôt sur les Sociétés au Cameroun. Taux de 28,5% (CA ≤ 3 Mds FCFA) ou 33% (CA > 3 Mds). Basé sur le CGI 2024. Calcul instantané.',
+    type: 'website',
+    url: 'https://legalcameroun.com/simulateurs/is',
+    siteName: 'Legal Cameroun',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Calculateur IS Cameroun | Impôt sur les Sociétés 2024 — Legal Cameroun',
+    description: 'Estimez votre Impôt sur les Sociétés au Cameroun. Taux de 28,5% (CA ≤ 3 Mds FCFA) ou 33% (CA > 3 Mds). Basé sur le CGI 2024. Calcul instantané.',
+  },
   alternates: {
     languages: {
       'fr': 'https://legalcameroun.com/simulateurs/is',

@@ -17,10 +17,17 @@ export const metadata: Metadata = {
     'différence société établissement',
   ],
   openGraph: {
-    title: 'Société ou Établissement : Ce qu\'il faut savoir pour choisir',
+    title: "Société ou Établissement : Ce qu'il faut savoir pour choisir",
     description:
       'Définitions claires, avantages, inconvénients – pour lancer votre activité sans regret.',
     type: 'article',
+    url: 'https://legalcameroun.com/fiches-pratiques/presentation-societe-etablissement',
+    siteName: 'Legal Cameroun',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Société ou Établissement : Comment Choisir ? | Legal Cameroun',
+    description: "Définitions claires, avantages et inconvénients de la société vs l'établissement au Cameroun. Guide pour faire le bon choix dès le départ.",
   },
   alternates: {
     languages: {

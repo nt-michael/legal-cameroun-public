@@ -3,9 +3,21 @@ import SimulateurPageTemplate from '@/components/simulateurs/SimulateurPageTempl
 import SalaireSimulator from '@/components/simulateurs/SalaireSimulator';
 
 export const metadata: Metadata = {
-  title: 'Simulateur Salaire Cameroun | CNPS, IRPP, TDL, RAV - Legal Cameroun',
-  description: 'Calculez le salaire net (salarié) et le coût total (employeur) au Cameroun. Cotisations CNPS, IRPP, TDL, RAV, FNE selon CGI 2024.',
-  keywords: ['salaire net Cameroun', 'CNPS', 'IRPP', 'TDL', 'RAV', 'charges patronales', 'coût employeur'],
+  title: 'Simulateur Salaire Cameroun | CNPS, IRPP, Coût Employeur 2024 — Legal Cameroun',
+  description: 'Calculez le salaire net et le coût total employeur au Cameroun. Cotisations CNPS, IRPP, TDL, RAV et FNE. Conforme au CGI 2024 et barèmes CNPS.',
+  keywords: ['simulateur salaire cameroun', 'salaire net cameroun', 'CNPS 2024', 'IRPP cameroun', 'coût employeur', 'charges sociales cameroun'],
+  openGraph: {
+    title: 'Simulateur Salaire Cameroun | CNPS, IRPP, Coût Employeur 2024 — Legal Cameroun',
+    description: 'Calculez le salaire net et le coût total employeur au Cameroun. Cotisations CNPS, IRPP, TDL, RAV et FNE. Conforme au CGI 2024 et barèmes CNPS.',
+    type: 'website',
+    url: 'https://legalcameroun.com/simulateurs/salaire',
+    siteName: 'Legal Cameroun',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Simulateur Salaire Cameroun | CNPS, IRPP, Coût Employeur 2024 — Legal Cameroun',
+    description: 'Calculez le salaire net et le coût total employeur au Cameroun. Cotisations CNPS, IRPP, TDL, RAV et FNE. Conforme au CGI 2024 et barèmes CNPS.',
+  },
   alternates: {
     languages: {
       'fr': 'https://legalcameroun.com/simulateurs/salaire',

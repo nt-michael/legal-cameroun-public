@@ -3,9 +3,21 @@ import SimulateurPageTemplate from '@/components/simulateurs/SimulateurPageTempl
 import TVASimulator from '@/components/simulateurs/TVASimulator';
 
 export const metadata: Metadata = {
-  title: 'Simulateur TVA Cameroun | Calcul TVA 19,25% - Legal Cameroun',
-  description: 'Calculez votre TVA au Cameroun : TVA collectée, TVA déductible, TVA nette et crédit TVA. Taux standard 19,25% selon CGI 2024.',
-  keywords: ['TVA Cameroun', 'calculateur TVA', 'taxe valeur ajoutée', '19.25%', 'DGI Cameroun'],
+  title: 'Calculateur TVA Cameroun | Taux 19,25% — Legal Cameroun',
+  description: 'Calculez votre TVA collectée, déductible et TVA nette au Cameroun. Taux standard de 19,25% selon le Code Général des Impôts 2024. Gratuit et instantané.',
+  keywords: ['calculateur TVA cameroun', 'TVA 19.25%', 'taxe valeur ajoutée Cameroun', 'TVA nette', 'crédit TVA', 'DGI Cameroun'],
+  openGraph: {
+    title: 'Calculateur TVA Cameroun | Taux 19,25% — Legal Cameroun',
+    description: 'Calculez votre TVA collectée, déductible et TVA nette au Cameroun. Taux standard de 19,25% selon le Code Général des Impôts 2024. Gratuit et instantané.',
+    type: 'website',
+    url: 'https://legalcameroun.com/simulateurs/tva',
+    siteName: 'Legal Cameroun',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Calculateur TVA Cameroun | Taux 19,25% — Legal Cameroun',
+    description: 'Calculez votre TVA collectée, déductible et TVA nette au Cameroun. Taux standard de 19,25% selon le Code Général des Impôts 2024. Gratuit et instantané.',
+  },
   alternates: {
     languages: {
       'fr': 'https://legalcameroun.com/simulateurs/tva',

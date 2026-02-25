@@ -21,6 +21,13 @@ export const metadata: Metadata = {
     description:
       'Maîtrisez le nouveau système électronique de la DGI – étape par étape.',
     type: 'article',
+    url: 'https://legalcameroun.com/fiches-pratiques/immatriculation-avec-atom',
+    siteName: 'Legal Cameroun',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Immatriculation Fiscale avec ATOM | Legal Cameroun',
+    description: "Guide complet pour s'enregistrer et déclarer via le système ATOM de la DGI Cameroun. Disponible en PDF, PPT et version anglaise.",
   },
   alternates: {
     languages: {

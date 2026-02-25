@@ -21,6 +21,13 @@ export const metadata: Metadata = {
     description:
       'Guide essentiel pour les groupes et opérations transfrontalières au Cameroun.',
     type: 'article',
+    url: 'https://legalcameroun.com/fiches-pratiques/prix-des-transferts',
+    siteName: 'Legal Cameroun',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Les Règles Camerounaises sur les Prix de Transfert | Legal Cameroun',
+    description: "Guide pratique complet sur les prix de transfert au Cameroun. Avant et après l'adhésion à l'OCDE. Téléchargez le guide PDF gratuit.",
   },
   alternates: {
     languages: {

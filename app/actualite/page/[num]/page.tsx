@@ -18,7 +18,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const title = page > 1
     ? `Actualité Juridique & Fiscale au Cameroun - Page ${page} - Legal Cameroun`
     : 'Actualité Juridique & Fiscale au Cameroun - Legal Cameroun';
-  const description = 'Analyses, guides pratiques et actualités du droit des affaires au Cameroun.';
+  const description = `Analyses, guides pratiques et actualités du droit des affaires au Cameroun. Restez informé des évolutions juridiques et fiscales — page ${page}.`;
 
   return {
     title,
@@ -31,6 +31,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       description,
       type: 'website',
       url: `/actualite/page/${page}`,
+      siteName: 'Legal Cameroun',
     },
     twitter: {
       card: 'summary_large_image',

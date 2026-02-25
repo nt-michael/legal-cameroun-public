@@ -11,8 +11,20 @@ import { getFeaturedPosts } from '@/lib/wordpress';
 import { transformPosts } from '@/lib/wordpress-utils';
 
 export const metadata: Metadata = {
-  title: "Legal Cameroun | Plateforme d'accompagnement juridique, comptable et fiscale au Cameroun",
-  description: "Legal Cameroun par RODEC Conseils. Création d'entreprise, modification de statuts, dissolution, liquidation et radiation. Accompagnement juridique, comptable et fiscal expert au Cameroun.",
+  title: "Legal Cameroun | Plateforme Juridique, Comptable et Fiscale au Cameroun",
+  description: "Créez votre entreprise, modifiez vos statuts ou obtenez un conseil fiscal expert au Cameroun. +15 000 entrepreneurs accompagnés. Réponse sous 48h.",
+  keywords: "legal cameroun, création entreprise cameroun, accompagnement juridique douala, conseil fiscal cameroun, droit des affaires OHADA",
+  openGraph: {
+    title: "Legal Cameroun | Plateforme Juridique, Comptable et Fiscale au Cameroun",
+    description: "Créez votre entreprise, modifiez vos statuts ou obtenez un conseil fiscal expert au Cameroun. +15 000 entrepreneurs accompagnés. Réponse sous 48h.",
+    type: 'website',
+    url: 'https://legalcameroun.com',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: "Legal Cameroun | Plateforme Juridique, Comptable et Fiscale au Cameroun",
+    description: "Créez votre entreprise, modifiez vos statuts ou obtenez un conseil fiscal expert au Cameroun. +15 000 entrepreneurs accompagnés. Réponse sous 48h.",
+  },
   alternates: {
     languages: {
       'fr': 'https://legalcameroun.com',
