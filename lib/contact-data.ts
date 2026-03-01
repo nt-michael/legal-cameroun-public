@@ -59,8 +59,8 @@ export const contactHeroData = {
     },
     {
       text: { fr: 'Appeler maintenant', en: 'Call Now' } as BilingualText,
-      subtext: '+237 691768285',
-      href: 'tel:+237691768285',
+      subtext: '+237 659810228',
+      href: 'tel:+237659810228',
       variant: 'phone',
       icon: 'phone',
     },
@@ -78,8 +78,8 @@ export const contactOffices: ContactOffice[] = [
       { fr: 'Rue Dubois de Saligny, Akwa', en: 'Rue Dubois de Saligny, Akwa' },
       { fr: 'Douala, Littoral, Cameroun', en: 'Douala, Littoral, Cameroon' },
     ],
-    phone: '+237 691 76 82 85',
-    whatsapp: '+237691768285',
+    phone: '+237 659 810 228',
+    whatsapp: '+237659810228',
     email: 'contact-cm@rodecconseils.com',
     hours: { fr: 'Du lundi au vendredi, 9h – 19h (WAT)', en: 'Monday to Friday, 9 AM – 7 PM (WAT)' },
     isPrimary: true,
@@ -167,8 +167,8 @@ export const urgentContactData = {
     {
       icon: 'phone',
       text: { fr: 'Appelez-nous directement', en: 'Call us directly' } as BilingualText,
-      action: '+237 691 76 82 85',
-      href: 'tel:+237691768285',
+      action: '+237 659 810 228',
+      href: 'tel:+237659810228',
     },
     {
       icon: 'calendar',

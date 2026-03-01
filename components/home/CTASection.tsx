@@ -15,7 +15,7 @@ const ctaText = {
   addressValue: { fr: 'Immeuble Elite Offices Rue Dubois de Saligny, Akwa, Douala, CM 5e Étage', en: 'Immeuble Elite Offices Rue Dubois de Saligny, Akwa, Douala, CM 5e Étage' },
   hours: { fr: 'Horaires', en: 'Hours' },
   hoursValue: { fr: 'Lun - Ven: 8h - 18h', en: 'Mon - Fri: 8am - 6pm' },
-  phoneValue: { fr: '+237 691768285', en: '+237 691768285' },
+  phoneValue: { fr: '+237 659810228', en: '+237 659810228' },
 };
 
 export default function CTASection() {

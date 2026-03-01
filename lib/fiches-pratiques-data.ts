@@ -33,7 +33,7 @@ export interface FicheResource {
   type: 'pdf' | 'ppt' | 'video';
   language?: string;
 }
-
+const WC_SITE_URL = process.env.WC_SITE_URL;
 // Hub page data
 export const fichesHubData = {
   hero: {
@@ -148,7 +148,7 @@ export const fichesPratiques: FichePratique[] = [
           fr: 'Télécharger le Guide PDF – Les Règles Camerounaises sur les Prix de Transfert',
           en: 'Download the PDF Guide – Cameroonian Transfer Pricing Rules',
         },
-        url: 'https://legalcameroun.com/wp-content/uploads/2024/10/Les-Regles-Camerounaises-sur-les-Prix-de-Transfert.pdf',
+        url: `${WC_SITE_URL}/wp-content/uploads/Les-Regles-Camerounaises-sur-les-Prix-de-Transfert.pdf`,
         type: 'pdf',
       },
     ],
@@ -302,7 +302,7 @@ export const fichesPratiques: FichePratique[] = [
           fr: 'Télécharger le Guide PDF – Comment choisir entre Société et Établissement',
           en: 'Download the PDF Guide – How to choose between Company and Branch',
         },
-        url: 'https://legalcameroun.com/wp-content/uploads/2024/10/Comment-choisir-entre-Societe-et-Etablissement-Ce-quil-faut-savoir.pdf',
+        url: `${WC_SITE_URL}/wp-content/uploads/Comment-choisir-entre-Societe-et-Etablissement-Ce-quil-faut-savoir.pdf`,
         type: 'pdf',
       },
     ],
@@ -390,7 +390,7 @@ export const fichesPratiques: FichePratique[] = [
           fr: 'Version PDF (Français)',
           en: 'PDF Version (French)',
         },
-        url: 'https://legalcameroun.com/wp-content/uploads/2024/10/GUIDE-IMMATRICULATION-AVEC-ATOM-DGI.pdf',
+        url: `${WC_SITE_URL}/wp-content/uploads/GUIDE-IMMATRICULATION-AVEC-ATOM-DGI.pdf`,
         type: 'pdf',
         language: 'FR',
       },
@@ -399,7 +399,7 @@ export const fichesPratiques: FichePratique[] = [
           fr: 'Version PPT (Français)',
           en: 'PPT Version (French)',
         },
-        url: 'https://legalcameroun.com/wp-content/uploads/2024/10/Immatriculation-avec-ATOM-1.pptx',
+        url: `${WC_SITE_URL}/wp-content/uploads/Immatriculation-avec-ATOM-1.pptx`,
         type: 'ppt',
         language: 'FR',
       },
@@ -408,12 +408,12 @@ export const fichesPratiques: FichePratique[] = [
           fr: 'English Version (PDF)',
           en: 'English Version (PDF)',
         },
-        url: 'https://legalcameroun.com/wp-content/uploads/2024/10/REGISTER-WITH-ATOM-AT-DGT_USERs-GUIDE.pdf',
+        url: `${WC_SITE_URL}/wp-content/uploads/REGISTER-WITH-ATOM-AT-DGT_USERs-GUIDE.pdf`,
         type: 'pdf',
         language: 'EN',
       },
     ],
-    image: 'https://legalcameroun.com/wp-content/uploads/2024/10/Guide-Atom1.png',
+    image: `${WC_SITE_URL}/wp-content/uploads/2024/10/Guide-Atom1.png`,
     imageAlt: {
       fr: 'Capture interface ATOM - Système DGI Cameroun',
       en: 'ATOM interface screenshot - Cameroon DGI System',
@@ -498,7 +498,7 @@ export const fichesPratiques: FichePratique[] = [
           fr: 'Voir le tutoriel vidéo',
           en: 'Watch the video tutorial',
         },
-        url: '#video',
+        url: `${WC_SITE_URL}/wp-content/uploads/Demo-Legal-Cameroun1.mp4`,
         type: 'video',
       },
     ],
