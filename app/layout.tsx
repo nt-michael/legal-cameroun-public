@@ -6,6 +6,7 @@ import Footer from "@/components/layout/Footer";
 import { LanguageProvider } from "@/contexts/LanguageContext";
 import { ThemeProvider } from "@/contexts/ThemeContext";
 import LanguageHtmlSetter from "@/components/seo/LanguageHtmlSetter";
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 const inriaSans = localFont({
   src: [
