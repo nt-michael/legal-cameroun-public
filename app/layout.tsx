@@ -61,6 +61,7 @@ export default function RootLayout({
             <Footer />
           </LanguageProvider>
         </ThemeProvider>
+        <SpeedInsights />
       </body>
     </html>
   );
