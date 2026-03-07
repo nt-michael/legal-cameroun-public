@@ -66,7 +66,7 @@ export default function BlogPostCard({ post, index, featured = false, useWordPre
   const isExternal = !useWordPress && 'externalUrl' in post && post.externalUrl;
 
   // Get image - handle both WordPress and static formats
-  const imageUrl = 'image' in post ? post.image : '/images/default-post.jpg';
+  const imageUrl = 'image' in post ? post.image : '/images/blog-placeholder.svg';
   const imageAlt = 'imageAlt' in post ? post.imageAlt : post.title;
 
   // Get date formatted
@@ -89,20 +89,13 @@ export default function BlogPostCard({ post, index, featured = false, useWordPre
     >
       {/* Image */}
       <div className={`relative overflow-hidden ${featured ? 'h-64 md:h-full' : 'h-48'}`}>
-        {imageUrl && imageUrl !== '/images/default-post.jpg' ? (
-          <Image
-            src={imageUrl}
-            alt={imageAlt}
-            fill
-            className="object-cover group-hover:scale-105 transition-transform duration-500"
-          />
-        ) : (
-          <div className="w-full h-full bg-gradient-to-br from-primary-100 to-primary-200 dark:from-primary-900/30 dark:to-primary-800/30 flex items-center justify-center">
-            <svg className="w-16 h-16 text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-            </svg>
-          </div>
-        )}
+        <Image
+        unoptimized
+          src={imageUrl || '/images/blog-placeholder.svg'}
+          alt={imageAlt}
+          fill
+          className="object-cover group-hover:scale-105 transition-transform duration-500"
+        />
         {/* Category Badge */}
         <div className="absolute top-4 left-4">
           <span className="px-3 py-1 bg-primary-600 text-white text-xs font-medium rounded-full">

@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import ContactPageContent from './ContactPageContent';
 
 export const metadata: Metadata = {
-  title: 'Contactez Legal Cameroun | Experts Juridiques au Cameroun',
+  title: 'Contactez Legal Cameroun | Votre LegalTech au Cameroun | Plateforme Juridique, Comptable & Fiscale',
   description:
     "Contactez nos experts pour vos besoins juridiques et fiscaux au Cameroun. Création d'entreprise, modification de statuts, dissolution. Réponse sous 48h garantie.",
   keywords: [
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     'expert juridique',
   ],
   openGraph: {
-    title: 'Contactez Legal Cameroun | Experts Juridiques au Cameroun',
+    title: 'Contactez Legal Cameroun | Votre LegalTech au Cameroun | Plateforme Juridique, Comptable & Fiscale',
     description:
       "Contactez nos experts pour vos besoins juridiques et fiscaux au Cameroun. Création d'entreprise, modification de statuts, dissolution. Réponse sous 48h garantie.",
     type: 'website',
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Contactez Legal Cameroun | Experts Juridiques au Cameroun',
+    title: 'Contactez Legal Cameroun | Votre LegalTech au Cameroun | Plateforme Juridique, Comptable & Fiscale',
     description:
       "Contactez nos experts pour vos besoins juridiques et fiscaux au Cameroun. Création d'entreprise, modification de statuts, dissolution. Réponse sous 48h garantie.",
   },

@@ -127,7 +127,7 @@ export function transformPost(wpPost: WPPost, locale: 'fr' | 'en' = 'fr'): BlogP
   // Get best available image size
   const imageUrl = featuredMedia?.media_details?.sizes?.large?.source_url
     || featuredMedia?.source_url
-    || '/images/default-post.jpg';
+    || '/images/blog-placeholder.svg';
 
   return {
     id: wpPost.id.toString(),

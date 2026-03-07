@@ -32,7 +32,7 @@ export default function PostContent({ post, url, relatedPosts = [], comments = [
   // Process content: replace PDF links with inline viewers
   const processedContent = processPdfLinks(post.content);
 
-  const hasHeroImage = post.image !== '/images/default-post.jpg';
+  const hasHeroImage = post.image !== '/images/blog-placeholder.svg';
 
   return (
     <main className="min-h-screen bg-white dark:bg-gray-900">
@@ -47,6 +47,7 @@ export default function PostContent({ post, url, relatedPosts = [], comments = [
               fill
               className="object-cover blur-sm scale-105"
               priority
+              unoptimized
             />
           </div>
         )}
@@ -248,20 +249,12 @@ export default function PostContent({ post, url, relatedPosts = [], comments = [
                   className="group bg-white dark:bg-gray-900 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow"
                 >
                   <div className="relative h-48">
-                    {relatedPost.image !== '/images/default-post.jpg' ? (
-                      <Image
-                        src={relatedPost.image}
-                        alt={relatedPost.imageAlt}
-                        fill
-                        className="object-cover group-hover:scale-105 transition-transform duration-300"
-                      />
-                    ) : (
-                      <div className="w-full h-full bg-gradient-to-br from-primary-100 to-primary-200 dark:from-primary-900/30 dark:to-primary-800/30 flex items-center justify-center">
-                        <svg className="w-12 h-12 text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                        </svg>
-                      </div>
-                    )}
+                    <Image
+                      src={relatedPost.image || '/images/blog-placeholder.svg'}
+                      alt={relatedPost.imageAlt}
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
                     <span className="absolute top-4 left-4 px-3 py-1 bg-primary-600 text-white text-xs font-medium rounded-full">
                       {relatedPost.category}
                     </span>

@@ -6,40 +6,6 @@ import { useInView } from 'react-intersection-observer';
 import { useLanguage } from '@/contexts/LanguageContext';
 import type { BlogPost } from '@/lib/wordpress-utils';
 
-// Fallback static posts when WordPress is not configured
-const fallbackPosts = [
-  {
-    id: '1',
-    slug: 'reformes-code-travail-2024',
-    title: 'Nouvelles Reformes du Code du Travail au Cameroun en 2024',
-    excerpt: 'Decouvrez les changements majeurs apportes au Code du Travail camerounais et leurs implications pour les employeurs et les salaries.',
-    category: 'Droit du Travail',
-    dateFormatted: '15 Jan 2024',
-    readTime: '5 min',
-    image: '/images/default-post.jpg',
-  },
-  {
-    id: '2',
-    slug: 'guide-creation-entreprise',
-    title: 'Guide Complet pour Creer une Entreprise au Cameroun',
-    excerpt: 'Toutes les etapes et documents necessaires pour immatriculer votre entreprise au registre du commerce camerounais.',
-    category: 'Droit des Affaires',
-    dateFormatted: '10 Jan 2024',
-    readTime: '8 min',
-    image: '/images/default-post.jpg',
-  },
-  {
-    id: '3',
-    slug: 'protection-donnees-personnelles',
-    title: 'Protection des Donnees Personnelles: Ce Que Dit la Loi',
-    excerpt: 'Analyse de la reglementation camerounaise sur la protection des donnees personnelles et les obligations des entreprises.',
-    category: 'Droit Numerique',
-    dateFormatted: '5 Jan 2024',
-    readTime: '6 min',
-    image: '/images/default-post.jpg',
-  },
-];
-
 const sectionText = {
   badge: { fr: 'Actualités', en: 'News' },
   title: { fr: 'Nos Analyses', en: 'Our Analyses' },
@@ -49,6 +15,10 @@ const sectionText = {
   },
   viewAll: { fr: 'Voir Toutes les Analyses', en: 'View All Analyses' },
   readMore: { fr: 'Lire la suite', en: 'Read more' },
+  empty: {
+    fr: 'Aucun article disponible pour le moment. Revenez bientôt.',
+    en: 'No articles available at the moment. Check back soon.',
+  },
 };
 
 interface BlogPreviewProps {
@@ -62,9 +32,6 @@ export default function BlogPreview({ posts }: BlogPreviewProps) {
     rootMargin: '50px',
   });
   const { language } = useLanguage();
-
-  const displayPosts = posts || fallbackPosts;
-  const isWordPress = !!posts;
 
   return (
     <section className="section-padding bg-gray-50">
@@ -94,8 +61,18 @@ export default function BlogPreview({ posts }: BlogPreviewProps) {
         </div>
 
         {/* Blog Grid */}
+        {!posts || posts.length === 0 ? (
+          <div ref={ref} className="flex flex-col items-center justify-center py-16 text-center">
+            <div className="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mb-4">
+              <svg className="w-8 h-8 text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
+              </svg>
+            </div>
+            <p className="text-gray-500 max-w-sm">{sectionText.empty[language]}</p>
+          </div>
+        ) : (
         <div ref={ref} className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {displayPosts.map((post, index) => (
+          {posts.map((post, index) => (
             <article
               key={post.id}
               className={`group bg-white rounded-2xl overflow-hidden card-hover border border-gray-100 ${
@@ -105,7 +82,9 @@ export default function BlogPreview({ posts }: BlogPreviewProps) {
             >
               {/* Image */}
               <div className="h-48 relative overflow-hidden">
-                {post.image && post.image !== '/images/default-post.jpg' ? (
+
+                {/**   */}
+                {/* {post.image && post.image !== '/images/default-post.jpg' ? (
                   <Image
                   unoptimized
                     src={post.image}
@@ -117,7 +96,17 @@ export default function BlogPreview({ posts }: BlogPreviewProps) {
                   <div className="w-full h-full bg-gradient-to-br from-primary-100 to-primary-200 flex items-center justify-center">
                     <Image src="/custom-icons/SVG/42ICONE_BICHROME.svg" alt="Article" width={64} height={64} />
                   </div>
-                )}
+                )} */}
+
+                {/**   */}
+
+                <Image
+                  unoptimized
+                  src={post.image || '/images/blog-placeholder.svg'}
+                  alt={post.imageAlt || post.title}
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-500"
+                />
                 {/* Category Badge */}
                 <span className="absolute top-4 left-4 px-3 py-1 bg-primary-600 text-white text-xs font-medium rounded-full">
                   {post.category}
@@ -164,6 +153,7 @@ export default function BlogPreview({ posts }: BlogPreviewProps) {
             </article>
           ))}
         </div>
+        )}
       </div>
     </section>
   );
