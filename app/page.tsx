@@ -39,6 +39,7 @@ export default async function Home() {
   try {
     const wpPosts = await getFeaturedPosts(3);
     latestPosts = wpPosts.length > 0 ? transformPosts(wpPosts) : undefined;
+    console.log(latestPosts);
   } catch {
     latestPosts = undefined;
   }

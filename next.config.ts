@@ -10,6 +10,16 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: 'https',
+        hostname: 'www.legalcameroun.com',
+        pathname: '/wp-content/uploads/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'live.legalcameroun.com',
+        pathname: '/wp-content/uploads/**',
+      },
+      {
+        protocol: 'https',
         hostname: 'staging.legalcameroun.com',
         pathname: '/wp-content/uploads/**',
       },

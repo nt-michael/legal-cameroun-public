@@ -107,6 +107,7 @@ export default function BlogPreview({ posts }: BlogPreviewProps) {
               <div className="h-48 relative overflow-hidden">
                 {post.image && post.image !== '/images/default-post.jpg' ? (
                   <Image
+                  unoptimized
                     src={post.image}
                     alt={'imageAlt' in post ? (post as BlogPost).imageAlt : post.title}
                     fill
