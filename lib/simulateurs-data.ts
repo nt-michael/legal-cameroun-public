@@ -30,7 +30,7 @@ export const CNPS_RATES = {
 
   // Employer contributions (patronale)
   prestation_familiale: 0.07, // 7%
-  accident_travail: 0.025, // 2.5% (on full salary, not capped)
+  accident_travail: 0.0175, // 1.75% (on full salary, not capped)
   pension_employer: 0.042, // 4.2%
 };
 
@@ -47,13 +47,14 @@ export const SALARY_TAX_RATES = {
 
 // ============================================
 // IRPP BRACKETS (Impôt sur le Revenu des Personnes Physiques)
-// Annual progressive brackets
+// Monthly progressive brackets (applied to monthly net imposable)
 // ============================================
-export const IRPP_BRACKETS = [
-  { min: 0, max: 2000000, rate: 0.10 },
-  { min: 2000000, max: 3000000, rate: 0.15 },
-  { min: 3000000, max: 5000000, rate: 0.25 },
-  { min: 5000000, max: Infinity, rate: 0.35 },
+export const IRPP_BRACKETS_MONTHLY = [
+  { min: 0,       max: 62_000,  rate: 0.00 },
+  { min: 62_000,  max: 310_000, rate: 0.10 },
+  { min: 310_000, max: 429_000, rate: 0.15 },
+  { min: 429_000, max: 667_000, rate: 0.25 },
+  { min: 667_000, max: Infinity, rate: 0.35 },
 ];
 
 // ============================================
@@ -226,17 +227,15 @@ export interface SalaireResult {
   chargesPatronales: number;
 }
 
-// Calculate IRPP (progressive tax)
-function calculateIRPP(annualIncome: number): number {
+// Calculate IRPP (progressive tax on monthly net imposable)
+function calculateIRPP(monthlyNetImposable: number): number {
   let irpp = 0;
-  let remaining = annualIncome;
+  let remaining = Math.max(0, monthlyNetImposable);
 
-  for (const bracket of IRPP_BRACKETS) {
-    if (remaining <= 0) break;
-
-    const taxableInBracket = Math.min(remaining, bracket.max - bracket.min);
+  for (const bracket of IRPP_BRACKETS_MONTHLY) {
+    if (remaining <= bracket.min) break;
+    const taxableInBracket = Math.min(remaining, bracket.max) - bracket.min;
     irpp += taxableInBracket * bracket.rate;
-    remaining -= taxableInBracket;
   }
 
   return irpp;
@@ -283,14 +282,10 @@ export function calculateSalaire(brutMensuel: number): SalaireResult {
   // ================
   // IMPÔTS SALARIAUX (Employee Taxes)
   // ================
-  // IRPP: Calculate annual taxable income per CGI, then divide by 12
-  const annualGross = brutMensuel * 12;
-  const afterAbatement = Math.max(0, annualGross - 500000);
-  const afterExpenses = afterAbatement * 0.80; // 20% professional expenses deduction
-  const annualCNPS = totalCotisationsSalariales * 12;
-  const annualTaxableIncome = Math.max(0, afterExpenses - annualCNPS);
-  const annualIRPP = calculateIRPP(annualTaxableIncome);
-  const monthlyIRPP = annualIRPP / 12;
+  // IRPP: Net Imposable = Gross × 70% − PVID − 41,667 (500,000 ÷ 12 standard abatement)
+  const MONTHLY_ABATEMENT = 500_000 / 12; // 41,666.67
+  const netImposable = Math.max(0, (brutMensuel * 0.70) - pensionSalariale - MONTHLY_ABATEMENT);
+  const monthlyIRPP = calculateIRPP(netImposable);
 
   // Centimes additionnels: 10% of IRPP
   const centimes = monthlyIRPP * SALARY_TAX_RATES.centimes_additionnels;
