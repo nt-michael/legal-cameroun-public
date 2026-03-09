@@ -73,9 +73,9 @@ const menuSections: FooterSection[] = [
 
 const footerLinks = {
   legal: [
-    { name: { fr: 'Mentions Légales', en: 'Legal Notice' }, href: '/legal' },
-    { name: { fr: 'Politique de Confidentialité', en: 'Privacy Policy' }, href: '/privacy' },
-    { name: { fr: 'Conditions Générales', en: 'Terms & Conditions' }, href: '/terms' },
+    { name: { fr: 'Mentions Légales', en: 'Legal Notice' }, href: '/mentions-legales' },
+    { name: { fr: 'Politique de Confidentialité', en: 'Privacy Policy' }, href: '/politique-de-confidentialite' },
+    { name: { fr: 'Conditions Générales', en: 'Terms & Conditions' }, href: '/conditions-generales' },
   ],
 };
 

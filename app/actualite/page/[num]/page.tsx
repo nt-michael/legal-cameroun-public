@@ -3,6 +3,7 @@ import { redirect } from 'next/navigation';
 import { fetchListingData } from '@/lib/actualite-page-utils';
 import ActualiteHero from '@/components/actualite/ActualiteHero';
 import ActualiteGrid from '@/components/actualite/ActualiteGrid';
+import { createPageMetadata } from '@/lib/seo-utils';
 
 export const revalidate = 3600;
 
@@ -20,7 +21,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     : 'Actualité Juridique & Fiscale au Cameroun - Legal Cameroun';
   const description = `Analyses, guides pratiques et actualités du droit des affaires au Cameroun. Restez informé des évolutions juridiques et fiscales — page ${page}.`;
 
-  return {
+  return createPageMetadata(`/actualite/page/${page}`, {
     title,
     description,
     alternates: {
@@ -38,7 +39,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       title,
       description,
     },
-  };
+  });
 }
 
 export default async function PaginatedActualitePage({ params, searchParams }: PageProps) {

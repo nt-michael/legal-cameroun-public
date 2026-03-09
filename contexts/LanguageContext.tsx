@@ -1,6 +1,7 @@
 'use client';
 
 import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import { useRouter } from 'next/navigation';
 import { translations, Language, Translations } from '@/lib/translations';
 
 interface LanguageContextType {
@@ -14,6 +15,7 @@ const LanguageContext = createContext<LanguageContextType | undefined>(undefined
 export function LanguageProvider({ children }: { children: ReactNode }) {
   const [language, setLanguageState] = useState<Language>('fr');
   const [mounted, setMounted] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
     setMounted(true);
@@ -22,6 +24,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     const savedLang = localStorage.getItem('language') as Language | null;
     if (savedLang && (savedLang === 'fr' || savedLang === 'en')) {
       setLanguageState(savedLang);
+      document.cookie = `lang=${savedLang}; path=/; max-age=${60 * 60 * 24 * 365}; SameSite=Lax`;
       return;
     }
 
@@ -29,11 +32,14 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     const browserLang = navigator.language || (navigator as unknown as { userLanguage?: string }).userLanguage || 'fr';
     const detectedLang = browserLang.toLowerCase().startsWith('en') ? 'en' : 'fr';
     setLanguageState(detectedLang);
+    document.cookie = `lang=${detectedLang}; path=/; max-age=${60 * 60 * 24 * 365}; SameSite=Lax`;
   }, []);
 
   const setLanguage = (lang: Language) => {
     setLanguageState(lang);
     localStorage.setItem('language', lang);
+    document.cookie = `lang=${lang}; path=/; max-age=${60 * 60 * 24 * 365}; SameSite=Lax`;
+    router.refresh();
   };
 
   const t = translations[language];

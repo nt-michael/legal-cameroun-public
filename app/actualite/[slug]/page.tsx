@@ -2,6 +2,7 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { getPost, getPosts, getRelatedPosts, getComments } from '@/lib/wordpress';
 import { transformPost, transformPosts, transformComments, stripHtml } from '@/lib/wordpress-utils';
+import { createPageMetadata } from '@/lib/seo-utils';
 import PostContent from '@/components/actualite/PostContent';
 
 export const revalidate = 3600; // Revalidate every hour
@@ -34,7 +35,14 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const post = transformPost(wpPost);
   const description = stripHtml(wpPost.excerpt.rendered).slice(0, 160);
 
-  return {
+  const featuredMedia = wpPost._embedded?.['wp:featuredmedia']?.[0];
+  const mediaDetails = featuredMedia?.media_details;
+  const hasImage = post.image !== '/images/default-post.jpg';
+
+  const imageWidth = mediaDetails?.width;
+  const imageHeight = mediaDetails?.height;
+
+  const defaults: Metadata = {
     title: `${post.title} | Legal Cameroun`,
     description,
     alternates: {
@@ -49,15 +57,19 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       publishedTime: post.date,
       modifiedTime: post.modified,
       authors: [post.author],
-      images: post.image !== '/images/default-post.jpg' ? [{ url: post.image, alt: post.imageAlt }] : undefined,
+      images: hasImage
+        ? [{ url: post.image, alt: post.imageAlt, width: imageWidth, height: imageHeight }]
+        : undefined,
     },
     twitter: {
       card: 'summary_large_image',
       title: post.title,
       description,
-      images: post.image !== '/images/default-post.jpg' ? [post.image] : undefined,
+      images: hasImage ? [post.image] : undefined,
     },
   };
+
+  return createPageMetadata(`/actualite/${slug}`, defaults);
 }
 
 export default async function PostPage({ params }: PageProps) {

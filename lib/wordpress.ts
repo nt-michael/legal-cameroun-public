@@ -55,10 +55,12 @@ export interface WPPost {
       source_url: string;
       alt_text: string;
       media_details?: {
+        width?: number;
+        height?: number;
         sizes?: {
-          medium?: { source_url: string };
-          large?: { source_url: string };
-          full?: { source_url: string };
+          medium?: { source_url: string; width?: number; height?: number };
+          large?: { source_url: string; width?: number; height?: number };
+          full?: { source_url: string; width?: number; height?: number };
         };
       };
     }>;
@@ -284,4 +286,88 @@ export async function checkApiConnection(): Promise<boolean> {
 // Check if WordPress integration is available
 export function isWordPressConfigured(): boolean {
   return isConfigured;
+}
+
+// ─── SEO Manager types & functions ──────────────────────────────────────────
+
+export interface WPPageSEO {
+  slug: string;
+  name: string;
+  title?: string;
+  description?: string;
+  keywords?: string;
+  canonical?: string;
+  robots?: string;
+  og_title?: string;
+  og_description?: string;
+  og_type?: string;
+  og_image?: string;
+  og_image_width?: number;
+  og_image_height?: number;
+  og_image_alt?: string;
+  twitter_card?: string;
+  twitter_title?: string;
+  twitter_description?: string;
+  twitter_image?: string;
+  // English variant fields
+  title_en?: string;
+  description_en?: string;
+  keywords_en?: string;
+  og_title_en?: string;
+  og_description_en?: string;
+  og_image_alt_en?: string;
+  twitter_title_en?: string;
+  twitter_description_en?: string;
+}
+
+export async function getAllPagesSEO(): Promise<WPPageSEO[]> {
+  const siteUrl = process.env.WC_SITE_URL;
+  if (!siteUrl) return [];
+  try {
+    const res = await fetch(`${siteUrl}/wp-json/lc-seo/v1/pages`, {
+      next: { revalidate: REVALIDATE_SECONDS },
+    });
+    if (!res.ok) return [];
+    const json = await res.json();
+    return Array.isArray(json?.data) ? json.data : [];
+  } catch {
+    return [];
+  }
+}
+
+// ─── WordPress Pages (static pages, e.g. legal content) ─────────────────────
+
+export interface WPPage {
+  id: number;
+  slug: string;
+  status: string;
+  title: { rendered: string };
+  content: { rendered: string };
+  date: string;
+  modified: string;
+  featured_media: number;
+  _embedded?: {
+    'wp:featuredmedia'?: Array<{
+      source_url: string;
+      alt_text: string;
+      media_details?: {
+        width?: number;
+        height?: number;
+        sizes?: {
+          medium?: { source_url: string };
+          large?: { source_url: string };
+        };
+      };
+    }>;
+  };
+}
+
+export async function getWPPage(slug: string): Promise<WPPage | null> {
+  try {
+    const pages = await wpFetch<WPPage[]>(`/pages?slug=${encodeURIComponent(slug)}&_embed=1`);
+    return pages[0] || null;
+  } catch (error) {
+    console.error(`Failed to fetch WP page: ${slug}`, error);
+    return null;
+  }
 }

@@ -154,5 +154,23 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly',
       priority: 0.7,
     },
+    {
+      url: `${BASE}/mentions-legales`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.3,
+    },
+    {
+      url: `${BASE}/politique-de-confidentialite`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.3,
+    },
+    {
+      url: `${BASE}/conditions-generales`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.3,
+    },
   ];
 }
