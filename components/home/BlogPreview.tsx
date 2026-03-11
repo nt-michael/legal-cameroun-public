@@ -108,8 +108,7 @@ export default function BlogPreview({ posts }: BlogPreviewProps) {
                   className="object-cover group-hover:scale-105 transition-transform duration-500"
                 />
                 {/* Category Badge */}
-                <span className="absolute top-4 left-4 px-3 py-1 bg-primary-600 text-white text-xs font-medium rounded-full">
-                  {post.category}
+                <span className="absolute top-4 left-4 px-3 py-1 bg-primary-600 text-white text-xs font-medium rounded-full" dangerouslySetInnerHTML={{__html: post.category}}>
                 </span>
               </div>
 

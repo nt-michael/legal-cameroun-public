@@ -5,7 +5,7 @@ import ActualiteHero from '@/components/actualite/ActualiteHero';
 import ActualiteGrid from '@/components/actualite/ActualiteGrid';
 import { createPageMetadata } from '@/lib/seo-utils';
 
-export const revalidate = 3600;
+export const revalidate = 300;
 
 interface PageProps {
   params: Promise<{ num: string }>;

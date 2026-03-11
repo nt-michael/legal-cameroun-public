@@ -98,8 +98,8 @@ export default function BlogPostCard({ post, index, featured = false, useWordPre
         />
         {/* Category Badge */}
         <div className="absolute top-4 left-4">
-          <span className="px-3 py-1 bg-primary-600 text-white text-xs font-medium rounded-full">
-            {post.category}
+          <span className="px-3 py-1 bg-primary-600 text-white text-xs font-medium rounded-full" dangerouslySetInnerHTML={{__html: post.category}}>
+
           </span>
         </div>
       </div>

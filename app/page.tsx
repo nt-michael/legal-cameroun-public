@@ -11,6 +11,8 @@ import { getFeaturedPosts } from '@/lib/wordpress';
 import { transformPosts } from '@/lib/wordpress-utils';
 import { createPageMetadata } from '@/lib/seo-utils';
 
+export const revalidate = 300;
+
 export async function generateMetadata(): Promise<Metadata> {
   return createPageMetadata('/', {
     title: "Legal Cameroun | Votre LegalTech au Cameroun | Plateforme Juridique, Comptable & Fiscale",
@@ -42,7 +44,6 @@ export default async function Home() {
   try {
     const wpPosts = await getFeaturedPosts(3);
     latestPosts = wpPosts.length > 0 ? transformPosts(wpPosts) : undefined;
-    console.log(latestPosts);
   } catch {
     latestPosts = undefined;
   }

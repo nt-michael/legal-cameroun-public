@@ -75,7 +75,7 @@ export default function PostContent({ post, url, relatedPosts = [], comments = [
               {text.backToNews[language]}
             </Link>
             <span className="inline-block px-3 py-1 bg-primary-500/20 text-primary-300 text-sm font-medium rounded-full">
-              {post.category}
+              <span dangerouslySetInnerHTML={{ __html: post.category }} />
             </span>
           </div>
 
@@ -144,6 +144,7 @@ export default function PostContent({ post, url, relatedPosts = [], comments = [
               fill
               className="object-cover"
               priority
+              unoptimized
             />
           </div>
         </div>

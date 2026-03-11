@@ -126,8 +126,8 @@ export default function ActualiteGrid({
                   ? 'bg-primary-600 text-white'
                   : 'bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
               }`}
+              dangerouslySetInnerHTML={{ __html: category.name }}
             >
-              {category.name}
             </button>
           ))}
         </div>

@@ -22,6 +22,8 @@ function getAuthHeader(): string {
 
 // Revalidation time in seconds (1 hour default)
 const REVALIDATE_SECONDS = parseInt(process.env.WP_REVALIDATE_SECONDS || '3600');
+// Shorter revalidation for post listings (5 minutes default)
+const POSTS_REVALIDATE_SECONDS = parseInt(process.env.WP_POSTS_REVALIDATE_SECONDS || '300');
 
 // Types
 export interface WPComment {
@@ -111,7 +113,7 @@ async function wpFetch<T>(endpoint: string, options: RequestInit = {}): Promise<
 }
 
 // Fetch with headers access (for pagination)
-async function wpFetchWithHeaders(endpoint: string): Promise<{ data: WPPost[]; totalPages: number; total: number }> {
+async function wpFetchWithHeaders(endpoint: string, revalidate: number = REVALIDATE_SECONDS): Promise<{ data: WPPost[]; totalPages: number; total: number }> {
   if (!isConfigured) {
     throw new Error('WordPress API not configured');
   }
@@ -123,7 +125,7 @@ async function wpFetchWithHeaders(endpoint: string): Promise<{ data: WPPost[]; t
       'Authorization': getAuthHeader(),
     },
     next: {
-      revalidate: REVALIDATE_SECONDS,
+      revalidate,
     },
   });
 
@@ -159,7 +161,7 @@ export async function getPosts(params?: {
   if (params?.category) searchParams.set('categories', params.category.toString());
   if (params?.search) searchParams.set('search', params.search);
 
-  const { data: posts, totalPages, total } = await wpFetchWithHeaders(`/posts?${searchParams}`);
+  const { data: posts, totalPages, total } = await wpFetchWithHeaders(`/posts?${searchParams}`, POSTS_REVALIDATE_SECONDS);
 
   return { posts, totalPages, total };
 }

@@ -4,7 +4,7 @@ import ActualiteHero from '@/components/actualite/ActualiteHero';
 import ActualiteGrid from '@/components/actualite/ActualiteGrid';
 import { createPageMetadata } from '@/lib/seo-utils';
 
-export const revalidate = 3600; // Revalidate every hour
+export const revalidate = 300; // Revalidate every 5 minutes
 
 export async function generateMetadata(): Promise<Metadata> {
   return createPageMetadata('/actualite', {
