@@ -7,24 +7,46 @@ import LegalPageContent from '@/components/legal/LegalPageContent';
 
 export async function generateMetadata(): Promise<Metadata> {
   return createPageMetadata('/conditions-generales', {
-    title: 'Conditions Générales d\'Utilisation | Legal Cameroun',
-    description: 'Consultez les conditions générales d\'utilisation des services de Legal Cameroun, plateforme juridique, comptable et fiscale au Cameroun.',
-    openGraph: {
-      title: 'Conditions Générales d\'Utilisation | Legal Cameroun',
-      description: 'Conditions générales d\'utilisation des services Legal Cameroun.',
-      type: 'website',
-      url: 'https://legalcameroun.com/conditions-generales',
-      siteName: 'Legal Cameroun',
+    fr: {
+      title: "Conditions Générales d'Utilisation | Legal Cameroun",
+      description: "Consultez les conditions générales d'utilisation des services de Legal Cameroun, plateforme juridique, comptable et fiscale au Cameroun.",
+      openGraph: {
+        title: "Conditions Générales d'Utilisation | Legal Cameroun",
+        description: "Conditions générales d'utilisation des services Legal Cameroun.",
+        type: 'website',
+        url: 'https://legalcameroun.com/conditions-generales',
+        siteName: 'Legal Cameroun',
+      },
+      twitter: {
+        card: 'summary',
+        title: 'Conditions Générales | Legal Cameroun',
+        description: "Conditions générales d'utilisation des services Legal Cameroun.",
+      },
+      alternates: {
+        canonical: 'https://legalcameroun.com/conditions-generales',
+      },
+      robots: 'noindex,follow',
     },
-    twitter: {
-      card: 'summary',
-      title: 'Conditions Générales | Legal Cameroun',
-      description: 'Conditions générales d\'utilisation des services Legal Cameroun.',
+    en: {
+      title: 'Terms and Conditions | Legal Cameroun',
+      description: 'Read the terms and conditions of Legal Cameroun services, a legal, accounting and tax platform in Cameroon.',
+      openGraph: {
+        title: 'Terms and Conditions | Legal Cameroun',
+        description: 'Terms and conditions of Legal Cameroun services.',
+        type: 'website',
+        url: 'https://legalcameroun.com/conditions-generales',
+        siteName: 'Legal Cameroun',
+      },
+      twitter: {
+        card: 'summary',
+        title: 'Terms and Conditions | Legal Cameroun',
+        description: 'Terms and conditions of Legal Cameroun services.',
+      },
+      alternates: {
+        canonical: 'https://legalcameroun.com/conditions-generales',
+      },
+      robots: 'noindex,follow',
     },
-    alternates: {
-      canonical: 'https://legalcameroun.com/conditions-generales',
-    },
-    robots: 'noindex,follow',
   });
 }
 

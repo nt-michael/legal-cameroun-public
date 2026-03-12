@@ -7,24 +7,46 @@ import LegalPageContent from '@/components/legal/LegalPageContent';
 
 export async function generateMetadata(): Promise<Metadata> {
   return createPageMetadata('/politique-de-confidentialite', {
-    title: 'Politique de Confidentialité | Legal Cameroun',
-    description: 'Découvrez comment Legal Cameroun collecte, utilise et protège vos données personnelles conformément à la réglementation applicable.',
-    openGraph: {
+    fr: {
       title: 'Politique de Confidentialité | Legal Cameroun',
-      description: 'Comment Legal Cameroun protège vos données personnelles.',
-      type: 'website',
-      url: 'https://legalcameroun.com/politique-de-confidentialite',
-      siteName: 'Legal Cameroun',
+      description: 'Découvrez comment Legal Cameroun collecte, utilise et protège vos données personnelles conformément à la réglementation applicable.',
+      openGraph: {
+        title: 'Politique de Confidentialité | Legal Cameroun',
+        description: 'Comment Legal Cameroun protège vos données personnelles.',
+        type: 'website',
+        url: 'https://legalcameroun.com/politique-de-confidentialite',
+        siteName: 'Legal Cameroun',
+      },
+      twitter: {
+        card: 'summary',
+        title: 'Politique de Confidentialité | Legal Cameroun',
+        description: 'Comment Legal Cameroun protège vos données personnelles.',
+      },
+      alternates: {
+        canonical: 'https://legalcameroun.com/politique-de-confidentialite',
+      },
+      robots: 'noindex,follow',
     },
-    twitter: {
-      card: 'summary',
-      title: 'Politique de Confidentialité | Legal Cameroun',
-      description: 'Comment Legal Cameroun protège vos données personnelles.',
+    en: {
+      title: 'Privacy Policy | Legal Cameroun',
+      description: 'Learn how Legal Cameroun collects, uses and protects your personal data in accordance with applicable regulations.',
+      openGraph: {
+        title: 'Privacy Policy | Legal Cameroun',
+        description: 'How Legal Cameroun protects your personal data.',
+        type: 'website',
+        url: 'https://legalcameroun.com/politique-de-confidentialite',
+        siteName: 'Legal Cameroun',
+      },
+      twitter: {
+        card: 'summary',
+        title: 'Privacy Policy | Legal Cameroun',
+        description: 'How Legal Cameroun protects your personal data.',
+      },
+      alternates: {
+        canonical: 'https://legalcameroun.com/politique-de-confidentialite',
+      },
+      robots: 'noindex,follow',
     },
-    alternates: {
-      canonical: 'https://legalcameroun.com/politique-de-confidentialite',
-    },
-    robots: 'noindex,follow',
   });
 }
 

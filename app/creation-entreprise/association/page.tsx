@@ -5,26 +5,52 @@ import { createPageMetadata } from '@/lib/seo-utils';
 
 export async function generateMetadata(): Promise<Metadata> {
   return createPageMetadata('/creation-entreprise/association', {
-    title: 'Créer une Association au Cameroun | Legal Cameroun',
-    description: 'Créez votre association au Cameroun facilement. Structure idéale pour projets culturels, caritatifs ou éducatifs. Déclaration simplifiée, accompagnement complet.',
-    keywords: ['association cameroun', 'créer association cameroun', 'ONG cameroun', 'association culturelle cameroun', 'déclaration association'],
-    openGraph: {
+    fr: {
       title: 'Créer une Association au Cameroun | Legal Cameroun',
       description: 'Créez votre association au Cameroun facilement. Structure idéale pour projets culturels, caritatifs ou éducatifs. Déclaration simplifiée, accompagnement complet.',
-      type: 'website',
-      url: 'https://legalcameroun.com/creation-entreprise/association',
-      siteName: 'Legal Cameroun',
+      keywords: ['association cameroun', 'créer association cameroun', 'ONG cameroun', 'association culturelle cameroun', 'déclaration association'],
+      openGraph: {
+        title: 'Créer une Association au Cameroun | Legal Cameroun',
+        description: 'Créez votre association au Cameroun facilement. Structure idéale pour projets culturels, caritatifs ou éducatifs. Déclaration simplifiée, accompagnement complet.',
+        type: 'website',
+        url: 'https://legalcameroun.com/creation-entreprise/association',
+        siteName: 'Legal Cameroun',
+      },
+      twitter: {
+        card: 'summary_large_image',
+        title: 'Créer une Association au Cameroun | Legal Cameroun',
+        description: 'Créez votre association au Cameroun facilement. Structure idéale pour projets culturels, caritatifs ou éducatifs. Déclaration simplifiée, accompagnement complet.',
+      },
+      alternates: {
+        languages: {
+          'fr': 'https://legalcameroun.com/creation-entreprise/association',
+          'en': 'https://legalcameroun.com/creation-entreprise/association',
+          'x-default': 'https://legalcameroun.com/creation-entreprise/association',
+        },
+      },
     },
-    twitter: {
-      card: 'summary_large_image',
-      title: 'Créer une Association au Cameroun | Legal Cameroun',
-      description: 'Créez votre association au Cameroun facilement. Structure idéale pour projets culturels, caritatifs ou éducatifs. Déclaration simplifiée, accompagnement complet.',
-    },
-    alternates: {
-      languages: {
-        'fr': 'https://legalcameroun.com/creation-entreprise/association',
-        'en': 'https://legalcameroun.com/creation-entreprise/association',
-        'x-default': 'https://legalcameroun.com/creation-entreprise/association',
+    en: {
+      title: 'Association Formation in Cameroon | Legal Cameroun',
+      description: 'Register your association in Cameroon. Our experts handle the legal formalities.',
+      keywords: ['association cameroon', 'register association cameroon', 'NGO cameroon', 'cultural association cameroon', 'association declaration'],
+      openGraph: {
+        title: 'Association Formation in Cameroon | Legal Cameroun',
+        description: 'Register your association in Cameroon. Our experts handle the legal formalities.',
+        type: 'website',
+        url: 'https://legalcameroun.com/creation-entreprise/association',
+        siteName: 'Legal Cameroun',
+      },
+      twitter: {
+        card: 'summary_large_image',
+        title: 'Association Formation in Cameroon | Legal Cameroun',
+        description: 'Register your association in Cameroon. Our experts handle the legal formalities.',
+      },
+      alternates: {
+        languages: {
+          'fr': 'https://legalcameroun.com/creation-entreprise/association',
+          'en': 'https://legalcameroun.com/creation-entreprise/association',
+          'x-default': 'https://legalcameroun.com/creation-entreprise/association',
+        },
       },
     },
   });

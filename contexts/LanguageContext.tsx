@@ -20,19 +20,31 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     setMounted(true);
 
-    // Check localStorage first
+    // Priority: localStorage > existing cookie (set by middleware) > navigator
     const savedLang = localStorage.getItem('language') as Language | null;
-    if (savedLang && (savedLang === 'fr' || savedLang === 'en')) {
+    if (savedLang === 'fr' || savedLang === 'en') {
       setLanguageState(savedLang);
       document.cookie = `lang=${savedLang}; path=/; max-age=${60 * 60 * 24 * 365}; SameSite=Lax`;
       return;
     }
 
-    // Detect browser language
-    const browserLang = navigator.language || (navigator as unknown as { userLanguage?: string }).userLanguage || 'fr';
-    const detectedLang = browserLang.toLowerCase().startsWith('en') ? 'en' : 'fr';
+    // Read cookie set by middleware (available via document.cookie)
+    const cookieLang = document.cookie
+      .split('; ')
+      .find(row => row.startsWith('lang='))
+      ?.split('=')[1] as Language | undefined;
+    if (cookieLang === 'fr' || cookieLang === 'en') {
+      setLanguageState(cookieLang);
+      localStorage.setItem('language', cookieLang);
+      return;
+    }
+
+    // Final fallback: navigator.language
+    const browserLang = navigator.language || 'fr';
+    const detectedLang: Language = browserLang.toLowerCase().startsWith('en') ? 'en' : 'fr';
     setLanguageState(detectedLang);
     document.cookie = `lang=${detectedLang}; path=/; max-age=${60 * 60 * 24 * 365}; SameSite=Lax`;
+    localStorage.setItem('language', detectedLang);
   }, []);
 
   const setLanguage = (lang: Language) => {

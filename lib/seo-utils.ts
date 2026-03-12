@@ -6,7 +6,9 @@ import { getAllPagesSEO, WPPageSEO } from './wordpress';
 // Cached per request — only one WP fetch per page render
 const fetchPagesSEO = cache(getAllPagesSEO);
 
-export async function createPageMetadata(path: string, defaults: Metadata): Promise<Metadata> {
+export type BilingualMetadata = { fr: Metadata; en: Metadata };
+
+export async function createPageMetadata(path: string, defaults: BilingualMetadata): Promise<Metadata> {
   const cookieStore = await cookies();
   const cookieLang = cookieStore.get('lang')?.value;
 
@@ -21,10 +23,11 @@ export async function createPageMetadata(path: string, defaults: Metadata): Prom
     lang = firstLang.startsWith('en') ? 'en' : 'fr';
   }
 
+  const base = defaults[lang];
   const configs = await fetchPagesSEO();
   const wp = configs.find((c) => c.slug === path);
-  if (!wp) return defaults;
-  return mergeSEO(defaults, wp, lang);
+  if (!wp) return base;
+  return mergeSEO(base, wp, lang);
 }
 
 function nonEmpty(value: string | undefined): string | undefined {

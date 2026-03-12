@@ -15,25 +15,50 @@ export const revalidate = 300;
 
 export async function generateMetadata(): Promise<Metadata> {
   return createPageMetadata('/', {
-    title: "Legal Cameroun | Votre LegalTech au Cameroun | Plateforme Juridique, Comptable & Fiscale",
-    description: "Créez votre entreprise, modifiez vos statuts ou obtenez un conseil fiscal expert au Cameroun. +15 000 entrepreneurs accompagnés. Réponse sous 48h.",
-    keywords: "legal cameroun, création entreprise cameroun, accompagnement juridique douala, conseil fiscal cameroun, droit des affaires OHADA",
-    openGraph: {
+    fr: {
       title: "Legal Cameroun | Votre LegalTech au Cameroun | Plateforme Juridique, Comptable & Fiscale",
       description: "Créez votre entreprise, modifiez vos statuts ou obtenez un conseil fiscal expert au Cameroun. +15 000 entrepreneurs accompagnés. Réponse sous 48h.",
-      type: 'website',
-      url: 'https://legalcameroun.com',
+      keywords: "legal cameroun, création entreprise cameroun, accompagnement juridique douala, conseil fiscal cameroun, droit des affaires OHADA",
+      openGraph: {
+        title: "Legal Cameroun | Votre LegalTech au Cameroun | Plateforme Juridique, Comptable & Fiscale",
+        description: "Créez votre entreprise, modifiez vos statuts ou obtenez un conseil fiscal expert au Cameroun. +15 000 entrepreneurs accompagnés. Réponse sous 48h.",
+        type: 'website',
+        url: 'https://legalcameroun.com',
+      },
+      twitter: {
+        card: 'summary_large_image',
+        title: "Legal Cameroun | Votre LegalTech au Cameroun | Plateforme Juridique, Comptable & Fiscale",
+        description: "Créez votre entreprise, modifiez vos statuts ou obtenez un conseil fiscal expert au Cameroun. +15 000 entrepreneurs accompagnés. Réponse sous 48h.",
+      },
+      alternates: {
+        languages: {
+          'fr': 'https://legalcameroun.com',
+          'en': 'https://legalcameroun.com',
+          'x-default': 'https://legalcameroun.com',
+        },
+      },
     },
-    twitter: {
-      card: 'summary_large_image',
-      title: "Legal Cameroun | Votre LegalTech au Cameroun | Plateforme Juridique, Comptable & Fiscale",
-      description: "Créez votre entreprise, modifiez vos statuts ou obtenez un conseil fiscal expert au Cameroun. +15 000 entrepreneurs accompagnés. Réponse sous 48h.",
-    },
-    alternates: {
-      languages: {
-        'fr': 'https://legalcameroun.com',
-        'en': 'https://legalcameroun.com',
-        'x-default': 'https://legalcameroun.com',
+    en: {
+      title: "Legal Cameroun | Your LegalTech in Cameroon | Legal, Accounting & Tax Platform",
+      description: "Create your company, amend your articles or get expert tax advice in Cameroon. +15,000 entrepreneurs supported. Response within 48h.",
+      keywords: "legal cameroun, company formation cameroon, legal services douala, tax advice cameroon, OHADA business law",
+      openGraph: {
+        title: "Legal Cameroun | Your LegalTech in Cameroon | Legal, Accounting & Tax Platform",
+        description: "Create your company, amend your articles or get expert tax advice in Cameroon. +15,000 entrepreneurs supported. Response within 48h.",
+        type: 'website',
+        url: 'https://legalcameroun.com',
+      },
+      twitter: {
+        card: 'summary_large_image',
+        title: "Legal Cameroun | Your LegalTech in Cameroon | Legal, Accounting & Tax Platform",
+        description: "Create your company, amend your articles or get expert tax advice in Cameroon. +15,000 entrepreneurs supported. Response within 48h.",
+      },
+      alternates: {
+        languages: {
+          'fr': 'https://legalcameroun.com',
+          'en': 'https://legalcameroun.com',
+          'x-default': 'https://legalcameroun.com',
+        },
       },
     },
   });

@@ -2,6 +2,8 @@
 // Static content extracted from legalcameroun.com/news/
 // Will be replaced with WordPress API integration later
 
+import { BilingualText } from '@/lib/translations';
+
 export interface BlogPost {
   id: string;
   slug: string;
@@ -168,8 +170,20 @@ export function getPostBySlug(slug: string): BlogPost | undefined {
 
 // Hero data
 export const actualiteHeroData = {
-  badge: 'Actualités',
-  title: 'Actualité Juridique & Fiscale',
-  subtitle: 'Restez informé des dernières évolutions',
-  description: 'Analyses, guides pratiques et actualités du droit des affaires au Cameroun. Notre équipe d\'experts décrypte pour vous les évolutions juridiques et fiscales.',
+  badge: {
+    fr: 'Actualités',
+    en: 'News',
+  } as BilingualText,
+  title: {
+    fr: 'Actualité Juridique & Fiscale',
+    en: 'Legal & Tax News',
+  } as BilingualText,
+  subtitle: {
+    fr: 'Restez informé des dernières évolutions',
+    en: 'Stay informed of the latest developments',
+  } as BilingualText,
+  description: {
+    fr: "Analyses, guides pratiques et actualités du droit des affaires au Cameroun. Notre équipe d'experts décrypte pour vous les évolutions juridiques et fiscales.",
+    en: "Analyses, practical guides and news from Cameroonian business law. Our team of experts breaks down the latest legal and tax developments for you.",
+  } as BilingualText,
 };

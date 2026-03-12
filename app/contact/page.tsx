@@ -4,36 +4,69 @@ import { createPageMetadata } from '@/lib/seo-utils';
 
 export async function generateMetadata(): Promise<Metadata> {
   return createPageMetadata('/contact', {
-    title: 'Contactez Legal Cameroun | Votre LegalTech au Cameroun | Plateforme Juridique, Comptable & Fiscale',
-    description:
-      "Contactez nos experts pour vos besoins juridiques et fiscaux au Cameroun. Création d'entreprise, modification de statuts, dissolution. Réponse sous 48h garantie.",
-    keywords: [
-      'contact legal cameroun',
-      'avocat douala',
-      'juriste cameroun',
-      'création entreprise cameroun',
-      'conseil OHADA',
-      'expert juridique',
-    ],
-    openGraph: {
+    fr: {
       title: 'Contactez Legal Cameroun | Votre LegalTech au Cameroun | Plateforme Juridique, Comptable & Fiscale',
       description:
         "Contactez nos experts pour vos besoins juridiques et fiscaux au Cameroun. Création d'entreprise, modification de statuts, dissolution. Réponse sous 48h garantie.",
-      type: 'website',
-      url: 'https://legalcameroun.com/contact',
-      siteName: 'Legal Cameroun',
+      keywords: [
+        'contact legal cameroun',
+        'avocat douala',
+        'juriste cameroun',
+        'création entreprise cameroun',
+        'conseil OHADA',
+        'expert juridique',
+      ],
+      openGraph: {
+        title: 'Contactez Legal Cameroun | Votre LegalTech au Cameroun | Plateforme Juridique, Comptable & Fiscale',
+        description:
+          "Contactez nos experts pour vos besoins juridiques et fiscaux au Cameroun. Création d'entreprise, modification de statuts, dissolution. Réponse sous 48h garantie.",
+        type: 'website',
+        url: 'https://legalcameroun.com/contact',
+        siteName: 'Legal Cameroun',
+      },
+      twitter: {
+        card: 'summary_large_image',
+        title: 'Contactez Legal Cameroun | Votre LegalTech au Cameroun | Plateforme Juridique, Comptable & Fiscale',
+        description:
+          "Contactez nos experts pour vos besoins juridiques et fiscaux au Cameroun. Création d'entreprise, modification de statuts, dissolution. Réponse sous 48h garantie.",
+      },
+      alternates: {
+        languages: {
+          'fr': 'https://legalcameroun.com/contact',
+          'en': 'https://legalcameroun.com/contact',
+          'x-default': 'https://legalcameroun.com/contact',
+        },
+      },
     },
-    twitter: {
-      card: 'summary_large_image',
-      title: 'Contactez Legal Cameroun | Votre LegalTech au Cameroun | Plateforme Juridique, Comptable & Fiscale',
-      description:
-        "Contactez nos experts pour vos besoins juridiques et fiscaux au Cameroun. Création d'entreprise, modification de statuts, dissolution. Réponse sous 48h garantie.",
-    },
-    alternates: {
-      languages: {
-        'fr': 'https://legalcameroun.com/contact',
-        'en': 'https://legalcameroun.com/contact',
-        'x-default': 'https://legalcameroun.com/contact',
+    en: {
+      title: 'Contact | Legal Cameroun',
+      description: 'Contact the Legal Cameroun team. Expert legal, accounting and tax advice for businesses in Cameroon.',
+      keywords: [
+        'contact legal cameroun',
+        'lawyer douala',
+        'legal expert cameroon',
+        'company formation cameroon',
+        'OHADA advice',
+        'legal expert',
+      ],
+      openGraph: {
+        title: 'Contact | Legal Cameroun',
+        description: 'Contact the Legal Cameroun team. Expert legal, accounting and tax advice for businesses in Cameroon.',
+        type: 'website',
+        url: 'https://legalcameroun.com/contact',
+        siteName: 'Legal Cameroun',
+      },
+      twitter: {
+        card: 'summary_large_image',
+        title: 'Contact | Legal Cameroun',
+        description: 'Contact the Legal Cameroun team. Expert legal, accounting and tax advice for businesses in Cameroon.',
+      },
+      alternates: {
+        languages: {
+          'fr': 'https://legalcameroun.com/contact',
+          'en': 'https://legalcameroun.com/contact',
+          'x-default': 'https://legalcameroun.com/contact',
+        },
       },
     },
   });

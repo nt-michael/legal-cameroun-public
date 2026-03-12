@@ -129,20 +129,24 @@ export function transformPost(wpPost: WPPost, locale: 'fr' | 'en' = 'fr'): BlogP
     || featuredMedia?.source_url
     || '/images/blog-placeholder.svg';
 
+  const titleEn = wpPost.meta?._post_title_en;
+  const excerptEn = wpPost.meta?._post_excerpt_en;
+  const contentEn = wpPost.meta?._post_content_en;
+
   return {
     id: wpPost.id.toString(),
     slug: wpPost.slug,
-    title: decodeHtmlEntities(wpPost.title.rendered),
-    excerpt: decodeHtmlEntities(stripHtml(wpPost.excerpt.rendered)),
-    content: wpPost.content.rendered,
+    title: decodeHtmlEntities((locale === 'en' && titleEn) ? titleEn : wpPost.title.rendered),
+    excerpt: decodeHtmlEntities(stripHtml((locale === 'en' && excerptEn) ? excerptEn : wpPost.excerpt.rendered)),
+    content: (locale === 'en' && contentEn) ? contentEn : wpPost.content.rendered,
     date: wpPost.date,
     dateFormatted: formatDate(wpPost.date, locale),
     modified: wpPost.modified,
     image: imageUrl,
     imageAlt: featuredMedia?.alt_text || decodeHtmlEntities(wpPost.title.rendered),
-    category: terms[0]?.name || (locale === 'fr' ? 'Non classé' : 'Uncategorized'),
+    category: (locale === 'en' && terms[0]?.name_en) ? terms[0].name_en : (terms[0]?.name || (locale === 'fr' ? 'Non classé' : 'Uncategorized')),
     categorySlug: terms[0]?.slug || 'uncategorized',
-    categories: terms.map(t => ({ name: t.name, slug: t.slug })),
+    categories: terms.map(t => ({ name: (locale === 'en' && t.name_en) ? t.name_en : t.name, slug: t.slug })),
     author: author?.name || 'Legal Cameroun',
     authorAvatar: author?.avatar_urls?.['96'],
     readTime: calculateReadTime(wpPost.content.rendered, locale),

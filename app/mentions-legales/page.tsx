@@ -7,24 +7,46 @@ import LegalPageContent from '@/components/legal/LegalPageContent';
 
 export async function generateMetadata(): Promise<Metadata> {
   return createPageMetadata('/mentions-legales', {
-    title: 'Mentions Légales | Legal Cameroun',
-    description: 'Mentions légales du site Legal Cameroun — éditeur, hébergement, propriété intellectuelle, responsabilité et conditions d\'utilisation.',
-    openGraph: {
+    fr: {
       title: 'Mentions Légales | Legal Cameroun',
-      description: 'Mentions légales du site Legal Cameroun.',
-      type: 'website',
-      url: 'https://legalcameroun.com/mentions-legales',
-      siteName: 'Legal Cameroun',
+      description: "Mentions légales du site Legal Cameroun — éditeur, hébergement, propriété intellectuelle, responsabilité et conditions d'utilisation.",
+      openGraph: {
+        title: 'Mentions Légales | Legal Cameroun',
+        description: 'Mentions légales du site Legal Cameroun.',
+        type: 'website',
+        url: 'https://legalcameroun.com/mentions-legales',
+        siteName: 'Legal Cameroun',
+      },
+      twitter: {
+        card: 'summary',
+        title: 'Mentions Légales | Legal Cameroun',
+        description: 'Mentions légales du site Legal Cameroun.',
+      },
+      alternates: {
+        canonical: 'https://legalcameroun.com/mentions-legales',
+      },
+      robots: 'noindex,follow',
     },
-    twitter: {
-      card: 'summary',
-      title: 'Mentions Légales | Legal Cameroun',
-      description: 'Mentions légales du site Legal Cameroun.',
+    en: {
+      title: 'Legal Notice | Legal Cameroun',
+      description: "Legal Cameroun's legal notice — publisher, hosting, intellectual property, liability and terms of use.",
+      openGraph: {
+        title: 'Legal Notice | Legal Cameroun',
+        description: 'Legal notice for the Legal Cameroun website.',
+        type: 'website',
+        url: 'https://legalcameroun.com/mentions-legales',
+        siteName: 'Legal Cameroun',
+      },
+      twitter: {
+        card: 'summary',
+        title: 'Legal Notice | Legal Cameroun',
+        description: 'Legal notice for the Legal Cameroun website.',
+      },
+      alternates: {
+        canonical: 'https://legalcameroun.com/mentions-legales',
+      },
+      robots: 'noindex,follow',
     },
-    alternates: {
-      canonical: 'https://legalcameroun.com/mentions-legales',
-    },
-    robots: 'noindex,follow',
   });
 }
 

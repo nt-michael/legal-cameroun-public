@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import { cookies } from 'next/headers';
 import { notFound } from 'next/navigation';
 import { getPost, getPosts, getRelatedPosts, getComments } from '@/lib/wordpress';
 import { transformPost, transformPosts, transformComments, stripHtml } from '@/lib/wordpress-utils';
@@ -28,12 +29,20 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   if (!wpPost) {
     return {
-      title: 'Article non trouvé | Legal Cameroun',
+      title: 'Article not found | Legal Cameroun',
     };
   }
 
+  const cookieStore = await cookies();
+  const lang = (cookieStore.get('lang')?.value === 'en' ? 'en' : 'fr') as 'fr' | 'en';
+
   const post = transformPost(wpPost);
-  const description = stripHtml(wpPost.excerpt.rendered).slice(0, 160);
+  const descriptionFr = stripHtml(wpPost.excerpt.rendered).slice(0, 160);
+
+  const titleEnRaw = (wpPost.meta as Record<string, string> | undefined)?._post_title_en;
+  const excerptEn = (wpPost.meta as Record<string, string> | undefined)?._post_excerpt_en;
+  const descriptionEn = excerptEn?.trim() ? excerptEn.trim().slice(0, 160) : descriptionFr;
+  const titleEnFull = titleEnRaw?.trim() ? `${titleEnRaw.trim()} | Legal Cameroun` : `${post.title} | Legal Cameroun`;
 
   const featuredMedia = wpPost._embedded?.['wp:featuredmedia']?.[0];
   const mediaDetails = featuredMedia?.media_details;
@@ -42,16 +51,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const imageWidth = mediaDetails?.width;
   const imageHeight = mediaDetails?.height;
 
-  const defaults: Metadata = {
-    title: `${post.title} | Legal Cameroun`,
-    description,
-    alternates: {
-      canonical: `/actualite/${slug}`,
-    },
+  const commonFields = {
+    alternates: { canonical: `/actualite/${slug}` },
     openGraph: {
-      title: post.title,
-      description,
-      type: 'article',
+      type: 'article' as const,
       url: `/actualite/${slug}`,
       siteName: 'Legal Cameroun',
       publishedTime: post.date,
@@ -62,25 +65,39 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
         : undefined,
     },
     twitter: {
-      card: 'summary_large_image',
-      title: post.title,
-      description,
+      card: 'summary_large_image' as const,
       images: hasImage ? [post.image] : undefined,
     },
   };
 
-  return createPageMetadata(`/actualite/${slug}`, defaults);
+  return createPageMetadata(`/actualite/${slug}`, {
+    fr: {
+      title: `${post.title} | Legal Cameroun`,
+      description: descriptionFr,
+      ...commonFields,
+      openGraph: { ...commonFields.openGraph, title: post.title, description: descriptionFr },
+      twitter: { ...commonFields.twitter, title: post.title, description: descriptionFr },
+    },
+    en: {
+      title: titleEnFull,
+      description: descriptionEn,
+      ...commonFields,
+      openGraph: { ...commonFields.openGraph, title: titleEnRaw?.trim() || post.title, description: descriptionEn },
+      twitter: { ...commonFields.twitter, title: titleEnRaw?.trim() || post.title, description: descriptionEn },
+    },
+  });
 }
 
 export default async function PostPage({ params }: PageProps) {
   const { slug } = await params;
+  const lang = (((await cookies()).get('lang')?.value) ?? 'fr') as 'fr' | 'en';
   const wpPost = await getPost(slug);
 
   if (!wpPost) {
     notFound();
   }
 
-  const post = transformPost(wpPost);
+  const post = transformPost(wpPost, lang);
 
   // Fetch related posts and comments in parallel
   const [relatedWpPosts, wpComments] = await Promise.all([
@@ -88,7 +105,7 @@ export default async function PostPage({ params }: PageProps) {
     getComments(wpPost.id),
   ]);
 
-  const relatedPosts = transformPosts(relatedWpPosts);
+  const relatedPosts = transformPosts(relatedWpPosts, lang);
   const comments = transformComments(wpComments);
 
   const siteUrl = process.env.Frontend_SITE_URL || 'https://legalcameroun.com';

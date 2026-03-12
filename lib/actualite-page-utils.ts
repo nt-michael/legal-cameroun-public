@@ -21,7 +21,7 @@ export interface ListingData {
   useWordPress: boolean;
 }
 
-export async function fetchListingData(page: number = 1, categorySlug?: string): Promise<ListingData> {
+export async function fetchListingData(page: number = 1, categorySlug?: string, lang: 'fr' | 'en' = 'fr'): Promise<ListingData> {
   let posts: BlogPost[] | StaticBlogPost[] = staticPosts;
   let categories: CategoryInfo[] = staticCategories.map((name, i) => ({ id: i, name, slug: name.toLowerCase().replace(/\s+/g, '-') }));
   let totalPages = 1;
@@ -41,8 +41,12 @@ export async function fetchListingData(page: number = 1, categorySlug?: string):
         getCategories(),
       ]);
 
-      posts = transformPosts(postsData.posts);
-      categories = wpCategories.map(c => ({ id: c.id, name: c.name, slug: c.slug }));
+      posts = transformPosts(postsData.posts, lang);
+      categories = wpCategories.map(c => ({
+        id: c.id,
+        name: (lang === 'en' && c.name_en) ? c.name_en : c.name,
+        slug: c.slug,
+      }));
       totalPages = postsData.totalPages;
       useWordPress = true;
     } catch (error) {

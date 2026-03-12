@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 import { fetchListingData } from '@/lib/actualite-page-utils';
 import ActualiteHero from '@/components/actualite/ActualiteHero';
@@ -21,23 +22,49 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     : 'Actualité Juridique & Fiscale au Cameroun - Legal Cameroun';
   const description = `Analyses, guides pratiques et actualités du droit des affaires au Cameroun. Restez informé des évolutions juridiques et fiscales — page ${page}.`;
 
+  const titleEn = page > 1
+    ? `Legal & Tax News in Cameroon - Page ${page} - Legal Cameroun`
+    : 'Legal & Tax News in Cameroon - Legal Cameroun';
+  const descriptionEn = `Analyses, practical guides and news on Cameroonian business law. Stay informed of the latest legal and tax developments — page ${page}.`;
+
   return createPageMetadata(`/actualite/page/${page}`, {
-    title,
-    description,
-    alternates: {
-      canonical: page > 1 ? `/actualite/page/${page}` : '/actualite',
-    },
-    openGraph: {
+    fr: {
       title,
       description,
-      type: 'website',
-      url: `/actualite/page/${page}`,
-      siteName: 'Legal Cameroun',
+      alternates: {
+        canonical: page > 1 ? `/actualite/page/${page}` : '/actualite',
+      },
+      openGraph: {
+        title,
+        description,
+        type: 'website',
+        url: `/actualite/page/${page}`,
+        siteName: 'Legal Cameroun',
+      },
+      twitter: {
+        card: 'summary_large_image',
+        title,
+        description,
+      },
     },
-    twitter: {
-      card: 'summary_large_image',
-      title,
-      description,
+    en: {
+      title: titleEn,
+      description: descriptionEn,
+      alternates: {
+        canonical: page > 1 ? `/actualite/page/${page}` : '/actualite',
+      },
+      openGraph: {
+        title: titleEn,
+        description: descriptionEn,
+        type: 'website',
+        url: `/actualite/page/${page}`,
+        siteName: 'Legal Cameroun',
+      },
+      twitter: {
+        card: 'summary_large_image',
+        title: titleEn,
+        description: descriptionEn,
+      },
     },
   });
 }
@@ -53,7 +80,8 @@ export default async function PaginatedActualitePage({ params, searchParams }: P
     redirect(redirectUrl);
   }
 
-  const data = await fetchListingData(page, categorySlug);
+  const lang = (((await cookies()).get('lang')?.value) ?? 'fr') as 'fr' | 'en';
+  const data = await fetchListingData(page, categorySlug, lang);
 
   // Redirect if page exceeds total
   if (page > data.totalPages && data.totalPages > 0) {

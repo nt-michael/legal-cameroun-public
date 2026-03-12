@@ -2,8 +2,10 @@
 
 import { useEffect, useRef } from 'react';
 import { actualiteHeroData } from '@/lib/actualite-data';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 export default function ActualiteHero() {
+  const { language } = useLanguage();
   const heroRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -45,23 +47,23 @@ export default function ActualiteHero() {
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
             </svg>
-            {actualiteHeroData.badge}
+            {actualiteHeroData.badge[language]}
           </span>
         </div>
 
         {/* Title */}
         <h1 className="animate-item text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-4">
-          {actualiteHeroData.title}
+          {actualiteHeroData.title[language]}
         </h1>
 
         {/* Subtitle */}
         <p className="animate-item text-xl sm:text-2xl text-primary-300 font-medium mb-6">
-          {actualiteHeroData.subtitle}
+          {actualiteHeroData.subtitle[language]}
         </p>
 
         {/* Description */}
         <p className="animate-item text-lg text-gray-300 max-w-3xl mx-auto">
-          {actualiteHeroData.description}
+          {actualiteHeroData.description[language]}
         </p>
       </div>
     </section>

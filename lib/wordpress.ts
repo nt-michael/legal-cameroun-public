@@ -52,6 +52,11 @@ export interface WPPost {
   author: number;
   link: string;
   comment_status: 'open' | 'closed';
+  meta?: {
+    _post_title_en?: string;
+    _post_excerpt_en?: string;
+    _post_content_en?: string;
+  };
   _embedded?: {
     'wp:featuredmedia'?: Array<{
       source_url: string;
@@ -66,7 +71,7 @@ export interface WPPost {
         };
       };
     }>;
-    'wp:term'?: Array<Array<{ id: number; name: string; slug: string }>>;
+    'wp:term'?: Array<Array<{ id: number; name: string; slug: string; name_en?: string }>>;
     author?: Array<{ name: string; avatar_urls: Record<string, string> }>;
   };
 }
@@ -77,6 +82,7 @@ export interface WPCategory {
   slug: string;
   count: number;
   description: string;
+  name_en?: string;
 }
 
 export interface WPPostsResponse {
