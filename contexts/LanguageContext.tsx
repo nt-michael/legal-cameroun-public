@@ -20,15 +20,30 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     setMounted(true);
 
-    // Priority: localStorage > existing cookie (set by middleware) > navigator
-    const savedLang = localStorage.getItem('language') as Language | null;
-    if (savedLang === 'fr' || savedLang === 'en') {
-      setLanguageState(savedLang);
-      document.cookie = `lang=${savedLang}; path=/; max-age=${60 * 60 * 24 * 365}; SameSite=Lax`;
+    // Priority 1: URL prefix (middleware rewrites, but client sees the original URL)
+    const pathname = window.location.pathname;
+    if (pathname.startsWith('/en')) {
+      setLanguageState('en');
+      localStorage.setItem('language', 'en');
+      document.cookie = `lang=en; path=/; max-age=31536000; SameSite=Lax`;
+      return;
+    }
+    if (pathname.startsWith('/fr')) {
+      setLanguageState('fr');
+      localStorage.setItem('language', 'fr');
+      document.cookie = `lang=fr; path=/; max-age=31536000; SameSite=Lax`;
       return;
     }
 
-    // Read cookie set by middleware (available via document.cookie)
+    // Priority 2: localStorage
+    const savedLang = localStorage.getItem('language') as Language | null;
+    if (savedLang === 'fr' || savedLang === 'en') {
+      setLanguageState(savedLang);
+      document.cookie = `lang=${savedLang}; path=/; max-age=31536000; SameSite=Lax`;
+      return;
+    }
+
+    // Priority 3: cookie set by middleware
     const cookieLang = document.cookie
       .split('; ')
       .find(row => row.startsWith('lang='))
@@ -43,15 +58,27 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     const browserLang = navigator.language || 'fr';
     const detectedLang: Language = browserLang.toLowerCase().startsWith('en') ? 'en' : 'fr';
     setLanguageState(detectedLang);
-    document.cookie = `lang=${detectedLang}; path=/; max-age=${60 * 60 * 24 * 365}; SameSite=Lax`;
+    document.cookie = `lang=${detectedLang}; path=/; max-age=31536000; SameSite=Lax`;
     localStorage.setItem('language', detectedLang);
   }, []);
 
   const setLanguage = (lang: Language) => {
     setLanguageState(lang);
     localStorage.setItem('language', lang);
-    document.cookie = `lang=${lang}; path=/; max-age=${60 * 60 * 24 * 365}; SameSite=Lax`;
-    router.refresh();
+    document.cookie = `lang=${lang}; path=/; max-age=31536000; SameSite=Lax`;
+
+    const currentPath = window.location.pathname;
+    let newPath: string;
+    if (lang === 'en') {
+      newPath = currentPath.startsWith('/en') || currentPath.startsWith('/fr')
+        ? '/en' + currentPath.slice(3)
+        : '/en' + currentPath;
+    } else {
+      newPath = (currentPath.startsWith('/en') || currentPath.startsWith('/fr'))
+        ? currentPath.slice(3) || '/'
+        : currentPath;
+    }
+    router.push(newPath);
   };
 
   const t = translations[language];

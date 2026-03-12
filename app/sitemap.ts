@@ -2,175 +2,61 @@ import { MetadataRoute } from 'next';
 
 const BASE = 'https://legalcameroun.com';
 
+const pages: Array<{
+  path: string;
+  changeFrequency: MetadataRoute.Sitemap[number]['changeFrequency'];
+  priority: number;
+}> = [
+  { path: '',                                              changeFrequency: 'daily',   priority: 1.0 },
+  { path: '/creation-entreprise',                         changeFrequency: 'weekly',  priority: 0.9 },
+  { path: '/modification-entreprise',                     changeFrequency: 'weekly',  priority: 0.9 },
+  { path: '/creation-entreprise/sas',                     changeFrequency: 'weekly',  priority: 0.8 },
+  { path: '/creation-entreprise/sarl',                    changeFrequency: 'weekly',  priority: 0.8 },
+  { path: '/creation-entreprise/sarlu',                   changeFrequency: 'weekly',  priority: 0.8 },
+  { path: '/creation-entreprise/association',             changeFrequency: 'weekly',  priority: 0.8 },
+  { path: '/modification-entreprise/transfert-siege',     changeFrequency: 'weekly',  priority: 0.8 },
+  { path: '/modification-entreprise/dissolution',         changeFrequency: 'weekly',  priority: 0.8 },
+  { path: '/modification-entreprise/sarl-vers-sas',       changeFrequency: 'weekly',  priority: 0.8 },
+  { path: '/modification-entreprise/sas-vers-sarl',       changeFrequency: 'weekly',  priority: 0.8 },
+  { path: '/actualite',                                   changeFrequency: 'daily',   priority: 0.8 },
+  { path: '/simulateurs',                                 changeFrequency: 'monthly', priority: 0.7 },
+  { path: '/simulateurs/tva',                             changeFrequency: 'monthly', priority: 0.7 },
+  { path: '/simulateurs/is',                              changeFrequency: 'monthly', priority: 0.7 },
+  { path: '/simulateurs/salaire',                         changeFrequency: 'monthly', priority: 0.7 },
+  { path: '/fiches-pratiques',                            changeFrequency: 'monthly', priority: 0.7 },
+  { path: '/fiches-pratiques/immatriculation-avec-atom',  changeFrequency: 'monthly', priority: 0.7 },
+  { path: '/fiches-pratiques/prix-des-transferts',        changeFrequency: 'monthly', priority: 0.7 },
+  { path: '/fiches-pratiques/presentation-societe-etablissement', changeFrequency: 'monthly', priority: 0.7 },
+  { path: '/fiches-pratiques/tutoriel-consultation',      changeFrequency: 'monthly', priority: 0.7 },
+  { path: '/a-propos',                                    changeFrequency: 'monthly', priority: 0.7 },
+  { path: '/contact',                                     changeFrequency: 'monthly', priority: 0.7 },
+  { path: '/devis',                                       changeFrequency: 'monthly', priority: 0.7 },
+  { path: '/prendre-un-rendez-vous',                      changeFrequency: 'monthly', priority: 0.7 },
+  { path: '/mentions-legales',                            changeFrequency: 'monthly', priority: 0.3 },
+  { path: '/politique-de-confidentialite',                changeFrequency: 'monthly', priority: 0.3 },
+  { path: '/conditions-generales',                        changeFrequency: 'monthly', priority: 0.3 },
+];
+
 export default function sitemap(): MetadataRoute.Sitemap {
-  return [
-    {
-      url: BASE,
-      lastModified: new Date(),
-      changeFrequency: 'daily',
-      priority: 1.0,
-    },
-    {
-      url: `${BASE}/creation-entreprise`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.9,
-    },
-    {
-      url: `${BASE}/modification-entreprise`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.9,
-    },
-    {
-      url: `${BASE}/creation-entreprise/sas`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.8,
-    },
-    {
-      url: `${BASE}/creation-entreprise/sarl`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.8,
-    },
-    {
-      url: `${BASE}/creation-entreprise/sarlu`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.8,
-    },
-    {
-      url: `${BASE}/creation-entreprise/association`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.8,
-    },
-    {
-      url: `${BASE}/modification-entreprise/transfert-siege`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.8,
-    },
-    {
-      url: `${BASE}/modification-entreprise/dissolution`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.8,
-    },
-    {
-      url: `${BASE}/modification-entreprise/sarl-vers-sas`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.8,
-    },
-    {
-      url: `${BASE}/modification-entreprise/sas-vers-sarl`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.8,
-    },
-    {
-      url: `${BASE}/actualite`,
-      lastModified: new Date(),
-      changeFrequency: 'daily',
-      priority: 0.8,
-    },
-    {
-      url: `${BASE}/simulateurs`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.7,
-    },
-    {
-      url: `${BASE}/simulateurs/tva`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.7,
-    },
-    {
-      url: `${BASE}/simulateurs/is`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.7,
-    },
-    {
-      url: `${BASE}/simulateurs/salaire`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.7,
-    },
-    {
-      url: `${BASE}/fiches-pratiques`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.7,
-    },
-    {
-      url: `${BASE}/fiches-pratiques/immatriculation-avec-atom`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.7,
-    },
-    {
-      url: `${BASE}/fiches-pratiques/prix-des-transferts`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.7,
-    },
-    {
-      url: `${BASE}/fiches-pratiques/presentation-societe-etablissement`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.7,
-    },
-    {
-      url: `${BASE}/fiches-pratiques/tutoriel-consultation`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.7,
-    },
-    {
-      url: `${BASE}/a-propos`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.7,
-    },
-    {
-      url: `${BASE}/contact`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.7,
-    },
-    {
-      url: `${BASE}/devis`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.7,
-    },
-    {
-      url: `${BASE}/prendre-un-rendez-vous`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.7,
-    },
-    {
-      url: `${BASE}/mentions-legales`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.3,
-    },
-    {
-      url: `${BASE}/politique-de-confidentialite`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.3,
-    },
-    {
-      url: `${BASE}/conditions-generales`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.3,
-    },
-  ];
+  const now = new Date();
+  const entries: MetadataRoute.Sitemap = [];
+
+  for (const page of pages) {
+    // French (canonical, no prefix)
+    entries.push({
+      url: `${BASE}${page.path || '/'}`,
+      lastModified: now,
+      changeFrequency: page.changeFrequency,
+      priority: page.priority,
+    });
+    // English (/en prefix)
+    entries.push({
+      url: `${BASE}/en${page.path || ''}`,
+      lastModified: now,
+      changeFrequency: page.changeFrequency,
+      priority: page.priority,
+    });
+  }
+
+  return entries;
 }

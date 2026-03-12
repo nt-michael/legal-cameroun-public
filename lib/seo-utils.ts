@@ -24,6 +24,17 @@ export async function createPageMetadata(path: string, defaults: BilingualMetada
   }
 
   const base = defaults[lang];
+
+  const siteUrl = process.env.Frontend_SITE_URL || 'https://legalcameroun.com';
+  base.alternates = {
+    ...base.alternates,
+    languages: {
+      'fr': `${siteUrl}${path}`,
+      'en': `${siteUrl}/en${path}`,
+      'x-default': `${siteUrl}${path}`,
+    },
+  };
+
   const configs = await fetchPagesSEO();
   const wp = configs.find((c) => c.slug === path);
   if (!wp) return base;

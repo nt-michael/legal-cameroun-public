@@ -1,26 +1,62 @@
 import { NextRequest, NextResponse } from 'next/server';
 
 export function middleware(request: NextRequest) {
-  const response = NextResponse.next();
+  const { pathname } = request.nextUrl;
 
-  // Don't override an existing preference
-  if (request.cookies.has('lang')) return response;
+  // Skip paths with file extensions (images, fonts, etc.)
+  if (pathname.includes('.')) return NextResponse.next();
 
-  // Parse Accept-Language header (e.g. "en-US,en;q=0.9,fr;q=0.8")
+  // /en/* → rewrite to /* without prefix, set lang=en
+  if (pathname === '/en' || pathname.startsWith('/en/')) {
+    const stripped = pathname.slice(3) || '/';
+    const url = request.nextUrl.clone();
+    url.pathname = stripped;
+    const res = NextResponse.rewrite(url);
+    res.cookies.set('lang', 'en', { path: '/', maxAge: 31536000, sameSite: 'lax' });
+    return res;
+  }
+
+  // /fr/* → rewrite to /* without prefix, set lang=fr
+  if (pathname === '/fr' || pathname.startsWith('/fr/')) {
+    const stripped = pathname.slice(3) || '/';
+    const url = request.nextUrl.clone();
+    url.pathname = stripped;
+    const res = NextResponse.rewrite(url);
+    res.cookies.set('lang', 'fr', { path: '/', maxAge: 31536000, sameSite: 'lax' });
+    return res;
+  }
+
+  // No prefix — check existing cookie
+  const existingLang = request.cookies.get('lang')?.value;
+
+  if (existingLang === 'en') {
+    const url = request.nextUrl.clone();
+    url.pathname = '/en' + pathname;
+    return NextResponse.redirect(url, 307);
+  }
+
+  if (existingLang === 'fr') {
+    return NextResponse.next();
+  }
+
+  // No cookie — detect from Accept-Language
   const acceptLang = request.headers.get('accept-language') ?? '';
   const primary = acceptLang.split(',')[0].trim().toLowerCase();
-  const lang = primary.startsWith('en') ? 'en' : 'fr';
 
-  response.cookies.set('lang', lang, {
-    path: '/',
-    maxAge: 60 * 60 * 24 * 365,
-    sameSite: 'lax',
-  });
+  if (primary.startsWith('en')) {
+    const url = request.nextUrl.clone();
+    url.pathname = '/en' + pathname;
+    const res = NextResponse.redirect(url, 307);
+    res.cookies.set('lang', 'en', { path: '/', maxAge: 31536000, sameSite: 'lax' });
+    return res;
+  }
 
-  return response;
+  // French default
+  const res = NextResponse.next();
+  res.cookies.set('lang', 'fr', { path: '/', maxAge: 31536000, sameSite: 'lax' });
+  return res;
 }
 
 export const config = {
-  // Run on all pages except static assets and API routes
   matcher: ['/((?!_next/static|_next/image|favicon.ico|api/).*)'],
 };
