@@ -6,6 +6,7 @@ import HowItWorks from '@/components/home/HowItWorks';
 import Testimonials from '@/components/home/Testimonials';
 import Stats from '@/components/home/Stats';
 import BlogPreview from '@/components/home/BlogPreview';
+import NewsletterSection from '@/components/home/NewsletterSection';
 import CTASection from '@/components/home/CTASection';
 import { getFeaturedPosts } from '@/lib/wordpress';
 import { transformPosts } from '@/lib/wordpress-utils';
@@ -82,6 +83,7 @@ export default async function Home() {
       <HowItWorks />
       <Testimonials />
       <BlogPreview posts={latestPosts} />
+      <NewsletterSection />
       <CTASection />
     </>
   );

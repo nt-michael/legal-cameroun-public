@@ -27,8 +27,8 @@ const heroContent = {
     en: 'Whether it\'s for business creation, a tax or social declaration, an urgent modification, or an urgent question, we are at your service.',
   },
   ctaPrimary: {
-    fr: 'Consultation gratuite (10 minutes)',
-    en: 'Free Consultation (10 minutes)',
+    fr: 'Découvrir nos services',
+    en: 'Explore our services',
   },
   ctaSecondary: {
     fr: 'Réservez votre rendez-vous',
@@ -182,7 +182,7 @@ export default function Hero() {
         </p> */}
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up animation-delay-300">
-          <Link href="/prendre-un-rendez-vous?type=free" className="btn-primary text-lg px-8 py-4">
+          <Link href="/creation-entreprise" className="btn-primary text-lg px-8 py-4">
             {heroContent.ctaPrimary[language]}
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />

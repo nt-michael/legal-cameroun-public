@@ -60,10 +60,6 @@ const bookingText: Record<string, any> = {
     fr: 'Vous serez redirigé vers le paiement pour finaliser la réservation (50,000 FCFA).',
     en: 'You will be redirected to payment to finalize the booking (50,000 FCFA).',
   },
-  confirmNoteFree: {
-    fr: 'Cette consultation est gratuite. Cliquez sur Confirmer pour finaliser votre réservation.',
-    en: 'This consultation is free. Click Confirm to finalize your booking.',
-  },
 
   // Success state (Not used directly here as we redirect, but kept if needed for return page)
   successTitle: { fr: 'Redirection en cours...', en: 'Redirecting...' },
@@ -73,7 +69,6 @@ const bookingText: Record<string, any> = {
   continue: { fr: 'Continuer', en: 'Continue' },
   confirming: { fr: 'Traitement...', en: 'Processing...' },
   confirmButton: { fr: 'Payer et Confirmer', en: 'Pay and Confirm' },
-  confirmButtonFree: { fr: 'Confirmer', en: 'Confirm' },
 
   // Validation errors
   errSelectConsultation: { fr: 'Veuillez sélectionner un type de consultation', en: 'Please select a consultation type' },
@@ -103,7 +98,6 @@ const initialFormData: BookingFormData = {
 export default function BookingForm() {
   const { language } = useLanguage();
   const searchParams = useSearchParams();
-  const isFree = searchParams?.get('type') === 'free';
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [step, setStep] = useState(0);
   const [formData, setFormData] = useState<BookingFormData>(initialFormData);
@@ -144,7 +138,7 @@ export default function BookingForm() {
       const start = today.toISOString().split('T')[0];
       const end = nextMonth.toISOString().split('T')[0];
 
-      fetch(`/api/availability?startDate=${start}&endDate=${end}${isFree ? '&type=free' : ''}`)
+      fetch(`/api/availability?startDate=${start}&endDate=${end}`)
         .then(res => res.json())
         .then(data => {
           if (data.collection) {
@@ -255,7 +249,7 @@ export default function BookingForm() {
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ ...formData, isFree }),
+        body: JSON.stringify({ ...formData }),
       });
 
       const data = await res.json();
@@ -265,11 +259,7 @@ export default function BookingForm() {
       }
 
       if (data.payment_url) {
-        // Redirect to Notch Pay
         window.location.href = data.payment_url;
-      } else if (data.success) {
-        // Free booking: show success modal directly
-        setShowSuccessModal(true);
       } else {
         throw new Error('No payment URL returned');
       }
@@ -589,7 +579,7 @@ export default function BookingForm() {
               </div>
 
               <p className="text-sm text-gray-500 dark:text-gray-400 text-center mt-6">
-                {isFree ? bookingText.confirmNoteFree[language] : bookingText.confirmNote[language]}
+                {bookingText.confirmNote[language]}
               </p>
 
               {errors.general && (
@@ -634,7 +624,7 @@ export default function BookingForm() {
                 </>
               ) : (
                 <>
-                  {isFree ? bookingText.confirmButtonFree[language] : bookingText.confirmButton[language]}
+                  {bookingText.confirmButton[language]}
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>

@@ -7,8 +7,8 @@ import { useLanguage } from '@/contexts/LanguageContext';
 const ctaText = {
   title: { fr: 'Besoin d\'un accompagnement ?', en: 'Need Support?' },
   subtitle: {
-    fr: 'Notre équipe d\'experts est prête à vous accompagner. Bénéficiez d\'une consultation initiale gratuite pour discuter de votre situation.',
-    en: 'Our team of experts is ready to assist you. Benefit from a free initial consultation to discuss your situation.',
+    fr: 'Notre équipe d\'experts est prête à vous accompagner dans toutes vos démarches juridiques et fiscales.',
+    en: 'Our team of experts is ready to support you with all your legal and tax procedures.',
   },
   appointment: { fr: 'Prendre un Rendez-vous', en: 'Book an Appointment' },
   address: { fr: 'Adresse', en: 'Address' },

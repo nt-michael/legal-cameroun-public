@@ -10,7 +10,7 @@ import { useLanguage } from '@/contexts/LanguageContext';
 gsap.registerPlugin(ScrollTrigger);
 
 const ctaText = {
-  subtitle: { fr: '30 minutes de consultation gratuite, sans engagement.', en: '30 minutes of free consultation, no commitment.' },
+  subtitle: { fr: 'Accompagnement personnalisé, réponse sous 48h.', en: 'Personalized support, response within 48h.' },
 };
 
 export default function ContactFinalCTA() {

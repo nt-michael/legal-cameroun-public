@@ -26,6 +26,8 @@ const text = {
     fr: "Recevez nos analyses et guides pratiques directement dans votre boîte mail. Rejoignez notre communauté d'entrepreneurs camerounais.",
     en: 'Receive our analyses and practical guides directly in your inbox. Join our community of Cameroonian entrepreneurs.',
   },
+  firstNamePlaceholder: { fr: 'Prénom', en: 'First name' },
+  lastNamePlaceholder: { fr: 'Nom', en: 'Last name' },
   emailPlaceholder: { fr: 'Votre adresse email', en: 'Your email address' },
   subscribe: { fr: "S'abonner", en: 'Subscribe' },
   subscribing: { fr: 'Inscription…', en: 'Subscribing…' },
@@ -54,6 +56,8 @@ export default function ActualiteGrid({
 }: ActualiteGridProps) {
   const { language } = useLanguage();
   const router = useRouter();
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [errorMsg, setErrorMsg] = useState('');
@@ -65,11 +69,13 @@ export default function ActualiteGrid({
       const res = await fetch('/api/newsletter/subscribe', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email }),
+        body: JSON.stringify({ email, firstName, lastName }),
       });
       const data = await res.json();
       if (res.ok) {
         setStatus('success');
+        setFirstName('');
+        setLastName('');
         setEmail('');
       } else if (data.error === 'invalid_email') {
         setStatus('error');
@@ -206,22 +212,42 @@ export default function ActualiteGrid({
           <p className="text-primary-100 mb-8 max-w-2xl mx-auto">
             {text.newsletterDesc[language]}
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder={text.emailPlaceholder[language]}
-              disabled={status === 'loading'}
-              className="flex-1 px-4 py-3 rounded-xl border-0 bg-white text-gray-900 placeholder:text-gray-400 focus:ring-2 focus:ring-white/50 focus:outline-none disabled:opacity-60"
-            />
-            <button
-              onClick={handleSubscribe}
-              disabled={status === 'loading'}
-              className="px-6 py-3 bg-white text-primary-700 rounded-xl font-semibold hover:bg-primary-50 transition-colors disabled:opacity-60"
-            >
-              {status === 'loading' ? text.subscribing[language] : text.subscribe[language]}
-            </button>
+          <div className="flex flex-col gap-3 max-w-xl mx-auto">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <input
+                type="text"
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
+                placeholder={text.firstNamePlaceholder[language]}
+                disabled={status === 'loading'}
+                className="px-4 py-3 rounded-xl border-0 bg-white text-gray-900 placeholder:text-gray-400 focus:ring-2 focus:ring-white/50 focus:outline-none disabled:opacity-60"
+              />
+              <input
+                type="text"
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
+                placeholder={text.lastNamePlaceholder[language]}
+                disabled={status === 'loading'}
+                className="px-4 py-3 rounded-xl border-0 bg-white text-gray-900 placeholder:text-gray-400 focus:ring-2 focus:ring-white/50 focus:outline-none disabled:opacity-60"
+              />
+            </div>
+            <div className="flex flex-col sm:flex-row gap-3">
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder={text.emailPlaceholder[language]}
+                disabled={status === 'loading'}
+                className="flex-1 px-4 py-3 rounded-xl border-0 bg-white text-gray-900 placeholder:text-gray-400 focus:ring-2 focus:ring-white/50 focus:outline-none disabled:opacity-60"
+              />
+              <button
+                onClick={handleSubscribe}
+                disabled={status === 'loading'}
+                className="px-6 py-3 bg-white text-primary-700 rounded-xl font-semibold hover:bg-primary-50 transition-colors disabled:opacity-60"
+              >
+                {status === 'loading' ? text.subscribing[language] : text.subscribe[language]}
+              </button>
+            </div>
           </div>
           {status === 'success' && (
             <p className="mt-4 text-sm text-white font-medium">{text.successMsg[language]}</p>

@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import WhatsAppFAB from "@/components/common/WhatsAppFAB";
+import NewsletterModal from "@/components/common/NewsletterModal";
 import { LanguageProvider } from "@/contexts/LanguageContext";
 import { ThemeProvider } from "@/contexts/ThemeContext";
 import LanguageHtmlSetter from "@/components/seo/LanguageHtmlSetter";
@@ -61,6 +62,7 @@ export default function RootLayout({
             <main>{children}</main>
             <Footer />
             <WhatsAppFAB />
+            <NewsletterModal />
           </LanguageProvider>
         </ThemeProvider>
         <SpeedInsights />

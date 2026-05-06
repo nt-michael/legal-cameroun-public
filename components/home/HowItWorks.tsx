@@ -14,8 +14,8 @@ const steps = [
     number: '01',
     title: { fr: 'Prise de Contact', en: 'Initial Contact' },
     description: {
-      fr: 'Contactez-nous par téléphone, email ou via notre formulaire en ligne pour planifier votre consultation initiale gratuite.',
-      en: 'Contact us by phone, email, or through our online form to schedule your free initial consultation.',
+      fr: 'Contactez-nous par téléphone, email ou via notre formulaire en ligne pour discuter de votre projet.',
+      en: 'Contact us by phone, email, or through our online form to discuss your project.',
     },
     icon: (
       <Image src="/custom-icons/SVG/16ICONE_BICHROME.svg" alt="Contact initial" width={32} height={32} />
@@ -64,8 +64,8 @@ const sectionText = {
     en: 'From your first contact to the resolution of your case, we support you at every step with professionalism.',
   },
   cta: {
-    fr: 'Prêt à commencer ? Contactez-nous pour une consultation gratuite.',
-    en: 'Ready to start? Contact us for a free consultation.',
+    fr: 'Prêt à commencer ? Contactez-nous dès aujourd\'hui.',
+    en: 'Ready to start? Contact us today.',
   },
   ctaButton: { fr: 'Prendre Rendez-vous', en: 'Book an Appointment' },
 };

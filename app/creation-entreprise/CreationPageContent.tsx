@@ -19,8 +19,8 @@ const pageText = {
     en: "Ready to Launch Your Business?",
   },
   ctaDescription: {
-    fr: "Nos experts sont l\u00e0 pour vous accompagner. B\u00e9n\u00e9ficiez d\u2019une consultation gratuite pour discuter de votre projet.",
-    en: "Our experts are here to support you. Benefit from a free consultation to discuss your project.",
+    fr: "Nos experts sont \u00e0 votre \u00e9coute pour vous accompagner dans votre projet.",
+    en: "Our experts are here to support you in your project.",
   },
   ctaPrimary: {
     fr: "D\u00e9marrez le questionnaire",
