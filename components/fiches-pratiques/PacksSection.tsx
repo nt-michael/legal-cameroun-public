@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { PACKS, Pack } from '@/lib/packs-config';
 import { useLanguage } from '@/contexts/LanguageContext';
@@ -21,19 +21,23 @@ export default function PacksSection() {
   const [loadingDownloads, setLoadingDownloads] = useState(false);
   const [downloadError, setDownloadError] = useState(false);
 
-  // Extract primitive values so the effect doesn't re-run on object reference changes
-  const success = searchParams?.get('success') ?? null;
-  const orderId = searchParams?.get('order') ?? null;
+  // Capture initial URL params during first render, before replaceState clears them.
+  // Using a ref avoids re-triggering the effect when the URL changes.
+  const initParams = useRef<{ success: string | null; orderId: string | null } | null>(null);
+  if (initParams.current === null) {
+    initParams.current = {
+      success: searchParams?.get('success') ?? null,
+      orderId: searchParams?.get('order') ?? null,
+    };
+  }
 
   useEffect(() => {
+    const { success, orderId } = initParams.current!;
     if (success !== 'true' || !orderId) return;
 
     setShowSuccess(true);
     setLoadingDownloads(true);
-
-    if (typeof window !== 'undefined') {
-      window.history.replaceState(null, '', window.location.pathname);
-    }
+    window.history.replaceState(null, '', window.location.pathname);
 
     // Delay fetch to allow the NotchPay webhook to complete the WooCommerce order
     const timer = setTimeout(() => {
@@ -61,7 +65,7 @@ export default function PacksSection() {
     }, 8000);
 
     return () => clearTimeout(timer);
-  }, [success, orderId]);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <section className="py-16 bg-gray-50 dark:bg-gray-900">
