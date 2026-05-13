@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
-import { FichesHero, FichesGrid, FichesFooterCTA } from '@/components/fiches-pratiques';
+import { Suspense } from 'react';
+import { FichesHero, FichesGrid, FichesFooterCTA, PacksSection } from '@/components/fiches-pratiques';
 import { createPageMetadata } from '@/lib/seo-utils';
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -80,6 +81,11 @@ export default function FichesPratiquesPage() {
 
       {/* Fiches Grid */}
       <FichesGrid />
+
+      {/* Premium Packs */}
+      <Suspense fallback={null}>
+        <PacksSection />
+      </Suspense>
 
       {/* Footer CTA */}
       <FichesFooterCTA />

@@ -5,7 +5,7 @@ import BookingForm from '@/components/rdv/BookingForm';
 import { Suspense } from 'react';
 
 const pageText = {
-  badge: { fr: 'Consultation Gratuite', en: 'Free Consultation' },
+  badge: { fr: 'Réservez votre rendez-vous', en: 'Book Your Appointment' },
   title: { fr: 'Réservez Votre Rendez-vous avec un Expert', en: 'Book Your Appointment with an Expert' },
   subtitle: {
     fr: "Nos juristes sont disponibles pour répondre à toutes vos questions. Prenez rendez-vous en quelques clics et bénéficiez d'un accompagnement personnalisé.",
@@ -13,8 +13,8 @@ const pageText = {
   },
   duration: { fr: '30 min', en: '30 min' },
   consultation: { fr: 'Consultation', en: 'Consultation' },
-  free: { fr: 'Gratuit', en: 'Free' },
-  noCommitment: { fr: 'Sans engagement', en: 'No commitment' },
+  dedicatedExpert: { fr: 'Expert dédié', en: 'Dedicated expert' },
+  personalizedAdvice: { fr: 'Conseil personnalisé', en: 'Personalized advice' },
   videoPhone: { fr: 'Vidéo/Téléphone', en: 'Video/Phone' },
   yourChoice: { fr: 'Au choix', en: 'Your choice' },
   faqTitle: { fr: 'Questions Fréquentes', en: 'Frequently Asked Questions' },
@@ -23,13 +23,8 @@ const pageText = {
     fr: "La consultation dure environ 30 minutes. Un expert vous contactera par téléphone ou vidéo selon votre préférence pour discuter de votre projet et répondre à vos questions.",
     en: 'The consultation lasts about 30 minutes. An expert will contact you by phone or video according to your preference to discuss your project and answer your questions.',
   },
-  faq2Q: { fr: 'La consultation est-elle vraiment gratuite ?', en: 'Is the consultation really free?' },
+  faq2Q: { fr: 'Puis-je annuler ou reporter mon rendez-vous ?', en: 'Can I cancel or reschedule my appointment?' },
   faq2A: {
-    fr: "Oui, la première consultation est entièrement gratuite et sans engagement. C'est l'occasion de nous présenter votre projet et d'obtenir des conseils personnalisés.",
-    en: "Yes, the first consultation is completely free and without commitment. It's an opportunity to present your project and get personalized advice.",
-  },
-  faq3Q: { fr: 'Puis-je annuler ou reporter mon rendez-vous ?', en: 'Can I cancel or reschedule my appointment?' },
-  faq3A: {
     fr: 'Bien sûr ! Vous pouvez annuler ou reporter votre rendez-vous à tout moment en nous contactant par email ou téléphone.',
     en: 'Of course! You can cancel or reschedule your appointment at any time by contacting us by email or phone.',
   },
@@ -79,12 +74,12 @@ export default function RDVPageContent() {
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center">
                     <svg className="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                     </svg>
                   </div>
                   <div>
-                    <p className="text-white font-medium">{pageText.free[language]}</p>
-                    <p className="text-gray-400 text-sm">{pageText.noCommitment[language]}</p>
+                    <p className="text-white font-medium">{pageText.dedicatedExpert[language]}</p>
+                    <p className="text-gray-400 text-sm">{pageText.personalizedAdvice[language]}</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-3">
@@ -199,19 +194,6 @@ export default function RDVPageContent() {
               </summary>
               <div className="px-6 pb-6 text-gray-600 dark:text-gray-300">
                 {pageText.faq2A[language]}
-              </div>
-            </details>
-            <details className="group bg-gray-50 dark:bg-gray-700 rounded-2xl">
-              <summary className="flex items-center justify-between p-6 cursor-pointer">
-                <span className="font-medium text-gray-900 dark:text-white">
-                  {pageText.faq3Q[language]}
-                </span>
-                <svg className="w-5 h-5 text-gray-500 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                </svg>
-              </summary>
-              <div className="px-6 pb-6 text-gray-600 dark:text-gray-300">
-                {pageText.faq3A[language]}
               </div>
             </details>
           </div>

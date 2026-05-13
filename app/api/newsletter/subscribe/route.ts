@@ -6,6 +6,8 @@ const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 export async function POST(req: NextRequest) {
   const body = await req.json().catch(() => ({}));
   const email: string = typeof body.email === 'string' ? body.email.trim() : '';
+  const firstName: string = typeof body.firstName === 'string' ? body.firstName.trim() : '';
+  const lastName: string = typeof body.lastName === 'string' ? body.lastName.trim() : '';
 
   if (!email || !EMAIL_REGEX.test(email)) {
     return NextResponse.json({ error: 'invalid_email' }, { status: 400 });
@@ -24,6 +26,15 @@ export async function POST(req: NextRequest) {
   const url = `https://${serverPrefix}.api.mailchimp.com/3.0/lists/${listId}/members/${emailHash}`;
   const credentials = Buffer.from(`anystring:${apiKey}`).toString('base64');
 
+  const payload: Record<string, unknown> = {
+    email_address: email,
+    status_if_new: 'subscribed',
+    status: 'subscribed',
+  };
+  if (firstName || lastName) {
+    payload.merge_fields = { FNAME: firstName, LNAME: lastName };
+  }
+
   try {
     const response = await fetch(url, {
       method: 'PUT',
@@ -31,11 +42,7 @@ export async function POST(req: NextRequest) {
         Authorization: `Basic ${credentials}`,
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({
-        email_address: email,
-        status_if_new: 'subscribed',
-        status: 'subscribed',
-      }),
+      body: JSON.stringify(payload),
     });
 
     if (!response.ok) {

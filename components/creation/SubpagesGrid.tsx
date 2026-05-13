@@ -15,7 +15,7 @@ const sectionText = {
   },
   learnMore: { fr: 'En savoir plus', en: 'Learn more' },
   needHelp: { fr: 'Besoin d\'aide pour choisir ?', en: 'Need help choosing?' },
-  talkToExpert: { fr: 'Parlez a un expert gratuitement', en: 'Talk to an expert for free' },
+  talkToExpert: { fr: 'Parlez à un expert', en: 'Talk to an expert' },
 };
 
 const iconMap: Record<string, ReactNode> = {

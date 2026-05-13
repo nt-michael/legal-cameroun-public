@@ -5,20 +5,20 @@ import { createPageMetadata } from '@/lib/seo-utils';
 export async function generateMetadata(): Promise<Metadata> {
   return createPageMetadata('/prendre-un-rendez-vous', {
     fr: {
-      title: 'Consultation Gratuite avec un Expert Juridique | Legal Cameroun',
-      description: "Réservez votre consultation gratuite avec nos experts juridiques et fiscaux au Cameroun. Conseil en création d'entreprise, droit des affaires et fiscalité.",
-      keywords: ['consultation gratuite cameroun', 'rendez-vous expert juridique douala', "conseil création entreprise", 'expert OHADA'],
+      title: 'Réservez votre Rendez-vous avec un Expert Juridique | Legal Cameroun',
+      description: "Prenez rendez-vous avec nos experts juridiques et fiscaux au Cameroun. Conseil en création d'entreprise, droit des affaires et fiscalité.",
+      keywords: ['rendez-vous expert juridique cameroun', 'rendez-vous expert juridique douala', "conseil création entreprise", 'expert OHADA'],
       openGraph: {
-        title: 'Consultation Gratuite avec un Expert Juridique | Legal Cameroun',
-        description: "Réservez votre consultation gratuite avec nos experts juridiques et fiscaux au Cameroun. Conseil en création d'entreprise, droit des affaires et fiscalité.",
+        title: 'Réservez votre Rendez-vous avec un Expert Juridique | Legal Cameroun',
+        description: "Prenez rendez-vous avec nos experts juridiques et fiscaux au Cameroun. Conseil en création d'entreprise, droit des affaires et fiscalité.",
         type: 'website',
         url: 'https://legalcameroun.com/prendre-un-rendez-vous',
         siteName: 'Legal Cameroun',
       },
       twitter: {
         card: 'summary_large_image',
-        title: 'Consultation Gratuite avec un Expert Juridique | Legal Cameroun',
-        description: "Réservez votre consultation gratuite avec nos experts juridiques et fiscaux au Cameroun. Conseil en création d'entreprise, droit des affaires et fiscalité.",
+        title: 'Réservez votre Rendez-vous avec un Expert Juridique | Legal Cameroun',
+        description: "Prenez rendez-vous avec nos experts juridiques et fiscaux au Cameroun. Conseil en création d'entreprise, droit des affaires et fiscalité.",
       },
       alternates: {
         languages: {
@@ -31,7 +31,7 @@ export async function generateMetadata(): Promise<Metadata> {
     en: {
       title: 'Book an Appointment | Legal Cameroun',
       description: 'Book a legal or tax consultation with our experts at Legal Cameroun.',
-      keywords: ['free consultation cameroon', 'legal expert appointment douala', 'company formation advice', 'OHADA expert'],
+      keywords: ['legal expert appointment cameroon', 'legal expert appointment douala', 'company formation advice', 'OHADA expert'],
       openGraph: {
         title: 'Book an Appointment | Legal Cameroun',
         description: 'Book a legal or tax consultation with our experts at Legal Cameroun.',
