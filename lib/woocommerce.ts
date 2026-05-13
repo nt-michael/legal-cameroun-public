@@ -55,6 +55,20 @@ export async function createOrder(data: {
     return response.json();
 }
 
+export async function getOrder(orderId: number) {
+    const headers = { 'Authorization': getAuthHeader() };
+    const response = await fetch(`${WC_API_URL}/wp-json/wc/v3/orders/${orderId}`, { headers });
+    if (!response.ok) throw new Error('Failed to fetch WooCommerce order');
+    return response.json();
+}
+
+export async function getOrderDownloads(orderId: number) {
+    const headers = { 'Authorization': getAuthHeader() };
+    const response = await fetch(`${WC_API_URL}/wp-json/wc/v3/orders/${orderId}/downloads`, { headers });
+    if (!response.ok) throw new Error('Failed to fetch order downloads');
+    return response.json() as Promise<Array<{ name: string; download_url: string }>>;
+}
+
 export async function updateOrderStatus(orderId: number, status: 'processing' | 'completed' | 'failed' | 'cancelled') {
     const headers = {
         'Authorization': getAuthHeader(),

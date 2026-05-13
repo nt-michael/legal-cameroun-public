@@ -63,10 +63,16 @@ export async function POST(request: Request) {
             await updateOrderStatus(orderId, 'processing');
         }
 
-        // 2. Book Calendly
-        // Extract metadata
+        // Pack purchase: just complete the order — WooCommerce emails the download link
         const meta = order.meta_data;
         const findMeta = (key: string) => meta.find((m: any) => m.key === key)?.value;
+
+        if (findMeta('order_type') === 'pack_purchase') {
+            await updateOrderStatus(orderId, 'completed');
+            return NextResponse.json({ success: true });
+        }
+
+        // 2. Book Calendly (consultation orders only)
 
         const calendlyStartTime = findMeta('calendly_start_time'); // "YYYY-MM-DDTHH:mm:00"
         const inviteeTimezone = findMeta('invitee_timezone');
