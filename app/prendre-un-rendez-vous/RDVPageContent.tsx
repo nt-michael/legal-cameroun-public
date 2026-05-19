@@ -30,24 +30,20 @@ const pageText = {
   },
 };
 
-const frDays = ['L', 'M', 'M', 'J', 'V', 'S', 'D'];
-const enDays = ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
-
 export default function RDVPageContent() {
   const { language } = useLanguage();
-  const days = language === 'fr' ? frDays : enDays;
 
   return (
     <main className="min-h-screen bg-gray-50 dark:bg-gray-900">
       {/* Hero Section */}
       <section
-        className="relative py-16 lg:py-24 overflow-hidden"
+        className="relative pb-16 pt-20 lg:pb-26 lg:pt-30 overflow-hidden"
         style={{ background: 'linear-gradient(to bottom right, #041c28, #0a3d4f, #041c28)' }}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            {/* Left: Text */}
-            <div className="text-center lg:text-left">
+          <div className="flex justify-center">
+            {/* Text */}
+            <div className="text-center max-w-3xl w-full">
               <span className="inline-block px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-primary-300 text-sm font-medium mb-4">
                 {pageText.badge[language]}
               </span>
@@ -96,55 +92,6 @@ export default function RDVPageContent() {
               </div>
             </div>
 
-            {/* Right: Visual */}
-            <div className="hidden lg:block relative">
-              <div className="absolute inset-0 bg-gradient-to-br from-primary-500/20 to-secondary-500/20 rounded-3xl blur-3xl" />
-              <div className="relative bg-white/10 backdrop-blur-sm rounded-3xl p-8 border border-white/20">
-                <div className="grid grid-cols-7 gap-2 mb-6">
-                  {days.map((day, i) => (
-                    <div key={i} className="text-center text-gray-400 text-sm font-medium">
-                      {day}
-                    </div>
-                  ))}
-                  {Array.from({ length: 35 }, (_, i) => {
-                    const day = i - 3;
-                    const isToday = day === 15;
-                    const isSelected = day === 18;
-                    const isPast = day < 1 || day > 31;
-                    return (
-                      <div
-                        key={i}
-                        className={`aspect-square rounded-lg flex items-center justify-center text-sm ${
-                          isPast
-                            ? 'text-gray-600'
-                            : isSelected
-                            ? 'bg-primary-600 text-white font-bold'
-                            : isToday
-                            ? 'bg-white/20 text-white font-medium'
-                            : 'text-gray-300 hover:bg-white/10'
-                        }`}
-                      >
-                        {!isPast && day}
-                      </div>
-                    );
-                  })}
-                </div>
-                <div className="space-y-2">
-                  {['09:00', '10:00', '14:00', '15:00'].map((time, i) => (
-                    <div
-                      key={time}
-                      className={`px-4 py-2 rounded-lg text-center text-sm ${
-                        i === 2
-                          ? 'bg-primary-600 text-white'
-                          : 'bg-white/10 text-gray-300'
-                      }`}
-                    >
-                      {time}
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
           </div>
         </div>
 
