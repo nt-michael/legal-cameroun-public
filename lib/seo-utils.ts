@@ -30,14 +30,16 @@ export async function createPageMetadata(
   const canonicalLang = options.canonicalLang ?? lang;
   const canonical = absoluteUrl(canonicalPath, canonicalLang);
 
+  // hreflang targets must themselves be canonical URLs, so the alternates follow the
+  // canonical path; and the English alternate is dropped when the /en URL canonicalises
+  // back to French (an untranslated post) — that URL is a duplicate, not a translation.
+  const frUrl = absoluteUrl(canonicalPath, 'fr');
   base.alternates = {
     ...base.alternates,
     canonical,
-    languages: {
-      fr: absoluteUrl(path, 'fr'),
-      en: absoluteUrl(path, 'en'),
-      'x-default': absoluteUrl(path, 'fr'),
-    },
+    languages: options.canonicalLang === 'fr'
+      ? { fr: frUrl, 'x-default': frUrl }
+      : { fr: frUrl, en: absoluteUrl(canonicalPath, 'en'), 'x-default': frUrl },
   };
 
   // og:url must agree with the canonical, or an English share resolves to the

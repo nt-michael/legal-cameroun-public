@@ -1,10 +1,10 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { getRequestLanguage } from '@/lib/lang';
-import { getPost, getPosts, getRelatedPosts, getComments } from '@/lib/wordpress';
+import { getPost, getPosts, getRelatedPosts, getComments, hasEnglishTranslation } from '@/lib/wordpress';
 import { transformPost, transformPosts, transformComments, stripHtml } from '@/lib/wordpress-utils';
 import { createPageMetadata } from '@/lib/seo-utils';
-import { SITE_URL } from '@/lib/site-config';
+import { SITE_URL, absoluteUrl } from '@/lib/site-config';
 import PostContent from '@/components/actualite/PostContent';
 
 export const revalidate = 3600; // Revalidate every hour
@@ -84,7 +84,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   }, {
     // Without a real English translation the /en URL serves French text, so it must
     // canonicalise to the French original rather than compete with it.
-    canonicalLang: titleEnRaw?.trim() ? undefined : 'fr',
+    canonicalLang: hasEnglishTranslation(wpPost.meta) ? undefined : 'fr',
   });
 }
 
@@ -109,7 +109,10 @@ export default async function PostPage({ params }: PageProps) {
   const comments = transformComments(wpComments);
 
   const siteUrl = SITE_URL;
-  const postUrl = `${siteUrl}/actualite/${slug}`;
+  // Must match the canonical this page emits, so JSON-LD and the share buttons never
+  // advertise a different URL than the one Google is told to index.
+  const canonicalPostLang = hasEnglishTranslation(wpPost.meta) ? lang : 'fr';
+  const postUrl = absoluteUrl(`/actualite/${slug}`, canonicalPostLang);
 
   const jsonLd = {
     '@context': 'https://schema.org',
