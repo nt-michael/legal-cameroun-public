@@ -12,20 +12,12 @@ export async function generateMetadata(): Promise<Metadata> {
         title: 'À Propos de Legal Cameroun | Votre LegalTech au Cameroun | Plateforme Juridique, Comptable & Fiscale',
         description: "Découvrez Legal Cameroun, votre partenaire juridique de confiance au Cameroun. 8 ans d'expérience, +15 000 entrepreneurs accompagnés. Bureaux à Douala, Paris et Cotonou.",
         type: 'website',
-        url: 'https://legalcameroun.com/a-propos',
         siteName: 'Legal Cameroun',
       },
       twitter: {
         card: 'summary_large_image',
         title: 'À Propos de Legal Cameroun | Votre LegalTech au Cameroun | Plateforme Juridique, Comptable & Fiscale',
         description: "Découvrez Legal Cameroun, votre partenaire juridique de confiance au Cameroun. 8 ans d'expérience, +15 000 entrepreneurs accompagnés. Bureaux à Douala, Paris et Cotonou.",
-      },
-      alternates: {
-        languages: {
-          'fr': 'https://legalcameroun.com/a-propos',
-          'en': 'https://legalcameroun.com/a-propos',
-          'x-default': 'https://legalcameroun.com/a-propos',
-        },
       },
     },
     en: {
@@ -36,20 +28,12 @@ export async function generateMetadata(): Promise<Metadata> {
         title: 'About Us | Legal Cameroun - RODEC Conseils',
         description: 'Learn about Legal Cameroun and the RODEC Conseils team: our mission, values and commitment to businesses in Cameroon.',
         type: 'website',
-        url: 'https://legalcameroun.com/a-propos',
         siteName: 'Legal Cameroun',
       },
       twitter: {
         card: 'summary_large_image',
         title: 'About Us | Legal Cameroun - RODEC Conseils',
         description: 'Learn about Legal Cameroun and the RODEC Conseils team: our mission, values and commitment to businesses in Cameroon.',
-      },
-      alternates: {
-        languages: {
-          'fr': 'https://legalcameroun.com/a-propos',
-          'en': 'https://legalcameroun.com/a-propos',
-          'x-default': 'https://legalcameroun.com/a-propos',
-        },
       },
     },
   });

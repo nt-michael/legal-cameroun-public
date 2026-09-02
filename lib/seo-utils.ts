@@ -1,39 +1,50 @@
 import { cache } from 'react';
-import { cookies, headers } from 'next/headers';
 import { Metadata } from 'next';
 import { getAllPagesSEO, WPPageSEO } from './wordpress';
+import { getRequestLanguage } from './lang';
+import { absoluteUrl } from './site-config';
 
 // Cached per request — only one WP fetch per page render
 const fetchPagesSEO = cache(getAllPagesSEO);
 
 export type BilingualMetadata = { fr: Metadata; en: Metadata };
 
-export async function createPageMetadata(path: string, defaults: BilingualMetadata): Promise<Metadata> {
-  const cookieStore = await cookies();
-  const cookieLang = cookieStore.get('lang')?.value;
+export interface PageMetadataOptions {
+  /** Emit the canonical for this path instead of the page's own (e.g. page 1 of a
+   *  paginated list canonicalising to the unpaginated URL). */
+  canonicalPath?: string;
+  /** Force the canonical into one language. Used by English pages that serve
+   *  untranslated French content, which must point back at the French original. */
+  canonicalLang?: 'fr' | 'en';
+}
 
-  let lang: 'fr' | 'en';
-  if (cookieLang === 'en' || cookieLang === 'fr') {
-    lang = cookieLang;
-  } else {
-    // First visit: no cookie yet — fall back to Accept-Language header
-    const headersList = await headers();
-    const acceptLang = headersList.get('accept-language') ?? '';
-    const firstLang = acceptLang.split(',')[0].split(';')[0].trim().toLowerCase();
-    lang = firstLang.startsWith('en') ? 'en' : 'fr';
-  }
-
+export async function createPageMetadata(
+  path: string,
+  defaults: BilingualMetadata,
+  options: PageMetadataOptions = {},
+): Promise<Metadata> {
+  const lang = await getRequestLanguage();
   const base = defaults[lang];
 
-  const siteUrl = process.env.Frontend_SITE_URL || 'https://legalcameroun.com';
+  const canonicalPath = options.canonicalPath ?? path;
+  const canonicalLang = options.canonicalLang ?? lang;
+  const canonical = absoluteUrl(canonicalPath, canonicalLang);
+
   base.alternates = {
     ...base.alternates,
+    canonical,
     languages: {
-      'fr': `${siteUrl}${path}`,
-      'en': `${siteUrl}/en${path}`,
-      'x-default': `${siteUrl}${path}`,
+      fr: absoluteUrl(path, 'fr'),
+      en: absoluteUrl(path, 'en'),
+      'x-default': absoluteUrl(path, 'fr'),
     },
   };
+
+  // og:url must agree with the canonical, or an English share resolves to the
+  // French page.
+  if (base.openGraph) {
+    base.openGraph = { ...base.openGraph, url: canonical } as Metadata['openGraph'];
+  }
 
   const configs = await fetchPagesSEO();
   const wp = configs.find((c) => c.slug === path);
@@ -56,6 +67,7 @@ function mergeSEO(defaults: Metadata, wp: WPPageSEO, lang: 'fr' | 'en'): Metadat
   if (pick(wp.description, wp.description_en)) merged.description = pick(wp.description, wp.description_en);
   if (pick(wp.keywords, wp.keywords_en)) merged.keywords = pick(wp.keywords, wp.keywords_en);
   if (nonEmpty(wp.robots)) merged.robots = wp.robots;
+  // An explicit canonical in the WordPress SEO manager wins over the computed one.
   if (nonEmpty(wp.canonical)) {
     merged.alternates = { ...(merged.alternates ?? {}), canonical: wp.canonical };
   }

@@ -13,20 +13,12 @@ export async function generateMetadata(): Promise<Metadata> {
         title: 'Calculateur TVA Cameroun | Taux 19,25% — Legal Cameroun',
         description: 'Calculez votre TVA collectée, déductible et TVA nette au Cameroun. Taux standard de 19,25% selon le Code Général des Impôts 2024. Gratuit et instantané.',
         type: 'website',
-        url: 'https://legalcameroun.com/simulateurs/tva',
         siteName: 'Legal Cameroun',
       },
       twitter: {
         card: 'summary_large_image',
         title: 'Calculateur TVA Cameroun | Taux 19,25% — Legal Cameroun',
         description: 'Calculez votre TVA collectée, déductible et TVA nette au Cameroun. Taux standard de 19,25% selon le Code Général des Impôts 2024. Gratuit et instantané.',
-      },
-      alternates: {
-        languages: {
-          'fr': 'https://legalcameroun.com/simulateurs/tva',
-          'en': 'https://legalcameroun.com/simulateurs/tva',
-          'x-default': 'https://legalcameroun.com/simulateurs/tva',
-        },
       },
     },
     en: {
@@ -37,20 +29,12 @@ export async function generateMetadata(): Promise<Metadata> {
         title: 'VAT Simulator Cameroon | Legal Cameroun',
         description: 'Calculate your VAT in Cameroon. Free simulator compliant with Cameroonian tax law.',
         type: 'website',
-        url: 'https://legalcameroun.com/simulateurs/tva',
         siteName: 'Legal Cameroun',
       },
       twitter: {
         card: 'summary_large_image',
         title: 'VAT Simulator Cameroon | Legal Cameroun',
         description: 'Calculate your VAT in Cameroon. Free simulator compliant with Cameroonian tax law.',
-      },
-      alternates: {
-        languages: {
-          'fr': 'https://legalcameroun.com/simulateurs/tva',
-          'en': 'https://legalcameroun.com/simulateurs/tva',
-          'x-default': 'https://legalcameroun.com/simulateurs/tva',
-        },
       },
     },
   });

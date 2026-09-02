@@ -12,20 +12,12 @@ export async function generateMetadata(): Promise<Metadata> {
         title: "Devis Gratuit | Création d'Entreprise au Cameroun — Legal Cameroun",
         description: "Obtenez une estimation gratuite pour la création ou modification de votre entreprise au Cameroun. SAS, SARL, SARLU, Association. Réponse personnalisée sous 24h.",
         type: 'website',
-        url: 'https://legalcameroun.com/devis',
         siteName: 'Legal Cameroun',
       },
       twitter: {
         card: 'summary_large_image',
         title: "Devis Gratuit | Création d'Entreprise au Cameroun — Legal Cameroun",
         description: "Obtenez une estimation gratuite pour la création ou modification de votre entreprise au Cameroun. SAS, SARL, SARLU, Association. Réponse personnalisée sous 24h.",
-      },
-      alternates: {
-        languages: {
-          'fr': 'https://legalcameroun.com/devis',
-          'en': 'https://legalcameroun.com/devis',
-          'x-default': 'https://legalcameroun.com/devis',
-        },
       },
     },
     en: {
@@ -36,20 +28,12 @@ export async function generateMetadata(): Promise<Metadata> {
         title: 'Get a Quote | Legal Cameroun',
         description: 'Get a personalised quote for legal, accounting or tax services in Cameroon.',
         type: 'website',
-        url: 'https://legalcameroun.com/devis',
         siteName: 'Legal Cameroun',
       },
       twitter: {
         card: 'summary_large_image',
         title: 'Get a Quote | Legal Cameroun',
         description: 'Get a personalised quote for legal, accounting or tax services in Cameroon.',
-      },
-      alternates: {
-        languages: {
-          'fr': 'https://legalcameroun.com/devis',
-          'en': 'https://legalcameroun.com/devis',
-          'x-default': 'https://legalcameroun.com/devis',
-        },
       },
     },
   });

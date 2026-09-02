@@ -13,20 +13,12 @@ export async function generateMetadata(): Promise<Metadata> {
         title: 'Créer une Association au Cameroun | Legal Cameroun',
         description: 'Créez votre association au Cameroun facilement. Structure idéale pour projets culturels, caritatifs ou éducatifs. Déclaration simplifiée, accompagnement complet.',
         type: 'website',
-        url: 'https://legalcameroun.com/creation-entreprise/association',
         siteName: 'Legal Cameroun',
       },
       twitter: {
         card: 'summary_large_image',
         title: 'Créer une Association au Cameroun | Legal Cameroun',
         description: 'Créez votre association au Cameroun facilement. Structure idéale pour projets culturels, caritatifs ou éducatifs. Déclaration simplifiée, accompagnement complet.',
-      },
-      alternates: {
-        languages: {
-          'fr': 'https://legalcameroun.com/creation-entreprise/association',
-          'en': 'https://legalcameroun.com/creation-entreprise/association',
-          'x-default': 'https://legalcameroun.com/creation-entreprise/association',
-        },
       },
     },
     en: {
@@ -37,20 +29,12 @@ export async function generateMetadata(): Promise<Metadata> {
         title: 'Association Formation in Cameroon | Legal Cameroun',
         description: 'Register your association in Cameroon. Our experts handle the legal formalities.',
         type: 'website',
-        url: 'https://legalcameroun.com/creation-entreprise/association',
         siteName: 'Legal Cameroun',
       },
       twitter: {
         card: 'summary_large_image',
         title: 'Association Formation in Cameroon | Legal Cameroun',
         description: 'Register your association in Cameroon. Our experts handle the legal formalities.',
-      },
-      alternates: {
-        languages: {
-          'fr': 'https://legalcameroun.com/creation-entreprise/association',
-          'en': 'https://legalcameroun.com/creation-entreprise/association',
-          'x-default': 'https://legalcameroun.com/creation-entreprise/association',
-        },
       },
     },
   });

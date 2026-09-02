@@ -21,7 +21,6 @@ export async function generateMetadata(): Promise<Metadata> {
         description:
           "Contactez nos experts pour vos besoins juridiques et fiscaux au Cameroun. Création d'entreprise, modification de statuts, dissolution. Réponse sous 48h garantie.",
         type: 'website',
-        url: 'https://legalcameroun.com/contact',
         siteName: 'Legal Cameroun',
       },
       twitter: {
@@ -29,13 +28,6 @@ export async function generateMetadata(): Promise<Metadata> {
         title: 'Contactez Legal Cameroun | Votre LegalTech au Cameroun | Plateforme Juridique, Comptable & Fiscale',
         description:
           "Contactez nos experts pour vos besoins juridiques et fiscaux au Cameroun. Création d'entreprise, modification de statuts, dissolution. Réponse sous 48h garantie.",
-      },
-      alternates: {
-        languages: {
-          'fr': 'https://legalcameroun.com/contact',
-          'en': 'https://legalcameroun.com/contact',
-          'x-default': 'https://legalcameroun.com/contact',
-        },
       },
     },
     en: {
@@ -53,20 +45,12 @@ export async function generateMetadata(): Promise<Metadata> {
         title: 'Contact | Legal Cameroun',
         description: 'Contact the Legal Cameroun team. Expert legal, accounting and tax advice for businesses in Cameroon.',
         type: 'website',
-        url: 'https://legalcameroun.com/contact',
         siteName: 'Legal Cameroun',
       },
       twitter: {
         card: 'summary_large_image',
         title: 'Contact | Legal Cameroun',
         description: 'Contact the Legal Cameroun team. Expert legal, accounting and tax advice for businesses in Cameroon.',
-      },
-      alternates: {
-        languages: {
-          'fr': 'https://legalcameroun.com/contact',
-          'en': 'https://legalcameroun.com/contact',
-          'x-default': 'https://legalcameroun.com/contact',
-        },
       },
     },
   });

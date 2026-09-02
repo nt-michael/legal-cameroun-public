@@ -12,20 +12,12 @@ export async function generateMetadata(): Promise<Metadata> {
         title: "Modification d'Entreprise au Cameroun | Transfert, Dissolution, Transformation",
         description: "Modifiez les statuts de votre entreprise au Cameroun : transfert de siège social, transformation SAS/SARL, dissolution. Accompagnement juridique expert de A à Z.",
         type: 'website',
-        url: 'https://legalcameroun.com/modification-entreprise',
         siteName: 'Legal Cameroun',
       },
       twitter: {
         card: 'summary_large_image',
         title: "Modification d'Entreprise au Cameroun | Transfert, Dissolution, Transformation",
         description: "Modifiez les statuts de votre entreprise au Cameroun : transfert de siège social, transformation SAS/SARL, dissolution. Accompagnement juridique expert de A à Z.",
-      },
-      alternates: {
-        languages: {
-          'fr': 'https://legalcameroun.com/modification-entreprise',
-          'en': 'https://legalcameroun.com/modification-entreprise',
-          'x-default': 'https://legalcameroun.com/modification-entreprise',
-        },
       },
     },
     en: {
@@ -36,20 +28,12 @@ export async function generateMetadata(): Promise<Metadata> {
         title: 'Company Amendment in Cameroon | Legal Cameroun',
         description: "Amend your company's articles, change its legal form or transfer its registered office in Cameroon.",
         type: 'website',
-        url: 'https://legalcameroun.com/modification-entreprise',
         siteName: 'Legal Cameroun',
       },
       twitter: {
         card: 'summary_large_image',
         title: 'Company Amendment in Cameroon | Legal Cameroun',
         description: "Amend your company's articles, change its legal form or transfer its registered office in Cameroon.",
-      },
-      alternates: {
-        languages: {
-          'fr': 'https://legalcameroun.com/modification-entreprise',
-          'en': 'https://legalcameroun.com/modification-entreprise',
-          'x-default': 'https://legalcameroun.com/modification-entreprise',
-        },
       },
     },
   });

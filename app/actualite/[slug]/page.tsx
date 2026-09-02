@@ -1,9 +1,10 @@
 import { Metadata } from 'next';
-import { cookies } from 'next/headers';
 import { notFound } from 'next/navigation';
+import { getRequestLanguage } from '@/lib/lang';
 import { getPost, getPosts, getRelatedPosts, getComments } from '@/lib/wordpress';
 import { transformPost, transformPosts, transformComments, stripHtml } from '@/lib/wordpress-utils';
 import { createPageMetadata } from '@/lib/seo-utils';
+import { SITE_URL } from '@/lib/site-config';
 import PostContent from '@/components/actualite/PostContent';
 
 export const revalidate = 3600; // Revalidate every hour
@@ -33,9 +34,6 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     };
   }
 
-  const cookieStore = await cookies();
-  const lang = (cookieStore.get('lang')?.value === 'en' ? 'en' : 'fr') as 'fr' | 'en';
-
   const post = transformPost(wpPost);
   const descriptionFr = stripHtml(wpPost.excerpt.rendered).slice(0, 160);
 
@@ -52,10 +50,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const imageHeight = mediaDetails?.height;
 
   const commonFields = {
-    alternates: { canonical: `/actualite/${slug}` },
     openGraph: {
       type: 'article' as const,
-      url: `/actualite/${slug}`,
       siteName: 'Legal Cameroun',
       publishedTime: post.date,
       modifiedTime: post.modified,
@@ -85,12 +81,16 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       openGraph: { ...commonFields.openGraph, title: titleEnRaw?.trim() || post.title, description: descriptionEn },
       twitter: { ...commonFields.twitter, title: titleEnRaw?.trim() || post.title, description: descriptionEn },
     },
+  }, {
+    // Without a real English translation the /en URL serves French text, so it must
+    // canonicalise to the French original rather than compete with it.
+    canonicalLang: titleEnRaw?.trim() ? undefined : 'fr',
   });
 }
 
 export default async function PostPage({ params }: PageProps) {
   const { slug } = await params;
-  const lang = (((await cookies()).get('lang')?.value) ?? 'fr') as 'fr' | 'en';
+  const lang = await getRequestLanguage();
   const wpPost = await getPost(slug);
 
   if (!wpPost) {
@@ -108,7 +108,7 @@ export default async function PostPage({ params }: PageProps) {
   const relatedPosts = transformPosts(relatedWpPosts, lang);
   const comments = transformComments(wpComments);
 
-  const siteUrl = process.env.Frontend_SITE_URL || 'https://legalcameroun.com';
+  const siteUrl = SITE_URL;
   const postUrl = `${siteUrl}/actualite/${slug}`;
 
   const jsonLd = {

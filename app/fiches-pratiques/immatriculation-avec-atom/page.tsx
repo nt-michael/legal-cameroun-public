@@ -24,20 +24,12 @@ export async function generateMetadata(): Promise<Metadata> {
         description:
           'Maîtrisez le nouveau système électronique de la DGI – étape par étape.',
         type: 'article',
-        url: 'https://legalcameroun.com/fiches-pratiques/immatriculation-avec-atom',
         siteName: 'Legal Cameroun',
       },
       twitter: {
         card: 'summary_large_image',
         title: 'Immatriculation Fiscale avec ATOM | Legal Cameroun',
         description: "Guide complet pour s'enregistrer et déclarer via le système ATOM de la DGI Cameroun. Disponible en PDF, PPT et version anglaise.",
-      },
-      alternates: {
-        languages: {
-          'fr': 'https://legalcameroun.com/fiches-pratiques/immatriculation-avec-atom',
-          'en': 'https://legalcameroun.com/fiches-pratiques/immatriculation-avec-atom',
-          'x-default': 'https://legalcameroun.com/fiches-pratiques/immatriculation-avec-atom',
-        },
       },
     },
     en: {
@@ -54,20 +46,12 @@ export async function generateMetadata(): Promise<Metadata> {
         title: 'Registration with ATOM',
         description: 'Master the new DGI electronic system – step by step.',
         type: 'article',
-        url: 'https://legalcameroun.com/fiches-pratiques/immatriculation-avec-atom',
         siteName: 'Legal Cameroun',
       },
       twitter: {
         card: 'summary_large_image',
         title: 'Registration with ATOM | Legal Cameroun',
         description: 'Step-by-step guide to company registration using the ATOM platform in Cameroon.',
-      },
-      alternates: {
-        languages: {
-          'fr': 'https://legalcameroun.com/fiches-pratiques/immatriculation-avec-atom',
-          'en': 'https://legalcameroun.com/fiches-pratiques/immatriculation-avec-atom',
-          'x-default': 'https://legalcameroun.com/fiches-pratiques/immatriculation-avec-atom',
-        },
       },
     },
   });

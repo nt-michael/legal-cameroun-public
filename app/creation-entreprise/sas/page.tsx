@@ -13,20 +13,12 @@ export async function generateMetadata(): Promise<Metadata> {
         title: 'Créer une SAS ou SASU au Cameroun | Legal Cameroun',
         description: 'Créez votre SAS ou SASU au Cameroun. Structure souple, idéale pour startups et projets innovants. Capital libre, gouvernance flexible. Accompagnement expert, traitement en 48h.',
         type: 'website',
-        url: 'https://legalcameroun.com/creation-entreprise/sas',
         siteName: 'Legal Cameroun',
       },
       twitter: {
         card: 'summary_large_image',
         title: 'Créer une SAS ou SASU au Cameroun | Legal Cameroun',
         description: 'Créez votre SAS ou SASU au Cameroun. Structure souple, idéale pour startups et projets innovants. Capital libre, gouvernance flexible. Accompagnement expert, traitement en 48h.',
-      },
-      alternates: {
-        languages: {
-          'fr': 'https://legalcameroun.com/creation-entreprise/sas',
-          'en': 'https://legalcameroun.com/creation-entreprise/sas',
-          'x-default': 'https://legalcameroun.com/creation-entreprise/sas',
-        },
       },
     },
     en: {
@@ -37,20 +29,12 @@ export async function generateMetadata(): Promise<Metadata> {
         title: 'SAS Formation in Cameroon | Legal Cameroun',
         description: 'Create your SAS in Cameroon. Simplified joint-stock company for entrepreneurs.',
         type: 'website',
-        url: 'https://legalcameroun.com/creation-entreprise/sas',
         siteName: 'Legal Cameroun',
       },
       twitter: {
         card: 'summary_large_image',
         title: 'SAS Formation in Cameroon | Legal Cameroun',
         description: 'Create your SAS in Cameroon. Simplified joint-stock company for entrepreneurs.',
-      },
-      alternates: {
-        languages: {
-          'fr': 'https://legalcameroun.com/creation-entreprise/sas',
-          'en': 'https://legalcameroun.com/creation-entreprise/sas',
-          'x-default': 'https://legalcameroun.com/creation-entreprise/sas',
-        },
       },
     },
   });

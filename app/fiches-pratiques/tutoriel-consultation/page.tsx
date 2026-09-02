@@ -23,7 +23,6 @@ export async function generateMetadata(): Promise<Metadata> {
         description:
           'Tutoriel étape par étape pour réserver votre consultation en ligne avec un expert juridique. Simple, rapide et gratuit.',
         type: 'article',
-        url: 'https://legalcameroun.com/fiches-pratiques/tutoriel-consultation',
         siteName: 'Legal Cameroun',
       },
       twitter: {
@@ -31,13 +30,6 @@ export async function generateMetadata(): Promise<Metadata> {
         title: 'Comment Réserver une Consultation Juridique | Legal Cameroun',
         description:
           'Tutoriel étape par étape pour réserver votre consultation en ligne avec un expert juridique. Simple, rapide et gratuit.',
-      },
-      alternates: {
-        languages: {
-          'fr': 'https://legalcameroun.com/fiches-pratiques/tutoriel-consultation',
-          'en': 'https://legalcameroun.com/fiches-pratiques/tutoriel-consultation',
-          'x-default': 'https://legalcameroun.com/fiches-pratiques/tutoriel-consultation',
-        },
       },
     },
     en: {
@@ -53,20 +45,12 @@ export async function generateMetadata(): Promise<Metadata> {
         title: 'How to Book a Legal Consultation',
         description: 'Step-by-step tutorial to book your online consultation with a legal expert. Simple, fast and free.',
         type: 'article',
-        url: 'https://legalcameroun.com/fiches-pratiques/tutoriel-consultation',
         siteName: 'Legal Cameroun',
       },
       twitter: {
         card: 'summary_large_image',
         title: 'Consultation Tutorial | Legal Cameroun',
         description: 'How to book a legal or tax consultation with Legal Cameroun.',
-      },
-      alternates: {
-        languages: {
-          'fr': 'https://legalcameroun.com/fiches-pratiques/tutoriel-consultation',
-          'en': 'https://legalcameroun.com/fiches-pratiques/tutoriel-consultation',
-          'x-default': 'https://legalcameroun.com/fiches-pratiques/tutoriel-consultation',
-        },
       },
     },
   });

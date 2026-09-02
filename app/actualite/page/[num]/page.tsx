@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
-import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
+import { getRequestLanguage } from '@/lib/lang';
 import { fetchListingData } from '@/lib/actualite-page-utils';
 import ActualiteHero from '@/components/actualite/ActualiteHero';
 import ActualiteGrid from '@/components/actualite/ActualiteGrid';
@@ -31,14 +31,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     fr: {
       title,
       description,
-      alternates: {
-        canonical: page > 1 ? `/actualite/page/${page}` : '/actualite',
-      },
       openGraph: {
         title,
         description,
         type: 'website',
-        url: `/actualite/page/${page}`,
         siteName: 'Legal Cameroun',
       },
       twitter: {
@@ -50,14 +46,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     en: {
       title: titleEn,
       description: descriptionEn,
-      alternates: {
-        canonical: page > 1 ? `/actualite/page/${page}` : '/actualite',
-      },
       openGraph: {
         title: titleEn,
         description: descriptionEn,
         type: 'website',
-        url: `/actualite/page/${page}`,
         siteName: 'Legal Cameroun',
       },
       twitter: {
@@ -66,6 +58,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
         description: descriptionEn,
       },
     },
+  }, {
+    // Page 1 is the same content as /actualite — point both at the unpaginated URL.
+    canonicalPath: page > 1 ? undefined : '/actualite',
   });
 }
 
@@ -80,7 +75,7 @@ export default async function PaginatedActualitePage({ params, searchParams }: P
     redirect(redirectUrl);
   }
 
-  const lang = (((await cookies()).get('lang')?.value) ?? 'fr') as 'fr' | 'en';
+  const lang = await getRequestLanguage();
   const data = await fetchListingData(page, categorySlug, lang);
 
   // Redirect if page exceeds total

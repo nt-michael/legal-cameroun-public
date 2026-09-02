@@ -13,20 +13,12 @@ export async function generateMetadata(): Promise<Metadata> {
         title: 'Créer une SARLU au Cameroun | Entreprise Unipersonnelle',
         description: 'Créez votre SARLU (société unipersonnelle) au Cameroun. Responsabilité limitée pour un seul associé, idéale pour les entrepreneurs solo. Traitement en 48h.',
         type: 'website',
-        url: 'https://legalcameroun.com/creation-entreprise/sarlu',
         siteName: 'Legal Cameroun',
       },
       twitter: {
         card: 'summary_large_image',
         title: 'Créer une SARLU au Cameroun | Entreprise Unipersonnelle',
         description: 'Créez votre SARLU (société unipersonnelle) au Cameroun. Responsabilité limitée pour un seul associé, idéale pour les entrepreneurs solo. Traitement en 48h.',
-      },
-      alternates: {
-        languages: {
-          'fr': 'https://legalcameroun.com/creation-entreprise/sarlu',
-          'en': 'https://legalcameroun.com/creation-entreprise/sarlu',
-          'x-default': 'https://legalcameroun.com/creation-entreprise/sarlu',
-        },
       },
     },
     en: {
@@ -37,20 +29,12 @@ export async function generateMetadata(): Promise<Metadata> {
         title: 'SARLU Formation in Cameroon | Legal Cameroun',
         description: 'Create your SARLU in Cameroon. Single-member limited liability company.',
         type: 'website',
-        url: 'https://legalcameroun.com/creation-entreprise/sarlu',
         siteName: 'Legal Cameroun',
       },
       twitter: {
         card: 'summary_large_image',
         title: 'SARLU Formation in Cameroon | Legal Cameroun',
         description: 'Create your SARLU in Cameroon. Single-member limited liability company.',
-      },
-      alternates: {
-        languages: {
-          'fr': 'https://legalcameroun.com/creation-entreprise/sarlu',
-          'en': 'https://legalcameroun.com/creation-entreprise/sarlu',
-          'x-default': 'https://legalcameroun.com/creation-entreprise/sarlu',
-        },
       },
     },
   });
