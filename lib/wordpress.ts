@@ -383,9 +383,25 @@ export async function getWPPage(slug: string): Promise<WPPage | null> {
 
 export interface SitemapPost {
   slug: string;
+  /** ISO 8601 UTC, from WordPress `modified_gmt` (which carries no timezone marker). */
   modified: string;
   /** True when the post has a real English translation, not just a French fallback. */
   hasEnglish: boolean;
+}
+
+/**
+ * Whether a post is genuinely readable in English.
+ *
+ * Title AND content must both be translated: with only a title, the /en page serves
+ * the French body under an English headline and must not be indexed as English.
+ * Single source of truth for canonicals and for the sitemap.
+ */
+export function hasEnglishTranslation(meta: Record<string, unknown> | undefined): boolean {
+  const field = (key: string) => {
+    const raw = meta?.[key];
+    return typeof raw === 'string' ? raw.trim() : '';
+  };
+  return Boolean(field('_post_title_en') && field('_post_content_en'));
 }
 
 /**
@@ -404,7 +420,8 @@ export async function getPostsForSitemap(): Promise<SitemapPost[]> {
   try {
     for (let page = 1; page <= 20; page++) {
       const res = await fetch(
-        `${siteUrl}/wp-json/wp/v2/posts?per_page=100&page=${page}&_fields=slug,modified,meta`,
+        `${siteUrl}/wp-json/wp/v2/posts?per_page=100&page=${page}` +
+          `&_fields=slug,modified_gmt,meta._post_title_en,meta._post_content_en`,
         {
           // Matches the sitemap route's own revalidate; the shorter listing TTL
           // would otherwise drag the whole route down with it.
@@ -419,11 +436,12 @@ export async function getPostsForSitemap(): Promise<SitemapPost[]> {
       if (!Array.isArray(batch) || batch.length === 0) break;
 
       for (const post of batch) {
-        if (!post?.slug) continue;
+        if (!post?.slug || !post.modified_gmt) continue;
         posts.push({
           slug: post.slug,
-          modified: post.modified,
-          hasEnglish: Boolean(post.meta?._post_title_en?.trim()),
+          // modified_gmt is UTC but unmarked; without the Z it would be read as local time.
+          modified: `${post.modified_gmt}Z`,
+          hasEnglish: hasEnglishTranslation(post.meta),
         });
       }
 
