@@ -13,20 +13,12 @@ export async function generateMetadata(): Promise<Metadata> {
         title: 'Simulateur Salaire Cameroun | CNPS, IRPP, Coût Employeur 2024 — Legal Cameroun',
         description: 'Calculez le salaire net et le coût total employeur au Cameroun. Cotisations CNPS, IRPP, TDL, RAV et FNE. Conforme au CGI 2024 et barèmes CNPS.',
         type: 'website',
-        url: 'https://legalcameroun.com/simulateurs/salaire',
         siteName: 'Legal Cameroun',
       },
       twitter: {
         card: 'summary_large_image',
         title: 'Simulateur Salaire Cameroun | CNPS, IRPP, Coût Employeur 2024 — Legal Cameroun',
         description: 'Calculez le salaire net et le coût total employeur au Cameroun. Cotisations CNPS, IRPP, TDL, RAV et FNE. Conforme au CGI 2024 et barèmes CNPS.',
-      },
-      alternates: {
-        languages: {
-          'fr': 'https://legalcameroun.com/simulateurs/salaire',
-          'en': 'https://legalcameroun.com/simulateurs/salaire',
-          'x-default': 'https://legalcameroun.com/simulateurs/salaire',
-        },
       },
     },
     en: {
@@ -37,20 +29,12 @@ export async function generateMetadata(): Promise<Metadata> {
         title: 'Salary Simulator Cameroon | Legal Cameroun',
         description: 'Calculate your net salary or gross cost in Cameroon. Free simulator for employees and employers.',
         type: 'website',
-        url: 'https://legalcameroun.com/simulateurs/salaire',
         siteName: 'Legal Cameroun',
       },
       twitter: {
         card: 'summary_large_image',
         title: 'Salary Simulator Cameroon | Legal Cameroun',
         description: 'Calculate your net salary or gross cost in Cameroon. Free simulator for employees and employers.',
-      },
-      alternates: {
-        languages: {
-          'fr': 'https://legalcameroun.com/simulateurs/salaire',
-          'en': 'https://legalcameroun.com/simulateurs/salaire',
-          'x-default': 'https://legalcameroun.com/simulateurs/salaire',
-        },
       },
     },
   });

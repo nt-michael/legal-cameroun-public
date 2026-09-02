@@ -24,20 +24,12 @@ export async function generateMetadata(): Promise<Metadata> {
         description:
           'Guide essentiel pour les groupes et opérations transfrontalières au Cameroun.',
         type: 'article',
-        url: 'https://legalcameroun.com/fiches-pratiques/prix-des-transferts',
         siteName: 'Legal Cameroun',
       },
       twitter: {
         card: 'summary_large_image',
         title: 'Les Règles Camerounaises sur les Prix de Transfert | Legal Cameroun',
         description: "Guide pratique complet sur les prix de transfert au Cameroun. Avant et après l'adhésion à l'OCDE. Téléchargez le guide PDF gratuit.",
-      },
-      alternates: {
-        languages: {
-          'fr': 'https://legalcameroun.com/fiches-pratiques/prix-des-transferts',
-          'en': 'https://legalcameroun.com/fiches-pratiques/prix-des-transferts',
-          'x-default': 'https://legalcameroun.com/fiches-pratiques/prix-des-transferts',
-        },
       },
     },
     en: {
@@ -54,20 +46,12 @@ export async function generateMetadata(): Promise<Metadata> {
         title: 'Transfer Pricing Rules in Cameroon',
         description: 'Essential guide for groups and cross-border operations in Cameroon.',
         type: 'article',
-        url: 'https://legalcameroun.com/fiches-pratiques/prix-des-transferts',
         siteName: 'Legal Cameroun',
       },
       twitter: {
         card: 'summary_large_image',
         title: 'Transfer Pricing in Cameroon | Legal Cameroun',
         description: 'Practical guide to transfer pricing rules and obligations in Cameroon.',
-      },
-      alternates: {
-        languages: {
-          'fr': 'https://legalcameroun.com/fiches-pratiques/prix-des-transferts',
-          'en': 'https://legalcameroun.com/fiches-pratiques/prix-des-transferts',
-          'x-default': 'https://legalcameroun.com/fiches-pratiques/prix-des-transferts',
-        },
       },
     },
   });

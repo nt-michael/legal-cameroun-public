@@ -9,6 +9,8 @@ import { LanguageProvider } from "@/contexts/LanguageContext";
 import { ThemeProvider } from "@/contexts/ThemeContext";
 import LanguageHtmlSetter from "@/components/seo/LanguageHtmlSetter";
 import { SpeedInsights } from "@vercel/speed-insights/next"
+import { getRequestLanguage } from "@/lib/lang";
+import { SITE_URL } from "@/lib/site-config";
 
 const inriaSans = localFont({
   src: [
@@ -24,7 +26,7 @@ const inriaSans = localFont({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.Frontend_SITE_URL || 'https://legalcameroun.com'),
+  metadataBase: new URL(SITE_URL),
   title: "Legal Cameroun | Accompagnement Juridique, Comptable et Fiscal",
   description: "Plateforme d'accompagnement juridique, comptable et fiscal au Cameroun. Création d'entreprise, modification de statuts, conseil fiscal, expertise comptable. Réponse sous 48h.",
   keywords: "legaltech cameroun, accompagnement juridique douala, droit des affaires cameroun, création entreprise cameroun, conseil fiscal cameroun",
@@ -36,22 +38,17 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
   },
-  alternates: {
-    languages: {
-      'fr': 'https://legalcameroun.com',
-      'en': 'https://legalcameroun.com/en',
-      'x-default': 'https://legalcameroun.com',
-    },
-  },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const lang = await getRequestLanguage();
+
   return (
-    <html lang="fr" suppressHydrationWarning>
+    <html lang={lang} suppressHydrationWarning>
       <body
         className={`${inriaSans.variable} antialiased`}
       >

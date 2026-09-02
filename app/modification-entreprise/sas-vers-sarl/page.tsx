@@ -12,20 +12,12 @@ export async function generateMetadata(): Promise<Metadata> {
         title: 'Transformation SAS en SARL au Cameroun | Cadre Plus Structuré',
         description: 'Transformez votre SAS en SARL au Cameroun pour un cadre plus structuré, une gestion simplifiée et une protection sociale adaptée. Formalités OHADA complètes.',
         type: 'website',
-        url: 'https://legalcameroun.com/modification-entreprise/sas-vers-sarl',
         siteName: 'Legal Cameroun',
       },
       twitter: {
         card: 'summary_large_image',
         title: 'Transformation SAS en SARL au Cameroun | Cadre Plus Structuré',
         description: 'Transformez votre SAS en SARL au Cameroun pour un cadre plus structuré, une gestion simplifiée et une protection sociale adaptée. Formalités OHADA complètes.',
-      },
-      alternates: {
-        languages: {
-          'fr': 'https://legalcameroun.com/modification-entreprise/sas-vers-sarl',
-          'en': 'https://legalcameroun.com/modification-entreprise/sas-vers-sarl',
-          'x-default': 'https://legalcameroun.com/modification-entreprise/sas-vers-sarl',
-        },
       },
     },
     en: {
@@ -36,20 +28,12 @@ export async function generateMetadata(): Promise<Metadata> {
         title: 'Convert SAS to SARL in Cameroon | Legal Cameroun',
         description: 'Convert your SAS to a SARL in Cameroon. Full legal support for the transformation.',
         type: 'website',
-        url: 'https://legalcameroun.com/modification-entreprise/sas-vers-sarl',
         siteName: 'Legal Cameroun',
       },
       twitter: {
         card: 'summary_large_image',
         title: 'Convert SAS to SARL in Cameroon | Legal Cameroun',
         description: 'Convert your SAS to a SARL in Cameroon. Full legal support for the transformation.',
-      },
-      alternates: {
-        languages: {
-          'fr': 'https://legalcameroun.com/modification-entreprise/sas-vers-sarl',
-          'en': 'https://legalcameroun.com/modification-entreprise/sas-vers-sarl',
-          'x-default': 'https://legalcameroun.com/modification-entreprise/sas-vers-sarl',
-        },
       },
     },
   });

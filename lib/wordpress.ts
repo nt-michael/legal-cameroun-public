@@ -1,7 +1,5 @@
 // WordPress REST API Client with Application Password Authentication
 
-import { encode } from "punycode";
-
 const WP_API_URL = process.env.WC_SITE_URL ? `${process.env.WC_SITE_URL}/wp-json/wp/v2` : '';
 const WP_USERNAME = process.env.WC_SITE_APP_USERNAME || '';
 const WP_APP_PASSWORD = process.env.WC_SITE_APP_PASSWORD || '';
@@ -334,6 +332,7 @@ export async function getAllPagesSEO(): Promise<WPPageSEO[]> {
   try {
     const res = await fetch(`${siteUrl}/wp-json/lc-seo/v1/pages`, {
       next: { revalidate: REVALIDATE_SECONDS },
+      signal: AbortSignal.timeout(10_000),
     });
     if (!res.ok) return [];
     const json = await res.json();
@@ -378,4 +377,62 @@ export async function getWPPage(slug: string): Promise<WPPage | null> {
     console.error(`Failed to fetch WP page: ${slug}`, error);
     return null;
   }
+}
+
+// ─── Sitemap ────────────────────────────────────────────────────────────────
+
+export interface SitemapPost {
+  slug: string;
+  modified: string;
+  /** True when the post has a real English translation, not just a French fallback. */
+  hasEnglish: boolean;
+}
+
+/**
+ * Every published post, for the sitemap.
+ *
+ * Deliberately unauthenticated: posts are public, and the sitemap must still build
+ * when application-password credentials are absent (a fresh clone, a preview deploy).
+ * Returns whatever it managed to collect if WordPress fails part-way.
+ */
+export async function getPostsForSitemap(): Promise<SitemapPost[]> {
+  const siteUrl = process.env.WC_SITE_URL;
+  if (!siteUrl) return [];
+
+  const posts: SitemapPost[] = [];
+
+  try {
+    for (let page = 1; page <= 20; page++) {
+      const res = await fetch(
+        `${siteUrl}/wp-json/wp/v2/posts?per_page=100&page=${page}&_fields=slug,modified,meta`,
+        {
+          // Matches the sitemap route's own revalidate; the shorter listing TTL
+          // would otherwise drag the whole route down with it.
+          next: { revalidate: REVALIDATE_SECONDS },
+          // A hung WordPress must not hang sitemap generation.
+          signal: AbortSignal.timeout(10_000),
+        },
+      );
+      if (!res.ok) break;
+
+      const batch = await res.json();
+      if (!Array.isArray(batch) || batch.length === 0) break;
+
+      for (const post of batch) {
+        if (!post?.slug) continue;
+        posts.push({
+          slug: post.slug,
+          modified: post.modified,
+          hasEnglish: Boolean(post.meta?._post_title_en?.trim()),
+        });
+      }
+
+      const totalPages = parseInt(res.headers.get('X-WP-TotalPages') || '1');
+      if (page >= totalPages) break;
+    }
+  } catch (error) {
+    console.error('Failed to fetch posts for sitemap', error);
+  }
+
+  return posts;
 }

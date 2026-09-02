@@ -12,20 +12,12 @@ export async function generateMetadata(): Promise<Metadata> {
         title: "Création d'Entreprise au Cameroun | SAS, SARL, SARLU, Association",
         description: "Créez votre entreprise au Cameroun avec l'aide de nos experts. SAS, SARL, SARLU, Association — immatriculation complète, accompagnement de A à Z. Dès 150 000 FCFA.",
         type: 'website',
-        url: 'https://legalcameroun.com/creation-entreprise',
         siteName: 'Legal Cameroun',
       },
       twitter: {
         card: 'summary_large_image',
         title: "Création d'Entreprise au Cameroun | SAS, SARL, SARLU, Association",
         description: "Créez votre entreprise au Cameroun avec l'aide de nos experts. SAS, SARL, SARLU, Association — immatriculation complète, accompagnement de A à Z. Dès 150 000 FCFA.",
-      },
-      alternates: {
-        languages: {
-          'fr': 'https://legalcameroun.com/creation-entreprise',
-          'en': 'https://legalcameroun.com/creation-entreprise',
-          'x-default': 'https://legalcameroun.com/creation-entreprise',
-        },
       },
     },
     en: {
@@ -36,20 +28,12 @@ export async function generateMetadata(): Promise<Metadata> {
         title: 'Company Formation in Cameroon | Legal Cameroun',
         description: 'Create your SARL, SAS, SARLU or association in Cameroon. Fast, secure and affordable company formation.',
         type: 'website',
-        url: 'https://legalcameroun.com/creation-entreprise',
         siteName: 'Legal Cameroun',
       },
       twitter: {
         card: 'summary_large_image',
         title: 'Company Formation in Cameroon | Legal Cameroun',
         description: 'Create your SARL, SAS, SARLU or association in Cameroon. Fast, secure and affordable company formation.',
-      },
-      alternates: {
-        languages: {
-          'fr': 'https://legalcameroun.com/creation-entreprise',
-          'en': 'https://legalcameroun.com/creation-entreprise',
-          'x-default': 'https://legalcameroun.com/creation-entreprise',
-        },
       },
     },
   });

@@ -23,7 +23,6 @@ export async function generateMetadata(): Promise<Metadata> {
         description:
           'Guides pratiques gratuits pour vos démarches juridiques et fiscales au Cameroun. Immatriculation ATOM, prix de transfert, choix de structure et plus. Téléchargeables en PDF.',
         type: 'website',
-        url: 'https://legalcameroun.com/fiches-pratiques',
         siteName: 'Legal Cameroun',
       },
       twitter: {
@@ -31,13 +30,6 @@ export async function generateMetadata(): Promise<Metadata> {
         title: 'Fiches Pratiques | Guides Juridiques et Fiscaux pour le Cameroun',
         description:
           'Guides pratiques gratuits pour vos démarches juridiques et fiscales au Cameroun. Immatriculation ATOM, prix de transfert, choix de structure et plus. Téléchargeables en PDF.',
-      },
-      alternates: {
-        languages: {
-          'fr': 'https://legalcameroun.com/fiches-pratiques',
-          'en': 'https://legalcameroun.com/fiches-pratiques',
-          'x-default': 'https://legalcameroun.com/fiches-pratiques',
-        },
       },
     },
     en: {
@@ -55,20 +47,12 @@ export async function generateMetadata(): Promise<Metadata> {
         title: 'Practical Guides | Legal Cameroun',
         description: 'Practical legal and tax guides for businesses in Cameroon. Free resources from our experts.',
         type: 'website',
-        url: 'https://legalcameroun.com/fiches-pratiques',
         siteName: 'Legal Cameroun',
       },
       twitter: {
         card: 'summary_large_image',
         title: 'Practical Guides | Legal Cameroun',
         description: 'Practical legal and tax guides for businesses in Cameroon. Free resources from our experts.',
-      },
-      alternates: {
-        languages: {
-          'fr': 'https://legalcameroun.com/fiches-pratiques',
-          'en': 'https://legalcameroun.com/fiches-pratiques',
-          'x-default': 'https://legalcameroun.com/fiches-pratiques',
-        },
       },
     },
   });

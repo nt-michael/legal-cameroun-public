@@ -12,20 +12,12 @@ export async function generateMetadata(): Promise<Metadata> {
         title: 'Réservez votre Rendez-vous avec un Expert Juridique | Legal Cameroun',
         description: "Prenez rendez-vous avec nos experts juridiques et fiscaux au Cameroun. Conseil en création d'entreprise, droit des affaires et fiscalité.",
         type: 'website',
-        url: 'https://legalcameroun.com/prendre-un-rendez-vous',
         siteName: 'Legal Cameroun',
       },
       twitter: {
         card: 'summary_large_image',
         title: 'Réservez votre Rendez-vous avec un Expert Juridique | Legal Cameroun',
         description: "Prenez rendez-vous avec nos experts juridiques et fiscaux au Cameroun. Conseil en création d'entreprise, droit des affaires et fiscalité.",
-      },
-      alternates: {
-        languages: {
-          'fr': 'https://legalcameroun.com/prendre-un-rendez-vous',
-          'en': 'https://legalcameroun.com/prendre-un-rendez-vous',
-          'x-default': 'https://legalcameroun.com/prendre-un-rendez-vous',
-        },
       },
     },
     en: {
@@ -36,20 +28,12 @@ export async function generateMetadata(): Promise<Metadata> {
         title: 'Book an Appointment | Legal Cameroun',
         description: 'Book a legal or tax consultation with our experts at Legal Cameroun.',
         type: 'website',
-        url: 'https://legalcameroun.com/prendre-un-rendez-vous',
         siteName: 'Legal Cameroun',
       },
       twitter: {
         card: 'summary_large_image',
         title: 'Book an Appointment | Legal Cameroun',
         description: 'Book a legal or tax consultation with our experts at Legal Cameroun.',
-      },
-      alternates: {
-        languages: {
-          'fr': 'https://legalcameroun.com/prendre-un-rendez-vous',
-          'en': 'https://legalcameroun.com/prendre-un-rendez-vous',
-          'x-default': 'https://legalcameroun.com/prendre-un-rendez-vous',
-        },
       },
     },
   });

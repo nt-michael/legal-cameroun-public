@@ -13,20 +13,12 @@ export async function generateMetadata(): Promise<Metadata> {
         title: 'Calculateur IS Cameroun | Impôt sur les Sociétés 2024 — Legal Cameroun',
         description: 'Estimez votre Impôt sur les Sociétés au Cameroun. Taux de 28,5% (CA ≤ 3 Mds FCFA) ou 33% (CA > 3 Mds). Basé sur le CGI 2024. Calcul instantané.',
         type: 'website',
-        url: 'https://legalcameroun.com/simulateurs/is',
         siteName: 'Legal Cameroun',
       },
       twitter: {
         card: 'summary_large_image',
         title: 'Calculateur IS Cameroun | Impôt sur les Sociétés 2024 — Legal Cameroun',
         description: 'Estimez votre Impôt sur les Sociétés au Cameroun. Taux de 28,5% (CA ≤ 3 Mds FCFA) ou 33% (CA > 3 Mds). Basé sur le CGI 2024. Calcul instantané.',
-      },
-      alternates: {
-        languages: {
-          'fr': 'https://legalcameroun.com/simulateurs/is',
-          'en': 'https://legalcameroun.com/simulateurs/is',
-          'x-default': 'https://legalcameroun.com/simulateurs/is',
-        },
       },
     },
     en: {
@@ -37,20 +29,12 @@ export async function generateMetadata(): Promise<Metadata> {
         title: 'Corporate Tax Simulator Cameroon | Legal Cameroun',
         description: 'Calculate your corporate income tax in Cameroon. Free IS simulator for businesses.',
         type: 'website',
-        url: 'https://legalcameroun.com/simulateurs/is',
         siteName: 'Legal Cameroun',
       },
       twitter: {
         card: 'summary_large_image',
         title: 'Corporate Tax Simulator Cameroon | Legal Cameroun',
         description: 'Calculate your corporate income tax in Cameroon. Free IS simulator for businesses.',
-      },
-      alternates: {
-        languages: {
-          'fr': 'https://legalcameroun.com/simulateurs/is',
-          'en': 'https://legalcameroun.com/simulateurs/is',
-          'x-default': 'https://legalcameroun.com/simulateurs/is',
-        },
       },
     },
   });

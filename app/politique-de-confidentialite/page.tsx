@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import { cookies } from 'next/headers';
+import { getRequestLanguage } from '@/lib/lang';
 import { getWPPage } from '@/lib/wordpress';
 import { createPageMetadata } from '@/lib/seo-utils';
 import LegalPageContent from '@/components/legal/LegalPageContent';
@@ -14,16 +14,12 @@ export async function generateMetadata(): Promise<Metadata> {
         title: 'Politique de Confidentialité | Legal Cameroun',
         description: 'Comment Legal Cameroun protège vos données personnelles.',
         type: 'website',
-        url: 'https://legalcameroun.com/politique-de-confidentialite',
         siteName: 'Legal Cameroun',
       },
       twitter: {
         card: 'summary',
         title: 'Politique de Confidentialité | Legal Cameroun',
         description: 'Comment Legal Cameroun protège vos données personnelles.',
-      },
-      alternates: {
-        canonical: 'https://legalcameroun.com/politique-de-confidentialite',
       },
       robots: 'noindex,follow',
     },
@@ -34,7 +30,6 @@ export async function generateMetadata(): Promise<Metadata> {
         title: 'Privacy Policy | Legal Cameroun',
         description: 'How Legal Cameroun protects your personal data.',
         type: 'website',
-        url: 'https://legalcameroun.com/politique-de-confidentialite',
         siteName: 'Legal Cameroun',
       },
       twitter: {
@@ -42,16 +37,13 @@ export async function generateMetadata(): Promise<Metadata> {
         title: 'Privacy Policy | Legal Cameroun',
         description: 'How Legal Cameroun protects your personal data.',
       },
-      alternates: {
-        canonical: 'https://legalcameroun.com/politique-de-confidentialite',
-      },
       robots: 'noindex,follow',
     },
   });
 }
 
 export default async function PolitiqueConfidentialitePage() {
-  const lang = (await cookies()).get('lang')?.value === 'en' ? 'en' : 'fr';
+  const lang = await getRequestLanguage();
   const slug = lang === 'en' ? 'privacy-policy' : 'politique-de-confidentialite';
   const page = await getWPPage(slug) ?? await getWPPage('politique-de-confidentialite');
   if (!page) notFound();

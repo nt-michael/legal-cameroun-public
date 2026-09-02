@@ -24,20 +24,12 @@ export async function generateMetadata(): Promise<Metadata> {
         description:
           'Définitions claires, avantages, inconvénients – pour lancer votre activité sans regret.',
         type: 'article',
-        url: 'https://legalcameroun.com/fiches-pratiques/presentation-societe-etablissement',
         siteName: 'Legal Cameroun',
       },
       twitter: {
         card: 'summary_large_image',
         title: 'Société ou Établissement : Comment Choisir ? | Legal Cameroun',
         description: "Définitions claires, avantages et inconvénients de la société vs l'établissement au Cameroun. Guide pour faire le bon choix dès le départ.",
-      },
-      alternates: {
-        languages: {
-          'fr': 'https://legalcameroun.com/fiches-pratiques/presentation-societe-etablissement',
-          'en': 'https://legalcameroun.com/fiches-pratiques/presentation-societe-etablissement',
-          'x-default': 'https://legalcameroun.com/fiches-pratiques/presentation-societe-etablissement',
-        },
       },
     },
     en: {
@@ -54,20 +46,12 @@ export async function generateMetadata(): Promise<Metadata> {
         title: 'Company vs Branch Office: What You Need to Know',
         description: 'Clear definitions, advantages and disadvantages – to launch your business without regret.',
         type: 'article',
-        url: 'https://legalcameroun.com/fiches-pratiques/presentation-societe-etablissement',
         siteName: 'Legal Cameroun',
       },
       twitter: {
         card: 'summary_large_image',
         title: 'Company vs Branch Office | Legal Cameroun',
         description: 'Understand the difference between a company and a branch office in Cameroon.',
-      },
-      alternates: {
-        languages: {
-          'fr': 'https://legalcameroun.com/fiches-pratiques/presentation-societe-etablissement',
-          'en': 'https://legalcameroun.com/fiches-pratiques/presentation-societe-etablissement',
-          'x-default': 'https://legalcameroun.com/fiches-pratiques/presentation-societe-etablissement',
-        },
       },
     },
   });

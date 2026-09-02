@@ -1,6 +1,12 @@
 import { MetadataRoute } from 'next';
+import { absoluteUrl } from '@/lib/site-config';
+import { getPostsForSitemap } from '@/lib/wordpress';
 
-const BASE = 'https://legalcameroun.com';
+// Blog content changes without a redeploy, so the sitemap is regenerated hourly.
+export const revalidate = 3600;
+
+// Must match the page size used by lib/actualite-page-utils.ts
+const POSTS_PER_PAGE = 9;
 
 const pages: Array<{
   path: string;
@@ -37,25 +43,62 @@ const pages: Array<{
   { path: '/conditions-generales',                        changeFrequency: 'monthly', priority: 0.3 },
 ];
 
-export default function sitemap(): MetadataRoute.Sitemap {
-  const now = new Date();
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const buildDate = new Date();
   const entries: MetadataRoute.Sitemap = [];
 
+  // Static routes, French (canonical) and English
   for (const page of pages) {
-    // French (canonical, no prefix)
+    const path = page.path || '/';
+    for (const lang of ['fr', 'en'] as const) {
+      entries.push({
+        url: absoluteUrl(path, lang),
+        lastModified: buildDate,
+        changeFrequency: page.changeFrequency,
+        priority: page.priority,
+      });
+    }
+  }
+
+  // If WordPress is unreachable this returns [] and the sitemap degrades to the
+  // static routes above rather than failing the build.
+  const posts = await getPostsForSitemap();
+
+  for (const post of posts) {
+    const path = `/actualite/${post.slug}`;
+    const lastModified = new Date(post.modified);
+
     entries.push({
-      url: `${BASE}${page.path || '/'}`,
-      lastModified: now,
-      changeFrequency: page.changeFrequency,
-      priority: page.priority,
+      url: absoluteUrl(path, 'fr'),
+      lastModified,
+      changeFrequency: 'monthly',
+      priority: 0.6,
     });
-    // English (/en prefix)
-    entries.push({
-      url: `${BASE}/en${page.path || ''}`,
-      lastModified: now,
-      changeFrequency: page.changeFrequency,
-      priority: page.priority,
-    });
+
+    // An English URL without a translation is the French text on a second URL —
+    // it canonicalises to the French original, so it does not belong here.
+    if (post.hasEnglish) {
+      entries.push({
+        url: absoluteUrl(path, 'en'),
+        lastModified,
+        changeFrequency: 'monthly',
+        priority: 0.6,
+      });
+    }
+  }
+
+  // Paginated listings. Page 1 is omitted: it canonicalises to /actualite.
+  const listingPages = Math.ceil(posts.length / POSTS_PER_PAGE);
+  for (let num = 2; num <= listingPages; num++) {
+    const path = `/actualite/page/${num}`;
+    for (const lang of ['fr', 'en'] as const) {
+      entries.push({
+        url: absoluteUrl(path, lang),
+        lastModified: buildDate,
+        changeFrequency: 'daily',
+        priority: 0.5,
+      });
+    }
   }
 
   return entries;
