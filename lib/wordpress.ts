@@ -22,6 +22,9 @@ function getAuthHeader(): string {
 const REVALIDATE_SECONDS = parseInt(process.env.WP_REVALIDATE_SECONDS || '3600');
 // Shorter revalidation for post listings (5 minutes default)
 const POSTS_REVALIDATE_SECONDS = parseInt(process.env.WP_POSTS_REVALIDATE_SECONDS || '300');
+// A hung WordPress must fail fast rather than hold a render open until the
+// platform's own timeout kills the request.
+const REQUEST_TIMEOUT_MS = 10_000;
 
 // Types
 export interface WPComment {
@@ -104,6 +107,7 @@ async function wpFetch<T>(endpoint: string, options: RequestInit = {}): Promise<
       'Content-Type': 'application/json',
       ...options.headers,
     },
+    signal: options.signal ?? AbortSignal.timeout(REQUEST_TIMEOUT_MS),
     next: {
       revalidate: REVALIDATE_SECONDS,
     },
@@ -170,14 +174,17 @@ export async function getPosts(params?: {
   return { posts, totalPages, total };
 }
 
+/**
+ * A post by slug, or null when WordPress answers and has no such post.
+ *
+ * Deliberately does NOT catch: the caller renders notFound() for null, so
+ * swallowing a transient failure here serves a 404 for an article that still
+ * exists — and the CDN then caches that 404. "WordPress is unreachable" must
+ * surface as an error (5xx, retried later) rather than "this article is gone".
+ */
 export async function getPost(slug: string): Promise<WPPost | null> {
-  try {
-    const posts = await wpFetch<WPPost[]>(`/posts?slug=${encodeURIComponent(slug)}&_embed=true`);
-    return posts[0] || null;
-  } catch (error) {
-    console.error(`Failed to fetch post: ${slug}`, error);
-    return null;
-  }
+  const posts = await wpFetch<WPPost[]>(`/posts?slug=${encodeURIComponent(slug)}&_embed=true`);
+  return posts[0] || null;
 }
 
 export async function getPostById(id: number): Promise<WPPost | null> {
