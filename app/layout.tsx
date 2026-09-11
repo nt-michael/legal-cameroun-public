@@ -9,6 +9,7 @@ import { LanguageProvider } from "@/contexts/LanguageContext";
 import { ThemeProvider } from "@/contexts/ThemeContext";
 import LanguageHtmlSetter from "@/components/seo/LanguageHtmlSetter";
 import { SpeedInsights } from "@vercel/speed-insights/next"
+import { Analytics } from "@vercel/analytics/next";
 import { getRequestLanguage } from "@/lib/lang";
 import { SITE_URL } from "@/lib/site-config";
 
@@ -63,6 +64,7 @@ export default async function RootLayout({
           </LanguageProvider>
         </ThemeProvider>
         <SpeedInsights />
+        <Analytics />
       </body>
     </html>
   );
