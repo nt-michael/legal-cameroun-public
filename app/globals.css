@@ -1,4 +1,7 @@
 @import "tailwindcss";
+/* Article bodies use `prose` classes (components/actualite/PostContent.tsx);
+   without this plugin they are undefined and paragraphs lose all spacing. */
+@plugin "@tailwindcss/typography";
 
 /* Configure dark mode to use class only, not system preference */
 @custom-variant dark (&:where(.dark, .dark *));
