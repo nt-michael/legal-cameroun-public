@@ -41,7 +41,7 @@ export async function POST(request: Request) {
             email,
             phone,
             product_id: parseInt(productId),
-            total: '50000', // Hardcoded price? Or fetch from product? 
+            total: '100000', // Hardcoded price? Or fetch from product? 
             // Ideally we should rely on WC to calculate total, but `createOrder` usually takes line items.
             // If we pass line items, WC calculates total. 
             // Wait, my lib `createOrder` doesn't take 'total' in body? 
@@ -98,7 +98,7 @@ export async function POST(request: Request) {
         const paymentData = {
             email,
             currency: 'XAF',
-            amount: 50000, // TODO: Fetch price dynamically or hardcode for now. User didn't specify dynamic price.
+            amount: 100000, // TODO: Fetch price dynamically or hardcode for now. User didn't specify dynamic price.
             // "Consultation" usually has a fixed fee.
             reference: `WC-${order.id}-${Date.now()}`,
             description: `Consultation: ${consultationType}`,
