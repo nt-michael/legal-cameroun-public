@@ -57,8 +57,8 @@ const bookingText: Record<string, any> = {
   consultationLabel: { fr: 'Consultation', en: 'Consultation' },
   nameLabel: { fr: 'Nom', en: 'Name' },
   confirmNote: {
-    fr: 'Vous serez redirigé vers le paiement pour finaliser la réservation (50,000 FCFA).',
-    en: 'You will be redirected to payment to finalize the booking (50,000 FCFA).',
+    fr: 'Vous serez redirigé vers le paiement pour finaliser la réservation (100,000 FCFA).',
+    en: 'You will be redirected to payment to finalize the booking (100,000 FCFA).',
   },
 
   // Success state (Not used directly here as we redirect, but kept if needed for return page)
