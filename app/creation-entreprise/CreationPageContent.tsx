@@ -8,7 +8,7 @@ import {
   LegalFormsComparison,
   StepsTimeline,
   PricingCards,
-  AidesAvantages,
+  // AidesAvantages,
   SubpagesGrid,
 } from '@/components/creation';
 import { hubHero, generalSteps, pricingTiers } from '@/lib/creation-data';
@@ -70,8 +70,8 @@ export default function CreationPageContent() {
         />
       </section>
 
-      {/* Aides & Avantages */}
-      <AidesAvantages />
+      {/* Aides & Avantages: hidden at management's request (audit, Oct 2026) */}
+      {/* <AidesAvantages /> */}
 
       {/* Subpages Grid */}
       <SubpagesGrid />
