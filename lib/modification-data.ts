@@ -367,13 +367,12 @@ export const sasVersSarlData = {
   },
   advantages: [
     { icon: 'shield', title: { fr: 'Cadre plus structuré', en: 'More structured framework' }, description: { fr: 'Règles de fonctionnement plus encadrées par la loi', en: 'Operating rules more regulated by law' } },
-    { icon: 'user', title: { fr: 'Protection sociale', en: 'Social protection' }, description: { fr: 'Régime TNS possible selon votre situation', en: 'Self-employed scheme possible depending on your situation' } },
     { icon: 'lock', title: { fr: 'Responsabilité limitée', en: 'Limited liability' }, description: { fr: 'Maintien de la responsabilité limitée aux apports', en: 'Maintaining liability limited to contributions' } },
     { icon: 'document', title: { fr: 'Continuité juridique', en: 'Legal continuity' }, description: { fr: 'Contrats et baux inchangés, pas de nouvelle entité', en: 'Contracts and leases unchanged, no new entity' } },
   ],
   processSteps: [
     { number: '01', title: { fr: 'AGE des associés', en: 'Partners\' EGM' }, description: { fr: 'Décision collective avec procès-verbal', en: 'Collective decision with minutes' } },
-    { number: '02', title: { fr: 'Commissaire à la transformation', en: 'Transformation auditor' }, description: { fr: 'Valorisation des biens, vérification capitaux propres \u2265 capital', en: 'Asset valuation, verification that equity \u2265 share capital' } },
+    { number: '02', title: { fr: 'Commissaire à la transformation', en: 'Transformation auditor' }, description: { fr: 'Selon les cas prévus par l\'AUSCGIE, l\'opération peut nécessiter l\'intervention d\'un commissaire aux comptes ou d\'un commissaire à la transformation. Valorisation des biens, vérification capitaux propres ≥ capital.', en: 'Depending on the cases provided for by the AUSCGIE, the operation may require the involvement of a statutory auditor or a transformation auditor. Asset valuation, verification that equity ≥ share capital.' } },
     { number: '03', title: { fr: 'Annonce légale', en: 'Legal notice' }, description: { fr: 'Publication dans un journal d\'annonces légales', en: 'Publication in a legal gazette' } },
     { number: '04', title: { fr: 'Dépôt au greffe', en: 'Filing with the court registry' }, description: { fr: 'Inscription modificative au RCCM', en: 'Amendment registration at the RCCM' } },
   ],
