@@ -15,9 +15,6 @@ const pageText = {
   ctaPrimary: { fr: 'Dissoudre ma Soci\u00e9t\u00e9', en: 'Dissolve my Company' },
   ctaSecondary: { fr: 'Consultation Gratuite', en: 'Free Consultation' },
   whyTitle: { fr: 'Pourquoi Dissoudre Votre Soci\u00e9t\u00e9 ?', en: 'Why Dissolve Your Company?' },
-  altTitle: { fr: 'Dissolution vs Mise en Sommeil', en: 'Dissolution vs Dormancy' },
-  altPermanent: { fr: 'D\u00e9finitif', en: 'Permanent' },
-  altTemporary: { fr: 'Temporaire', en: 'Temporary' },
   phasesBadge: { fr: 'Processus en 2 Phases', en: '2-Phase Process' },
   phasesTitle: { fr: 'Dissolution & Liquidation', en: 'Dissolution & Liquidation' },
   documentsTitle: { fr: 'Documents N\u00e9cessaires', en: 'Required Documents' },
@@ -30,7 +27,7 @@ const pageText = {
 
 export default function DissolutionContent() {
   const { language } = useLanguage();
-  const { hero, whyDissolve, alternatives, processPhases, liquidatorRole, employeeObligations, documents, pricingTiers, faq } = dissolutionData;
+  const { hero, whyDissolve, processPhases, liquidatorRole, employeeObligations, documents, pricingTiers, faq } = dissolutionData;
 
   return (
     <main className="min-h-screen bg-gray-50 dark:bg-gray-900">
@@ -95,7 +92,7 @@ export default function DissolutionContent() {
             </h2>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {whyDissolve.map((item, index) => (
               <div
                 key={index}
@@ -114,64 +111,6 @@ export default function DissolutionContent() {
                 </p>
               </div>
             ))}
-          </div>
-
-          {/* Alternatives Comparison */}
-          <div className="max-w-4xl mx-auto">
-            <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-6 text-center">
-              {pageText.altTitle[language]}
-            </h3>
-            <div className="grid md:grid-cols-2 gap-6">
-              {alternatives.map((alt) => (
-                <div
-                  key={getText(alt.type, language)}
-                  className={`rounded-2xl p-6 border-2 ${
-                    alt.permanent
-                      ? 'border-red-300 dark:border-red-800 bg-red-50 dark:bg-red-900/20'
-                      : 'border-amber-300 dark:border-amber-800 bg-amber-50 dark:bg-amber-900/20'
-                  }`}
-                >
-                  <div className="flex items-center gap-3 mb-3">
-                    <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${
-                      alt.permanent
-                        ? 'bg-red-200 dark:bg-red-800'
-                        : 'bg-amber-200 dark:bg-amber-800'
-                    }`}>
-                      {alt.permanent ? (
-                        <svg className="w-5 h-5 text-red-700 dark:text-red-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                        </svg>
-                      ) : (
-                        <svg className="w-5 h-5 text-amber-700 dark:text-amber-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 9v6m4-6v6m7-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
-                      )}
-                    </div>
-                    <h4 className={`font-bold ${
-                      alt.permanent
-                        ? 'text-red-800 dark:text-red-200'
-                        : 'text-amber-800 dark:text-amber-200'
-                    }`}>
-                      {getText(alt.type, language)}
-                    </h4>
-                  </div>
-                  <p className={`text-sm ${
-                    alt.permanent
-                      ? 'text-red-700 dark:text-red-300'
-                      : 'text-amber-700 dark:text-amber-300'
-                  }`}>
-                    {getText(alt.description, language)}
-                  </p>
-                  <span className={`inline-block mt-3 text-xs font-semibold px-3 py-1 rounded-full ${
-                    alt.permanent
-                      ? 'bg-red-200 dark:bg-red-800 text-red-800 dark:text-red-200'
-                      : 'bg-amber-200 dark:bg-amber-800 text-amber-800 dark:text-amber-200'
-                  }`}>
-                    {alt.permanent ? pageText.altPermanent[language] : pageText.altTemporary[language]}
-                  </span>
-                </div>
-              ))}
-            </div>
           </div>
         </div>
       </section>

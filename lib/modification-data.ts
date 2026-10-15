@@ -527,25 +527,13 @@ export const dissolutionData = {
     { title: { fr: 'Mésentente entre associés', en: 'Partner disagreements' }, description: { fr: 'Désaccords insurmontables entre les parties', en: 'Irreconcilable disagreements between the parties' } },
     { title: { fr: 'Difficultés économiques', en: 'Economic difficulties' }, description: { fr: 'Activité non rentable sans perspectives', en: 'Unprofitable business with no prospects' } },
   ],
-  alternatives: [
-    {
-      type: { fr: 'Dissolution', en: 'Dissolution' },
-      description: { fr: 'Cessation définitive et radiation du RCCM', en: 'Permanent cessation and removal from the trade register' },
-      permanent: true,
-    },
-    {
-      type: { fr: 'Mise en Sommeil', en: 'Dormancy' },
-      description: { fr: 'Suspension temporaire (2 ans max), obligations allégées', en: 'Temporary suspension (2 years max), reduced obligations' },
-      permanent: false,
-    },
-  ],
   processPhases: [
     {
       phase: { fr: 'Phase 1 : Dissolution', en: 'Phase 1: Dissolution' },
       steps: [
         { number: '01', title: { fr: 'Décision des associés', en: 'Partners\' decision' }, description: { fr: 'AGE et procès-verbal de dissolution', en: 'EGM and dissolution minutes' } },
         { number: '02', title: { fr: 'Nomination du liquidateur', en: 'Appointment of liquidator' }, description: { fr: 'Dirigeant, associé ou tiers désigné', en: 'Director, partner, or designated third party' } },
-        { number: '03', title: { fr: 'Publication annonce légale', en: 'Legal notice publication' }, description: { fr: 'Avis de dissolution dans un JAL', en: 'Dissolution notice in a legal gazette' } },
+        { number: '03', title: { fr: 'Publication annonce légale', en: 'Legal notice publication' }, description: { fr: 'Insertion de l’avis de dissolution dans un journal habilité à recevoir les annonces légales', en: 'Publication of the dissolution notice in a newspaper authorised to publish legal notices' } },
         { number: '04', title: { fr: 'Inscription au greffe', en: 'Court registry registration' }, description: { fr: 'Mention "société en liquidation"', en: '"Company in liquidation" mention' } },
       ],
     },
@@ -573,9 +561,8 @@ export const dissolutionData = {
   employeeObligations: {
     title: { fr: 'Obligations envers les Salariés', en: 'Obligations Towards Employees' },
     items: [
-      { fr: 'Licenciement économique avec préavis (1-2 mois)', en: 'Economic dismissal with notice period (1-2 months)' },
+      { fr: 'Licenciement économique dans le respect de la procédure prévue par le Code du travail', en: 'Economic dismissal in accordance with the procedure laid down by the Labour Code' },
       { fr: 'Indemnités de licenciement substantielles', en: 'Substantial severance pay' },
-      { fr: 'Entretien préalable obligatoire', en: 'Mandatory preliminary interview' },
       { fr: 'Priorité de réembauchage', en: 'Priority for rehiring' },
     ],
   },
@@ -635,12 +622,8 @@ export const dissolutionData = {
   ],
   faq: [
     {
-      question: { fr: 'Comment dissoudre une SASU ou EURL (associé unique) ?', en: 'How to dissolve a SASU or EURL (sole shareholder)?' },
-      answer: { fr: 'L\'associé unique peut décider seul de la dissolution. La liquidation suit le même processus, ou une transmission universelle de patrimoine est possible si l\'associé est une société.', en: 'The sole shareholder can decide on dissolution alone. Liquidation follows the same process, or a universal transfer of assets is possible if the shareholder is a company.' },
-    },
-    {
-      question: { fr: 'Quelle différence entre dissolution et mise en sommeil ?', en: 'What is the difference between dissolution and dormancy?' },
-      answer: { fr: 'La dissolution est définitive et mène à la radiation. La mise en sommeil est temporaire (2 ans max), suspend l\'activité mais maintient la société au RCCM avec des obligations allégées.', en: 'Dissolution is permanent and leads to removal from the register. Dormancy is temporary (2 years max), suspends activity but keeps the company on the trade register with reduced obligations.' },
+      question: { fr: 'Comment dissoudre une SASU (associé unique) ?', en: 'How to dissolve a SASU (sole shareholder)?' },
+      answer: { fr: 'L\'associé unique peut décider seul de la dissolution. La liquidation suit le même processus.', en: 'The sole shareholder can decide on dissolution alone. Liquidation follows the same process.' },
     },
     {
       question: { fr: 'Que faire des dettes de la société ?', en: 'What to do with the company\'s debts?' },
