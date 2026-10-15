@@ -76,8 +76,8 @@ const COMPARISON_ROW_DATA: ComparisonRow[] = [
         en: "SAS: 2+\n SASU: single shareholder",
       },
       {
-        fr: "2 à 50 associés (SARLU : 1 associé possible)",
-        en: "2 to 50 shareholders (SARLU: single shareholder allowed)",
+        fr: "Un ou plusieurs associés, sans maximum légal",
+        en: "One or more shareholders, with no legal maximum",
       },
     ],
   },
@@ -147,7 +147,7 @@ const COMPARISON_ROW_DATA: ComparisonRow[] = [
   },
   {
     aspect: {
-      fr: "Cession de parts",
+      fr: "Cession d'actions/parts",
       en: "Share transfer",
     },
     values: [
@@ -629,7 +629,7 @@ export const subpagesData: Record<string, SubpageData> = {
       {
         number: 2,
         title: { fr: 'Déposer le capital', en: 'Deposit the capital' },
-        description: { fr: 'Ouvrez un compte bancaire et déposez le capital (minimum 1 XAF).', en: 'Open a bank account and deposit the capital (minimum 1 XAF).' },
+        description: { fr: 'Ouvrez un compte bancaire et déposez le capital (100 000 FCFA, parts de 5 000 FCFA minimum).', en: 'Open a bank account and deposit the capital (100,000 FCFA, shares of at least 5,000 FCFA).' },
       },
       {
         number: 3,
