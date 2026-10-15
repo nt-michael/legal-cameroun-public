@@ -39,6 +39,7 @@ const simText = {
   appliedRates: { fr: 'Taux appliqu\u00e9s', en: 'Applied Rates' },
   cnpsEmployee: { fr: 'CNPS Salari\u00e9:', en: 'CNPS Employee:' },
   cnpsEmployer: { fr: 'CNPS Employeur:', en: 'CNPS Employer:' },
+  cnpsEmployerRate: { fr: 'Taux fixé selon le groupe de risque, barème IRPP et abattements confirmés par le CGI (art. 29, 34, 69)', en: 'Rate set according to the risk group; IRPP scale and allowances confirmed by the CGI (art. 29, 34, 69)' },
   creditFoncierE: { fr: 'Cr\u00e9dit Foncier (E):', en: 'Housing Fund (E):' },
   fne: { fr: 'FNE:', en: 'FNE:' },
   targetNet: { fr: 'Net souhait\u00e9', en: 'Desired net' },
@@ -461,11 +462,11 @@ export default function SalaireSimulator() {
             </div>
             <div>
               <span className="text-gray-500">{simText.cnpsEmployer[language]}</span>
-              <span className="ml-2 font-medium">{formatPercent(CNPS_RATES.prestation_familiale + CNPS_RATES.accident_travail + CNPS_RATES.pension_employer)}</span>
+              <span className="ml-2 font-medium">{simText.cnpsEmployerRate[language]}</span>
             </div>
             <div>
               <span className="text-gray-500">{simText.creditFoncierE[language]}</span>
-              <span className="ml-2 font-medium">{formatPercent(SALARY_TAX_RATES.credit_foncier_employee)}</span>
+              <span className="ml-2 font-medium">{formatPercent(SALARY_TAX_RATES.credit_foncier_employer)}</span>
             </div>
             <div>
               <span className="text-gray-500">{simText.fne[language]}</span>
