@@ -1,7 +1,6 @@
 'use client';
 
 import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
-import { useRouter } from 'next/navigation';
 import { translations, Language, Translations } from '@/lib/translations';
 
 interface LanguageContextType {
@@ -15,7 +14,6 @@ const LanguageContext = createContext<LanguageContextType | undefined>(undefined
 export function LanguageProvider({ children }: { children: ReactNode }) {
   const [language, setLanguageState] = useState<Language>('fr');
   const [mounted, setMounted] = useState(false);
-  const router = useRouter();
 
   useEffect(() => {
     setMounted(true);
@@ -78,7 +76,10 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
         ? currentPath.slice(3) || '/'
         : currentPath;
     }
-    router.push(newPath);
+    // Full navigation, not router.push: /en/x and /x are the same route behind the
+    // middleware rewrite, so a client-side push reuses the server-rendered content
+    // (legal pages, blog) in the old language.
+    window.location.assign(newPath);
   };
 
   const t = translations[language];
