@@ -446,7 +446,6 @@ export const sarlVersSasData = {
   advantages: [
     { icon: 'freedom', title: { fr: 'Statuts très flexibles', en: 'Very flexible articles' }, description: { fr: 'Liberté d\'organisation vs SARL encadrée', en: 'Freedom of organization vs. regulated SARL' } },
     { icon: 'transfer', title: { fr: 'Cessions facilitées', en: 'Facilitated transfers' }, description: { fr: 'Cession de parts sans agrément (sauf statuts)', en: 'Share transfers without approval (unless articles state otherwise)' } },
-    { icon: 'user', title: { fr: 'Régime social dirigeant', en: 'Director\'s social scheme' }, description: { fr: 'Président assimilé salarié', en: 'President treated as employee' } },
     { icon: 'check', title: { fr: 'Préférable à dissolution', en: 'Preferable to dissolution' }, description: { fr: 'Évitez de créer une nouvelle société', en: 'Avoid creating a new company' } },
   ],
   processSteps: [
