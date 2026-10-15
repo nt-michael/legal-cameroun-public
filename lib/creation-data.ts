@@ -364,7 +364,6 @@ export const associationPricingTiers: PricingTier[] = [
     features: [
       { fr: 'Tout Standard inclus', en: 'All Standard features included' },
       { fr: 'Traitement en 48h', en: 'Processing in 48h' },
-      { fr: 'Obtention SIREN', en: 'SIREN number obtainment' },
       { fr: 'Statuts Word éditables', en: 'Editable Word articles' },
       { fr: 'Assistance 30 jours', en: '30-day assistance' },
       { fr: 'Conseiller dédié', en: 'Dedicated advisor' },
@@ -457,9 +456,8 @@ export const legalForms: LegalForm[] = [
     shortName: { fr: 'Association', en: 'Association' },
     description: { fr: 'Projets culturels, caritatifs ou éducatifs non lucratifs.', en: 'Cultural, charitable, or educational non-profit projects.' },
     advantages: [
-      { fr: 'Création simple et rapide', en: 'Simple and fast creation' },
+      { fr: 'Création simple', en: 'Simple creation' },
       { fr: 'Pas de capital requis', en: 'No capital required' },
-      { fr: 'Publication JOAFE gratuite', en: 'Free JOAFE publication' },
       { fr: 'Peut recevoir des dons', en: 'Can receive donations' },
       { fr: 'Peut employer des salariés', en: 'Can hire employees' },
       { fr: 'Exonérations fiscales possibles', en: 'Possible tax exemptions' },
@@ -753,17 +751,15 @@ export const subpagesData: Record<string, SubpageData> = {
       title: { fr: 'Pourquoi créer une Association ?', en: 'Why Create an Association?' },
       content: [
         { fr: 'Structure idéale pour projets à but non lucratif.', en: 'Ideal structure for non-profit projects.' },
-        { fr: 'Création simple et rapide (récépissé en 5 jours max).', en: 'Simple and fast creation (receipt within 5 days max).' },
+        { fr: 'Création simple (nous déposons votre dossier à la préfecture et le suivons jusqu’à obtention du récépissé).', en: 'Simple creation (we file your application with the prefecture and follow it up until the receipt is issued).' },
         { fr: 'Pas de capital social requis.', en: 'No share capital required.' },
-        { fr: 'Publication gratuite au JOAFE depuis 2020.', en: 'Free publication in the JOAFE since 2020.' },
         { fr: 'Possibilité de recevoir des dons et subventions.', en: 'Possibility to receive donations and grants.' },
-        { fr: 'Seules les associations reconnues d\’utilité publique par décret peuvent bénéficier de certains dons, legs et subventions.', en: 'Only associations recognized as being of public utility by decree may benefit from certain donations, bequests, and subsidies.' }
+        { fr: 'Seules les associations reconnues d’utilité publique peuvent bénéficier des subventions, dons et legs.', en: 'Only associations recognised as being of public utility may receive grants, donations and bequests.' }
       ],
     },
     advantages: [
-      { fr: 'Création simple et rapide', en: 'Simple and fast creation' },
+      { fr: 'Création simple', en: 'Simple creation' },
       { fr: 'Pas de capital requis', en: 'No capital required' },
-      { fr: 'Publication JOAFE gratuite', en: 'Free JOAFE publication' },
       { fr: 'Peut recevoir des dons', en: 'Can receive donations' },
       { fr: 'Peut employer des salariés', en: 'Can hire employees' },
       { fr: 'Exonérations fiscales possibles', en: 'Possible tax exemptions' },
@@ -792,8 +788,8 @@ export const subpagesData: Record<string, SubpageData> = {
       },
       {
         number: 5,
-        title: { fr: 'Publication JOAFE', en: 'JOAFE publication' },
-        description: { fr: 'Annonce légale gratuite au Journal Officiel depuis 2020.', en: 'Free legal notice in the Official Journal since 2020.' },
+        title: { fr: 'Obtention du récépissé', en: 'Receipt issued' },
+        description: { fr: 'L\'association acquiert la personnalité juridique après accomplissement des formalités prévues par la loi.', en: 'The association acquires legal personality once the formalities required by law have been completed.' },
       },
     ],
     faq: [
