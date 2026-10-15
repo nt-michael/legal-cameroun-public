@@ -233,6 +233,8 @@ export const formLabels = {
   successTitle: { fr: 'Merci !', en: 'Thank You!' } as BilingualText,
   successMessage: { fr: 'Un expert vous contacte sous 24h.', en: 'An expert will contact you within 24h.' } as BilingualText,
   successCta: { fr: 'En attendant, réservez un RDV ?', en: 'In the meantime, book an appointment?' } as BilingualText,
+  successButton: { fr: 'Réserver un RDV', en: 'Book an appointment' } as BilingualText,
+  subjectPlaceholder: { fr: 'Sélectionnez un sujet', en: 'Select a subject' } as BilingualText,
 
   fullNamePlaceholder: { fr: 'Votre nom complet', en: 'Your Full Name' },
   emailPlaceholder: { fr: 'votre@email.com', en: 'your@email.com' },
