@@ -8,10 +8,12 @@ const FIELD_MAP: Record<string, string> = {
   phone: 'phone-number',
   subject: 'subject',
   message: 'message',
+  consent: 'consent', // CF7 [acceptance consent] field
   file: 'file',
 };
 
 const CF7_TO_FRONTEND: Record<string, string> = {
+  'consent': 'consent',
   'full-name': 'fullName',
   'email': 'email',
   'phone-number': 'phone',
@@ -43,6 +45,11 @@ export async function POST(request: Request) {
       if (!value || (typeof value === 'string' && !value.trim())) {
         validationErrors[field] = `${field} is required`;
       }
+    }
+
+    // Consent to data processing is required (privacy policy, art. 2)
+    if (incoming.get('consent') !== 'yes') {
+      validationErrors.consent = 'consent is required';
     }
 
     // Validate file if present

@@ -18,7 +18,7 @@ const pageText = {
   stat1: { fr: '+15 000 entreprises accompagnées', en: '+15,000 businesses supported' },
   stat2: { fr: "8 ans d\u2019expertise OHADA", en: '8 years of OHADA expertise' },
   stat3: { fr: 'Présence à Douala, Paris, Cotonou', en: 'Offices in Douala, Paris, Cotonou' },
-  stat4: { fr: 'Données sécurisées RGPD/OHADA', en: 'GDPR/OHADA secured data' },
+  stat4: { fr: 'Données confidentielles et sécurisées', en: 'Confidential and secure data' },
   needImmediate: { fr: "Besoin d\u2019une réponse immédiate ?", en: 'Need an immediate response?' },
 };
 
