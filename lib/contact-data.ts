@@ -151,8 +151,8 @@ export const whyContactItems: WhyContactItem[] = [
     icon: 'shield',
     title: { fr: 'Sécurisé', en: 'Secure' },
     description: {
-      fr: 'Données confidentielles, conformes RGPD/OHADA.',
-      en: 'Confidential data, GDPR/OHADA compliant.',
+      fr: 'Données confidentielles et sécurisées.',
+      en: 'Confidential and secure data.',
     },
   },
 ];
@@ -210,12 +210,24 @@ export const contactFinalCta = {
 // Form Labels
 export const formLabels = {
   fullName: { fr: 'Nom complet', en: 'Full Name' } as BilingualText,
-  email: { fr: 'Email professionnel', en: 'Professional Email' } as BilingualText,
+  email: { fr: 'Adresse e-mail', en: 'Email Address' } as BilingualText,
   phone: { fr: 'Téléphone (WhatsApp préféré)', en: 'Phone (WhatsApp preferred)' } as BilingualText,
   subject: { fr: 'Sujet / Type de besoin', en: 'Subject / Type of Need' } as BilingualText,
   message: { fr: 'Message détaillé', en: 'Detailed Message' } as BilingualText,
   file: { fr: 'Joindre un fichier (optionnel)', en: 'Attach a File (optional)' } as BilingualText,
-  filePlaceholder: { fr: 'PDF statuts, Kbis, etc.', en: 'PDF articles, Kbis, etc.' } as BilingualText,
+  filePlaceholder: {
+    fr: 'PDF : statuts, extrait RCCM, attestation d\'immatriculation, etc.',
+    en: 'PDF: articles of association, RCCM extract, registration certificate, etc.',
+  } as BilingualText,
+  consentBefore: {
+    fr: 'J\'accepte que Legal Cameroun traite mes données pour répondre à ma demande, conformément à la ',
+    en: 'I agree that Legal Cameroun may process my data to respond to my request, in accordance with the ',
+  } as BilingualText,
+  consentLink: { fr: 'Politique de confidentialité', en: 'Privacy Policy' } as BilingualText,
+  consentRequired: {
+    fr: 'Veuillez accepter le traitement de vos données pour envoyer votre message',
+    en: 'Please accept the processing of your data to send your message',
+  } as BilingualText,
   submit: { fr: 'Envoyer mon message', en: 'Send My Message' } as BilingualText,
   submitting: { fr: 'Envoi en cours...', en: 'Sending...' } as BilingualText,
   successTitle: { fr: 'Merci !', en: 'Thank You!' } as BilingualText,

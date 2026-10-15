@@ -44,6 +44,8 @@ export default function ContactForm() {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [fileError, setFileError] = useState('');
   const [submitError, setSubmitError] = useState('');
+  const [consent, setConsent] = useState(false);
+  const [consentError, setConsentError] = useState('');
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -163,7 +165,10 @@ export default function ContactForm() {
       if (error) newErrors[key as keyof FormErrors] = error;
     });
 
-    if (Object.keys(newErrors).length > 0) {
+    const missingConsent = !consent;
+    setConsentError(missingConsent ? formLabels.consentRequired[language] : '');
+
+    if (Object.keys(newErrors).length > 0 || missingConsent) {
       setErrors(newErrors);
       return;
     }
@@ -177,6 +182,7 @@ export default function ContactForm() {
       body.append('phone', formData.phone);
       body.append('subject', formData.subject);
       body.append('message', formData.message);
+      body.append('consent', 'yes');
       if (selectedFile) {
         body.append('file', selectedFile);
       }
@@ -195,6 +201,7 @@ export default function ContactForm() {
         }
       } else if (res.status === 422 && data.errors) {
         setErrors(data.errors);
+        if (data.errors.consent) setConsentError(formLabels.consentRequired[language]);
       } else {
         setSubmitError(
           data.message ||
@@ -417,6 +424,41 @@ export default function ContactForm() {
               </div>
               {fileError && (
                 <p className="mt-1 text-sm text-red-500">{fileError}</p>
+              )}
+            </div>
+
+            {/* Consent */}
+            <div>
+              <label htmlFor="consent" className="flex items-start gap-3 cursor-pointer">
+                <input
+                  type="checkbox"
+                  id="consent"
+                  name="consent"
+                  checked={consent}
+                  onChange={(e) => {
+                    setConsent(e.target.checked);
+                    if (e.target.checked) setConsentError('');
+                  }}
+                  aria-invalid={!!consentError}
+                  className={`mt-1 h-4 w-4 shrink-0 rounded text-primary-600 focus:ring-primary-500 ${
+                    consentError ? 'border-red-500' : 'border-gray-300 dark:border-gray-600'
+                  }`}
+                />
+                <span className="text-sm text-gray-600 dark:text-gray-400">
+                  {formLabels.consentBefore[language]}
+                  <Link
+                    href="/politique-de-confidentialite"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-primary-600 dark:text-primary-400 underline hover:text-primary-700"
+                  >
+                    {formLabels.consentLink[language]}
+                  </Link>
+                  . <span className="text-red-500">*</span>
+                </span>
+              </label>
+              {consentError && (
+                <p className="mt-1 text-sm text-red-500">{consentError}</p>
               )}
             </div>
 
