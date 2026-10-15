@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { contactSubjects } from '@/lib/contact-data';
 
 const CF7_FORM_ID = process.env.WC_SITE_APP_CONTACT_FORM_7_ID; // '5d4003b';
 
@@ -74,7 +75,12 @@ export async function POST(request: Request) {
     const cf7Form = new FormData();
     for (const [frontendKey, cf7Key] of Object.entries(FIELD_MAP)) {
       if (frontendKey === 'file') continue;
-      const value = incoming.get(frontendKey);
+      let value = incoming.get(frontendKey);
+      // Send the readable French label (e.g. "Création d'entreprise") instead of the
+      // select value, so the team's email shows it whatever the visitor's language
+      if (frontendKey === 'subject' && typeof value === 'string') {
+        value = contactSubjects.find((s) => s.value === value)?.label.fr ?? value;
+      }
       if (value) cf7Form.append(cf7Key, value);
     }
 
