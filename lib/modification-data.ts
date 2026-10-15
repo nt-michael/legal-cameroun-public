@@ -261,19 +261,18 @@ export const transfertSiegeData = {
   hero: {
     badge: { fr: 'Transfert de Siège', en: 'Office Transfer' },
     title: { fr: 'Changez le Siège Social de Votre Entreprise Facilement', en: 'Change Your Company\'s Registered Office Easily' },
-    subtitle: { fr: 'Bénéficiez d\'aides locales, bail expiré, local plus grand ou moins cher... Nous rendons le transfert simple, sûr et rapide.', en: 'Benefit from local incentives, expired lease, larger or cheaper premises... We make the transfer simple, safe, and fast.' },
+    subtitle: { fr: 'Bail expiré, local plus grand ou moins cher... Nous rendons le transfert simple, sûr et rapide.', en: 'Expired lease, larger or cheaper premises... We make the transfer simple, safe, and fast.' },
   },
   whyTransfer: [
-    { icon: 'gift', title: { fr: 'Aides géographiques', en: 'Geographic incentives' }, description: { fr: 'Bénéficiez d\'aides spécifiques à certaines zones', en: 'Benefit from incentives specific to certain areas' } },
     { icon: 'document', title: { fr: 'Fin de bail', en: 'Lease expiry' }, description: { fr: 'Votre bail commercial arrive à expiration', en: 'Your commercial lease is expiring' } },
     { icon: 'home', title: { fr: 'Domiciliation dirigeant', en: 'Director\'s domiciliation' }, description: { fr: 'Changement d\'adresse du dirigeant', en: 'Change of director\'s address' } },
     { icon: 'money', title: { fr: 'Local plus adapté', en: 'More suitable premises' }, description: { fr: 'Trouvez un local plus grand ou économique', en: 'Find larger or more cost-effective premises' } },
   ],
   processSteps: [
-    { number: '01', title: { fr: 'Décision de l\'organe compétent', en: 'Decision by the competent body' }, description: { fr: 'PV de l\'AGE actant le changement de siège', en: 'EGM minutes recording the office change' } },
+    { number: '01', title: { fr: 'Décision de l\'organe compétent', en: 'Decision by the competent body' }, description: { fr: 'Selon la forme de votre société, conformément à vos statuts et à l’AUSCGIE (OHADA)', en: 'Depending on your company’s legal form, in accordance with your articles of association and the AUSCGIE (OHADA)' } },
     { number: '02', title: { fr: 'Mise à jour des statuts', en: 'Update the articles' }, description: { fr: 'Nouvelle adresse, clause signée "certifiés conformes"', en: 'New address, clause signed "certified true copies"' } },
-    { number: '03', title: { fr: 'Publication annonce légale', en: 'Legal notice publication' }, description: { fr: 'Dans un JAL (1 mois max après décision)', en: 'In a legal gazette (1 month max after decision)' } },
-    { number: '04', title: { fr: 'Dépôt au greffe', en: 'Filing with the court registry' }, description: { fr: 'Le dépôt au greffe se fait uniquement en présentiel et non en ligne', en: 'Filing at the registry is done in person, not online' } },
+    { number: '03', title: { fr: 'Publication annonce légale', en: 'Legal notice publication' }, description: { fr: 'Réalisation des mesures de publicité requises pour rendre le transfert opposable aux tiers.', en: 'Completion of the publicity formalities required to make the transfer enforceable against third parties.' } },
+    { number: '04', title: { fr: 'Dépôt au greffe', en: 'Filing with the court registry' }, description: { fr: 'Dépôt du dossier modificatif auprès du greffe compétent pour mise à jour du RCCM.', en: 'Filing of the amendment file with the competent registry to update the RCCM.' } },
   ],
   casTypes: [
     {
@@ -294,7 +293,6 @@ export const transfertSiegeData = {
   documents: [
     { name: { fr: 'PV changement de siège', en: 'Office change minutes' }, required: true },
     { name: { fr: 'Statuts mis à jour signés', en: 'Signed updated articles' }, required: true },
-    { name: { fr: 'Attestation parution JAL', en: 'Legal gazette publication certificate' }, required: true },
     { name: { fr: 'Justificatif nouveau siège', en: 'New registered office proof' }, required: true },
   ],
   pricingTiers: [
@@ -346,10 +344,6 @@ export const transfertSiegeData = {
     },
   ],
   faq: [
-    {
-      question: { fr: 'Quel impact si le transfert est inter-départements ?', en: 'What is the impact if the transfer is between departments?' },
-      answer: { fr: 'Un transfert vers un autre département nécessite deux annonces légales (une dans le département de départ, une dans celui d\'arrivée), ce qui augmente les coûts.', en: 'A transfer to another department requires two legal notices (one in the departure department, one in the arrival department), which increases costs.' },
-    },
     {
       question: { fr: 'Le siège peut-il être chez le dirigeant ?', en: 'Can the registered office be at the director\'s home?' },
       answer: { fr: 'Oui, le siège peut être domicilié chez le dirigeant. Si celui-ci change d\'adresse personnelle, une mise à jour des statuts sera nécessaire.', en: 'Yes, the registered office can be domiciled at the director\'s home. If they change their personal address, an update of the articles will be necessary.' },

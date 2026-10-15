@@ -54,7 +54,7 @@ const whyIcons: Record<string, React.ReactNode> = {
 
 export default function TransfertSiegeContent() {
   const { language } = useLanguage();
-  const { hero, whyTransfer, processSteps, casTypes, documents, pricingTiers, faq } = transfertSiegeData;
+  const { hero, whyTransfer, processSteps, documents, pricingTiers, faq } = transfertSiegeData;
 
   return (
     <main className="min-h-screen bg-gray-50 dark:bg-gray-900">
@@ -116,7 +116,7 @@ export default function TransfertSiegeContent() {
             </h2>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {whyTransfer.map((item, index) => (
               <div
                 key={index}
@@ -145,7 +145,7 @@ export default function TransfertSiegeContent() {
         badge={pageText.timelineBadge}
       />
 
-      {/* Cas Types Section */}
+      {/* Cas Types Section ("Même ou Différent Département ?"): hidden, French département rules do not apply in Cameroon (legal audit, Oct 2026)
       <section className="py-16 lg:py-24 bg-white dark:bg-gray-800">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
@@ -214,7 +214,7 @@ export default function TransfertSiegeContent() {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Documents */}
       <GestionDocumentsChecklist
