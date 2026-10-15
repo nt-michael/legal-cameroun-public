@@ -7,18 +7,18 @@ export async function generateMetadata(): Promise<Metadata> {
   return createPageMetadata('/simulateurs/is', {
     fr: {
       title: 'Calculateur IS Cameroun | Impôt sur les Sociétés 2024 — Legal Cameroun',
-      description: 'Estimez votre Impôt sur les Sociétés au Cameroun. Taux de 28,5% (CA ≤ 3 Mds FCFA) ou 33% (CA > 3 Mds). Basé sur le CGI 2024. Calcul instantané.',
+      description: 'Estimez votre Impôt sur les Sociétés au Cameroun. Taux de 27,5% (CA ≤ 3 Mds FCFA) ou 33% (CA > 3 Mds). Basé sur le CGI 2024. Calcul instantané.',
       keywords: ['impôt sociétés cameroun', 'IS cameroun 2024', 'taux IS PME', 'bénéfice imposable', 'calculateur IS', 'DGI Cameroun'],
       openGraph: {
         title: 'Calculateur IS Cameroun | Impôt sur les Sociétés 2024 — Legal Cameroun',
-        description: 'Estimez votre Impôt sur les Sociétés au Cameroun. Taux de 28,5% (CA ≤ 3 Mds FCFA) ou 33% (CA > 3 Mds). Basé sur le CGI 2024. Calcul instantané.',
+        description: 'Estimez votre Impôt sur les Sociétés au Cameroun. Taux de 27,5% (CA ≤ 3 Mds FCFA) ou 33% (CA > 3 Mds). Basé sur le CGI 2024. Calcul instantané.',
         type: 'website',
         siteName: 'Legal Cameroun',
       },
       twitter: {
         card: 'summary_large_image',
         title: 'Calculateur IS Cameroun | Impôt sur les Sociétés 2024 — Legal Cameroun',
-        description: 'Estimez votre Impôt sur les Sociétés au Cameroun. Taux de 28,5% (CA ≤ 3 Mds FCFA) ou 33% (CA > 3 Mds). Basé sur le CGI 2024. Calcul instantané.',
+        description: 'Estimez votre Impôt sur les Sociétés au Cameroun. Taux de 27,5% (CA ≤ 3 Mds FCFA) ou 33% (CA > 3 Mds). Basé sur le CGI 2024. Calcul instantané.',
       },
     },
     en: {
@@ -45,7 +45,7 @@ export default function ISPage() {
     <SimulateurPageTemplate
       title={{ fr: "Simulateur Impôt sur les Sociétés", en: "Corporate Tax Simulator" }}
       shortTitle={{ fr: "IS", en: "CIT" }}
-      description={{ fr: "Estimez votre IS selon votre chiffre d'affaires et bénéfice imposable. Taux de 28,5% ou 33% selon le seuil de 3 milliards FCFA.", en: "Estimate your corporate tax based on your revenue and taxable profit. Rate of 28.5% or 33% depending on the 3 billion FCFA threshold." }}
+      description={{ fr: "Estimez votre IS selon votre chiffre d'affaires et bénéfice imposable. Taux de 27,5% ou 33% selon le seuil de 3 milliards FCFA.", en: "Estimate your corporate tax based on your revenue and taxable profit. Rate of 27.5% or 33% depending on the 3 billion FCFA threshold." }}
     >
       <ISSimulator />
     </SimulateurPageTemplate>

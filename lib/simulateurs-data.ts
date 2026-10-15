@@ -17,7 +17,7 @@ export const TVA_RATES = {
 
 // IS (Impôt sur les Sociétés) Rates
 export const IS_THRESHOLD = 3000000000; // 3 milliards FCFA
-export const IS_RATE_SMALL = 0.285; // 28.5% for CA <= 3B
+export const IS_RATE_SMALL = 0.275; // 27.5% for CA <= 3B (25% IS + 10% CAC)
 export const IS_RATE_LARGE = 0.33; // 33% for CA > 3B
 
 // CNPS Constants
@@ -461,8 +461,8 @@ export const simulatorsData = [
     title: { fr: 'Simulateur Impôt sur les Sociétés', en: 'Corporate Tax Simulator' } as BilingualText,
     shortTitle: { fr: 'IS', en: 'CIT' } as BilingualText,
     description: {
-      fr: 'Estimez votre impôt sur les sociétés selon votre chiffre d\'affaires. Taux de 28,5% ou 33% selon le seuil de 3 milliards FCFA.',
-      en: 'Estimate your corporate tax based on your turnover. Rate of 28.5% or 33% depending on the 3 billion FCFA threshold.',
+      fr: 'Estimez votre impôt sur les sociétés selon votre chiffre d\'affaires. Taux de 27,5% ou 33% selon le seuil de 3 milliards FCFA.',
+      en: 'Estimate your corporate tax based on your turnover. Rate of 27.5% or 33% depending on the 3 billion FCFA threshold.',
     } as BilingualText,
     icon: 'building',
     href: '/simulateurs/is',
