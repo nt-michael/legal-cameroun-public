@@ -532,7 +532,7 @@ export const subpagesData: Record<string, SubpageData> = {
       content: [
         { fr: 'Souplesse organisationnelle et de gouvernance maximale.', en: 'Maximum organizational and governance flexibility.' },
         { fr: 'Adaptée aux startups innovantes ou projets mixtes.', en: 'Suitable for innovative startups or mixed projects.' },
-        { fr: 'Capital minimum de 1 XAF, responsabilité limitée aux apports.', en: 'Minimum capital of 1 XAF, liability limited to contributions.' },
+        { fr: 'Capital librement fixé par les statuts, sans minimum légal ; responsabilité limitée aux apports.', en: 'Capital freely set by the articles of association, with no legal minimum; liability limited to contributions.' },
         { fr: 'Régime social : affiliation du président ou gérant à la CNPS en tant que mandataire social si rémunéré.', en: 'Social security regime: affiliation of the president or managing director to the CNPS as a corporate officer (mandataire social) if remunerated.' },
         { fr: 'Cession de parts libre sauf stipulation contraire des statuts prévoyant des conditions particulières d\’agrément.', en: 'Transfer of shares: free transfer unless otherwise provided by the articles of association, which may stipulate specific approval conditions.' },
       ],
@@ -593,7 +593,7 @@ export const subpagesData: Record<string, SubpageData> = {
       },
       {
         question: { fr: 'Combien de temps pour créer une SAS ?', en: 'How long does it take to create a SAS?' },
-        answer: { fr: 'Avec notre forfait Premium, votre SAS peut être créée en 48h. Le délai standard est de 5-7 jours ouvrés.', en: 'With our Premium plan, your SAS can be created in 48h. The standard timeframe is 5-7 business days.' },
+        answer: { fr: 'Avec notre offre Premium et sous réserve d\'un dossier complet, les formalités peuvent être engagées dans un délai de 48 heures. Le délai total de création dépend toutefois du traitement des autorités compétentes.', en: 'With our Premium plan and provided your file is complete, the formalities can be started within 48 hours. The total creation time, however, depends on processing by the competent authorities.' },
       },
     ],
   },
