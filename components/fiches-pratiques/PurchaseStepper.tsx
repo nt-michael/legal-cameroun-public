@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 import gsap from 'gsap';
 import { Pack } from '@/lib/packs-config';
 import { useLanguage } from '@/contexts/LanguageContext';
@@ -44,6 +45,11 @@ const text: Record<string, any> = {
   errEmailInvalid: { fr: 'Format email invalide', en: 'Invalid email format' },
   errPhone: { fr: 'Téléphone requis', en: 'Phone required' },
   errGeneral: { fr: 'Une erreur est survenue', en: 'An error occurred' },
+  dataNotice: {
+    fr: 'Vos données sont traitées par Legal Cameroun pour exécuter votre commande, conformément à notre ',
+    en: 'Your data is processed by Legal Cameroun to fulfil your order, in accordance with our ',
+  },
+  privacyLink: { fr: 'Politique de confidentialité', en: 'Privacy Policy' },
 };
 
 export default function PurchaseStepper({ pack, onClose }: PurchaseStepperProps) {
@@ -241,6 +247,18 @@ export default function PurchaseStepper({ pack, onClose }: PurchaseStepperProps)
                 </div>
               </div>
               <p className="text-xs text-gray-500 dark:text-gray-400 text-center">{text.payNote[language]}</p>
+              <p className="mt-2 text-xs text-gray-500 dark:text-gray-400 text-center">
+                {text.dataNotice[language]}
+                <Link
+                  href="/politique-de-confidentialite"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-primary-600 dark:text-primary-400 underline hover:text-primary-700"
+                >
+                  {text.privacyLink[language]}
+                </Link>
+                .
+              </p>
               {errors.general && (
                 <div className="mt-4 p-3 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 text-red-700 dark:text-red-400 rounded-xl text-sm text-center">
                   {errors.general}

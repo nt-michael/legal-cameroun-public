@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import { useSearchParams } from 'next/navigation';
+import Link from 'next/link';
 import gsap from 'gsap';
 import { useLanguage } from '@/contexts/LanguageContext';
 import ProgressBar from './ProgressBar';
@@ -156,6 +157,15 @@ const devisText = {
   start: { fr: 'Commencer', en: 'Start' },
   submitting: { fr: 'Envoi en cours...', en: 'Sending...' },
   submit: { fr: 'Envoyer ma demande', en: 'Submit my request' },
+  consentBefore: {
+    fr: 'J\'accepte que Legal Cameroun traite mes données pour établir mon devis, conformément à la ',
+    en: 'I agree that Legal Cameroun may process my data to prepare my quote, in accordance with the ',
+  },
+  consentLink: { fr: 'Politique de confidentialité', en: 'Privacy Policy' },
+  consentRequired: {
+    fr: 'Veuillez accepter le traitement de vos données pour envoyer votre demande',
+    en: 'Please accept the processing of your data to submit your request',
+  },
 
   // Validation errors
   errSelectOption: { fr: 'Veuillez sélectionner une option', en: 'Please select an option' },
@@ -186,6 +196,9 @@ export default function DevisWizard() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
+  // Kept out of formData so it is never restored from the localStorage draft
+  const [consent, setConsent] = useState(false);
+  const [consentError, setConsentError] = useState('');
   const [direction, setDirection] = useState<'next' | 'prev'>('next');
 
   // Load from URL params and localStorage
@@ -328,6 +341,10 @@ export default function DevisWizard() {
 
   const handleSubmit = async () => {
     if (!validateStep()) return;
+    if (!consent) {
+      setConsentError(devisText.consentRequired[language]);
+      return;
+    }
 
     setIsSubmitting(true);
     setSubmitError(null);
@@ -336,7 +353,7 @@ export default function DevisWizard() {
       const response = await fetch('/api/devis', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({ ...formData, consent: true }),
       });
 
       const data = await response.json();
@@ -935,6 +952,40 @@ export default function DevisWizard() {
                 )}
                 <SummaryItem label={devisText.emailLabel[language]} value={formData.email} />
                 <SummaryItem label={devisText.phoneLabel[language]} value={formData.phone} />
+              </div>
+
+              {/* Consent */}
+              <div className="mt-6">
+                <label htmlFor="devis-consent" className="flex items-start gap-3 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    id="devis-consent"
+                    checked={consent}
+                    onChange={(e) => {
+                      setConsent(e.target.checked);
+                      if (e.target.checked) setConsentError('');
+                    }}
+                    aria-invalid={!!consentError}
+                    className={`mt-1 h-4 w-4 shrink-0 rounded text-primary-600 focus:ring-primary-500 ${
+                      consentError ? 'border-red-500' : 'border-gray-300 dark:border-gray-600'
+                    }`}
+                  />
+                  <span className="text-sm text-gray-600 dark:text-gray-400">
+                    {devisText.consentBefore[language]}
+                    <Link
+                      href="/politique-de-confidentialite"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-primary-600 dark:text-primary-400 underline hover:text-primary-700"
+                    >
+                      {devisText.consentLink[language]}
+                    </Link>
+                    . <span className="text-red-500">*</span>
+                  </span>
+                </label>
+                {consentError && (
+                  <p className="mt-1 text-sm text-red-500">{consentError}</p>
+                )}
               </div>
             </div>
           )}
