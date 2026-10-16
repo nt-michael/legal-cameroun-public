@@ -199,14 +199,14 @@ export const hubDocuments: GestionDocument[] = [
   { name: { fr: 'PV de décision (AGE)', en: 'Decision minutes (EGM)' }, description: { fr: 'Procès-verbal de l\'assemblée générale extraordinaire', en: 'Minutes of the extraordinary general meeting' }, required: true },
   { name: { fr: 'Statuts mis à jour', en: 'Updated articles' }, description: { fr: 'Signés et certifiés conformes', en: 'Signed and certified as true copies' }, required: true },
   { name: { fr: 'Attestation annonce légale', en: 'Legal notice certificate' }, description: { fr: 'Réalisation des mesures de publicité requises pour rendre la modification opposable aux tiers.', en: 'Completion of the publicity formalities required to make the amendment enforceable against third parties.' }, required: true },
-  { name: { fr: 'Chèque frais greffe', en: 'Registry fee check' }, description: { fr: 'Règlement des frais d\'enregistrement', en: 'Payment of registration fees' }, required: true },
+  { name: { fr: 'Frais de greffe', en: 'Registry fees' }, description: { fr: 'Règlement des frais d\'enregistrement', en: 'Payment of registration fees' }, required: true },
   { name: { fr: 'Rapport commissaire', en: 'Auditor\'s report' }, description: { fr: 'Pour transformations uniquement', en: 'For conversions only' }, required: false },
 ];
 
 export const hubFAQ: GestionFAQItem[] = [
   {
     question: { fr: 'Combien coûte une modification de statuts ?', en: 'How much does an articles amendment cost?' },
-    answer: { fr: 'Le coût varie selon le type de modification. Par exemple, un transfert de siège inter-départements nécessite 2 annonces légales, donc un coût plus élevé. Nos forfaits commencent à partir de 150 000 XAF HT.', en: 'The cost varies depending on the type of amendment. For example, an inter-departmental registered office transfer requires 2 legal notices, thus a higher cost. Our packages start at 150,000 XAF excl. tax.' },
+    answer: { fr: 'Le coût varie selon le type de modification. Nos forfaits commencent à partir de 150 000 XAF HT.', en: 'The cost varies depending on the type of amendment. Our packages start at 150,000 XAF excl. tax.' },
   },
   {
     question: { fr: 'Quel est le délai pour une modification ?', en: 'What is the timeframe for an amendment?' },
