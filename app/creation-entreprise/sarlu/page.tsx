@@ -8,7 +8,7 @@ export async function generateMetadata(): Promise<Metadata> {
     fr: {
       title: 'Créer une SARLU au Cameroun | Entreprise Unipersonnelle',
       description: 'Créez votre SARLU (société unipersonnelle) au Cameroun. Responsabilité limitée pour un seul associé, idéale pour les entrepreneurs solo. Traitement en 48h.',
-      keywords: ['SARLU cameroun', 'EURL cameroun', 'entreprise unipersonnelle cameroun', 'société unipersonnelle', 'créer SARLU OHADA'],
+      keywords: ['SARLU cameroun', 'entreprise unipersonnelle cameroun', 'société unipersonnelle', 'créer SARLU OHADA'],
       openGraph: {
         title: 'Créer une SARLU au Cameroun | Entreprise Unipersonnelle',
         description: 'Créez votre SARLU (société unipersonnelle) au Cameroun. Responsabilité limitée pour un seul associé, idéale pour les entrepreneurs solo. Traitement en 48h.',

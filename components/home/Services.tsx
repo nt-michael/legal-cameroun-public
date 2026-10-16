@@ -80,7 +80,7 @@ const sectionText = {
   badge: { fr: 'Nos Services', en: 'Our Services' },
   heading: { fr: 'Une expertise complète', en: 'Complete Expertise' },
   subheading: {
-    fr: 'Nous offrons une gamme complète de services d\'accompagnement pour répondre à tous vos besoins administratives, légaux, comptables, financiers et fiscaux.',
+    fr: 'Nous offrons une gamme complète de services d\'accompagnement pour répondre à tous vos besoins administratifs, légaux, comptables, financiers et fiscaux.',
     en: 'We offer a full range of support services to meet all your administrative, legal, accounting, financial, and tax needs.',
   },
   learnMore: { fr: 'En savoir plus', en: 'Learn more' },

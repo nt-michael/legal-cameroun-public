@@ -7,7 +7,7 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { BilingualText } from '@/lib/translations';
 
 const heroText = {
-  badge: { fr: "Creation d'entreprise au Cameroun", en: 'Business Creation in Cameroon' },
+  badge: { fr: "Création d'entreprise au Cameroun", en: 'Business Creation in Cameroon' },
 };
 
 interface CreationHeroProps {

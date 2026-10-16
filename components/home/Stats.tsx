@@ -14,7 +14,7 @@ const stats = [
   {
     value: 8,
     suffix: '+',
-    label: { fr: 'Annees d\'Experience', en: 'Years of Experience' },
+    label: { fr: 'Années d\'expérience', en: 'Years of Experience' },
     description: { fr: 'Au service de nos clients', en: 'At the service of our clients' },
   },
   {

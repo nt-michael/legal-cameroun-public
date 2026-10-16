@@ -70,9 +70,9 @@ export const companyTypes: CompanyType[] = [
   { value: 'sasu', label: 'SASU', description: { fr: 'SAS Unipersonnelle', en: 'Single-Member Simplified Joint-Stock Company' } },
   { value: 'sarl', label: 'SARL', description: { fr: 'Société à Responsabilité Limitée', en: 'Limited Liability Company' } },
   { value: 'sarlu', label: 'SARLU', description: { fr: 'SARL Unipersonnelle', en: 'Single-Member Limited Liability Company' } },
-  { value: 'association', label: 'Association', description: { fr: 'Association loi 1901', en: 'Non-Profit Association' } },
+  { value: 'association', label: 'Association', description: { fr: 'Association à but non lucratif', en: 'Non-Profit Association' } },
   { value: 'sci', label: 'SCI', description: { fr: 'Société Civile Immobilière', en: 'Real Estate Civil Company' } },
-  { value: 'etablissement', label: 'Etablissement', description: { fr: 'Etablissement', en: 'Establishment' } },
+  { value: 'etablissement', label: 'Établissement', description: { fr: 'Établissement', en: 'Establishment' } },
   { value: 'other', label: 'Autre', description: { fr: 'Je ne sais pas encore', en: 'I don\'t know yet' } },
 ];
 

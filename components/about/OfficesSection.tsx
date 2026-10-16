@@ -7,11 +7,11 @@ import { officesData } from '@/lib/about-data';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 const sectionText = {
-  badge: { fr: 'Notre Reseau', en: 'Our Network' },
+  badge: { fr: 'Notre Réseau', en: 'Our Network' },
   title: { fr: 'Présents là où Vous Êtes', en: 'Present Where You Are' },
   subtitle: {
-    fr: 'Du Boulevard de la Liberté à Akwa jusqu\'aux Champs-Élysées — nous connectons les mondes pour votre succès.',
-    en: 'From Boulevard de la Liberté in Akwa to the Champs-Élysées — we connect worlds for your success.',
+    fr: 'Du Boulevard de la Liberté à Akwa jusqu\'à Levallois-Perret — nous connectons les mondes pour votre succès.',
+    en: 'From Boulevard de la Liberté in Akwa to Levallois-Perret — we connect worlds for your success.',
   },
   headquarters: { fr: 'Siège principal', en: 'Headquarters' },
 };

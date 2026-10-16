@@ -10,7 +10,7 @@ const sectionText = {
   badge: { fr: 'Nos Services', en: 'Our Services' },
   title: { fr: 'Choisissez Votre Statut Juridique', en: 'Choose Your Legal Status' },
   subtitle: {
-    fr: 'Decouvrez nos guides detailles pour chaque forme juridique et lancez votre entreprise en toute serenite.',
+    fr: 'Découvrez nos guides détaillés pour chaque forme juridique et lancez votre entreprise en toute sérénite.',
     en: 'Discover our detailed guides for each legal form and launch your business with peace of mind.',
   },
   learnMore: { fr: 'En savoir plus', en: 'Learn more' },
