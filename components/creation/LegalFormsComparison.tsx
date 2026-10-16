@@ -180,7 +180,7 @@ export default function LegalFormsComparison() {
                       {sectionText.startNow[language]}
                     </Link>
                     <Link
-                      href="/contact"
+                      href="/prendre-un-rendez-vous"
                       className="inline-flex items-center justify-center gap-2 bg-white/10 text-white px-6 py-3 rounded-xl font-semibold hover:bg-white/20 transition-all duration-300 border border-white/20 hover:scale-105"
                     >
                       {sectionText.talkExpert[language]}

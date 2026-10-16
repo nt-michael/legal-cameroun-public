@@ -202,7 +202,7 @@ export default function SubpageLayout({ data, pricingTiers }: SubpageLayoutProps
         }}
         secondaryCta={{
           text: layoutText.talkExpert,
-          href: '/contact',
+          href: '/prendre-un-rendez-vous',
         }}
         showTrustBadges={true}
       />

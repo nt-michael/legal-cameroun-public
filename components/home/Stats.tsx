@@ -38,7 +38,9 @@ const stats = [
 ];
 
 function AnimatedCounter({ value, suffix, inView }: { value: number; suffix: string; inView: boolean }) {
-  const [count, setCount] = useState(0);
+  // Start at the final value so the server HTML (search engines, link previews)
+  // shows the real figure; the count-up animation restarts from 0 when in view.
+  const [count, setCount] = useState(value);
   const hasAnimated = useRef(false);
   const rafRef = useRef<number | undefined>(undefined);
 
