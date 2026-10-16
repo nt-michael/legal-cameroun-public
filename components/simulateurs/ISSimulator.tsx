@@ -29,7 +29,7 @@ const simText = {
   profitBreakdown: { fr: 'R\u00e9partition du b\u00e9n\u00e9fice', en: 'Profit Breakdown' },
   exportPdf: { fr: 'Exporter PDF', en: 'Export PDF' },
   shareWhatsapp: { fr: 'Partager sur WhatsApp', en: 'Share on WhatsApp' },
-  disclaimer: { fr: 'Bas\u00e9 sur CGI 2024 \u2014 Non contractuel. Consultez un juriste pour vos d\u00e9clarations fiscales r\u00e9elles.', en: 'Based on CGI 2024 \u2014 Non-contractual. Consult a lawyer for your actual tax filings.' },
+  disclaimer: { fr: 'Bas\u00e9 sur CGI 2026 \u2014 Non contractuel. Consultez un juriste pour vos d\u00e9clarations fiscales r\u00e9elles.', en: 'Based on CGI 2026 \u2014 Non-contractual. Consult a lawyer for your actual tax filings.' },
 };
 
 export default function ISSimulator() {
@@ -125,7 +125,7 @@ export default function ISSimulator() {
     y += 25;
     doc.setFontSize(8);
     doc.setTextColor(150, 150, 150);
-    doc.text('Bas\u00e9 sur CGI 2024 - Non contractuel. Consultez un juriste pour vos d\u00e9clarations.', 20, y);
+    doc.text('Bas\u00e9 sur CGI 2026 - Non contractuel. Consultez un juriste pour vos d\u00e9clarations.', 20, y);
 
     doc.save('simulateur-is-legalcameroun.pdf');
   };
@@ -139,7 +139,7 @@ export default function ISSimulator() {
     message += `Taux Appliqu\u00e9: ${formatPercent(result.taux)}\n`;
     message += `\n*IS \u00e0 Payer: ${formatFCFA(result.impot)}*\n`;
     message += `\n_${result.seuilApplique}_\n`;
-    message += `\n_Calcul bas\u00e9 sur CGI 2024_`;
+    message += `\n_Calcul bas\u00e9 sur CGI 2026_`;
 
     const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
     window.open(url, '_blank');

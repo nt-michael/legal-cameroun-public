@@ -8,8 +8,8 @@ import { useLanguage } from '@/contexts/LanguageContext';
 const sectionText = {
   title: { fr: 'Choisissez votre simulateur', en: 'Choose your simulator' },
   subtitle: {
-    fr: 'Trois outils essentiels pour estimer vos obligations fiscales au Cameroun. Résultats instantanés, calculs conformes au CGI 2024.',
-    en: 'Three essential tools to estimate your tax obligations in Cameroon. Instant results, calculations compliant with CGI 2024.',
+    fr: 'Trois outils essentiels pour estimer vos obligations fiscales au Cameroun. Résultats instantanés, calculs conformes au CGI 2026.',
+    en: 'Three essential tools to estimate your tax obligations in Cameroon. Instant results, calculations compliant with CGI 2026.',
   },
   needHelp: { fr: 'Besoin d\'aide pour interpréter vos résultats ?', en: 'Need help interpreting your results?' },
   contactExpert: { fr: 'Contacter un Expert', en: 'Contact an Expert' },
