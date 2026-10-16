@@ -97,7 +97,7 @@ export const hubProcessSteps: GestionStep[] = [
   {
     number: '04',
     title: { fr: 'Formalités gérées', en: 'Formalities handled' },
-    description: { fr: 'Annonce légale, échanges greffe, enregistrement (1 mois max).', en: 'Legal notice, court registry exchanges, registration (1 month max).' },
+    description: { fr: 'Annonce légale, échanges greffe, enregistrement.', en: 'Legal notice, court registry exchanges, registration.' },
   },
   {
     number: '05',
@@ -198,7 +198,7 @@ export const hubPricingTiers: GestionPricingTier[] = [
 export const hubDocuments: GestionDocument[] = [
   { name: { fr: 'PV de décision (AGE)', en: 'Decision minutes (EGM)' }, description: { fr: 'Procès-verbal de l\'assemblée générale extraordinaire', en: 'Minutes of the extraordinary general meeting' }, required: true },
   { name: { fr: 'Statuts mis à jour', en: 'Updated articles' }, description: { fr: 'Signés et certifiés conformes', en: 'Signed and certified as true copies' }, required: true },
-  { name: { fr: 'Attestation annonce légale', en: 'Legal notice certificate' }, description: { fr: 'Preuve de publication dans un JAL', en: 'Proof of publication in a legal gazette' }, required: true },
+  { name: { fr: 'Attestation annonce légale', en: 'Legal notice certificate' }, description: { fr: 'Réalisation des mesures de publicité requises pour rendre la modification opposable aux tiers.', en: 'Completion of the publicity formalities required to make the amendment enforceable against third parties.' }, required: true },
   { name: { fr: 'Chèque frais greffe', en: 'Registry fee check' }, description: { fr: 'Règlement des frais d\'enregistrement', en: 'Payment of registration fees' }, required: true },
   { name: { fr: 'Rapport commissaire', en: 'Auditor\'s report' }, description: { fr: 'Pour transformations uniquement', en: 'For conversions only' }, required: false },
 ];
