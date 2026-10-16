@@ -34,7 +34,7 @@ const simText = {
   deductible: { fr: 'D\u00e9ductible', en: 'Deductible' },
   exportPdf: { fr: 'Exporter PDF', en: 'Export PDF' },
   shareWhatsapp: { fr: 'Partager sur WhatsApp', en: 'Share on WhatsApp' },
-  disclaimer: { fr: 'Bas\u00e9 sur CGI 2024 \u2014 Non contractuel. Consultez un juriste pour vos d\u00e9clarations fiscales r\u00e9elles.', en: 'Based on CGI 2024 \u2014 Non-contractual. Consult a lawyer for your actual tax filings.' },
+  disclaimer: { fr: 'Bas\u00e9 sur CGI 2026 \u2014 Non contractuel. Consultez un juriste pour vos d\u00e9clarations fiscales r\u00e9elles.', en: 'Based on CGI 2026 \u2014 Non-contractual. Consult a lawyer for your actual tax filings.' },
 };
 
 type TabType = 'ventes' | 'achats';
@@ -164,7 +164,7 @@ export default function TVASimulator() {
     y += 20;
     doc.setFontSize(8);
     doc.setTextColor(150, 150, 150);
-    doc.text('Bas\u00e9 sur CGI 2024 - Non contractuel. Consultez un juriste pour vos d\u00e9clarations.', 20, y);
+    doc.text('Bas\u00e9 sur CGI 2026 - Non contractuel. Consultez un juriste pour vos d\u00e9clarations.', 20, y);
 
     doc.save('simulateur-tva-legalcameroun.pdf');
   };
@@ -182,7 +182,7 @@ export default function TVASimulator() {
       message += `\n*Cr\u00e9dit de TVA: ${formatFCFA(result.creditTVA)}*\n`;
     }
 
-    message += `\n_Calcul bas\u00e9 sur CGI 2024_`;
+    message += `\n_Calcul bas\u00e9 sur CGI 2026_`;
 
     const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
     window.open(url, '_blank');

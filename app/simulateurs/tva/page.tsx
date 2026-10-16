@@ -7,18 +7,18 @@ export async function generateMetadata(): Promise<Metadata> {
   return createPageMetadata('/simulateurs/tva', {
     fr: {
       title: 'Calculateur TVA Cameroun | Taux 19,25% — Legal Cameroun',
-      description: 'Calculez votre TVA collectée, déductible et TVA nette au Cameroun. Taux standard de 19,25% selon le Code Général des Impôts 2024. Gratuit et instantané.',
+      description: 'Calculez votre TVA collectée, déductible et TVA nette au Cameroun. Taux standard de 19,25% selon le Code Général des Impôts 2026. Gratuit et instantané.',
       keywords: ['calculateur TVA cameroun', 'TVA 19.25%', 'taxe valeur ajoutée Cameroun', 'TVA nette', 'crédit TVA', 'DGI Cameroun'],
       openGraph: {
         title: 'Calculateur TVA Cameroun | Taux 19,25% — Legal Cameroun',
-        description: 'Calculez votre TVA collectée, déductible et TVA nette au Cameroun. Taux standard de 19,25% selon le Code Général des Impôts 2024. Gratuit et instantané.',
+        description: 'Calculez votre TVA collectée, déductible et TVA nette au Cameroun. Taux standard de 19,25% selon le Code Général des Impôts 2026. Gratuit et instantané.',
         type: 'website',
         siteName: 'Legal Cameroun',
       },
       twitter: {
         card: 'summary_large_image',
         title: 'Calculateur TVA Cameroun | Taux 19,25% — Legal Cameroun',
-        description: 'Calculez votre TVA collectée, déductible et TVA nette au Cameroun. Taux standard de 19,25% selon le Code Général des Impôts 2024. Gratuit et instantané.',
+        description: 'Calculez votre TVA collectée, déductible et TVA nette au Cameroun. Taux standard de 19,25% selon le Code Général des Impôts 2026. Gratuit et instantané.',
       },
     },
     en: {

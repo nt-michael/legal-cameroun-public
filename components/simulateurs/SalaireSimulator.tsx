@@ -74,7 +74,7 @@ const simText = {
   net: { fr: 'Net', en: 'Net' },
   exportPdf: { fr: 'Exporter PDF', en: 'Export PDF' },
   shareWhatsapp: { fr: 'Partager sur WhatsApp', en: 'Share on WhatsApp' },
-  disclaimer: { fr: 'Bas\u00e9 sur CGI 2024 et taux CNPS \u2014 Non contractuel. Consultez un expert pour vos calculs de paie r\u00e9els.', en: 'Based on CGI 2024 and CNPS rates \u2014 Non-contractual. Consult an expert for your actual payroll calculations.' },
+  disclaimer: { fr: 'Bas\u00e9 sur CGI 2026 et taux CNPS \u2014 Non contractuel. Consultez un expert pour vos calculs de paie r\u00e9els.', en: 'Based on CGI 2026 and CNPS rates \u2014 Non-contractual. Consult an expert for your actual payroll calculations.' },
 };
 
 type ViewType = 'salarie' | 'employeur';
@@ -229,7 +229,7 @@ export default function SalaireSimulator() {
     y += 25;
     doc.setFontSize(8);
     doc.setTextColor(150, 150, 150);
-    doc.text('Bas\u00e9 sur CGI 2024 et taux CNPS - Non contractuel.', 20, y);
+    doc.text('Bas\u00e9 sur CGI 2026 et taux CNPS - Non contractuel.', 20, y);
 
     doc.save('simulateur-salaire-legalcameroun.pdf');
   };
@@ -256,7 +256,7 @@ export default function SalaireSimulator() {
     message += `*Vue Employeur:*\n`;
     message += `- Charges patronales: ${formatFCFA(result.chargesPatronales)}\n`;
     message += `- *Co\u00fbt total: ${formatFCFA(result.coutTotal)}*\n`;
-    message += `\n_Calcul bas\u00e9 sur CGI 2024 et CNPS_`;
+    message += `\n_Calcul bas\u00e9 sur CGI 2026 et CNPS_`;
 
     const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
     window.open(url, '_blank');

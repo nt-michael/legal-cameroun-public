@@ -1,5 +1,5 @@
 // Fiscal Simulators Data
-// Based on CGI 2024 (DGI/CNPS rates)
+// Based on CGI 2026 (DGI/CNPS rates)
 // Legal Cameroun / RODEC Conseils
 
 import { BilingualText } from '@/lib/translations';
@@ -497,10 +497,10 @@ export const simulatorsData = [
 export const heroData = {
   badge: { fr: 'Outils Fiscaux', en: 'Tax Tools' } as BilingualText,
   title: { fr: 'Simulateurs Fiscaux', en: 'Tax Simulators' } as BilingualText,
-  subtitle: { fr: 'Cameroun CGI 2024', en: 'Cameroon Tax Code 2024' } as BilingualText,
+  subtitle: { fr: 'Cameroun CGI 2026', en: 'Cameroon Tax Code 2026' } as BilingualText,
   description: {
-    fr: 'Estimez vos impôts et cotisations en quelques clics. Calculs basés sur le Code Général des Impôts 2024 et les taux DGI/CNPS en vigueur.',
-    en: 'Estimate your taxes and contributions in just a few clicks. Calculations based on the 2024 General Tax Code and current DGI/CNPS rates.',
+    fr: 'Estimez vos impôts et cotisations en quelques clics. Calculs basés sur le Code Général des Impôts 2026 et les taux DGI/CNPS en vigueur.',
+    en: 'Estimate your taxes and contributions in just a few clicks. Calculations based on the 2026 General Tax Code and current DGI/CNPS rates.',
   } as BilingualText,
   privacyNote: {
     fr: 'Calculs 100% locaux — Aucune donnée sauvegardée',
