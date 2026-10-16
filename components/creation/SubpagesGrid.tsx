@@ -115,7 +115,7 @@ export default function SubpagesGrid() {
             {sectionText.needHelp[language]}
           </p>
           <Link
-            href="/contact"
+            href="/prendre-un-rendez-vous"
             className="inline-flex items-center gap-2 text-primary-600 dark:text-primary-400 font-semibold hover:text-primary-700 dark:hover:text-primary-300 transition-colors"
           >
             <span>{sectionText.talkToExpert[language]}</span>

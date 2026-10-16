@@ -97,7 +97,7 @@ export default function CreationPageContent() {
                 {pageText.ctaPrimary[language]}
               </Link>
               <Link
-                href="/contact"
+                href="/prendre-un-rendez-vous"
                 className="inline-flex items-center justify-center gap-2 bg-white/10 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:bg-white/20 transition-all duration-300 border border-white/20"
               >
                 {pageText.ctaSecondary[language]}
