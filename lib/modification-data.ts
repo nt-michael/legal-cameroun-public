@@ -210,7 +210,7 @@ export const hubFAQ: GestionFAQItem[] = [
   },
   {
     question: { fr: 'Quel est le délai pour une modification ?', en: 'What is the timeframe for an amendment?' },
-    answer: { fr: 'Nos offres-Modification d\’entreprise -toutes les modifications.vLe délai standard est de 3-4 semaines, avec le forfait premium le délai est de 10 jours.', en: 'The standard timeframe is a maximum of 3-4 weeks for court registry registration. With our Premium package, processing is completed in 10 days.' },
+    answer: { fr: 'Le délai standard est de 3-4 semaines ; avec le forfait Premium, il est de 10 jours.', en: 'The standard timeframe is a maximum of 3-4 weeks for court registry registration. With our Premium package, processing is completed in 10 days.' },
   },
   {
     question: { fr: 'Quelles sont les conditions selon la forme juridique ?', en: 'What are the conditions depending on the legal form?' },

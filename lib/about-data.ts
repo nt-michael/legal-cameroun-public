@@ -160,7 +160,7 @@ export const whoWeAreData = {
     en: 'With us, no unnecessary jargon or automated responses.',
   } as BilingualText,
   team: {
-    fr: 'Nous sommes une équipe de juristes assermentés et d\'experts-comptables passionnés par le droit des affaires camerounais (OHADA inclus).',
+    fr: 'Nous sommes une équipe de juristes qualifiés et d\'experts-comptables passionnés par le droit des affaires camerounais (OHADA inclus).',
     en: 'We are a team of sworn lawyers and chartered accountants passionate about Cameroonian business law (including OHADA).',
   } as BilingualText,
   diversity: {
@@ -233,7 +233,7 @@ export const valuesData: ValueCard[] = [
       en: 'Trust & Transparency',
     },
     description: {
-      fr: 'Prix clairs, accompagnement 30 jours, juristes assermentés. Pas de mauvaises surprises.',
+      fr: 'Prix clairs, accompagnement 30 jours, juristes qualifiés. Pas de mauvaises surprises.',
       en: 'Clear pricing, 30-day support, sworn lawyers. No unpleasant surprises.',
     },
   },

@@ -19,7 +19,7 @@ const reasons = [
   {
     title: { fr: 'Approche Personnalisée', en: 'Personalized Approach' },
     description: {
-      fr: 'Chaque dossier est unique. Nous adaptons notre stratégie a vos besoins spécifiques pour des résultats optimaux.',
+      fr: 'Chaque dossier est unique. Nous adaptons notre stratégie à vos besoins spécifiques pour des résultats optimaux.',
       en: 'Every case is unique. We tailor our strategy to your specific needs for optimal results.',
     },
     icon: (
@@ -31,7 +31,7 @@ const reasons = [
   {
     title: { fr: 'Tarifs Transparents', en: 'Transparent Pricing' },
     description: {
-      fr: 'Pas de surprises. Nous vous fournissons des devis clairs et detaillés avant toute intervention.',
+      fr: 'Pas de surprises. Nous vous fournissons des devis clairs et détaillés avant toute intervention.',
       en: 'No surprises. We provide clear and detailed quotes before any intervention.',
     },
     icon: (

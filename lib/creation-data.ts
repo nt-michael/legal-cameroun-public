@@ -41,7 +41,8 @@ export interface LegalForm {
   description: BilingualText;
   advantages: BilingualText[];
   disadvantages: BilingualText[];
-  href: string;
+  /** Detail page; omit while the page does not exist (hides the "Learn more" button) */
+  href?: string;
 }
 
 export interface SubpageData {
@@ -229,7 +230,7 @@ const COMPARISON_ROW_DATA: ComparisonRow[] = [
 
 // Trust badges shown throughout the section
 export const trustBadges = [
-  { value: '15 000+', label: { fr: 'Entrepreneurs accompagnées', en: 'Entrepreneurs supported' } },
+  { value: '15 000+', label: { fr: 'Entrepreneurs accompagnés', en: 'Entrepreneurs supported' } },
   { value: '8', label: { fr: "Années d'expérience", en: 'Years of experience' } },
   // { value: '50+', label: { fr: 'Juristes diplômés', en: 'Qualified lawyers' } },
   // { value: '48h', label: { fr: 'Traitement Premium', en: 'Premium processing' } },
@@ -393,7 +394,8 @@ export const legalForms: LegalForm[] = [
       { fr: 'Pas de personnalité morale', en: 'No legal personality' },
       { fr: 'Difficile de lever des fonds', en: 'Difficult to raise funds' },
     ],
-    href: '/creation-entreprise/auto-entrepreneur',
+    // No detail page yet (content being written by the legal team): set
+    // href: '/creation-entreprise/etablissement' once the page exists.
   },
   {
     id: 'sas',
@@ -823,7 +825,7 @@ export const hubHero = {
   subtitle: { fr: 'Zéro stress, rapide (48h Premium), économique.', en: 'Zero stress, fast (48h Premium), affordable.' },
   description: { fr: 'SASU, SAS, SARL, SARLU, SCI, Établissement commercial... +15 000 entrepreneurs accompagnés depuis 8 ans par des juristes basés au Cameroun.', en: 'SASU, SAS, SARL, SARLU, SCI, Commercial establishment... 15,000+ entrepreneurs supported for 8 years by lawyers based in Cameroon.' },
   primaryCta: {
-    text: { fr: 'C\'est parti ! Démarrer le q uestionnaire', en: 'Let\'s go! Start the questionnaire' },
+    text: { fr: 'C\'est parti ! Démarrer le questionnaire', en: 'Let\'s go! Start the questionnaire' },
     href: '/devis',
   },
   secondaryCta: {

@@ -10,13 +10,13 @@ const sectionText = {
   badge: { fr: 'Comparateur', en: 'Comparison Tool' },
   title: { fr: 'Quelle Forme Juridique Choisir ?', en: 'Which Legal Form to Choose?' },
   subtitle: {
-    fr: 'Comparez les differentes options pour trouver la structure adaptee a votre projet.',
+    fr: 'Comparez les différentes options pour trouver la structure adaptée à votre projet.',
     en: 'Compare the different options to find the structure suited to your project.',
   },
   advantages: { fr: 'Avantages', en: 'Advantages' },
   cautions: { fr: "Points d'attention", en: 'Points of Caution' },
   learnMore: { fr: 'En savoir plus', en: 'Learn more' },
-  startNow: { fr: 'Demarrez maintenant', en: 'Start now' },
+  startNow: { fr: 'Démarrez maintenant', en: 'Start now' },
   talkExpert: { fr: 'Parler à un expert', en: 'Talk to an expert' },
 };
 
@@ -137,16 +137,18 @@ export default function LegalFormsComparison() {
                   </ul>
                 </div>
 
-                {/* CTA */}
-                <Link
-                  href={activeForm.href}
-                  className="inline-flex items-center gap-2 bg-primary-600 hover:bg-primary-700 text-white px-6 py-3 rounded-xl font-semibold transition-all duration-300 hover:scale-105"
-                >
-                  {sectionText.learnMore[language]}
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                  </svg>
-                </Link>
+                {/* CTA (only for forms that have a detail page) */}
+                {activeForm.href && (
+                  <Link
+                    href={activeForm.href}
+                    className="inline-flex items-center gap-2 bg-primary-600 hover:bg-primary-700 text-white px-6 py-3 rounded-xl font-semibold transition-all duration-300 hover:scale-105"
+                  >
+                    {sectionText.learnMore[language]}
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    </svg>
+                  </Link>
+                )}
               </div>
 
               {/* Right: Visual/Summary Card */}

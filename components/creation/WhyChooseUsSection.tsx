@@ -9,7 +9,7 @@ const sectionText = {
   badge: { fr: 'Nos Avantages', en: 'Our Advantages' },
   title: { fr: 'Pourquoi Choisir Legal Cameroun ?', en: 'Why Choose Legal Cameroun?' },
   subtitle: {
-    fr: "Nous simplifions la creation d'entreprise au Cameroun avec un accompagnement expert et des outils digitaux performants.",
+    fr: "Nous simplifions la création d'entreprise au Cameroun avec un accompagnement expert et des outils digitaux performants.",
     en: 'We simplify business creation in Cameroon with expert support and powerful digital tools.',
   },
 };
