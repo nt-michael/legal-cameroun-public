@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 import gsap from 'gsap';
 import { Pack } from '@/lib/packs-config';
 import { useLanguage } from '@/contexts/LanguageContext';
@@ -44,6 +45,15 @@ const text: Record<string, any> = {
   errEmailInvalid: { fr: 'Format email invalide', en: 'Invalid email format' },
   errPhone: { fr: 'Téléphone requis', en: 'Phone required' },
   errGeneral: { fr: 'Une erreur est survenue', en: 'An error occurred' },
+  consentBefore: {
+    fr: 'J\'accepte que Legal Cameroun traite mes données pour exécuter ma commande, conformément à la ',
+    en: 'I agree that Legal Cameroun may process my data to fulfil my order, in accordance with the ',
+  },
+  consentLink: { fr: 'Politique de confidentialité', en: 'Privacy Policy' },
+  consentRequired: {
+    fr: 'Veuillez accepter le traitement de vos données pour continuer',
+    en: 'Please accept the processing of your data to continue',
+  },
 };
 
 export default function PurchaseStepper({ pack, onClose }: PurchaseStepperProps) {
@@ -52,6 +62,8 @@ export default function PurchaseStepper({ pack, onClose }: PurchaseStepperProps)
   const [formData, setFormData] = useState<FormData>({ firstName: '', lastName: '', email: '', phone: '' });
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [consent, setConsent] = useState(false);
+  const [consentError, setConsentError] = useState('');
 
   const formatPrice = (price: number) =>
     new Intl.NumberFormat('fr-FR').format(price) + ' FCFA';
@@ -90,13 +102,17 @@ export default function PurchaseStepper({ pack, onClose }: PurchaseStepperProps)
   const back = () => animateStep(0);
 
   const handleSubmit = async () => {
+    if (!consent) {
+      setConsentError(text.consentRequired[language]);
+      return;
+    }
     setIsSubmitting(true);
     setErrors({});
     try {
       const res = await fetch('/api/purchases/create', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ packSlug: pack.slug, ...formData }),
+        body: JSON.stringify({ packSlug: pack.slug, ...formData, consent: true }),
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || 'Submission failed');
@@ -239,6 +255,39 @@ export default function PurchaseStepper({ pack, onClose }: PurchaseStepperProps)
                     {formatPrice(pack.price)}
                   </span>
                 </div>
+              </div>
+              {/* Consent */}
+              <div className="mb-4">
+                <label htmlFor="purchase-consent" className="flex items-start gap-3 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    id="purchase-consent"
+                    checked={consent}
+                    onChange={(e) => {
+                      setConsent(e.target.checked);
+                      if (e.target.checked) setConsentError('');
+                    }}
+                    aria-invalid={!!consentError}
+                    className={`mt-0.5 h-4 w-4 shrink-0 rounded text-primary-600 focus:ring-primary-500 ${
+                      consentError ? 'border-red-500' : 'border-gray-300 dark:border-gray-600'
+                    }`}
+                  />
+                  <span className="text-xs text-gray-600 dark:text-gray-400">
+                    {text.consentBefore[language]}
+                    <Link
+                      href="/politique-de-confidentialite"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-primary-600 dark:text-primary-400 underline hover:text-primary-700"
+                    >
+                      {text.consentLink[language]}
+                    </Link>
+                    . <span className="text-red-500">*</span>
+                  </span>
+                </label>
+                {consentError && (
+                  <p className="mt-1 text-xs text-red-500">{consentError}</p>
+                )}
               </div>
               <p className="text-xs text-gray-500 dark:text-gray-400 text-center">{text.payNote[language]}</p>
               {errors.general && (

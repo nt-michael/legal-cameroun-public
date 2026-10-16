@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { useInView } from 'react-intersection-observer';
+import Link from 'next/link';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 const text = {
@@ -35,9 +36,10 @@ const text = {
   },
   errorInvalid: { fr: 'Adresse email invalide.', en: 'Invalid email address.' },
   errorGeneric: { fr: 'Une erreur est survenue. Veuillez réessayer.', en: 'An error occurred. Please try again.' },
+  privacyLink: { fr: 'Politique de confidentialité', en: 'Privacy Policy' },
   privacy: {
-    fr: 'Pas de spam. Désabonnez-vous à tout moment.',
-    en: 'No spam. Unsubscribe at any time.',
+    fr: 'En vous inscrivant, vous acceptez de recevoir notre newsletter. Pas de spam, désabonnement à tout moment.',
+    en: 'By subscribing, you agree to receive our newsletter. No spam, unsubscribe at any time.',
   },
 };
 
@@ -192,7 +194,12 @@ export default function NewsletterSection() {
                   <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                   </svg>
-                  {text.privacy[language]}
+                  <span>
+                    {text.privacy[language]}{' '}
+                    <Link href="/politique-de-confidentialite" target="_blank" rel="noopener noreferrer" className="underline hover:text-gray-600 dark:hover:text-gray-300">
+                      {text.privacyLink[language]}
+                    </Link>
+                  </span>
                 </p>
               </div>
             )}

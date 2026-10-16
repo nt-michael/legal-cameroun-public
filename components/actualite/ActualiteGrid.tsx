@@ -30,6 +30,11 @@ const text = {
   lastNamePlaceholder: { fr: 'Nom', en: 'Last name' },
   emailPlaceholder: { fr: 'Votre adresse email', en: 'Your email address' },
   subscribe: { fr: "S'abonner", en: 'Subscribe' },
+  consentNotice: {
+    fr: 'En vous inscrivant, vous acceptez de recevoir notre newsletter. Désabonnement à tout moment.',
+    en: 'By subscribing, you agree to receive our newsletter. Unsubscribe at any time.',
+  },
+  privacyLink: { fr: 'Politique de confidentialité', en: 'Privacy Policy' },
   subscribing: { fr: 'Inscription…', en: 'Subscribing…' },
   successMsg: { fr: 'Merci ! Vous êtes inscrit.', en: 'Thank you! You are subscribed.' },
   errorInvalid: { fr: 'Adresse email invalide.', en: 'Invalid email address.' },
@@ -248,6 +253,12 @@ export default function ActualiteGrid({
                 {status === 'loading' ? text.subscribing[language] : text.subscribe[language]}
               </button>
             </div>
+            <p className="mt-3 text-xs text-white/70">
+              {text.consentNotice[language]}{' '}
+              <Link href="/politique-de-confidentialite" target="_blank" rel="noopener noreferrer" className="underline hover:text-white">
+                {text.privacyLink[language]}
+              </Link>
+            </p>
           </div>
           {status === 'success' && (
             <p className="mt-4 text-sm text-white font-medium">{text.successMsg[language]}</p>

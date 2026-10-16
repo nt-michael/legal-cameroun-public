@@ -73,6 +73,8 @@ export async function POST(request: Request) {
     if (!body.email?.trim()) validationErrors.email = 'Email is required';
     if (!body.phone?.trim()) validationErrors.phone = 'Phone is required';
     if (!body.companyType?.trim()) validationErrors.companyType = 'Company type is required';
+    // Consent to data processing is required (privacy policy, art. 2)
+    if (body.consent !== true) validationErrors.consent = 'Consent is required';
 
     if (Object.keys(validationErrors).length > 0) {
       return NextResponse.json(
@@ -120,6 +122,9 @@ export async function POST(request: Request) {
         if (m.id) cf7Form.append(`nonAssociateManager${idx}Id`, m.id);
       }
     }
+
+    // CF7 [acceptance consent] field (ignored by CF7 until the field is added to the form)
+    cf7Form.append('consent', 'yes');
 
     cf7Form.append('_wpcf7_unit_tag', `${CF7_FORM_ID}`);
 

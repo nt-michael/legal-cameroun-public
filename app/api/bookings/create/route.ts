@@ -13,6 +13,11 @@ export async function POST(request: Request) {
             return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
         }
 
+        // Consent to data processing is required (privacy policy, art. 2)
+        if (body.consent !== true) {
+            return NextResponse.json({ error: 'Consent is required' }, { status: 400 });
+        }
+
         const productId = isFree
             ? process.env.FREE_CONSULTATION_PRODUCT_ID
             : process.env.CONSULTATION_PRODUCT_ID;
@@ -27,6 +32,7 @@ export async function POST(request: Request) {
             { key: 'selected_date', value: selectedDate }, // Display date
             { key: 'selected_time', value: selectedTime }, // Display time
             { key: 'client_message', value: message || '' },
+            { key: 'privacy_consent', value: 'yes' }, // proof of consent, kept with the order
 
             // KEY: Use the explicit UTC slot string if provided, otherwise fallback (which might be ambiguous)
             { key: 'calendly_start_time', value: slotStartTime || `${selectedDate}T${selectedTime}:00` },

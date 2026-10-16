@@ -12,6 +12,11 @@ export async function POST(request: Request) {
             return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
         }
 
+        // Consent to data processing is required (privacy policy, art. 2)
+        if (body.consent !== true) {
+            return NextResponse.json({ error: 'Consent is required' }, { status: 400 });
+        }
+
         const pack = getPackBySlug(packSlug);
         if (!pack) {
             return NextResponse.json({ error: 'Invalid pack slug' }, { status: 400 });
@@ -36,6 +41,7 @@ export async function POST(request: Request) {
                 { key: 'order_type', value: 'pack_purchase' },
                 { key: 'pack_slug', value: packSlug },
                 { key: 'pack_name', value: pack.name.fr },
+                { key: 'privacy_consent', value: 'yes' }, // proof of consent, kept with the order
             ],
         });
 
