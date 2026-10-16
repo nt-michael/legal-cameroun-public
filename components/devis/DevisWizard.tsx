@@ -94,6 +94,17 @@ const devisText = {
   },
   yes: { fr: 'Oui', en: 'Yes' },
   no: { fr: 'Non', en: 'No' },
+  nonAssociateManagerTitle: { fr: 'Administrateur non associé', en: 'Non-partner manager' },
+  nonAssociateFirstName: { fr: 'Prénom', en: 'First name' },
+  nonAssociateLastName: { fr: 'Nom', en: 'Last name' },
+  nonAssociateId: { fr: 'N° de pièce d\'identité (optionnel)', en: 'ID document number (optional)' },
+  addNonAssociateManager: { fr: '+ Ajouter un administrateur', en: '+ Add a manager' },
+  removeNonAssociateManager: { fr: 'Retirer', en: 'Remove' },
+  errNonAssociateManagers: {
+    fr: 'Indiquez le prénom et le nom de chaque administrateur non associé',
+    en: 'Enter the first and last name of each non-partner manager',
+  },
+  summaryNonAssociateManagers: { fr: 'Administrateurs non associés', en: 'Non-partner managers' },
 
   // Step 5: Logistics
   hqTitle: { fr: 'Siège Social', en: 'Headquarters' },
@@ -248,6 +259,18 @@ export default function DevisWizard() {
     setErrors(clearedErrors);
   }, [errors]);
 
+  // Non-partner managers: up to 3, matching the CF7 fields nonAssociateManager1..3*
+  const MAX_NON_ASSOCIATE_MANAGERS = 3;
+  const emptyManager = { firstName: '', lastName: '', id: '' };
+
+  const updateNonAssociateManager = (index: number, field: 'firstName' | 'lastName' | 'id', value: string) => {
+    updateFormData({
+      nonAssociateManagers: formData.nonAssociateManagers.map((m, i) =>
+        i === index ? { ...m, [field]: value } : m
+      ),
+    });
+  };
+
   const validateStep = (): boolean => {
     const newErrors: Record<string, string> = {};
 
@@ -282,6 +305,13 @@ export default function DevisWizard() {
         }
         if (!formData.managerLastName.trim()) {
           newErrors.managerLastName = devisText.errLastNameRequired[language];
+        }
+        if (
+          formData.hasNonAssociateManagers &&
+          (formData.nonAssociateManagers.length === 0 ||
+            formData.nonAssociateManagers.some(m => !m.firstName.trim() || !m.lastName.trim()))
+        ) {
+          newErrors.nonAssociateManagers = devisText.errNonAssociateManagers[language];
         }
         break;
       case 5: // Logistics
@@ -730,7 +760,12 @@ export default function DevisWizard() {
                   </label>
                   <div className="flex gap-4">
                     <button
-                      onClick={() => updateFormData({ hasNonAssociateManagers: true })}
+                      onClick={() => updateFormData({
+                        hasNonAssociateManagers: true,
+                        nonAssociateManagers: formData.nonAssociateManagers.length > 0
+                          ? formData.nonAssociateManagers
+                          : [{ ...emptyManager }],
+                      })}
                       className={`px-6 py-3 rounded-xl border-2 font-medium transition-all duration-300 ${
                         formData.hasNonAssociateManagers === true
                           ? 'border-primary-500 bg-primary-50 dark:bg-primary-900/20 text-primary-600'
@@ -750,6 +785,76 @@ export default function DevisWizard() {
                       {devisText.no[language]}
                     </button>
                   </div>
+
+                  {formData.hasNonAssociateManagers && (
+                    <div className="mt-6 space-y-4">
+                      {formData.nonAssociateManagers.map((manager, index) => (
+                        <div
+                          key={index}
+                          className="p-4 rounded-xl border-2 border-gray-200 dark:border-gray-700 space-y-3"
+                        >
+                          <div className="flex items-center justify-between">
+                            <span className="text-sm font-semibold text-gray-700 dark:text-gray-300">
+                              {devisText.nonAssociateManagerTitle[language]} {index + 1}
+                            </span>
+                            {formData.nonAssociateManagers.length > 1 && (
+                              <button
+                                type="button"
+                                onClick={() => updateFormData({
+                                  nonAssociateManagers: formData.nonAssociateManagers.filter((_, i) => i !== index),
+                                })}
+                                className="text-sm text-red-600 hover:text-red-700"
+                              >
+                                {devisText.removeNonAssociateManager[language]}
+                              </button>
+                            )}
+                          </div>
+                          <div className="grid sm:grid-cols-2 gap-3">
+                            <input
+                              type="text"
+                              value={manager.firstName}
+                              onChange={(e) => updateNonAssociateManager(index, 'firstName', e.target.value)}
+                              placeholder={devisText.nonAssociateFirstName[language]}
+                              aria-label={`${devisText.nonAssociateFirstName[language]} ${index + 1}`}
+                              className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 focus:border-primary-500 focus:outline-none transition-colors"
+                            />
+                            <input
+                              type="text"
+                              value={manager.lastName}
+                              onChange={(e) => updateNonAssociateManager(index, 'lastName', e.target.value)}
+                              placeholder={devisText.nonAssociateLastName[language]}
+                              aria-label={`${devisText.nonAssociateLastName[language]} ${index + 1}`}
+                              className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 focus:border-primary-500 focus:outline-none transition-colors"
+                            />
+                          </div>
+                          <input
+                            type="text"
+                            value={manager.id}
+                            onChange={(e) => updateNonAssociateManager(index, 'id', e.target.value)}
+                            placeholder={devisText.nonAssociateId[language]}
+                            aria-label={`${devisText.nonAssociateId[language]} ${index + 1}`}
+                            className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 focus:border-primary-500 focus:outline-none transition-colors"
+                          />
+                        </div>
+                      ))}
+
+                      {formData.nonAssociateManagers.length < MAX_NON_ASSOCIATE_MANAGERS && (
+                        <button
+                          type="button"
+                          onClick={() => updateFormData({
+                            nonAssociateManagers: [...formData.nonAssociateManagers, { ...emptyManager }],
+                          })}
+                          className="text-sm font-medium text-primary-600 hover:text-primary-700"
+                        >
+                          {devisText.addNonAssociateManager[language]}
+                        </button>
+                      )}
+
+                      {errors.nonAssociateManagers && (
+                        <p className="text-red-500 text-sm">{errors.nonAssociateManagers}</p>
+                      )}
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
@@ -941,6 +1046,14 @@ export default function DevisWizard() {
                 )}
                 <SummaryItem label={devisText.summaryManager[language]} value={`${formData.managerFirstName} ${formData.managerLastName}`.trim() || '-'} />
                 <SummaryItem label={devisText.summaryAssociates[language]} value={formData.associatesCount.toString()} />
+                {formData.hasNonAssociateManagers && formData.nonAssociateManagers.length > 0 && (
+                  <SummaryItem
+                    label={devisText.summaryNonAssociateManagers[language]}
+                    value={formData.nonAssociateManagers
+                      .map(m => `${m.firstName} ${m.lastName}`.trim())
+                      .join(', ')}
+                  />
+                )}
                 <SummaryItem label={devisText.summaryHQ[language]} value={`${formData.headquarters}, ${formData.city}`} />
                 {formData.additionalServices.length > 0 && (
                   <SummaryItem
