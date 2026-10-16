@@ -201,7 +201,7 @@ export default function GestionPageContent() {
         tiers={hubPricingTiers}
         title={{ fr: 'Nos Forfaits Modification', en: 'Our Modification Packages' }}
         subtitle={{ fr: 'Choisissez la formule adapt\u00e9e \u00e0 vos besoins', en: 'Choose the package suited to your needs' }}
-        note={{ fr: 'Co\u00fbts variables selon le type de modification (ex: double annonce l\u00e9gale si transfert inter-d\u00e9partements)', en: 'Variable costs depending on modification type (e.g., double legal notice if inter-department transfer)' }}
+        note={{ fr: 'Co\u00fbts variables selon le type de modification', en: 'Variable costs depending on modification type' }}
       />
 
       {/* Documents Checklist */}
