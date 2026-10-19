@@ -308,7 +308,6 @@ export const pricingTiers: PricingTier[] = [
     features: [
       { fr: 'Tout Standard inclus', en: 'All Standard features included' },
       // { fr: 'Traitement en 48h', en: 'Processing in 48h' },
-      { fr: 'Assurance anti-rejet', en: 'Rejection insurance' },
       { fr: 'Assistance 30 jours', en: '30-day assistance' },
       { fr: 'Accompagnement personnalisé', en: 'Personalized support' },
       { fr: 'Conseiller dédié', en: 'Dedicated advisor' },

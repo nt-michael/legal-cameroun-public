@@ -185,7 +185,6 @@ export const hubPricingTiers: GestionPricingTier[] = [
     features: [
       { fr: 'Tout Standard inclus', en: 'Everything in Standard included' },
       { fr: 'Traitement en 48h', en: 'Processing in 48h' },
-      { fr: 'Assurance anti-rejet', en: 'Rejection insurance' },
       { fr: 'Statuts Word éditables', en: 'Editable Word articles' },
       { fr: 'Assistance 30 jours', en: '30-day assistance' },
     ],
@@ -334,7 +333,6 @@ export const transfertSiegeData = {
       features: [
         { fr: 'Tout Standard inclus', en: 'Everything in Standard included' },
         { fr: 'Traitement 48h', en: '48h processing' },
-        { fr: 'Assurance anti-rejet', en: 'Rejection insurance' },
         { fr: 'Statuts Word', en: 'Word articles' },
         { fr: 'Assistance 30j', en: '30-day assistance' },
       ],
@@ -408,7 +406,6 @@ export const sasVersSarlData = {
       features: [
         { fr: 'Tout Standard inclus', en: 'Everything in Standard included' },
         { fr: 'Traitement 48h', en: '48h processing' },
-        { fr: 'Assurance anti-rejet', en: 'Rejection insurance' },
         { fr: 'Statuts Word', en: 'Word articles' },
         { fr: 'Assistance 30j', en: '30-day assistance' },
       ],
@@ -486,7 +483,6 @@ export const sarlVersSasData = {
       features: [
         { fr: 'Tout Standard inclus', en: 'Everything in Standard included' },
         { fr: 'Traitement 48h', en: '48h processing' },
-        { fr: 'Assurance anti-rejet', en: 'Rejection insurance' },
         { fr: 'Statuts Word', en: 'Word articles' },
         { fr: 'Assistance 30j', en: '30-day assistance' },
       ],
@@ -612,7 +608,6 @@ export const dissolutionData = {
       features: [
         { fr: 'Tout Standard inclus', en: 'Everything in Standard included' },
         { fr: 'Traitement 48h', en: '48h processing' },
-        { fr: 'Assurance anti-rejet', en: 'Rejection insurance' },
         { fr: 'Assistance 30j', en: '30-day assistance' },
       ],
       highlighted: true,
