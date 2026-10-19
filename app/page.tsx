@@ -11,6 +11,7 @@ import CTASection from '@/components/home/CTASection';
 import { getFeaturedPosts } from '@/lib/wordpress';
 import { transformPosts } from '@/lib/wordpress-utils';
 import { createPageMetadata } from '@/lib/seo-utils';
+import { getRequestLanguage } from '@/lib/lang';
 
 export const revalidate = 300;
 
@@ -50,10 +51,12 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function Home() {
+  const lang = await getRequestLanguage();
   let latestPosts;
   try {
     const wpPosts = await getFeaturedPosts(3);
-    latestPosts = wpPosts.length > 0 ? transformPosts(wpPosts) : undefined;
+    // Dates and category names in the page language (English names come from the WP "name_en" field)
+    latestPosts = wpPosts.length > 0 ? transformPosts(wpPosts, lang) : undefined;
   } catch {
     latestPosts = undefined;
   }
