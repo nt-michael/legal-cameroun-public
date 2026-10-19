@@ -20,7 +20,7 @@ const heroContent = {
   },
   subtitle: {
     fr: 'Expertise juridique, administrative, comptable, fiscale de premier choix pour les entreprises et les particuliers.',
-    en: 'Top-tier legal, admnistrative accounting, and tax expertise for businesses and individuals.',
+    en: 'Top-tier legal, administrative, accounting and tax expertise for businesses and individuals.',
   },
   description: {
     fr: 'Que ce soit pour une création d\'entreprise, une déclaration fiscale ou sociale, une modification urgente ou une question urgente, nous sommes à votre écoute.',
