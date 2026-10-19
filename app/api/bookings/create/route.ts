@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { createOrder, updateOrderStatus } from '@/lib/woocommerce';
 import { initializePayment } from '@/lib/notch';
 import { createInvitee } from '@/lib/calendly';
+import { TERMS_OF_SALE_VERSION } from '@/lib/legal';
 
 export async function POST(request: Request) {
     try {
@@ -16,6 +17,11 @@ export async function POST(request: Request) {
         // Consent to data processing is required (privacy policy, art. 2)
         if (body.consent !== true) {
             return NextResponse.json({ error: 'Consent is required' }, { status: 400 });
+        }
+
+        // Paid consultations are a sale: the Terms of Sale must be accepted (CGV art. 2.5 and 4.1)
+        if (!isFree && body.termsAccepted !== true) {
+            return NextResponse.json({ error: 'Terms of Sale must be accepted' }, { status: 400 });
         }
 
         const productId = isFree
@@ -33,6 +39,7 @@ export async function POST(request: Request) {
             { key: 'selected_time', value: selectedTime }, // Display time
             { key: 'client_message', value: message || '' },
             { key: 'privacy_consent', value: 'yes' }, // proof of consent, kept with the order
+            ...(isFree ? [] : [{ key: 'terms_of_sale_version', value: TERMS_OF_SALE_VERSION }]), // proof of CGV acceptance
 
             // KEY: Use the explicit UTC slot string if provided, otherwise fallback (which might be ambiguous)
             { key: 'calendly_start_time', value: slotStartTime || `${selectedDate}T${selectedTime}:00` },

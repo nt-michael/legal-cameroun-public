@@ -75,7 +75,8 @@ const footerLinks = {
   legal: [
     { name: { fr: 'Mentions Légales', en: 'Legal Notice' }, href: '/mentions-legales' },
     { name: { fr: 'Politique de Confidentialité', en: 'Privacy Policy' }, href: '/politique-de-confidentialite' },
-    { name: { fr: 'Conditions Générales', en: 'Terms & Conditions' }, href: '/conditions-generales' },
+    { name: { fr: 'Conditions Générales d\'Utilisation', en: 'Terms of Use' }, href: '/conditions-generales' },
+    { name: { fr: 'Conditions Générales de Vente', en: 'Terms of Sale' }, href: '/conditions-generales-de-vente' },
   ],
 };
 

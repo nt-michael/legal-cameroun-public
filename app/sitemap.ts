@@ -41,6 +41,7 @@ const pages: Array<{
   { path: '/mentions-legales',                            changeFrequency: 'monthly', priority: 0.3 },
   { path: '/politique-de-confidentialite',                changeFrequency: 'monthly', priority: 0.3 },
   { path: '/conditions-generales',                        changeFrequency: 'monthly', priority: 0.3 },
+  { path: '/conditions-generales-de-vente',               changeFrequency: 'monthly', priority: 0.3 },
 ];
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {

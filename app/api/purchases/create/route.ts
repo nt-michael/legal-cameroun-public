@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { createOrder } from '@/lib/woocommerce';
 import { initializePayment } from '@/lib/notch';
 import { getPackBySlug } from '@/lib/packs-config';
+import { TERMS_OF_SALE_VERSION } from '@/lib/legal';
 
 export async function POST(request: Request) {
     try {
@@ -10,6 +11,11 @@ export async function POST(request: Request) {
 
         if (!packSlug || !firstName || !lastName || !email || !phone) {
             return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
+        }
+
+        // A pack purchase is a sale: the Terms of Sale must be accepted (CGV art. 2.5 and 4.1)
+        if (body.termsAccepted !== true) {
+            return NextResponse.json({ error: 'Terms of Sale must be accepted' }, { status: 400 });
         }
 
         const pack = getPackBySlug(packSlug);
@@ -36,6 +42,7 @@ export async function POST(request: Request) {
                 { key: 'order_type', value: 'pack_purchase' },
                 { key: 'pack_slug', value: packSlug },
                 { key: 'pack_name', value: pack.name.fr },
+                { key: 'terms_of_sale_version', value: TERMS_OF_SALE_VERSION }, // proof of CGV acceptance
             ],
         });
 
