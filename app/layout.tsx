@@ -54,7 +54,7 @@ export default async function RootLayout({
         className={`${inriaSans.variable} antialiased`}
       >
         <ThemeProvider>
-          <LanguageProvider>
+          <LanguageProvider initialLanguage={lang}>
             <LanguageHtmlSetter />
             <Header />
             <main>{children}</main>

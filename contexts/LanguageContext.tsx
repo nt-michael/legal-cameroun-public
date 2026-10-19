@@ -11,13 +11,18 @@ interface LanguageContextType {
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
-export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [language, setLanguageState] = useState<Language>('fr');
-  const [mounted, setMounted] = useState(false);
+export function LanguageProvider({
+  children,
+  initialLanguage,
+}: {
+  children: ReactNode;
+  /** Language resolved on the server (lib/lang.ts), so the server HTML of /en pages is in English */
+  initialLanguage: Language;
+}) {
+  const [language, setLanguageState] = useState<Language>(initialLanguage);
 
+  // After hydration, keep the client-side signals (URL prefix, saved choice, cookie) in sync.
   useEffect(() => {
-    setMounted(true);
-
     // Priority 1: URL prefix (middleware rewrites, but client sees the original URL)
     const pathname = window.location.pathname;
     if (pathname.startsWith('/en')) {
@@ -83,15 +88,6 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
   };
 
   const t = translations[language];
-
-  // Prevent hydration mismatch by returning default language during SSR
-  if (!mounted) {
-    return (
-      <LanguageContext.Provider value={{ language: 'fr', setLanguage, t: translations.fr }}>
-        {children}
-      </LanguageContext.Provider>
-    );
-  }
 
   return (
     <LanguageContext.Provider value={{ language, setLanguage, t }}>
