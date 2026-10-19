@@ -50,6 +50,12 @@ const text: Record<string, any> = {
     en: 'Your data is processed by Legal Cameroun to fulfil your order, in accordance with our ',
   },
   privacyLink: { fr: 'Politique de confidentialité', en: 'Privacy Policy' },
+  termsBefore: { fr: 'J\'ai lu et j\'accepte les ', en: 'I have read and accept the ' },
+  termsLink: { fr: 'Conditions Générales de Vente', en: 'Terms of Sale' },
+  termsRequired: {
+    fr: 'Veuillez accepter les Conditions Générales de Vente pour continuer',
+    en: 'Please accept the Terms of Sale to continue',
+  },
 };
 
 export default function PurchaseStepper({ pack, onClose }: PurchaseStepperProps) {
@@ -58,6 +64,8 @@ export default function PurchaseStepper({ pack, onClose }: PurchaseStepperProps)
   const [formData, setFormData] = useState<FormData>({ firstName: '', lastName: '', email: '', phone: '' });
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [termsAccepted, setTermsAccepted] = useState(false);
+  const [termsError, setTermsError] = useState('');
 
   const formatPrice = (price: number) =>
     new Intl.NumberFormat('fr-FR').format(price) + ' FCFA';
@@ -96,13 +104,17 @@ export default function PurchaseStepper({ pack, onClose }: PurchaseStepperProps)
   const back = () => animateStep(0);
 
   const handleSubmit = async () => {
+    if (!termsAccepted) {
+      setTermsError(text.termsRequired[language]);
+      return;
+    }
     setIsSubmitting(true);
     setErrors({});
     try {
       const res = await fetch('/api/purchases/create', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ packSlug: pack.slug, ...formData }),
+        body: JSON.stringify({ packSlug: pack.slug, ...formData, termsAccepted: true }),
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || 'Submission failed');
@@ -245,6 +257,39 @@ export default function PurchaseStepper({ pack, onClose }: PurchaseStepperProps)
                     {formatPrice(pack.price)}
                   </span>
                 </div>
+              </div>
+              {/* Terms of Sale */}
+              <div className="mb-4">
+                <label htmlFor="purchase-terms" className="flex items-start gap-3 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    id="purchase-terms"
+                    checked={termsAccepted}
+                    onChange={(e) => {
+                      setTermsAccepted(e.target.checked);
+                      if (e.target.checked) setTermsError('');
+                    }}
+                    aria-invalid={!!termsError}
+                    className={`mt-0.5 h-4 w-4 shrink-0 rounded text-primary-600 focus:ring-primary-500 ${
+                      termsError ? 'border-red-500' : 'border-gray-300 dark:border-gray-600'
+                    }`}
+                  />
+                  <span className="text-xs text-gray-600 dark:text-gray-400">
+                    {text.termsBefore[language]}
+                    <Link
+                      href="/conditions-generales-de-vente"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-primary-600 dark:text-primary-400 underline hover:text-primary-700"
+                    >
+                      {text.termsLink[language]}
+                    </Link>
+                    . <span className="text-red-500">*</span>
+                  </span>
+                </label>
+                {termsError && (
+                  <p className="mt-1 text-xs text-red-500">{termsError}</p>
+                )}
               </div>
               <p className="text-xs text-gray-500 dark:text-gray-400 text-center">{text.payNote[language]}</p>
               <p className="mt-2 text-xs text-gray-500 dark:text-gray-400 text-center">

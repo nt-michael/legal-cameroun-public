@@ -90,6 +90,12 @@ const bookingText: Record<string, any> = {
     fr: 'Veuillez accepter le traitement de vos données pour confirmer le rendez-vous',
     en: 'Please accept the processing of your data to confirm the appointment',
   },
+  termsBefore: { fr: 'J\'ai lu et j\'accepte les ', en: 'I have read and accept the ' },
+  termsLink: { fr: 'Conditions Générales de Vente', en: 'Terms of Sale' },
+  termsRequired: {
+    fr: 'Veuillez accepter les Conditions Générales de Vente pour confirmer le rendez-vous',
+    en: 'Please accept the Terms of Sale to confirm the appointment',
+  },
 };
 
 const initialFormData: BookingFormData = {
@@ -115,6 +121,8 @@ export default function BookingForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [consent, setConsent] = useState(false);
   const [consentError, setConsentError] = useState('');
+  const [termsAccepted, setTermsAccepted] = useState(false);
+  const [termsError, setTermsError] = useState('');
   
   // Availability State
   const [availableSlots, setAvailableSlots] = useState<any[]>([]);
@@ -251,10 +259,9 @@ export default function BookingForm() {
 
   const handleSubmit = async () => {
     if (!validateStep()) return;
-    if (!consent) {
-      setConsentError(bookingText.consentRequired[language]);
-      return;
-    }
+    setConsentError(consent ? '' : bookingText.consentRequired[language]);
+    setTermsError(termsAccepted ? '' : bookingText.termsRequired[language]);
+    if (!consent || !termsAccepted) return;
 
     setIsSubmitting(true);
     setErrors({}); // Clear previous errors
@@ -265,7 +272,7 @@ export default function BookingForm() {
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ ...formData, consent: true }),
+        body: JSON.stringify({ ...formData, consent: true, termsAccepted: true }),
       });
 
       const data = await res.json();
@@ -625,6 +632,40 @@ export default function BookingForm() {
                 </label>
                 {consentError && (
                   <p className="mt-1 text-sm text-red-500">{consentError}</p>
+                )}
+              </div>
+
+              {/* Terms of Sale (paid consultation) */}
+              <div className="mt-3">
+                <label htmlFor="booking-terms" className="flex items-start gap-3 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    id="booking-terms"
+                    checked={termsAccepted}
+                    onChange={(e) => {
+                      setTermsAccepted(e.target.checked);
+                      if (e.target.checked) setTermsError('');
+                    }}
+                    aria-invalid={!!termsError}
+                    className={`mt-1 h-4 w-4 shrink-0 rounded text-primary-600 focus:ring-primary-500 ${
+                      termsError ? 'border-red-500' : 'border-gray-300 dark:border-gray-600'
+                    }`}
+                  />
+                  <span className="text-sm text-gray-600 dark:text-gray-400">
+                    {bookingText.termsBefore[language]}
+                    <Link
+                      href="/conditions-generales-de-vente"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-primary-600 dark:text-primary-400 underline hover:text-primary-700"
+                    >
+                      {bookingText.termsLink[language]}
+                    </Link>
+                    . <span className="text-red-500">*</span>
+                  </span>
+                </label>
+                {termsError && (
+                  <p className="mt-1 text-sm text-red-500">{termsError}</p>
                 )}
               </div>
 
