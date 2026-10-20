@@ -54,19 +54,6 @@ export async function POST(request: Request) {
             email,
             phone,
             product_id: parseInt(productId),
-            total: '100000', // Hardcoded price? Or fetch from product? 
-            // Ideally we should rely on WC to calculate total, but `createOrder` usually takes line items.
-            // If we pass line items, WC calculates total. 
-            // Wait, my lib `createOrder` doesn't take 'total' in body? 
-            // Ah, I put `total: '5000'` in the signature but didn't use it in body?
-            // Checking `lib/woocommerce.ts`: I passed `total` in arg but usage in `orderData` body?
-            // Wait, earlier I wrote: `total: data.total`... NO, I missed it in the `orderData` object construction in previous step?!
-            // Let me check my previous tool call for `lib/woocommerce.ts`.
-            // I see `meta_data: data.meta_data` but I don't see `total` being used in `orderData`.
-            // Standard WC API: if line_items provided, it calculates total.
-            // So passing `total` explicitly might valid override or just be ignored.
-            // I will assume standard Price is set in WooCommerce for the product ID.
-            // So I won't pass 'total' manually to avoid conflicts.
             meta_data: orderMeta,
         });
 
@@ -108,21 +95,21 @@ export async function POST(request: Request) {
         // 3. Initialize Notch Pay
         // We need a unique reference. Use "Order-ID-Timestamp"?
         // Or just Order ID if we can ensure uniqueness.
+        // Charge exactly the order total, which WooCommerce computes from the
+        // "Consultation" product price: the price is managed in WooCommerce only.
+        const amount = Math.round(Number(order.total));
+        if (!Number.isFinite(amount) || amount <= 0) {
+            await updateOrderStatus(order.id, 'failed').catch(() => {});
+            throw new Error('Invalid consultation price in WooCommerce');
+        }
+
         const paymentData = {
             email,
             currency: 'XAF',
-            amount: 100000, // TODO: Fetch price dynamically or hardcode for now. User didn't specify dynamic price.
-            // "Consultation" usually has a fixed fee.
+            amount,
             reference: `WC-${order.id}-${Date.now()}`,
             description: `Consultation: ${consultationType}`,
-            callback: `${process.env.NGROK_URL}/api/webhooks/notch`, // Or a frontend success page?
-            // Notch 'callback' is usually the REDIRECT URL after payment?
-            // Or is it the Webhook URL?
-            // Docs say: `callback` is usually Redirect URL.
-            // Webhook URL is set in Dashboard usually.
-            // However, some APIs allow overriding.
-            // Let's assume this is the Redirect URL for the user.
-            // We want to redirect user to a "Verify" page on our frontend.
+            callback: '',
         };
 
         // Note: If `callback` is REDIRECT, we should point to a Frontend Page like /prendre-un-rendez-vous/succes?ref=...
