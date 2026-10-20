@@ -1,16 +1,22 @@
 import { NextResponse } from 'next/server';
-import { updateOrderStatus } from '@/lib/woocommerce';
+import { updateOrderStatus, addOrderNote } from '@/lib/woocommerce';
 import { createInvitee } from '@/lib/calendly';
 import crypto from 'crypto';
 
 export async function POST(request: Request) {
     try {
         const signature = request.headers.get('x-notch-signature');
-        const body = await request.text(); // Get raw body for signature verification?
+        const body = await request.text(); // Raw body: the signature is computed on these exact bytes
 
-        // Validating signature (Optional but recommended)
-        // const hash = crypto.createHmac('sha256', process.env.NOTCH_SECRET_KEY).update(body).digest('hex');
-        // if (hash !== signature) ...
+        // Reject any request not signed by Notch Pay (HMAC SHA-256 of the raw body with the webhook Hash Key)
+        const hashKey = process.env.NOTCH_WEBHOOK_HASH;
+        if (!hashKey) {
+            console.error('Webhook Error: NOTCH_WEBHOOK_HASH is not set');
+            return NextResponse.json({ error: 'Server configuration error' }, { status: 500 });
+        }
+        if (!isValidSignature(body, signature, hashKey)) {
+            return NextResponse.json({ error: 'Invalid signature' }, { status: 401 });
+        }
 
         const payload = JSON.parse(body);
 
@@ -58,8 +64,13 @@ export async function POST(request: Request) {
         if (!orderRes.ok) throw new Error('Failed to fetch order');
         const order = await orderRes.json();
 
+        // Already handled (Notch Pay retries webhooks): do not book Calendly twice
+        if (order.status === 'completed') {
+            return NextResponse.json({ message: 'Ignored: Order already completed' });
+        }
+
         // Update status to processing
-        if (order.status !== 'completed' && order.status !== 'processing') {
+        if (order.status !== 'processing') {
             await updateOrderStatus(orderId, 'processing');
         }
 
@@ -81,27 +92,31 @@ export async function POST(request: Request) {
 
         // Validate
         if (calendlyStartTime) {
-            // Need Event Type UUID.
-            // Assuming we use the one from ENV as we only have one for now?
-            // Or if we have multiple, we map 'consultationType' to different Calendly Event Types.
-            // For simplicity/requirement, we use the single one from ENV.
-            // Removed unused eventTypeUuid extraction since createInvitee uses ENV variable directly
-            await createInvitee({
-                email: order.billing.email,
-                name: `${order.billing.first_name} ${order.billing.last_name}`,
-                firstName: order.billing.first_name,
-                lastName: order.billing.last_name,
-                slot_start_time: calendlyStartTime, // Sending format as is, hoping Calendly API accepts basic ISO.
-                // Actually standard ISO requires 'Z' or offset if valid ISO8601.
-                // I should append offset for WAT (+01:00) to be safe: `${calendlyStartTime}+01:00`
-                timezone: inviteeTimezone || 'Africa/Douala',
-                answers: [
-                    { question: 'Type of consultation?', answer: consultationType || 'General' },
-                    { question: 'Please share anything that will help prepare for our meeting.', answer: clientMessage || 'No message' }
-                ]
-            });
+            try {
+                await createInvitee({
+                    email: order.billing.email,
+                    name: `${order.billing.first_name} ${order.billing.last_name}`,
+                    firstName: order.billing.first_name,
+                    lastName: order.billing.last_name,
+                    slot_start_time: calendlyStartTime,
+                    timezone: inviteeTimezone || 'Africa/Douala',
+                    answers: [
+                        { question: 'Type of consultation?', answer: consultationType || 'General' },
+                        { question: 'Please share anything that will help prepare for our meeting.', answer: clientMessage || 'No message' }
+                    ]
+                });
+            } catch (calendlyError) {
+                // The client has paid: leave the order "processing" and tell the team why,
+                // so the appointment can be scheduled by hand. Answer 200 so Notch Pay does not retry.
+                console.error('Webhook Calendly Error:', calendlyError);
+                await addOrderNote(
+                    orderId,
+                    `Paiement reçu, mais le rendez-vous n'a pas pu être créé dans Calendly : ${calendlyError instanceof Error ? calendlyError.message : 'erreur inconnue'}. ` +
+                    `Créneau demandé : ${calendlyStartTime} (${inviteeTimezone || 'Africa/Douala'}). À planifier à la main avec le client.`
+                ).catch((noteError) => console.error('Webhook Order Note Error:', noteError));
+                return NextResponse.json({ success: false, message: 'Paid, but Calendly booking failed' });
+            }
 
-            // Update order note or status to Completed?
             await updateOrderStatus(orderId, 'completed');
         }
 
@@ -110,4 +125,12 @@ export async function POST(request: Request) {
         console.error('Webhook Error:', error);
         return NextResponse.json({ error: error.message }, { status: 500 });
     }
+}
+
+function isValidSignature(body: string, signature: string | null, hashKey: string): boolean {
+    if (!signature) return false;
+    const expected = crypto.createHmac('sha256', hashKey).update(body).digest('hex');
+    const received = signature.trim().toLowerCase();
+    if (received.length !== expected.length) return false;
+    return crypto.timingSafeEqual(Buffer.from(received), Buffer.from(expected));
 }

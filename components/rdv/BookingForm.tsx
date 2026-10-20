@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import gsap from 'gsap';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { Language } from '@/lib/translations';
 import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 
@@ -58,8 +59,8 @@ const bookingText: Record<string, any> = {
   consultationLabel: { fr: 'Consultation', en: 'Consultation' },
   nameLabel: { fr: 'Nom', en: 'Name' },
   confirmNote: {
-    fr: 'Vous serez redirigé vers le paiement pour finaliser la réservation (100,000 FCFA).',
-    en: 'You will be redirected to payment to finalize the booking (100,000 FCFA).',
+    fr: 'Vous serez redirigé vers le paiement pour finaliser la réservation',
+    en: 'You will be redirected to payment to finalize the booking',
   },
 
   // Success state (Not used directly here as we redirect, but kept if needed for return page)
@@ -111,7 +112,12 @@ const initialFormData: BookingFormData = {
   timezone: '',
 };
 
-export default function BookingForm() {
+/** Amount in FCFA, formatted for the page language (e.g. 100 000 FCFA / 100,000 FCFA) */
+function formatFcfa(amount: number, language: Language): string {
+  return `${new Intl.NumberFormat(language === 'fr' ? 'fr-FR' : 'en-US').format(amount)} FCFA`;
+}
+
+export default function BookingForm({ consultationPrice }: { consultationPrice: number | null }) {
   const { language } = useLanguage();
   const searchParams = useSearchParams();
   const [showSuccessModal, setShowSuccessModal] = useState(false);
@@ -671,6 +677,7 @@ export default function BookingForm() {
 
               <p className="text-sm text-gray-500 dark:text-gray-400 text-center mt-6">
                 {bookingText.confirmNote[language]}
+                {consultationPrice ? ` (${formatFcfa(consultationPrice, language)})` : ''}.
               </p>
 
               {errors.general && (
