@@ -13,6 +13,7 @@ const layoutText = {
   docsSubtitle: { fr: 'Voici les elements necessaires pour constituer votre dossier.', en: 'Here are the elements needed to build your file.' },
   howItWorks: { fr: 'Comment Ça Marche ?', en: 'How It Works?' },
   howItWorksSubtitle: { fr: 'Un processus simple et rapide avec notre accompagnement expert.', en: 'A simple and fast process with our expert support.' },
+  feature: { fr: 'Caractéristique', en: 'Feature' },
   comparison: { fr: 'Comparatif', en: 'Comparison' },
   comparisonSubtitle: { fr: "Comparez les caractéristiques principales avec d'autres formes juridiques.", en: 'Compare key features with other legal forms.' },
   pricing: { fr: 'Nos Forfaits', en: 'Our Packages' },
@@ -230,6 +231,17 @@ export default function SubpageLayout({ data, pricingTiers }: SubpageLayoutProps
         disadvantages={data.disadvantages}
         language={language}
       />
+
+      {/* Legal regime (key features of the legal form) */}
+      {data.legalRegime && (
+        <section className="bg-white dark:bg-gray-900">
+          <ComparisonTable
+            headers={[layoutText.feature, data.legalRegime.columnTitle]}
+            rows={data.legalRegime.rows}
+            title={data.legalRegime.title}
+          />
+        </section>
+      )}
 
       {/* Comparison Table */}
       {data.comparison && (

@@ -63,6 +63,13 @@ export interface SubpageData {
   };
   faq: FAQItem[];
   requirements?: BilingualText[];
+  /** Key features of the legal form, shown as a two-column table (e.g. Établissement) */
+  legalRegime?: {
+    title: BilingualText;
+    /** Header of the value column */
+    columnTitle: BilingualText;
+    rows: ComparisonRow[];
+  };
 }
 
 const COMPARISON_ROW_DATA: ComparisonRow[] = [
@@ -375,6 +382,62 @@ export const associationPricingTiers: PricingTier[] = [
   },
 ];
 
+// Établissement (sole trader) pricing. Prices from the legal team's draft:
+// to be confirmed by management before deploying.
+export const etablissementPricingTiers: PricingTier[] = [
+  {
+    name: { fr: 'Starter', en: 'Starter' },
+    price: 150000,
+    currency: 'XAF',
+    period: { fr: 'HT', en: 'Excl. tax' },
+    features: [
+      { fr: 'Analyse du projet', en: 'Project analysis' },
+      { fr: 'Constitution du dossier', en: 'Preparation of the file' },
+      { fr: 'Guide des démarches', en: 'Step-by-step guide' },
+      { fr: 'Assistance par e-mail', en: 'Email support' },
+      { fr: 'Immatriculation non incluse', en: 'Registration not included' },
+    ],
+    cta: {
+      text: { fr: 'Choisir Starter', en: 'Choose Starter' },
+      href: '/devis?plan=starter&type=etablissement',
+    },
+  },
+  {
+    name: { fr: 'Standard', en: 'Standard' },
+    price: 200000,
+    currency: 'XAF',
+    period: { fr: 'HT', en: 'Excl. tax' },
+    features: [
+      { fr: 'Tout Starter inclus', en: 'All Starter features included' },
+      { fr: 'Dépôt du dossier', en: 'Filing of the application' },
+      { fr: 'Accomplissement des formalités de création', en: 'Completion of the formation formalities' },
+      { fr: 'Immatriculation au RCCM', en: 'Registration with the RCCM' },
+      { fr: 'Remise des documents obtenus', en: 'Delivery of the documents obtained' },
+    ],
+    cta: {
+      text: { fr: 'Choisir Standard', en: 'Choose Standard' },
+      href: '/devis?plan=standard&type=etablissement',
+    },
+  },
+  {
+    name: { fr: 'Premium', en: 'Premium' },
+    price: 300000,
+    currency: 'XAF',
+    period: { fr: 'HT', en: 'Excl. tax' },
+    highlighted: true,
+    badge: { fr: 'Choix n°1', en: 'Top choice' },
+    features: [
+      { fr: 'Tout Standard inclus', en: 'All Standard features included' },
+      { fr: 'Accompagnement juridique et administratif après création', en: 'Legal and administrative support after formation' },
+      { fr: 'Assistance et conseils personnalisés pendant 3 mois', en: 'Personalized assistance and advice for 3 months' },
+    ],
+    cta: {
+      text: { fr: 'Choisir Premium', en: 'Choose Premium' },
+      href: '/devis?plan=premium&type=etablissement',
+    },
+  },
+];
+
 // Legal forms for hub page comparison
 export const legalForms: LegalForm[] = [
   {
@@ -393,8 +456,7 @@ export const legalForms: LegalForm[] = [
       { fr: 'Pas de personnalité morale', en: 'No legal personality' },
       { fr: 'Difficile de lever des fonds', en: 'Difficult to raise funds' },
     ],
-    // No detail page yet (content being written by the legal team): set
-    // href: '/creation-entreprise/etablissement' once the page exists.
+    href: '/creation-entreprise/etablissement',
   },
   {
     id: 'sas',
@@ -740,6 +802,96 @@ export const subpagesData: Record<string, SubpageData> = {
       {
         question: { fr: 'Quel régime fiscal pour une SARLU ?', en: 'What tax regime for a SARLU?' },
         answer: { fr: 'Au Cameroun, la SARLU est généralement soumise à l\’impôt sur les sociétés (IS); les dividendes sont soumis à retenue à la source; TVA et autres taxes applicables selon l\’activité exercée.', en: 'In Cameroon, SARLU is generally subject to corporate income tax (CIT). Dividends are subject to withholding tax, as well as VAT and other activity-related taxes.' },
+      },
+    ],
+  },
+  etablissement: {
+    slug: 'etablissement',
+    heroTitle: { fr: 'Créer un Établissement commercial', en: 'Create a Commercial Establishment' },
+    heroSubtitle: { fr: 'Entreprendre seul, simplement', en: 'Go Solo, Simply' },
+    heroDescription: {
+      fr: 'Exercez votre activité commerciale en votre nom propre, sans société à constituer. Immatriculation au RCCM, sans statuts ni capital minimum.',
+      en: 'Run your commercial activity in your own name, without forming a company. RCCM registration, with no articles of association and no minimum capital.',
+    },
+    whyCreate: {
+      title: { fr: 'Pourquoi créer un Établissement ?', en: 'Why Create a Commercial Establishment?' },
+      content: [
+        { fr: 'Idéal pour entreprendre seul : vous restez l\'unique décideur de votre activité et conservez une totale autonomie dans sa gestion.', en: 'Ideal for going solo: you remain the sole decision-maker for your business and keep full autonomy in running it.' },
+        { fr: 'Des formalités de création simplifiées : aucun statut à rédiger, aucune assemblée à organiser, aucune structure de gouvernance à mettre en place.', en: 'Simplified formation formalities: no articles of association to draft, no meetings to hold, no governance structure to set up.' },
+        { fr: 'Aucun capital minimum exigé : vous pouvez démarrer votre activité avec les moyens dont vous disposez.', en: 'No minimum capital required: you can start your business with the resources you have.' },
+        { fr: 'Un cadre juridique reconnu : l\'immatriculation au RCCM permet de formaliser votre activité, de bénéficier de la qualité de commerçant et d\'exercer en conformité avec la réglementation applicable.', en: 'A recognized legal framework: RCCM registration formalizes your business, gives you trader status and lets you operate in compliance with the applicable regulations.' },
+      ],
+    },
+    advantages: [
+      { fr: 'Formalités de création rapides et simplifiées', en: 'Fast and simplified formation formalities' },
+      { fr: 'Absence de statuts à rédiger', en: 'No articles of association to draft' },
+      { fr: 'Gestion souple et autonome', en: 'Flexible and autonomous management' },
+      { fr: 'Obligations administratives généralement allégées', en: 'Generally lighter administrative obligations' },
+      { fr: 'Démarrage rapide de l\'activité', en: 'Quick start of the business' },
+    ],
+    disadvantages: [
+      { fr: 'Responsabilité illimitée : vos biens personnels peuvent être exposés aux dettes professionnelles, sous réserve des mécanismes de protection prévus par la loi', en: 'Unlimited liability: your personal assets may be exposed to business debts, subject to the protection mechanisms provided by law' },
+      { fr: 'Absence de personnalité juridique distincte : l\'entreprise et l\'entrepreneur ne forment qu\'une seule et même personne', en: 'No separate legal personality: the business and the entrepreneur are one and the same person' },
+      { fr: 'Accès au financement plus limité : l\'entrée d\'investisseurs ou la levée de fonds sont généralement plus complexes que dans une société', en: 'More limited access to financing: bringing in investors or raising funds is generally more complex than in a company' },
+      { fr: 'Pérennité dépendante de l\'entrepreneur : l\'activité reste étroitement liée à la personne qui l\'exploite', en: 'Continuity depends on the entrepreneur: the business remains closely tied to the person who runs it' },
+    ],
+    steps: [
+      {
+        number: 1,
+        title: { fr: 'Étude de votre projet', en: 'Review of your project' },
+        description: { fr: 'Nous échangeons avec vous afin de vérifier que l\'établissement commercial correspond à votre activité, à vos objectifs et à votre situation personnelle.', en: 'We talk with you to check that a commercial establishment fits your activity, your goals and your personal situation.' },
+      },
+      {
+        number: 2,
+        title: { fr: 'Constitution et dépôt du dossier', en: 'Preparation and filing of the application' },
+        description: { fr: 'Nos juristes vérifient vos pièces, préparent votre dossier et accomplissent les formalités nécessaires auprès du Centre de Formalités de Création d\'Entreprise (CFCE) et des administrations compétentes.', en: 'Our legal experts check your documents, prepare your file and complete the required formalities with the Business Creation Formalities Centre (CFCE) and the relevant authorities.' },
+      },
+      {
+        number: 3,
+        title: { fr: 'Immatriculation et suivi', en: 'Registration and follow-up' },
+        description: { fr: 'Nous assurons le suivi de votre dossier auprès du greffe et des administrations concernées, puis nous vous remettons l\'ensemble des documents obtenus, notamment votre extrait RCCM.', en: 'We follow up on your file with the court registry and the authorities concerned, then hand over all the documents obtained, including your RCCM extract.' },
+      },
+    ],
+    legalRegime: {
+      title: { fr: 'Le régime juridique de l\'établissement', en: 'The legal regime of a commercial establishment' },
+      columnTitle: { fr: 'Établissement commercial', en: 'Commercial establishment' },
+      rows: [
+        { aspect: { fr: 'Nombre de propriétaires', en: 'Number of owners' }, values: [{ fr: '1 personne physique (commerçant individuel)', en: '1 individual (sole trader)' }] },
+        { aspect: { fr: 'Responsabilité', en: 'Liability' }, values: [{ fr: 'Illimitée. Le commerçant répond des dettes de son activité sur l\'ensemble de son patrimoine personnel.', en: 'Unlimited. The trader is liable for business debts with all of their personal assets.' }] },
+        { aspect: { fr: 'Régime social du dirigeant', en: 'Owner\'s social security regime' }, values: [{ fr: 'Non salarié. Il peut toutefois souscrire volontairement aux régimes de protection sociale proposés par la CNPS selon la réglementation en vigueur.', en: 'Self-employed. The owner may nevertheless voluntarily join the social protection schemes offered by the CNPS under the regulations in force.' }] },
+        { aspect: { fr: 'Organisation juridique', en: 'Legal organization' }, values: [{ fr: 'Aucune rédaction de statuts n\'est requise.', en: 'No articles of association are required.' }] },
+        { aspect: { fr: 'Dirigeant', en: 'Manager' }, values: [{ fr: 'Le propriétaire lui-même assure la gestion et la représentation de l\'activité.', en: 'The owner manages and represents the business personally.' }] },
+        { aspect: { fr: 'Transmission de l\'activité', en: 'Transfer of the business' }, values: [{ fr: 'Il n\'existe ni parts sociales ni actions. En revanche, le fonds de commerce peut être cédé conformément aux dispositions de l\'Acte uniforme OHADA relatif au droit commercial général.', en: 'There are no shares. However, the business (fonds de commerce) can be sold in accordance with the OHADA Uniform Act on General Commercial Law.' }] },
+        { aspect: { fr: 'Activités autorisées', en: 'Permitted activities' }, values: [{ fr: 'Toute activité commerciale licite, sous réserve des réglementations et autorisations spécifiques applicables à certains secteurs.', en: 'Any lawful commercial activity, subject to the specific regulations and authorizations that apply to certain sectors.' }] },
+        { aspect: { fr: 'Capital minimum', en: 'Minimum capital' }, values: [{ fr: 'Aucun capital minimum n\'est exigé.', en: 'No minimum capital is required.' }] },
+        { aspect: { fr: 'Structure adaptée à', en: 'Suitable for' }, values: [{ fr: 'Toute personne souhaitant exercer seule une activité commerciale.', en: 'Anyone who wants to run a commercial activity alone.' }] },
+        { aspect: { fr: 'Fiscalité', en: 'Taxation' }, values: [{ fr: 'Les bénéfices réalisés sont imposés entre les mains du propriétaire selon le régime fiscal applicable aux personnes physiques prévu par la législation fiscale nationale.', en: 'Profits are taxed in the owner\'s hands under the tax regime for individuals provided by national tax law.' }] },
+      ],
+    },
+    faq: [
+      {
+        question: { fr: 'Qu\'est-ce qu\'un établissement commercial ?', en: 'What is a commercial establishment?' },
+        answer: { fr: 'L\'établissement commercial correspond à l\'activité exercée par un commerçant personne physique en son nom propre, sans création d\'une société distincte. Lorsque la personne exerce le commerce à titre professionnel, elle doit être immatriculée au RCCM conformément au droit OHADA.', en: 'A commercial establishment is the activity carried out by an individual trader in their own name, without forming a separate company. A person who trades professionally must be registered with the RCCM under OHADA law.' },
+      },
+      {
+        question: { fr: 'Mon patrimoine personnel est-il protégé ?', en: 'Are my personal assets protected?' },
+        answer: { fr: 'Non. L\'établissement commercial ne possède pas de personnalité juridique distincte de celle de son propriétaire. Les dettes professionnelles peuvent donc, sous réserve des règles légales applicables, être poursuivies sur le patrimoine personnel du commerçant.', en: 'No. A commercial establishment has no legal personality separate from its owner. Business creditors may therefore, subject to the applicable legal rules, pursue the trader\'s personal assets.' },
+      },
+      {
+        question: { fr: 'Puis-je avoir des associés ?', en: 'Can I have partners?' },
+        answer: { fr: 'Non. L\'établissement commercial est réservé à une personne physique exerçant seule son activité. Pour entreprendre à plusieurs, il convient de constituer une société (SARL, SAS lorsqu\'elle existe dans le droit national, SA, etc.).', en: 'No. A commercial establishment is reserved for one individual working alone. To start a business with others, you need to form a company (SARL, SAS, SA, etc.).' },
+      },
+      {
+        question: { fr: 'Puis-je embaucher du personnel ?', en: 'Can I hire staff?' },
+        answer: { fr: 'Oui. Le commerçant individuel peut recruter des salariés et développer son activité tout en conservant sa qualité de commerçant personne physique.', en: 'Yes. A sole trader can hire employees and grow the business while remaining an individual trader.' },
+      },
+      {
+        question: { fr: 'Puis-je transformer ultérieurement mon activité en société ?', en: 'Can I later turn my business into a company?' },
+        answer: { fr: 'Oui. Si votre activité se développe ou si vous souhaitez limiter votre responsabilité personnelle, il est possible de créer une société et d\'y transférer votre activité dans les conditions prévues par la réglementation applicable.', en: 'Yes. If your business grows or you want to limit your personal liability, you can form a company and transfer your business to it under the conditions set by the applicable regulations.' },
+      },
+      {
+        question: { fr: 'Combien de temps dure la procédure de création ?', en: 'How long does the formation process take?' },
+        answer: { fr: 'Les délais varient selon les administrations concernées et la qualité des pièces fournies. Une fois le dossier complet déposé, nous assurons le suivi jusqu\'à l\'obtention des documents de création.', en: 'Timeframes vary depending on the authorities involved and the quality of the documents provided. Once the complete file is filed, we follow it up until the formation documents are issued.' },
       },
     ],
   },
