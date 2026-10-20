@@ -19,6 +19,7 @@ const pages: Array<{
   { path: '/creation-entreprise/sas',                     changeFrequency: 'weekly',  priority: 0.8 },
   { path: '/creation-entreprise/sarl',                    changeFrequency: 'weekly',  priority: 0.8 },
   { path: '/creation-entreprise/sarlu',                   changeFrequency: 'weekly',  priority: 0.8 },
+  { path: '/creation-entreprise/etablissement',           changeFrequency: 'weekly',  priority: 0.8 },
   { path: '/creation-entreprise/association',             changeFrequency: 'weekly',  priority: 0.8 },
   { path: '/modification-entreprise/transfert-siege',     changeFrequency: 'weekly',  priority: 0.8 },
   { path: '/modification-entreprise/dissolution',         changeFrequency: 'weekly',  priority: 0.8 },
