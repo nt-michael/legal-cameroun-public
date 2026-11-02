@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { plans, modificationServices } from '@/lib/devis-data';
 
 const CF7_FORM_ID = process.env.WC_SITE_APP_CONTACT_FORM_7_DEVIS_FORM_ID;
 
@@ -26,6 +27,21 @@ const BOOLEAN_RADIO_FIELDS = [
   'needsAccountant',
 ];
 
+// Questions that only make sense for a new company: not sent for a modification request
+const CREATION_ONLY_FIELDS = new Set([
+  'timeline',
+  'businessObject',
+  'capital',
+  'managerFirstName',
+  'managerLastName',
+  'managerId',
+  'associatesCount',
+  'headquarters',
+]);
+
+// CF7 treats radio groups as always required: a modification answers "No" to these
+const MODIFICATION_RADIO_DEFAULT = 'No';
+
 // CF7 checkbox: [checkbox additionalServices "Accountant" "Legal" "Domiciliation" "Other"]
 // Frontend values → CF7 option values
 const ADDITIONAL_SERVICES_MAP: Record<string, string> = {
@@ -46,6 +62,9 @@ function buildCf7ToFrontendMap(): Record<string, string> {
     map[field] = field;
   }
   map['additionalServices'] = 'additionalServices';
+  map['plan'] = 'plan';
+  map['service'] = 'service';
+  map['companyName'] = 'companyName';
   for (let i = 1; i <= 3; i++) {
     map[`nonAssociateManager${i}FirstName`] = `nonAssociateManagers`;
     map[`nonAssociateManager${i}LastName`] = `nonAssociateManagers`;
@@ -67,6 +86,7 @@ export async function POST(request: Request) {
     }
 
     const body = await request.json();
+    const isModification = body.isNewBusiness === false;
 
     // Server-side validation
     const validationErrors: Record<string, string> = {};
@@ -75,6 +95,10 @@ export async function POST(request: Request) {
     if (!body.companyType?.trim()) validationErrors.companyType = 'Company type is required';
     // Consent to data processing is required (privacy policy, art. 2)
     if (body.consent !== true) validationErrors.consent = 'Consent is required';
+    if (isModification) {
+      if (!Object.hasOwn(modificationServices, body.service)) validationErrors.service = 'Service is required';
+      if (!body.companyName?.trim()) validationErrors.companyName = 'Company name is required';
+    }
 
     if (Object.keys(validationErrors).length > 0) {
       return NextResponse.json(
@@ -88,6 +112,7 @@ export async function POST(request: Request) {
 
     // Text fields: pass through as strings
     for (const field of TEXT_FIELDS) {
+      if (isModification && CREATION_ONLY_FIELDS.has(field)) continue;
       const value = body[field];
       if (value === undefined || value === null) continue;
       cf7Form.append(field, String(value));
@@ -95,6 +120,10 @@ export async function POST(request: Request) {
 
     // Boolean radio fields: convert to "Yes"/"No"
     for (const field of BOOLEAN_RADIO_FIELDS) {
+      if (isModification && field !== 'isNewBusiness') {
+        cf7Form.append(field, MODIFICATION_RADIO_DEFAULT);
+        continue;
+      }
       const value = body[field];
       if (value === undefined || value === null) continue;
       cf7Form.append(field, value ? 'Yes' : 'No');
@@ -102,7 +131,7 @@ export async function POST(request: Request) {
 
     // Checkbox field: send each selected value separately with [] suffix
     const services = body.additionalServices;
-    if (Array.isArray(services) && services.length > 0) {
+    if (!isModification && Array.isArray(services) && services.length > 0) {
       const cf7Values = [...new Set(
         services.map((s: string) => ADDITIONAL_SERVICES_MAP[s] || 'Other')
       )];
@@ -113,7 +142,7 @@ export async function POST(request: Request) {
 
     // Flatten nonAssociateManagers into individual numbered fields
     const managers = body.nonAssociateManagers;
-    if (Array.isArray(managers)) {
+    if (!isModification && Array.isArray(managers)) {
       for (let i = 0; i < Math.min(managers.length, 3); i++) {
         const m = managers[i];
         const idx = i + 1;
@@ -121,6 +150,14 @@ export async function POST(request: Request) {
         if (m.lastName) cf7Form.append(`nonAssociateManager${idx}LastName`, m.lastName);
         if (m.id) cf7Form.append(`nonAssociateManager${idx}Id`, m.id);
       }
+    }
+
+    // Choices made on the site before the form, sent as readable French labels for the team's email
+    const planLabel = Object.hasOwn(plans, body.plan) ? plans[body.plan].fr : undefined;
+    if (planLabel) cf7Form.append('plan', planLabel);
+    if (isModification) {
+      cf7Form.append('service', modificationServices[body.service].fr);
+      cf7Form.append('companyName', String(body.companyName).trim());
     }
 
     // CF7 [acceptance consent] field (ignored by CF7 until the field is added to the form)

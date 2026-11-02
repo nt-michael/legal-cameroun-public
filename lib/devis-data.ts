@@ -36,6 +36,13 @@ export interface DevisFormData {
   email: string;
   phone: string;
   additionalInfo: string;
+
+  // Choices made before reaching the wizard (pricing card, modification page)
+  plan: string; // '' | 'starter' | 'standard' | 'premium'
+  service: string; // modification service, see modificationServices
+
+  // Modification requests only
+  companyName: string;
 }
 
 export const initialDevisFormData: DevisFormData = {
@@ -57,6 +64,25 @@ export const initialDevisFormData: DevisFormData = {
   email: '',
   phone: '',
   additionalInfo: '',
+  plan: '',
+  service: '',
+  companyName: '',
+};
+
+// Plans shown on the pricing cards (creation and modification pages)
+export const plans: Record<string, BilingualText> = {
+  starter: { fr: 'Starter', en: 'Starter' },
+  standard: { fr: 'Standard', en: 'Standard' },
+  premium: { fr: 'Premium', en: 'Premium' },
+};
+
+// Services offered on the modification pages, keyed by their ?service= value
+export const modificationServices: Record<string, BilingualText> = {
+  modification: { fr: 'Modification des statuts', en: 'Amendment of articles' },
+  'transfert-siege': { fr: 'Transfert de siège social', en: 'Registered office transfer' },
+  'sas-sarl': { fr: 'Transformation SAS en SARL', en: 'SAS to SARL conversion' },
+  'sarl-sas': { fr: 'Transformation SARL en SAS', en: 'SARL to SAS conversion' },
+  dissolution: { fr: 'Dissolution', en: 'Dissolution' },
 };
 
 export interface CompanyType {
@@ -135,6 +161,19 @@ export const devisSteps: DevisStep[] = [
   { id: 'contact', title: { fr: 'Contact', en: 'Contact' }, shortTitle: { fr: 'Contact', en: 'Contact' } },
   { id: 'summary', title: { fr: 'Récapitulatif', en: 'Summary' }, shortTitle: { fr: 'Récap', en: 'Summary' } },
 ];
+
+// A modification does not need the creation questions (capital, team, headquarters...)
+export const modificationSteps: DevisStep[] = [
+  devisSteps[0], // welcome
+  devisSteps[1], // activity
+  { id: 'request', title: { fr: 'Votre Demande', en: 'Your Request' }, shortTitle: { fr: 'Demande', en: 'Request' } },
+  devisSteps[7], // contact
+  devisSteps[8], // summary
+];
+
+/** Steps to show: the short path for a modification, the full path otherwise */
+export const getDevisSteps = (isNewBusiness: boolean | null): DevisStep[] =>
+  isNewBusiness === false ? modificationSteps : devisSteps;
 
 // Validation helpers
 export const validateEmail = (email: string): boolean => {
