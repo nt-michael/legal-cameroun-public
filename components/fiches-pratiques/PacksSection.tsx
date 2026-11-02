@@ -23,16 +23,17 @@ export default function PacksSection() {
 
   // Capture initial URL params during first render, before replaceState clears them.
   // Using a ref avoids re-triggering the effect when the URL changes.
-  const initParams = useRef<{ success: string | null; orderId: string | null } | null>(null);
+  const initParams = useRef<{ success: string | null; orderId: string | null; token: string | null } | null>(null);
   if (initParams.current === null) {
     initParams.current = {
       success: searchParams?.get('success') ?? null,
       orderId: searchParams?.get('order') ?? null,
+      token: searchParams?.get('token') ?? null,
     };
   }
 
   useEffect(() => {
-    const { success, orderId } = initParams.current!;
+    const { success, orderId, token } = initParams.current!;
     if (success !== 'true' || !orderId) return;
 
     setShowSuccess(true);
@@ -41,7 +42,7 @@ export default function PacksSection() {
 
     // Delay fetch to allow the NotchPay webhook to complete the WooCommerce order
     const timer = setTimeout(() => {
-      fetch(`/api/purchases/downloads?order=${orderId}`)
+      fetch(`/api/purchases/downloads?order=${encodeURIComponent(orderId)}&token=${encodeURIComponent(token ?? '')}`)
         .then((res) => {
           if (!res.ok) throw new Error('Order not ready');
           return res.json();

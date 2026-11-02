@@ -385,6 +385,7 @@ Copy `.env.example` to `.env.local` for local development. All production values
 | `NOTCH_PUBLIC_KEY` | *(test public key)* | *(prod public key)* | Notch Pay public key — payment initialization |
 | `NOTCH_PRIVATE_KEY` | *(test private key)* | *(prod private key)* | Notch Pay private key — payment verification |
 | `NOTCH_SECRET_KEY` | *(test webhook secret)* | *(prod webhook secret)* | Notch Pay webhook secret — HMAC signature validation |
+| `DOWNLOAD_TOKEN_SECRET` | *(any random string)* | *(long random string, different from dev)* | Signs pack download links so only the buyer can fetch the files after payment |
 | `CF7_CONTACT_FORM_ID` | *(staging form ID)* | *(prod form ID)* | Contact Form 7 ID for the contact page form |
 | `CF7_DEVIS_FORM_ID` | *(staging form ID)* | *(prod form ID)* | Contact Form 7 ID for the devis page form |
 | `MAILCHIMP_API_KEY` | *(test or prod key)* | *(prod key)* | Mailchimp API key |

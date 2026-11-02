@@ -3,6 +3,7 @@ import { createOrder } from '@/lib/woocommerce';
 import { initializePayment } from '@/lib/notch';
 import { getPackBySlug } from '@/lib/packs-config';
 import { TERMS_OF_SALE_VERSION } from '@/lib/legal';
+import { createDownloadToken } from '@/lib/download-token';
 
 export async function POST(request: Request) {
     try {
@@ -55,13 +56,16 @@ export async function POST(request: Request) {
             request.headers.get('origin') ||
             '';
 
+        // The token lets only this buyer fetch the files once the order is paid
+        const downloadToken = createDownloadToken(order.id);
+
         const paymentResponse = await initializePayment({
             email,
             currency: 'XAF',
             amount: pack.price,
             reference: `WC-${order.id}-${Date.now()}`,
             description: pack.name.fr,
-            callback: `${origin}/fiches-pratiques?success=true&order=${order.id}`,
+            callback: `${origin}/fiches-pratiques?success=true&order=${order.id}&token=${downloadToken}`,
         });
 
         if (!paymentResponse.authorization_url) {
