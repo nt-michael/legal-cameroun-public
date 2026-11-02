@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { getOrder, getOrderDownloads } from '@/lib/woocommerce';
+import { isValidDownloadToken } from '@/lib/download-token';
 
 export async function GET(request: Request) {
     try {
@@ -8,6 +9,11 @@ export async function GET(request: Request) {
 
         if (!orderId || isNaN(parseInt(orderId))) {
             return NextResponse.json({ error: 'Invalid order ID' }, { status: 400 });
+        }
+
+        // Order IDs are sequential: without the buyer's token, anyone could fetch paid files
+        if (!isValidDownloadToken(parseInt(orderId), searchParams.get('token'))) {
+            return NextResponse.json({ error: 'Invalid download token' }, { status: 403 });
         }
 
         const order = await getOrder(parseInt(orderId));
