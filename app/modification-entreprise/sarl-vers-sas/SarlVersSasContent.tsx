@@ -13,7 +13,7 @@ const pageText = {
   breadcrumbGestion: { fr: "Modification d'entreprise", en: 'Business Modification' },
   breadcrumbCurrent: { fr: 'SARL vers SAS', en: 'SARL to SAS' },
   ctaPrimary: { fr: 'Transformer ma SARL', en: 'Convert my SARL' },
-  ctaSecondary: { fr: 'Consultation Gratuite', en: 'Free Consultation' },
+  ctaSecondary: { fr: 'Réserver une consultation', en: 'Book a Consultation' },
   advantagesBadge: { fr: 'Avantages', en: 'Advantages' },
   whyTitle: { fr: 'Pourquoi Passer en SAS ?', en: 'Why Switch to SAS?' },
   compBefore: { fr: 'Avant', en: 'Before' },

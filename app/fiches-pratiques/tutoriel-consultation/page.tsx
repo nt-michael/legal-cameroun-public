@@ -11,7 +11,7 @@ export async function generateMetadata(): Promise<Metadata> {
     fr: {
       title: 'Comment Réserver une Consultation Juridique | Legal Cameroun',
       description:
-        'Tutoriel étape par étape pour réserver votre consultation en ligne avec un expert juridique. Simple, rapide et gratuit.',
+        'Tutoriel étape par étape pour réserver votre consultation en ligne avec un expert juridique. Simple et rapide.',
       keywords: [
         'réserver consultation juridique cameroun',
         'rendez-vous avocat cameroun',
@@ -21,7 +21,7 @@ export async function generateMetadata(): Promise<Metadata> {
       openGraph: {
         title: 'Comment Réserver une Consultation Juridique',
         description:
-          'Tutoriel étape par étape pour réserver votre consultation en ligne avec un expert juridique. Simple, rapide et gratuit.',
+          'Tutoriel étape par étape pour réserver votre consultation en ligne avec un expert juridique. Simple et rapide.',
         type: 'article',
         siteName: 'Legal Cameroun',
       },
@@ -29,7 +29,7 @@ export async function generateMetadata(): Promise<Metadata> {
         card: 'summary_large_image',
         title: 'Comment Réserver une Consultation Juridique | Legal Cameroun',
         description:
-          'Tutoriel étape par étape pour réserver votre consultation en ligne avec un expert juridique. Simple, rapide et gratuit.',
+          'Tutoriel étape par étape pour réserver votre consultation en ligne avec un expert juridique. Simple et rapide.',
       },
     },
     en: {

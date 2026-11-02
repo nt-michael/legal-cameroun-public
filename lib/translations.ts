@@ -45,7 +45,7 @@ export const translations = {
     // Mega menu
     megaMenu: {
       needHelp: 'Besoin d\'aide pour choisir?',
-      expertsHelp: 'Nos experts vous accompagnent gratuitement',
+      expertsHelp: 'Nos experts vous conseillent',
       talkToExpert: 'Parler à un expert',
     },
     // Hero section
@@ -53,7 +53,7 @@ export const translations = {
       badge: 'Cabinet Juridique de Référence au Cameroun',
       title: 'Votre Partenaire Juridique de Confiance',
       subtitle: 'Expertise juridique d\'excellence pour entreprises et particuliers. Nous transformons les défis légaux en opportunités de croissance.',
-      cta: 'Consultation Gratuite',
+      cta: 'Réserver une consultation',
       learnMore: 'En Savoir Plus',
       stats: {
         experience: 'Années d\'Expérience',
@@ -104,7 +104,7 @@ export const translations = {
       steps: {
         contact: {
           title: 'Premier Contact',
-          description: 'Prenez rendez-vous pour une consultation initiale gratuite.',
+          description: 'Prenez rendez-vous pour une consultation initiale avec un expert.',
         },
         analysis: {
           title: 'Analyse du Dossier',
@@ -195,7 +195,7 @@ export const translations = {
     // Mega menu
     megaMenu: {
       needHelp: 'Need help choosing?',
-      expertsHelp: 'Our experts assist you for free',
+      expertsHelp: 'Our experts advise you',
       talkToExpert: 'Talk to an expert',
     },
     // Hero section
@@ -203,7 +203,7 @@ export const translations = {
       badge: 'Leading Law Firm in Cameroon',
       title: 'Your Trusted Legal Partner',
       subtitle: 'Excellence in legal expertise for businesses and individuals. We transform legal challenges into growth opportunities.',
-      cta: 'Free Consultation',
+      cta: 'Book a Consultation',
       learnMore: 'Learn More',
       stats: {
         experience: 'Years of Experience',
@@ -254,7 +254,7 @@ export const translations = {
       steps: {
         contact: {
           title: 'First Contact',
-          description: 'Schedule a free initial consultation.',
+          description: 'Schedule an initial consultation with an expert.',
         },
         analysis: {
           title: 'Case Analysis',

@@ -72,7 +72,7 @@ const navigation: NavItem[] = [
 
 const megaMenuBottom = {
   needHelp: { fr: 'Besoin d\'aide pour choisir?', en: 'Need help choosing?' },
-  expertsHelp: { fr: 'Nos experts vous accompagnent gratuitement', en: 'Our experts assist you for free' },
+  expertsHelp: { fr: 'Nos experts vous conseillent', en: 'Our experts advise you' },
   talkToExpert: { fr: 'Parler à un expert', en: 'Talk to an expert' },
 };
 
