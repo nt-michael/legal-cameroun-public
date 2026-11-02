@@ -13,7 +13,7 @@ const pageText = {
   breadcrumbGestion: { fr: "Modification d'entreprise", en: 'Business Modification' },
   breadcrumbCurrent: { fr: 'Transfert de si\u00e8ge', en: 'Office Transfer' },
   ctaPrimary: { fr: 'Transf\u00e9rer mon Si\u00e8ge', en: 'Transfer my Office' },
-  ctaSecondary: { fr: 'Consultation Gratuite', en: 'Free Consultation' },
+  ctaSecondary: { fr: 'Réserver une consultation', en: 'Book a Consultation' },
   whyTitle: { fr: 'Pourquoi Transf\u00e9rer Votre Si\u00e8ge ?', en: 'Why Transfer Your Office?' },
   attentionBadge: { fr: 'Attention', en: 'Note' },
   casTitle: { fr: 'M\u00eame ou Diff\u00e9rent D\u00e9partement ?', en: 'Same or Different Department?' },

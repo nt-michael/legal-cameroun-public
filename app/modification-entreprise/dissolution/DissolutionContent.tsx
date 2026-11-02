@@ -13,7 +13,7 @@ const pageText = {
   breadcrumbGestion: { fr: "Modification d'entreprise", en: 'Business Modification' },
   breadcrumbCurrent: { fr: 'Dissolution', en: 'Dissolution' },
   ctaPrimary: { fr: 'Dissoudre ma Soci\u00e9t\u00e9', en: 'Dissolve my Company' },
-  ctaSecondary: { fr: 'Consultation Gratuite', en: 'Free Consultation' },
+  ctaSecondary: { fr: 'Réserver une consultation', en: 'Book a Consultation' },
   whyTitle: { fr: 'Pourquoi Dissoudre Votre Soci\u00e9t\u00e9 ?', en: 'Why Dissolve Your Company?' },
   phasesBadge: { fr: 'Processus en 2 Phases', en: '2-Phase Process' },
   phasesTitle: { fr: 'Dissolution & Liquidation', en: 'Dissolution & Liquidation' },
