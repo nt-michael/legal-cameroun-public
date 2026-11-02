@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import RDVPageContent from './RDVPageContent';
 import { createPageMetadata } from '@/lib/seo-utils';
+import { getProductPrice } from '@/lib/woocommerce';
 
 export async function generateMetadata(): Promise<Metadata> {
   return createPageMetadata('/prendre-un-rendez-vous', {
@@ -39,6 +40,8 @@ export async function generateMetadata(): Promise<Metadata> {
   });
 }
 
-export default function RDVPage() {
-  return <RDVPageContent />;
+export default async function RDVPage() {
+  // Consultation price as set in WooCommerce (null if unavailable: the form then omits the amount)
+  const consultationPrice = await getProductPrice(Number(process.env.CONSULTATION_PRODUCT_ID)).catch(() => null);
+  return <RDVPageContent consultationPrice={consultationPrice} />;
 }

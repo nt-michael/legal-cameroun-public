@@ -13,7 +13,7 @@ export async function createOrder(data: {
     email: string;
     phone: string;
     product_id: number;
-    total: string;
+    total?: string;
     meta_data: Array<{ key: string; value: string }>;
 }) {
     const headers = {
@@ -59,6 +59,40 @@ export async function getOrder(orderId: number) {
     const headers = { 'Authorization': getAuthHeader() };
     const response = await fetch(`${WC_API_URL}/wp-json/wc/v3/orders/${orderId}`, { headers });
     if (!response.ok) throw new Error('Failed to fetch WooCommerce order');
+    return response.json();
+}
+
+/** Current price of a product, as set in WooCommerce (single source of truth for paid services) */
+export async function getProductPrice(productId: number): Promise<number> {
+    const headers = { 'Authorization': getAuthHeader() };
+    const response = await fetch(`${WC_API_URL}/wp-json/wc/v3/products/${productId}`, {
+        headers,
+        next: { revalidate: 300 },
+    });
+    if (!response.ok) throw new Error('Failed to fetch WooCommerce product');
+    const product = await response.json();
+    const price = Number(product.price);
+    if (!Number.isFinite(price) || price <= 0) throw new Error('Invalid WooCommerce product price');
+    return price;
+}
+
+/** Private note on an order, visible to the team in the WooCommerce order screen */
+export async function addOrderNote(orderId: number, note: string) {
+    const headers = {
+        'Authorization': getAuthHeader(),
+        'Content-Type': 'application/json',
+    };
+
+    const response = await fetch(`${WC_API_URL}/wp-json/wc/v3/orders/${orderId}/notes`, {
+        method: 'POST',
+        headers,
+        body: JSON.stringify({ note, customer_note: false }),
+    });
+
+    if (!response.ok) {
+        throw new Error('Failed to add WooCommerce order note');
+    }
+
     return response.json();
 }
 
