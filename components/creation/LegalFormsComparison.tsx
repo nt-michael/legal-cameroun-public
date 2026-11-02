@@ -174,7 +174,7 @@ export default function LegalFormsComparison() {
                   </p>
                   <div className="flex flex-col gap-3">
                     <Link
-                      href="/devis"
+                      href={`/devis?type=${activeForm.id === 'individual' ? 'etablissement' : activeForm.id}`}
                       className="inline-flex items-center justify-center gap-2 bg-white text-primary-600 px-6 py-3 rounded-xl font-semibold hover:bg-primary-50 transition-all duration-300 hover:scale-105"
                     >
                       {sectionText.startNow[language]}

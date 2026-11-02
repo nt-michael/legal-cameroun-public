@@ -9,7 +9,9 @@ import ProgressBar from './ProgressBar';
 import {
   DevisFormData,
   initialDevisFormData,
-  devisSteps,
+  getDevisSteps,
+  plans,
+  modificationServices,
   companyTypes,
   timelineOptions,
   cities,
@@ -127,6 +129,24 @@ const devisText = {
     en: 'Would you like additional services? (optional)',
   },
 
+  // Modification: request step
+  requestTitle: { fr: 'Votre Demande', en: 'Your Request' },
+  requestSubtitle: {
+    fr: 'Dites-nous quelle modification vous souhaitez et pour quelle entreprise.',
+    en: 'Tell us which change you need and for which company.',
+  },
+  serviceLabel: { fr: 'Type de modification', en: 'Type of change' },
+  companyNameLabel: { fr: "Nom de l'entreprise", en: 'Company name' },
+  companyNamePlaceholder: { fr: 'Ex: ACME SARL', en: 'E.g.: ACME SARL' },
+  currentLegalFormLabel: { fr: 'Forme juridique actuelle', en: 'Current legal form' },
+  requestDetailsLabel: { fr: 'Décrivez votre besoin (optionnel)', en: 'Describe your need (optional)' },
+  requestDetailsPlaceholder: {
+    fr: "Ex: nouvelle adresse du siège, date souhaitée, nombre d'associés...",
+    en: 'E.g.: new office address, desired date, number of partners...',
+  },
+  errSelectService: { fr: 'Veuillez choisir le type de modification', en: 'Please choose the type of change' },
+  errCompanyName: { fr: "Indiquez le nom de l'entreprise", en: 'Enter the company name' },
+
   // Step 7: Contact
   contactTitle: { fr: 'Vos Coordonnées', en: 'Your Contact Details' },
   contactSubtitle: {
@@ -161,6 +181,12 @@ const devisText = {
   summaryAssociates: { fr: "Nombre d'associés", en: 'Number of partners' },
   summaryHQ: { fr: 'Siège social', en: 'Headquarters' },
   summaryAdditionalServices: { fr: 'Services additionnels', en: 'Additional services' },
+  summaryPlan: { fr: 'Forfait choisi', en: 'Selected plan' },
+  summaryService: { fr: 'Modification demandée', en: 'Requested change' },
+  summaryCompanyName: { fr: 'Entreprise', en: 'Company' },
+  summaryCurrentLegalForm: { fr: 'Forme juridique actuelle', en: 'Current legal form' },
+  summaryCity: { fr: 'Ville', en: 'City' },
+  summaryRequestDetails: { fr: 'Votre besoin', en: 'Your need' },
 
   // Navigation
   previous: { fr: 'Précédent', en: 'Previous' },
@@ -216,6 +242,7 @@ export default function DevisWizard() {
   useEffect(() => {
     const type = searchParams.get('type');
     const plan = searchParams.get('plan');
+    const service = searchParams.get('service');
 
     // Try to load from localStorage
     const saved = localStorage.getItem(STORAGE_KEY);
@@ -228,17 +255,20 @@ export default function DevisWizard() {
       }
     }
 
+    // The plan and service come from the page the visitor clicked on, never from an old draft
+    setFormData(prev => ({
+      ...prev,
+      plan: plan && Object.hasOwn(plans, plan) ? plan : '',
+      service: service && Object.hasOwn(modificationServices, service) ? service : '',
+    }));
+
     // Override with URL params
-    if (type) {
-      setFormData(prev => ({ ...prev, companyType: type }));
-    }
-    if (plan) {
-      const timelineMap: Record<string, string> = {
-        starter: '2-weeks',
-        standard: '1-week',
-        premium: '48h',
-      };
-      setFormData(prev => ({ ...prev, timeline: timelineMap[plan] || '1-week' }));
+    if (service && Object.hasOwn(modificationServices, service)) {
+      // Coming from a modification page: short modification path
+      setFormData(prev => ({ ...prev, isNewBusiness: false }));
+    } else if (type) {
+      // Coming from a creation page: the legal form is already known
+      setFormData(prev => ({ ...prev, isNewBusiness: true, companyType: type }));
     }
   }, [searchParams]);
 
@@ -271,21 +301,26 @@ export default function DevisWizard() {
     });
   };
 
+  // The modification path is shorter: the step list depends on the project type
+  const steps = getDevisSteps(formData.isNewBusiness);
+  const stepId = steps[currentStep]?.id;
+  const isModification = formData.isNewBusiness === false;
+
   const validateStep = (): boolean => {
     const newErrors: Record<string, string> = {};
 
-    switch (currentStep) {
-      case 1: // Activity
+    switch (stepId) {
+      case 'activity':
         if (formData.isNewBusiness === null) {
           newErrors.isNewBusiness = devisText.errSelectOption[language];
         }
         break;
-      case 2: // Status & Delay
+      case 'status':
         if (!formData.companyType) {
           newErrors.companyType = devisText.errSelectLegalForm[language];
         }
         break;
-      case 3: // Details
+      case 'details':
         if (!formData.businessObject.trim()) {
           newErrors.businessObject = devisText.errDescribeBusiness[language];
         }
@@ -299,7 +334,7 @@ export default function DevisWizard() {
           }
         }
         break;
-      case 4: // Team
+      case 'team':
         if (!formData.managerFirstName.trim()) {
           newErrors.managerFirstName = devisText.errFirstNameRequired[language];
         }
@@ -314,12 +349,23 @@ export default function DevisWizard() {
           newErrors.nonAssociateManagers = devisText.errNonAssociateManagers[language];
         }
         break;
-      case 5: // Logistics
+      case 'logistics':
         if (!formData.headquarters.trim()) {
           newErrors.headquarters = devisText.errAddressRequired[language];
         }
         break;
-      case 7: // Contact
+      case 'request':
+        if (!formData.service) {
+          newErrors.service = devisText.errSelectService[language];
+        }
+        if (!formData.companyName.trim()) {
+          newErrors.companyName = devisText.errCompanyName[language];
+        }
+        if (!formData.companyType) {
+          newErrors.companyType = devisText.errSelectLegalForm[language];
+        }
+        break;
+      case 'contact':
         if (!formData.email.trim()) {
           newErrors.email = devisText.errEmailRequired[language];
         } else if (!validateEmail(formData.email)) {
@@ -338,7 +384,7 @@ export default function DevisWizard() {
   };
 
   const goToStep = (step: number) => {
-    if (step < 0 || step >= devisSteps.length) return;
+    if (step < 0 || step >= steps.length) return;
 
     setDirection(step > currentStep ? 'next' : 'prev');
 
@@ -461,12 +507,12 @@ export default function DevisWizard() {
 
   return (
     <div className="max-w-3xl mx-auto">
-      <ProgressBar currentStep={currentStep} totalSteps={devisSteps.length} />
+      <ProgressBar currentStep={currentStep} steps={steps} />
 
       <div className="bg-white dark:bg-gray-800 rounded-3xl shadow-xl p-6 sm:p-8 lg:p-12">
         <div className="step-content">
           {/* Step 0: Welcome */}
-          {currentStep === 0 && (
+          {stepId === 'welcome' && (
             <div className="text-center py-8">
               <div className="w-20 h-20 bg-primary-100 dark:bg-primary-900/30 rounded-full flex items-center justify-center mx-auto mb-6">
                 <svg className="w-10 h-10 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -506,7 +552,7 @@ export default function DevisWizard() {
           )}
 
           {/* Step 1: Activity */}
-          {currentStep === 1 && (
+          {stepId === 'activity' && (
             <div>
               <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-2">
                 {devisText.projectTitle[language]}
@@ -557,7 +603,7 @@ export default function DevisWizard() {
           )}
 
           {/* Step 2: Status & Delay */}
-          {currentStep === 2 && (
+          {stepId === 'status' && (
             <div>
               <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-2">
                 {devisText.statusTitle[language]}
@@ -626,7 +672,7 @@ export default function DevisWizard() {
           )}
 
           {/* Step 3: Company Details */}
-          {currentStep === 3 && (
+          {stepId === 'details' && (
             <div>
               <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-2">
                 {devisText.detailsTitle[language]}
@@ -688,7 +734,7 @@ export default function DevisWizard() {
           )}
 
           {/* Step 4: Team */}
-          {currentStep === 4 && (
+          {stepId === 'team' && (
             <div>
               <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-2">
                 {devisText.teamTitle[language]}
@@ -861,7 +907,7 @@ export default function DevisWizard() {
           )}
 
           {/* Step 5: Logistics */}
-          {currentStep === 5 && (
+          {stepId === 'logistics' && (
             <div>
               <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-2">
                 {devisText.hqTitle[language]}
@@ -915,7 +961,7 @@ export default function DevisWizard() {
           )}
 
           {/* Step 6: Additional Services */}
-          {currentStep === 6 && (
+          {stepId === 'services' && (
             <div>
               <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-2">
                 {devisText.servicesTitle[language]}
@@ -959,8 +1005,126 @@ export default function DevisWizard() {
             </div>
           )}
 
+          {/* Modification: Request */}
+          {stepId === 'request' && (
+            <div>
+              <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-2">
+                {devisText.requestTitle[language]}
+              </h2>
+              <p className="text-gray-600 dark:text-gray-300 mb-8">
+                {devisText.requestSubtitle[language]}
+              </p>
+
+              <div className="space-y-6">
+                {/* Service */}
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
+                    {devisText.serviceLabel[language]}
+                  </label>
+                  <div className="grid sm:grid-cols-2 gap-3">
+                    {Object.entries(modificationServices).map(([value, label]) => (
+                      <button
+                        key={value}
+                        onClick={() => updateFormData({ service: value })}
+                        className={`p-4 rounded-xl border-2 text-left transition-all duration-300 ${
+                          formData.service === value
+                            ? 'border-primary-500 bg-primary-50 dark:bg-primary-900/20'
+                            : 'border-gray-200 dark:border-gray-700 hover:border-primary-300'
+                        }`}
+                      >
+                        <span className="font-semibold text-gray-900 dark:text-white">{label[language]}</span>
+                      </button>
+                    ))}
+                  </div>
+                  {errors.service && (
+                    <p className="text-red-500 text-sm mt-2">{errors.service}</p>
+                  )}
+                </div>
+
+                {/* Company name */}
+                <div>
+                  <label htmlFor="devis-company-name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    {devisText.companyNameLabel[language]}
+                  </label>
+                  <input
+                    id="devis-company-name"
+                    type="text"
+                    value={formData.companyName}
+                    onChange={(e) => updateFormData({ companyName: e.target.value })}
+                    placeholder={devisText.companyNamePlaceholder[language]}
+                    className={`w-full px-4 py-3 rounded-xl border-2 bg-white dark:bg-gray-900 transition-colors ${
+                      errors.companyName
+                        ? 'border-red-500'
+                        : 'border-gray-200 dark:border-gray-700 focus:border-primary-500'
+                    } focus:outline-none`}
+                  />
+                  {errors.companyName && (
+                    <p className="text-red-500 text-sm mt-1">{errors.companyName}</p>
+                  )}
+                </div>
+
+                {/* Current legal form */}
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
+                    {devisText.currentLegalFormLabel[language]}
+                  </label>
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                    {companyTypes.map(type => (
+                      <button
+                        key={type.value}
+                        onClick={() => updateFormData({ companyType: type.value })}
+                        className={`p-4 rounded-xl border-2 text-center transition-all duration-300 ${
+                          formData.companyType === type.value
+                            ? 'border-primary-500 bg-primary-50 dark:bg-primary-900/20'
+                            : 'border-gray-200 dark:border-gray-700 hover:border-primary-300'
+                        }`}
+                      >
+                        <span className="font-semibold text-gray-900 dark:text-white">{type.label}</span>
+                      </button>
+                    ))}
+                  </div>
+                  {errors.companyType && (
+                    <p className="text-red-500 text-sm mt-2">{errors.companyType}</p>
+                  )}
+                </div>
+
+                {/* City */}
+                <div>
+                  <label htmlFor="devis-request-city" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    {devisText.cityLabel[language]}
+                  </label>
+                  <select
+                    id="devis-request-city"
+                    value={formData.city}
+                    onChange={(e) => updateFormData({ city: e.target.value })}
+                    className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 focus:border-primary-500 focus:outline-none transition-colors"
+                  >
+                    {cities.map(city => (
+                      <option key={city} value={city}>{city}</option>
+                    ))}
+                  </select>
+                </div>
+
+                {/* Details of the need (sent as additionalInfo) */}
+                <div>
+                  <label htmlFor="devis-request-details" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    {devisText.requestDetailsLabel[language]}
+                  </label>
+                  <textarea
+                    id="devis-request-details"
+                    value={formData.additionalInfo}
+                    onChange={(e) => updateFormData({ additionalInfo: e.target.value })}
+                    placeholder={devisText.requestDetailsPlaceholder[language]}
+                    rows={3}
+                    className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 focus:border-primary-500 focus:outline-none transition-colors"
+                  />
+                </div>
+              </div>
+            </div>
+          )}
+
           {/* Step 7: Contact */}
-          {currentStep === 7 && (
+          {stepId === 'contact' && (
             <div>
               <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-2">
                 {devisText.contactTitle[language]}
@@ -1010,24 +1174,27 @@ export default function DevisWizard() {
                   )}
                 </div>
 
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                    {devisText.additionalInfoLabel[language]}
-                  </label>
-                  <textarea
-                    value={formData.additionalInfo}
-                    onChange={(e) => updateFormData({ additionalInfo: e.target.value })}
-                    placeholder={devisText.additionalInfoPlaceholder[language]}
-                    rows={3}
-                    className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 focus:border-primary-500 focus:outline-none transition-colors"
-                  />
-                </div>
+                {/* A modification already describes the need in the request step */}
+                {!isModification && (
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                      {devisText.additionalInfoLabel[language]}
+                    </label>
+                    <textarea
+                      value={formData.additionalInfo}
+                      onChange={(e) => updateFormData({ additionalInfo: e.target.value })}
+                      placeholder={devisText.additionalInfoPlaceholder[language]}
+                      rows={3}
+                      className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 focus:border-primary-500 focus:outline-none transition-colors"
+                    />
+                  </div>
+                )}
               </div>
             </div>
           )}
 
           {/* Step 8: Summary */}
-          {currentStep === 8 && (
+          {stepId === 'summary' && (
             <div>
               <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-2">
                 {devisText.summaryTitle[language]}
@@ -1037,31 +1204,48 @@ export default function DevisWizard() {
               </p>
 
               <div className="space-y-4">
-                <SummaryItem label={devisText.summaryProjectType[language]} value={formData.isNewBusiness ? devisText.summaryNewCreation[language] : devisText.summaryModification[language]} />
-                <SummaryItem label={devisText.summaryLegalForm[language]} value={companyTypes.find(t => t.value === formData.companyType)?.label || '-'} />
-                <SummaryItem label={devisText.summaryTimeline[language]} value={timelineOptions.find(t => t.value === formData.timeline)?.label[language] || '-'} />
-                <SummaryItem label={devisText.summaryBusinessObject[language]} value={formData.businessObject || '-'} />
-                {requiresCapital(formData.companyType) && (
-                  <SummaryItem label={devisText.summaryCapital[language]} value={`${formData.capital.toLocaleString('fr-FR')} XAF`} />
+                <SummaryItem label={devisText.summaryProjectType[language]} value={isModification ? devisText.summaryModification[language] : devisText.summaryNewCreation[language]} />
+                {formData.plan && plans[formData.plan] && (
+                  <SummaryItem label={devisText.summaryPlan[language]} value={plans[formData.plan][language]} />
                 )}
-                <SummaryItem label={devisText.summaryManager[language]} value={`${formData.managerFirstName} ${formData.managerLastName}`.trim() || '-'} />
-                <SummaryItem label={devisText.summaryAssociates[language]} value={formData.associatesCount.toString()} />
-                {formData.hasNonAssociateManagers && formData.nonAssociateManagers.length > 0 && (
-                  <SummaryItem
-                    label={devisText.summaryNonAssociateManagers[language]}
-                    value={formData.nonAssociateManagers
-                      .map(m => `${m.firstName} ${m.lastName}`.trim())
-                      .join(', ')}
-                  />
-                )}
-                <SummaryItem label={devisText.summaryHQ[language]} value={`${formData.headquarters}, ${formData.city}`} />
-                {formData.additionalServices.length > 0 && (
-                  <SummaryItem
-                    label={devisText.summaryAdditionalServices[language]}
-                    value={formData.additionalServices.map(s =>
-                      additionalServicesOptions.find(o => o.value === s)?.label[language]
-                    ).join(', ')}
-                  />
+                {isModification ? (
+                  <>
+                    <SummaryItem label={devisText.summaryService[language]} value={modificationServices[formData.service]?.[language] || '-'} />
+                    <SummaryItem label={devisText.summaryCompanyName[language]} value={formData.companyName || '-'} />
+                    <SummaryItem label={devisText.summaryCurrentLegalForm[language]} value={companyTypes.find(t => t.value === formData.companyType)?.label || '-'} />
+                    <SummaryItem label={devisText.summaryCity[language]} value={formData.city} />
+                    {formData.additionalInfo.trim() && (
+                      <SummaryItem label={devisText.summaryRequestDetails[language]} value={formData.additionalInfo} />
+                    )}
+                  </>
+                ) : (
+                  <>
+                    <SummaryItem label={devisText.summaryLegalForm[language]} value={companyTypes.find(t => t.value === formData.companyType)?.label || '-'} />
+                    <SummaryItem label={devisText.summaryTimeline[language]} value={timelineOptions.find(t => t.value === formData.timeline)?.label[language] || '-'} />
+                    <SummaryItem label={devisText.summaryBusinessObject[language]} value={formData.businessObject || '-'} />
+                    {requiresCapital(formData.companyType) && (
+                      <SummaryItem label={devisText.summaryCapital[language]} value={`${formData.capital.toLocaleString('fr-FR')} XAF`} />
+                    )}
+                    <SummaryItem label={devisText.summaryManager[language]} value={`${formData.managerFirstName} ${formData.managerLastName}`.trim() || '-'} />
+                    <SummaryItem label={devisText.summaryAssociates[language]} value={formData.associatesCount.toString()} />
+                    {formData.hasNonAssociateManagers && formData.nonAssociateManagers.length > 0 && (
+                      <SummaryItem
+                        label={devisText.summaryNonAssociateManagers[language]}
+                        value={formData.nonAssociateManagers
+                          .map(m => `${m.firstName} ${m.lastName}`.trim())
+                          .join(', ')}
+                      />
+                    )}
+                    <SummaryItem label={devisText.summaryHQ[language]} value={`${formData.headquarters}, ${formData.city}`} />
+                    {formData.additionalServices.length > 0 && (
+                      <SummaryItem
+                        label={devisText.summaryAdditionalServices[language]}
+                        value={formData.additionalServices.map(s =>
+                          additionalServicesOptions.find(o => o.value === s)?.label[language]
+                        ).join(', ')}
+                      />
+                    )}
+                  </>
                 )}
                 <SummaryItem label={devisText.emailLabel[language]} value={formData.email} />
                 <SummaryItem label={devisText.phoneLabel[language]} value={formData.phone} />
@@ -1128,7 +1312,7 @@ export default function DevisWizard() {
             {devisText.previous[language]}
           </button>
 
-          {currentStep === devisSteps.length - 1 ? (
+          {currentStep === steps.length - 1 ? (
             <button
               onClick={handleSubmit}
               disabled={isSubmitting}

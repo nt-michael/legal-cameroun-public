@@ -3,7 +3,7 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { devisSteps } from '@/lib/devis-data';
+import type { DevisStep } from '@/lib/devis-data';
 
 const progressBarText = {
   stepOf: { fr: 'Étape', en: 'Step' },
@@ -12,10 +12,11 @@ const progressBarText = {
 
 interface ProgressBarProps {
   currentStep: number;
-  totalSteps: number;
+  steps: DevisStep[];
 }
 
-export default function ProgressBar({ currentStep, totalSteps }: ProgressBarProps) {
+export default function ProgressBar({ currentStep, steps }: ProgressBarProps) {
+  const totalSteps = steps.length;
   const { language } = useLanguage();
   const progressRef = useRef<HTMLDivElement>(null);
   const percentage = Math.round((currentStep / (totalSteps - 1)) * 100);
@@ -43,7 +44,7 @@ export default function ProgressBar({ currentStep, totalSteps }: ProgressBarProp
 
       {/* Step indicators - desktop */}
       <div className="hidden md:flex justify-between">
-        {devisSteps.map((step, index) => (
+        {steps.map((step, index) => (
           <div
             key={step.id}
             className={`flex flex-col items-center transition-all duration-300 ${
@@ -82,7 +83,7 @@ export default function ProgressBar({ currentStep, totalSteps }: ProgressBarProp
           {progressBarText.stepOf[language]} {currentStep + 1} {progressBarText.of[language]} {totalSteps}
         </span>
         <span className="text-sm font-semibold text-primary-600 dark:text-primary-400">
-          {devisSteps[currentStep]?.title[language]}
+          {steps[currentStep]?.title[language]}
         </span>
       </div>
     </div>

@@ -190,6 +190,13 @@ function RequirementsSection({ requirements, language }: { requirements: Bilingu
 export default function SubpageLayout({ data, pricingTiers }: SubpageLayoutProps) {
   const { language } = useLanguage();
 
+  // Shared pricing tiers link to /devis?plan=...: add this page's legal form so the quote keeps it
+  const tiersWithType = pricingTiers.map((tier) =>
+    tier.cta.href.startsWith('/devis') && !tier.cta.href.includes('type=')
+      ? { ...tier, cta: { ...tier.cta, href: `${tier.cta.href}&type=${data.slug}` } }
+      : tier
+  );
+
   return (
     <main className="min-h-screen">
       {/* Hero */}
@@ -263,7 +270,7 @@ export default function SubpageLayout({ data, pricingTiers }: SubpageLayoutProps
       {/* Pricing */}
       <section className="bg-gray-50 dark:bg-gray-800">
         <PricingCards
-          tiers={pricingTiers}
+          tiers={tiersWithType}
           title={layoutText.pricing[language]}
           subtitle={layoutText.pricingSubtitle[language]}
         />
