@@ -6,17 +6,30 @@ import Image from 'next/image';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useTheme } from '@/contexts/ThemeContext';
 import type { BilingualText } from '@/lib/translations';
+import { legalForms } from '@/lib/creation-data';
+import { modificationTypes } from '@/lib/modification-data';
 
 interface MenuRubrique {
   name: BilingualText;
   href: string;
+  /** One line under the link in the desktop panel */
+  description?: BilingualText;
+  /** File name in /public/custom-icons/SVG (official charter icons) */
+  icon?: string;
 }
+
+// Descriptions come from the same data as the service pages, so the menu never says something different
+const formDescription = (id: string): BilingualText | undefined => legalForms.find((form) => form.id === id)?.description;
+const operationDescription = (id: string): BilingualText | undefined =>
+  modificationTypes.find((operation) => operation.id === id)?.description;
 
 interface MenuItem {
   name: BilingualText;
   href: string;
-  /** Underline in the colour of the service area, as the brand charter asks */
+  /** Underline in the colour of the service area, as the brand charter asks (mobile menu) */
   accent: string;
+  /** Dot in the same colour before the column title (desktop panel) */
+  dot: string;
   rubriques: MenuRubrique[];
 }
 
@@ -34,34 +47,38 @@ const menuItems: MenuItem[] = [
     name: { fr: 'Création d\'entreprise', en: 'Business Creation' },
     href: '/creation-entreprise',
     accent: 'border-section-creation',
+    dot: 'bg-section-creation',
     rubriques: [
-      { name: { fr: 'Créer une SAS', en: 'Create a SAS' }, href: '/creation-entreprise/sas' },
-      { name: { fr: 'Créer une SARL', en: 'Create a SARL' }, href: '/creation-entreprise/sarl' },
-      { name: { fr: 'Créer une SARLU', en: 'Create a SARLU' }, href: '/creation-entreprise/sarlu' },
-      { name: { fr: 'Créer une Association', en: 'Create an Association' }, href: '/creation-entreprise/association' },
-      { name: { fr: 'Tous les statuts', en: 'All Legal Forms' }, href: '/creation-entreprise' },
+      { name: { fr: 'Créer une SAS', en: 'Create a SAS' }, href: '/creation-entreprise/sas', description: formDescription('sas'), icon: '1ICONE_BICHROME.svg' },
+      { name: { fr: 'Créer une SARL', en: 'Create a SARL' }, href: '/creation-entreprise/sarl', description: formDescription('sarl'), icon: '3ICONE_BICHROME.svg' },
+      { name: { fr: 'Créer une SARLU', en: 'Create a SARLU' }, href: '/creation-entreprise/sarlu', description: formDescription('sarlu'), icon: '18ICONE_BICHROME.svg' },
+      { name: { fr: 'Créer un Établissement', en: 'Create an Establishment' }, href: '/creation-entreprise/etablissement', description: formDescription('individual'), icon: '44ICONE_BICHROME.svg' },
+      { name: { fr: 'Créer une Association', en: 'Create an Association' }, href: '/creation-entreprise/association', description: formDescription('association'), icon: '25ICONE_BICHROME.svg' },
+      { name: { fr: 'Tous les statuts', en: 'All Legal Forms' }, href: '/creation-entreprise', description: { fr: 'Comparer et choisir le bon statut', en: 'Compare and pick the right structure' }, icon: '6ICONE_BICHROME.svg' },
     ],
   },
   {
     name: { fr: 'Modification d\'entreprise', en: 'Business Modification' },
     href: '/modification-entreprise',
     accent: 'border-section-gestion',
+    dot: 'bg-section-gestion',
     rubriques: [
-      { name: { fr: 'Transfert de siège social', en: 'Headquarters Transfer' }, href: '/modification-entreprise/transfert-siege' },
-      { name: { fr: 'Transformation SAS en SARL', en: 'SAS to SARL Conversion' }, href: '/modification-entreprise/sas-vers-sarl' },
-      { name: { fr: 'Transformation SARL en SAS', en: 'SARL to SAS Conversion' }, href: '/modification-entreprise/sarl-vers-sas' },
-      { name: { fr: 'Dissolution d\'entreprise', en: 'Business Dissolution' }, href: '/modification-entreprise/dissolution' },
-      { name: { fr: 'Toutes les modifications', en: 'All Modifications' }, href: '/modification-entreprise' },
+      { name: { fr: 'Transfert de siège social', en: 'Headquarters Transfer' }, href: '/modification-entreprise/transfert-siege', description: operationDescription('transfert-siege'), icon: '32ICONE_BICHROME.svg' },
+      { name: { fr: 'Transformation SAS en SARL', en: 'SAS to SARL Conversion' }, href: '/modification-entreprise/sas-vers-sarl', description: operationDescription('sas-vers-sarl'), icon: '26ICONE_BICHROME.svg' },
+      { name: { fr: 'Transformation SARL en SAS', en: 'SARL to SAS Conversion' }, href: '/modification-entreprise/sarl-vers-sas', description: operationDescription('sarl-vers-sas'), icon: '30ICONE_BICHROME.svg' },
+      { name: { fr: 'Dissolution d\'entreprise', en: 'Business Dissolution' }, href: '/modification-entreprise/dissolution', description: operationDescription('dissolution'), icon: '34ICONE_BICHROME.svg' },
+      { name: { fr: 'Toutes les modifications', en: 'All Modifications' }, href: '/modification-entreprise', description: { fr: 'Dirigeant, capital, objet social…', en: 'Director, share capital, business purpose…' }, icon: '4ICONE_BICHROME.svg' },
     ],
   },
   {
     name: { fr: 'Accompagnement', en: 'Support' },
     href: '/prendre-un-rendez-vous',
     accent: 'border-section-accompagnement',
+    dot: 'bg-section-accompagnement',
     rubriques: [
-      { name: { fr: 'Devis', en: 'Quote' }, href: '/contact#formulaire' },
-      { name: { fr: 'Avec un expert', en: 'With an Expert' }, href: '/prendre-un-rendez-vous' },
-      { name: { fr: 'Assistance LegalCameroun', en: 'LegalCameroun Assistance' }, href: '/contact' },
+      { name: { fr: 'Devis', en: 'Quote' }, href: '/contact#formulaire', description: { fr: 'Gratuit, envoyé par e-mail sous 48h', en: 'Free, emailed within 48h' }, icon: '9ICONE_BICHROME.svg' },
+      { name: { fr: 'Avec un expert', en: 'With an Expert' }, href: '/prendre-un-rendez-vous', description: { fr: 'Consultation de 30 min, vidéo ou téléphone', en: '30-min consultation, video or phone' }, icon: '2ICONE_BICHROME.svg' },
+      { name: { fr: 'Assistance LegalCameroun', en: 'LegalCameroun Assistance' }, href: '/contact', description: { fr: 'Une question ? Écrivez-nous', en: 'A question? Write to us' }, icon: '38ICONE_BICHROME.svg' },
     ],
   },
 ];
@@ -80,12 +97,6 @@ const resourceLinks: MenuRubrique[] = [
   { name: { fr: 'Fiches pratiques', en: 'Practical guides' }, href: '/fiches-pratiques' },
   { name: { fr: 'Simulateurs', en: 'Simulators' }, href: '/simulateurs' },
 ];
-
-const megaMenuBottom = {
-  needHelp: { fr: 'Besoin d\'aide pour choisir?', en: 'Need help choosing?' },
-  expertsHelp: { fr: 'Nos experts vous conseillent', en: 'Our experts advise you' },
-  talkToExpert: { fr: 'Parler à un expert', en: 'Talk to an expert' },
-};
 
 const mobileOffersLabel = { fr: 'Nos Offres', en: 'Our Services' };
 const createCompanyLabel = { fr: 'Créer mon entreprise', en: 'Create my company' };
@@ -270,63 +281,54 @@ export default function Header() {
                     </svg>
                   </button>
 
-                  {/* Mega menu: full-width panel right after its button, so Tab moves from the button into its links.
-                      It opens at once with a short fade, and only the hovered line lights up */}
+                  {/* Mega menu: right after its button, so Tab moves from the button into its links.
+                      A dark blue floating card like the bar; gold titles keep the colour of their service area */}
                   {dropdown === 'offers' && (
                     <div
                       id="menu-panel-offers"
-                      className={`hidden lg:block absolute left-0 right-0 top-full whitespace-normal bg-white dark:bg-gray-900 shadow-2xl border-t border-gray-100 dark:border-gray-800 transition duration-200 ease-out ${
+                      className={`hidden lg:block absolute left-0 right-0 top-full whitespace-normal transition duration-200 ease-out ${
                         isMegaMenuOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2 pointer-events-none'
                       }`}
                     >
-                      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-                        <div className="grid grid-cols-3 divide-x divide-gray-100 dark:divide-gray-800">
-                          {menuItems.map((item) => (
-                            <div key={item.name.fr} className="px-6 first:pl-0 last:pr-0">
-                              <Link
-                                href={item.href}
-                                onClick={closeDropdown}
-                                className={`block text-xs font-semibold uppercase tracking-wider text-primary-600 hover:text-primary-500 mx-3 mb-3 pb-3 border-b-2 ${item.accent}`}
-                              >
-                                {item.name[language]}
-                              </Link>
-                              <div className="space-y-1">
-                                {item.rubriques.map((rubrique) => (
-                                  <Link
-                                    key={rubrique.name.fr}
-                                    href={rubrique.href}
-                                    onClick={closeDropdown}
-                                    className="block rounded-lg px-3 py-2 text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-primary-50 hover:text-primary-600 dark:hover:bg-gray-800 transition-colors duration-150"
-                                  >
-                                    {rubrique.name[language]}
-                                  </Link>
-                                ))}
+                      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <div className="rounded-b-2xl bg-navy-ink border border-white/10 border-t-secondary-400 shadow-2xl p-6 xl:p-8">
+                          <div className="grid grid-cols-3 divide-x divide-white/10">
+                            {menuItems.map((item) => (
+                              <div key={item.name.fr} className="px-5 first:pl-0 last:pr-0">
+                                <Link
+                                  href={item.href}
+                                  onClick={closeDropdown}
+                                  className="flex items-center gap-2 px-2 mb-4 text-xs font-bold uppercase tracking-[0.18em] text-secondary-300 hover:text-secondary-200"
+                                >
+                                  <span className={`h-2 w-2 rounded-full ${item.dot}`} aria-hidden="true" />
+                                  {item.name[language]}
+                                </Link>
+                                <div className="space-y-1">
+                                  {item.rubriques.map((rubrique) => (
+                                    <Link
+                                      key={rubrique.name.fr}
+                                      href={rubrique.href}
+                                      onClick={closeDropdown}
+                                      className="group/item flex items-start gap-3 rounded-lg p-2 hover:bg-white/5 transition-colors duration-150"
+                                    >
+                                      {rubrique.icon && (
+                                        <span className="shrink-0 w-9 h-9 rounded-lg bg-white flex items-center justify-center" aria-hidden="true">
+                                          <Image src={`/custom-icons/SVG/${rubrique.icon}`} alt="" width={22} height={22} />
+                                        </span>
+                                      )}
+                                      <span className="min-w-0">
+                                        <span className="block text-sm font-semibold text-white group-hover/item:text-secondary-200">
+                                          {rubrique.name[language]}
+                                        </span>
+                                        {rubrique.description && (
+                                          <span className="block text-xs text-gray-400 leading-snug">{rubrique.description[language]}</span>
+                                        )}
+                                      </span>
+                                    </Link>
+                                  ))}
+                                </div>
                               </div>
-                            </div>
-                          ))}
-                        </div>
-
-                        {/* Featured section at bottom */}
-                        <div className="mt-8 pt-6 border-t border-gray-100 dark:border-gray-800">
-                          <div className="flex items-center justify-between">
-                            <div className="flex items-center gap-4">
-                              <div className="w-12 h-12 bg-primary-100 rounded-xl flex items-center justify-center">
-                                <svg className="w-6 h-6 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                                </svg>
-                              </div>
-                              <div>
-                                <p className="font-semibold text-gray-900 dark:text-white">{megaMenuBottom.needHelp[language]}</p>
-                                <p className="text-sm text-gray-500">{megaMenuBottom.expertsHelp[language]}</p>
-                              </div>
-                            </div>
-                            <Link
-                              href="/prendre-un-rendez-vous"
-                              onClick={closeDropdown}
-                              className="btn-primary text-sm"
-                            >
-                              {megaMenuBottom.talkToExpert[language]}
-                            </Link>
+                            ))}
                           </div>
                         </div>
                       </div>
