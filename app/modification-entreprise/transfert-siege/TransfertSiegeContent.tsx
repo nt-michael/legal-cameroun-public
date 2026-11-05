@@ -88,7 +88,7 @@ export default function TransfertSiegeContent() {
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
-                href="/devis?service=transfert-siege"
+                href="/contact?service=transfert-siege"
                 className="inline-flex items-center justify-center gap-2 bg-white text-primary-600 px-8 py-4 rounded-xl font-semibold hover:bg-primary-50 transition-all duration-300 shadow-lg"
               >
                 {pageText.ctaPrimary[language]}
@@ -250,7 +250,7 @@ export default function TransfertSiegeContent() {
             {gestionCtaData.subtitle[language]}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/devis?service=transfert-siege" className="btn-primary">
+            <Link href="/contact?service=transfert-siege" className="btn-primary">
               {pageText.ctaPrimary[language]}
             </Link>
             <Link href={gestionCtaData.secondaryCta.href} className="btn-secondary">

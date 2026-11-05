@@ -75,7 +75,7 @@ export default function CreationSteps() {
         </ol>
 
         <div className="mt-10 text-center">
-          <Link href="/devis" className="btn-primary">
+          <Link href="/contact?sujet=creation" className="btn-primary">
             {sectionText.cta[language]}
           </Link>
         </div>

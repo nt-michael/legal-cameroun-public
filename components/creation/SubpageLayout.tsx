@@ -192,7 +192,7 @@ export default function SubpageLayout({ data, pricingTiers }: SubpageLayoutProps
 
   // Shared pricing tiers link to /devis?plan=...: add this page's legal form so the quote keeps it
   const tiersWithType = pricingTiers.map((tier) =>
-    tier.cta.href.startsWith('/devis') && !tier.cta.href.includes('type=')
+    tier.cta.href.startsWith('/contact') && !tier.cta.href.includes('type=')
       ? { ...tier, cta: { ...tier.cta, href: `${tier.cta.href}&type=${data.slug}` } }
       : tier
   );
@@ -206,7 +206,7 @@ export default function SubpageLayout({ data, pricingTiers }: SubpageLayoutProps
         description={data.heroDescription}
         primaryCta={{
           text: layoutText.startNow,
-          href: `/devis?type=${data.slug}`,
+          href: `/contact?type=${data.slug}`,
         }}
         secondaryCta={{
           text: layoutText.talkExpert,
@@ -300,7 +300,7 @@ export default function SubpageLayout({ data, pricingTiers }: SubpageLayoutProps
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link
-                href={`/devis?type=${data.slug}`}
+                href={`/contact?type=${data.slug}`}
                 className="inline-flex items-center justify-center gap-2 bg-white text-primary-600 px-8 py-4 rounded-xl font-semibold hover:bg-primary-50 transition-all duration-300 hover:scale-105"
               >
                 {layoutText.startQuestionnaire[language]}

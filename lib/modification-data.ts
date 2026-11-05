@@ -159,7 +159,7 @@ export const hubPricingTiers: GestionPricingTier[] = [
       { fr: 'Support par email', en: 'Email support' },
     ],
     ctaText: { fr: 'Choisir Starter', en: 'Choose Starter' },
-    ctaHref: '/devis?service=modification&plan=starter',
+    ctaHref: '/contact?service=modification&plan=starter',
   },
   {
     name: { fr: 'Standard', en: 'Standard' },
@@ -174,7 +174,7 @@ export const hubPricingTiers: GestionPricingTier[] = [
       { fr: 'Suivi personnalisé', en: 'Personalized follow-up' },
     ],
     ctaText: { fr: 'Choisir Standard', en: 'Choose Standard' },
-    ctaHref: '/devis?service=modification&plan=standard',
+    ctaHref: '/contact?service=modification&plan=standard',
   },
   {
     name: { fr: 'Premium', en: 'Premium' },
@@ -190,7 +190,7 @@ export const hubPricingTiers: GestionPricingTier[] = [
     ],
     highlighted: true,
     ctaText: { fr: 'Choisir Premium', en: 'Choose Premium' },
-    ctaHref: '/devis?service=modification&plan=premium',
+    ctaHref: '/contact?service=modification&plan=premium',
   },
 ];
 
@@ -307,7 +307,7 @@ export const transfertSiegeData = {
         { fr: 'Guide des démarches', en: 'Procedure guide' },
       ],
       ctaText: { fr: 'Choisir Starter', en: 'Choose Starter' },
-      ctaHref: '/devis?service=transfert-siege&plan=starter',
+      ctaHref: '/contact?service=transfert-siege&plan=starter',
     },
     {
       name: { fr: 'Standard', en: 'Standard' },
@@ -322,7 +322,7 @@ export const transfertSiegeData = {
         { fr: 'Suivi personnalisé', en: 'Personalized follow-up' },
       ],
       ctaText: { fr: 'Choisir Standard', en: 'Choose Standard' },
-      ctaHref: '/devis?service=transfert-siege&plan=standard',
+      ctaHref: '/contact?service=transfert-siege&plan=standard',
     },
     {
       name: { fr: 'Premium', en: 'Premium' },
@@ -338,7 +338,7 @@ export const transfertSiegeData = {
       ],
       highlighted: true,
       ctaText: { fr: 'Choisir Premium', en: 'Choose Premium' },
-      ctaHref: '/devis?service=transfert-siege&plan=premium',
+      ctaHref: '/contact?service=transfert-siege&plan=premium',
     },
   ],
   faq: [
@@ -395,7 +395,7 @@ export const sasVersSarlData = {
         { fr: 'Suivi personnalisé', en: 'Personalized follow-up' },
       ],
       ctaText: { fr: 'Choisir Standard', en: 'Choose Standard' },
-      ctaHref: '/devis?service=sas-sarl&plan=standard',
+      ctaHref: '/contact?service=sas-sarl&plan=standard',
     },
     {
       name: { fr: 'Premium', en: 'Premium' },
@@ -411,7 +411,7 @@ export const sasVersSarlData = {
       ],
       highlighted: true,
       ctaText: { fr: 'Choisir Premium', en: 'Choose Premium' },
-      ctaHref: '/devis?service=sas-sarl&plan=premium',
+      ctaHref: '/contact?service=sas-sarl&plan=premium',
     },
   ],
   faq: [
@@ -472,7 +472,7 @@ export const sarlVersSasData = {
         { fr: 'Suivi personnalisé', en: 'Personalized follow-up' },
       ],
       ctaText: { fr: 'Choisir Standard', en: 'Choose Standard' },
-      ctaHref: '/devis?service=sarl-sas&plan=standard',
+      ctaHref: '/contact?service=sarl-sas&plan=standard',
     },
     {
       name: { fr: 'Premium', en: 'Premium' },
@@ -488,7 +488,7 @@ export const sarlVersSasData = {
       ],
       highlighted: true,
       ctaText: { fr: 'Choisir Premium', en: 'Choose Premium' },
-      ctaHref: '/devis?service=sarl-sas&plan=premium',
+      ctaHref: '/contact?service=sarl-sas&plan=premium',
     },
   ],
   faq: [
@@ -582,7 +582,7 @@ export const dissolutionData = {
         { fr: 'Guide des démarches', en: 'Procedure guide' },
       ],
       ctaText: { fr: 'Choisir Starter', en: 'Choose Starter' },
-      ctaHref: '/devis?service=dissolution&plan=starter',
+      ctaHref: '/contact?service=dissolution&plan=starter',
     },
     {
       name: { fr: 'Standard', en: 'Standard' },
@@ -597,7 +597,7 @@ export const dissolutionData = {
         { fr: 'Suivi liquidation', en: 'Liquidation follow-up' },
       ],
       ctaText: { fr: 'Choisir Standard', en: 'Choose Standard' },
-      ctaHref: '/devis?service=dissolution&plan=standard',
+      ctaHref: '/contact?service=dissolution&plan=standard',
     },
     {
       name: { fr: 'Premium', en: 'Premium' },
@@ -612,7 +612,7 @@ export const dissolutionData = {
       ],
       highlighted: true,
       ctaText: { fr: 'Choisir Premium', en: 'Choose Premium' },
-      ctaHref: '/devis?service=dissolution&plan=premium',
+      ctaHref: '/contact?service=dissolution&plan=premium',
     },
   ],
   faq: [
@@ -640,7 +640,7 @@ export const gestionCtaData = {
   subtitle: { fr: 'Nos experts sont disponibles pour répondre à toutes vos questions sur la modification de vos statuts.', en: 'Our experts are available to answer all your questions about amending your articles.' },
   primaryCta: {
     text: { fr: 'Modifier mes Statuts', en: 'Amend My Articles' },
-    href: '/devis?service=modification',
+    href: '/contact?service=modification',
   },
   secondaryCta: {
     text: { fr: 'Parler à un Expert', en: 'Talk to an Expert' },

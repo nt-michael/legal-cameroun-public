@@ -283,7 +283,7 @@ export const pricingTiers: PricingTier[] = [
     ],
     cta: {
       text: { fr: 'Choisir Starter', en: 'Choose Starter' },
-      href: '/devis?plan=starter',
+      href: '/contact?plan=starter',
     },
   },
   {
@@ -301,7 +301,7 @@ export const pricingTiers: PricingTier[] = [
     ],
     cta: {
       text: { fr: 'Choisir Standard', en: 'Choose Standard' },
-      href: '/devis?plan=standard',
+      href: '/contact?plan=standard',
     },
   },
   {
@@ -321,7 +321,7 @@ export const pricingTiers: PricingTier[] = [
     ],
     cta: {
       text: { fr: 'Choisir Premium', en: 'Choose Premium' },
-      href: '/devis?plan=premium',
+      href: '/contact?plan=premium',
     },
   },
 ];
@@ -341,7 +341,7 @@ export const associationPricingTiers: PricingTier[] = [
     ],
     cta: {
       text: { fr: 'Choisir Starter', en: 'Choose Starter' },
-      href: '/devis?plan=starter&type=association',
+      href: '/contact?plan=starter&type=association',
     },
   },
   {
@@ -358,7 +358,7 @@ export const associationPricingTiers: PricingTier[] = [
     ],
     cta: {
       text: { fr: 'Choisir Standard', en: 'Choose Standard' },
-      href: '/devis?plan=standard&type=association',
+      href: '/contact?plan=standard&type=association',
     },
   },
   {
@@ -377,7 +377,7 @@ export const associationPricingTiers: PricingTier[] = [
     ],
     cta: {
       text: { fr: 'Choisir Premium', en: 'Choose Premium' },
-      href: '/devis?plan=premium&type=association',
+      href: '/contact?plan=premium&type=association',
     },
   },
 ];
@@ -399,7 +399,7 @@ export const etablissementPricingTiers: PricingTier[] = [
     ],
     cta: {
       text: { fr: 'Choisir Starter', en: 'Choose Starter' },
-      href: '/devis?plan=starter&type=etablissement',
+      href: '/contact?plan=starter&type=etablissement',
     },
   },
   {
@@ -416,7 +416,7 @@ export const etablissementPricingTiers: PricingTier[] = [
     ],
     cta: {
       text: { fr: 'Choisir Standard', en: 'Choose Standard' },
-      href: '/devis?plan=standard&type=etablissement',
+      href: '/contact?plan=standard&type=etablissement',
     },
   },
   {
@@ -433,7 +433,7 @@ export const etablissementPricingTiers: PricingTier[] = [
     ],
     cta: {
       text: { fr: 'Choisir Premium', en: 'Choose Premium' },
-      href: '/devis?plan=premium&type=etablissement',
+      href: '/contact?plan=premium&type=etablissement',
     },
   },
 ];
@@ -989,7 +989,7 @@ export const hubHero = {
   description: { fr: 'SASU, SAS, SARL, SARLU, SCI, Établissement commercial... +15 000 entrepreneurs accompagnés depuis 8 ans par des juristes basés au Cameroun.', en: 'SASU, SAS, SARL, SARLU, SCI, Commercial establishment... 15,000+ entrepreneurs supported for 8 years by lawyers based in Cameroon.' },
   primaryCta: {
     text: { fr: 'C\'est parti ! Démarrer le questionnaire', en: 'Let\'s go! Start the questionnaire' },
-    href: '/devis',
+    href: '/contact?sujet=creation',
   },
   secondaryCta: {
     text: { fr: 'Comparateur de Statuts', en: 'Legal Form Comparator' },

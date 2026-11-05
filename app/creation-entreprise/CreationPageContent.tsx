@@ -91,7 +91,7 @@ export default function CreationPageContent() {
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link
-                href="/devis"
+                href="/contact?sujet=creation"
                 className="inline-flex items-center justify-center gap-2 bg-white text-primary-600 px-8 py-4 rounded-xl font-semibold text-lg hover:bg-primary-50 transition-all duration-300 hover:scale-105"
               >
                 {pageText.ctaPrimary[language]}

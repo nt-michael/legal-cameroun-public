@@ -88,7 +88,7 @@ export default function SasVersSarlContent() {
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
-                href="/devis?service=sas-sarl"
+                href="/contact?service=sas-sarl"
                 className="inline-flex items-center justify-center gap-2 bg-white text-primary-600 px-8 py-4 rounded-xl font-semibold hover:bg-primary-50 transition-all duration-300 shadow-lg"
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -209,7 +209,7 @@ export default function SasVersSarlContent() {
             {gestionCtaData.subtitle[language]}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/devis?service=sas-sarl" className="btn-primary">
+            <Link href="/contact?service=sas-sarl" className="btn-primary">
               {pageText.ctaPrimary[language]}
             </Link>
             <Link href={gestionCtaData.secondaryCta.href} className="btn-secondary">

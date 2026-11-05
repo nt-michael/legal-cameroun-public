@@ -92,7 +92,7 @@ export default function GestionPageContent() {
             {/* CTAs */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
               <Link
-                href="/devis?service=modification"
+                href="/contact?service=modification"
                 className="inline-flex items-center justify-center gap-2 bg-white text-primary-600 px-8 py-4 rounded-xl font-semibold hover:bg-primary-50 transition-all duration-300 shadow-lg"
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

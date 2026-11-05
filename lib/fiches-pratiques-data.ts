@@ -75,7 +75,7 @@ export const fichesHubData = {
         fr: 'Demander un devis',
         en: 'Request a quote',
       },
-      href: '/devis',
+      href: '/contact#formulaire',
     },
   },
 };
@@ -164,7 +164,7 @@ export const fichesPratiques: FichePratique[] = [
       fr: 'Obtenir un accompagnement personnalisé',
       en: 'Get personalized support',
     },
-    ctaButtonHref: '/devis',
+    ctaButtonHref: '/contact#formulaire',
   },
   {
     slug: 'presentation-societe-etablissement',
@@ -430,7 +430,7 @@ export const fichesPratiques: FichePratique[] = [
       fr: 'Demander assistance personnalisée',
       en: 'Request personalized assistance',
     },
-    ctaButtonHref: '/devis',
+    ctaButtonHref: '/contact#formulaire',
   },
   {
     slug: 'tutoriel-consultation',

@@ -44,7 +44,7 @@ const menuSections: FooterSection[] = [
     name: { fr: 'Accompagnement', en: 'Support' },
     href: '/prendre-un-rendez-vous',
     rubriques: [
-      { name: { fr: 'Devis', en: 'Quote' }, href: '/devis' },
+      { name: { fr: 'Devis', en: 'Quote' }, href: '/contact#formulaire' },
       { name: { fr: 'Avec un expert', en: 'With an Expert' }, href: '/prendre-un-rendez-vous' },
       { name: { fr: 'Assistance LegalCameroun', en: 'LegalCameroun Assistance' }, href: '/contact' },
     ],

@@ -59,7 +59,7 @@ const menuItems: MenuItem[] = [
     href: '/prendre-un-rendez-vous',
     accent: 'border-section-accompagnement',
     rubriques: [
-      { name: { fr: 'Devis', en: 'Quote' }, href: '/devis' },
+      { name: { fr: 'Devis', en: 'Quote' }, href: '/contact#formulaire' },
       { name: { fr: 'Avec un expert', en: 'With an Expert' }, href: '/prendre-un-rendez-vous' },
       { name: { fr: 'Assistance LegalCameroun', en: 'LegalCameroun Assistance' }, href: '/contact' },
     ],
@@ -369,7 +369,7 @@ export default function Header() {
                 {t.nav.appointment}
               </Link>
               {/* Main action in the charter's gold, readable on the dark blue bar */}
-              <Link href="/devis" className="btn-gold text-sm">
+              <Link href="/contact?sujet=creation" className="btn-gold text-sm">
                 {createCompanyLabel[language]}
               </Link>
             </div>
@@ -514,7 +514,7 @@ export default function Header() {
             </div>
 
             <Link
-              href="/devis"
+              href="/contact?sujet=creation"
               className="btn-gold w-full mt-4 text-center"
               onClick={() => setIsMobileMenuOpen(false)}
             >

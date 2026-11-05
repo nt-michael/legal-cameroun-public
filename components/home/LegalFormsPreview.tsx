@@ -74,7 +74,7 @@ export default function LegalFormsPreview() {
         </div>
 
         <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
-          <Link href="/devis" className="btn-primary">
+          <Link href="/contact?sujet=creation" className="btn-primary">
             {sectionText.quote[language]}
           </Link>
           <p className="text-gray-600 dark:text-gray-300">

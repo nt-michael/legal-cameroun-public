@@ -100,7 +100,7 @@ const creationRows: PriceRow[] = legalForms.map((form) => {
     price: tier.price,
     note: tier.period,
     detailHref: form.href,
-    ctaHref: `/devis?type=${devisType}`,
+    ctaHref: `/contact?type=${devisType}`,
     ctaText: pageText.quote,
   };
 });
@@ -116,7 +116,7 @@ const gestionRows: PriceRow[] = [
       price: lowestPrice(pricing.tiers),
       note: taxNote(pricing.tiers[0]),
       detailHref: operation.href,
-      ctaHref: `/devis?service=${pricing.service}`,
+      ctaHref: `/contact?service=${pricing.service}`,
       ctaText: pageText.quote,
     };
   }),
@@ -127,7 +127,7 @@ const gestionRows: PriceRow[] = [
     price: lowestPrice(hubPricingTiers),
     note: taxNote(hubPricingTiers[0]),
     detailHref: '/modification-entreprise',
-    ctaHref: '/devis?service=modification',
+    ctaHref: '/contact?service=modification',
     ctaText: pageText.quote,
   },
 ];
@@ -140,7 +140,7 @@ function accompagnementRows(consultationPrice: number | null): PriceRow[] {
       description: { fr: 'Sans engagement, envoyé par e-mail sous 48h.', en: 'No commitment, emailed within 48h.' },
       price: null,
       priceLabel: pageText.free,
-      ctaHref: '/devis',
+      ctaHref: '/contact#formulaire',
       ctaText: pageText.ctaPrimary,
     },
     {
@@ -245,7 +245,7 @@ export default function TarifsPageContent({ consultationPrice }: { consultationP
             <p className="text-gray-300 mb-6 max-w-xl mx-auto">{pageText.ctaText[language]}</p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <Link
-                href="/devis"
+                href="/contact#formulaire"
                 className="btn-gold"
               >
                 {pageText.ctaPrimary[language]}

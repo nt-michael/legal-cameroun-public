@@ -6,6 +6,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { contactSubjects, formLabels } from '@/lib/contact-data';
 import { useLanguage } from '@/contexts/LanguageContext';
+import type { ContactPrefill } from '@/lib/contact-prefill';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -25,7 +26,7 @@ interface FormErrors {
   message?: string;
 }
 
-export default function ContactForm() {
+export default function ContactForm({ prefill }: { prefill?: ContactPrefill }) {
   const sectionRef = useRef<HTMLElement>(null);
   const formRef = useRef<HTMLFormElement>(null);
   const successRef = useRef<HTMLDivElement>(null);
@@ -35,8 +36,9 @@ export default function ContactForm() {
     fullName: '',
     email: '',
     phone: '',
-    subject: '',
-    message: '',
+    // Pre-filled from the quote button the visitor clicked; still fully editable
+    subject: prefill?.subject ?? '',
+    message: prefill?.message ?? '',
   });
   const [errors, setErrors] = useState<FormErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -46,6 +48,17 @@ export default function ContactForm() {
   const [submitError, setSubmitError] = useState('');
   const [consent, setConsent] = useState(false);
   const [consentError, setConsentError] = useState('');
+
+  // Coming from a quote button: bring the form into view, after the page has settled at the top
+  const focusForm = prefill?.focusForm ?? false;
+  useEffect(() => {
+    if (!focusForm) return;
+    const timer = setTimeout(() => {
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      sectionRef.current?.scrollIntoView({ block: 'start', behavior: reduceMotion ? 'auto' : 'smooth' });
+    }, 150);
+    return () => clearTimeout(timer);
+  }, [focusForm]);
 
   useEffect(() => {
     const section = sectionRef.current;

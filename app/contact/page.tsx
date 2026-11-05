@@ -1,5 +1,7 @@
 import { Metadata } from 'next';
 import ContactPageContent from './ContactPageContent';
+import { getRequestLanguage } from '@/lib/lang';
+import { contactPrefill } from '@/lib/contact-prefill';
 import { createPageMetadata } from '@/lib/seo-utils';
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -56,6 +58,12 @@ export async function generateMetadata(): Promise<Metadata> {
   });
 }
 
-export default function ContactPage() {
-  return <ContactPageContent />;
+export default async function ContactPage({
+  searchParams,
+}: {
+  searchParams: Promise<Record<string, string | string[] | undefined>>;
+}) {
+  // Quote buttons across the site land here with the offer they came from
+  const prefill = contactPrefill(await searchParams, await getRequestLanguage());
+  return <ContactPageContent prefill={prefill} />;
 }

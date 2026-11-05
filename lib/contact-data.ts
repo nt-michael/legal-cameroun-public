@@ -53,7 +53,7 @@ export const contactHeroData = {
     },
     {
       text: { fr: 'Demander un Devis Personnalisé', en: 'Request a Custom Quote' } as BilingualText,
-      href: '/devis',
+      href: '#formulaire',
       variant: 'secondary',
       icon: 'document',
     },

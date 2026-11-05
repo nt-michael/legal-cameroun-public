@@ -379,6 +379,6 @@ export const finalCtaData = {
       fr: 'Obtenir un devis personnalisé',
       en: 'Get a personalized quote',
     } as BilingualText,
-    href: '/devis',
+    href: '/contact#formulaire',
   },
 };
