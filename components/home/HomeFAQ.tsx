@@ -58,8 +58,8 @@ const items: FAQItem[] = [
       en: 'Is the quote free?',
     },
     answer: {
-      fr: 'Oui. Le questionnaire en ligne et le devis sont gratuits. Seule la consultation avec un expert est payante.',
-      en: 'Yes. The online questionnaire and the quote are free. Only a consultation with an expert is paid.',
+      fr: 'Oui. Le questionnaire en ligne et le devis sont gratuits. Un juriste vous envoie votre devis par e-mail sous 48h. Seule la consultation avec un expert est payante.',
+      en: 'Yes. The online questionnaire and the quote are free. A lawyer emails you the quote within 48 hours. Only a consultation with an expert is paid.',
     },
   },
 ];

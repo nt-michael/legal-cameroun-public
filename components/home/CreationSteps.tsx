@@ -11,8 +11,8 @@ const steps = [
     icon: '9ICONE_BICHROME.svg',
     title: { fr: 'Demandez votre devis', en: 'Request your quote' },
     description: {
-      fr: 'Répondez à quelques questions et recevez une proposition détaillée sous 48h.',
-      en: 'Answer a few questions and receive a detailed proposal within 48 hours.',
+      fr: 'Répondez à quelques questions. Un juriste vous envoie votre devis personnalisé par e-mail sous 48h.',
+      en: 'Answer a few questions. A lawyer emails you a personalized quote within 48 hours.',
     },
   },
   {

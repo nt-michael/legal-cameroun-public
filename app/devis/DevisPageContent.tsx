@@ -9,8 +9,8 @@ const pageText = {
   badge: { fr: '100% Gratuit & Sans Engagement', en: '100% Free & No Commitment' },
   title: { fr: 'Demandez Votre Devis Personnalisé', en: 'Request Your Personalized Quote' },
   subtitle: {
-    fr: 'Répondez à quelques questions et recevez une proposition détaillée sous 48h. Nos experts vous accompagnent dans votre projet.',
-    en: 'Answer a few questions and receive a detailed proposal within 48 hours. Our experts will guide you through your project.',
+    fr: 'Répondez à quelques questions. Un juriste vous envoie votre devis personnalisé par e-mail sous 48h.',
+    en: 'Answer a few questions. A lawyer emails you a personalized quote within 48 hours.',
   },
   loading: { fr: 'Chargement du formulaire...', en: 'Loading form...' },
   stat1Label: { fr: 'Entrepreneurs accompagnés', en: 'Entrepreneurs supported' },
@@ -20,7 +20,7 @@ const pageText = {
   reassuranceTitle: { fr: 'Votre devis en toute sérénité', en: 'Your quote, worry-free' },
   reassurance: [
     { fr: 'Gratuit et sans engagement', en: 'Free and no commitment' },
-    { fr: 'Réponse sous 48h', en: 'Answer within 48h' },
+    { fr: 'Devis par e-mail sous 48h', en: 'Quote by email within 48h' },
     { fr: 'Informations confidentielles', en: 'Confidential information' },
   ],
   helpTitle: { fr: 'Une question sur votre projet ?', en: 'A question about your project?' },

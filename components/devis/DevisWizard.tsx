@@ -28,8 +28,8 @@ const devisText = {
   // Success state
   successTitle: { fr: 'Demande Envoyée !', en: 'Request Sent!' },
   successMessage: {
-    fr: 'Merci pour votre demande. Notre équipe vous contactera sous 48h pour discuter de votre projet.',
-    en: 'Thank you for your request. Our team will contact you within 48 hours to discuss your project.',
+    fr: 'Merci pour votre demande. Un juriste vous envoie votre devis personnalisé par e-mail sous 48h.',
+    en: 'Thank you for your request. A lawyer will email you a personalized quote within 48 hours.',
   },
   bookNow: { fr: 'Prendre RDV Maintenant', en: 'Book Appointment Now' },
   newRequest: { fr: 'Nouvelle Demande', en: 'New Request' },
@@ -37,8 +37,8 @@ const devisText = {
   // Step 0: Welcome
   welcomeTitle: { fr: 'Obtenez Votre Devis Gratuit', en: 'Get Your Free Quote' },
   welcomeSubtitle: {
-    fr: 'Répondez à quelques questions pour recevoir un devis personnalisé sous 48h.',
-    en: 'Answer a few questions to receive a personalized quote within 48 hours.',
+    fr: 'Répondez à quelques questions pour recevoir votre devis personnalisé par e-mail sous 48h.',
+    en: 'Answer a few questions to receive your personalized quote by email within 48 hours.',
   },
   // Help lines shown under the questions where visitors hesitate most
   legalFormHint: { fr: "Vous hésitez ? Choisissez « Autre » : un expert vous conseillera.", en: "Not sure? Choose “Other”: an expert will advise you." },

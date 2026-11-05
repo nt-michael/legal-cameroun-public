@@ -42,8 +42,8 @@ const pageText = {
   free: { fr: 'Gratuit', en: 'Free' },
   ctaTitle: { fr: 'Vous ne savez pas quelle offre choisir ?', en: 'Not sure which plan to choose?' },
   ctaText: {
-    fr: 'Répondez à quelques questions et recevez une proposition détaillée sous 48h.',
-    en: 'Answer a few questions and receive a detailed proposal within 48 hours.',
+    fr: 'Répondez à quelques questions. Un juriste vous envoie votre devis personnalisé par e-mail sous 48h.',
+    en: 'Answer a few questions. A lawyer emails you a personalized quote within 48 hours.',
   },
   ctaPrimary: { fr: 'Obtenir mon devis gratuit', en: 'Get my free quote' },
   ctaSecondary: { fr: 'Prendre rendez-vous', en: 'Book an appointment' },
@@ -136,7 +136,7 @@ function accompagnementRows(consultationPrice: number | null): PriceRow[] {
     {
       id: 'devis',
       name: { fr: 'Devis personnalisé', en: 'Personalized quote' },
-      description: { fr: 'Sans engagement, réponse sous 48h.', en: 'No commitment, answer within 48h.' },
+      description: { fr: 'Sans engagement, envoyé par e-mail sous 48h.', en: 'No commitment, emailed within 48h.' },
       price: null,
       priceLabel: pageText.free,
       ctaHref: '/devis',
