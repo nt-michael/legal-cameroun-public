@@ -229,6 +229,7 @@ export const formLabels = {
     en: 'Please accept the processing of your data to send your message',
   } as BilingualText,
   submit: { fr: 'Envoyer mon message', en: 'Send My Message' } as BilingualText,
+  responsePromise: { fr: 'Réponse sous 48h (souvent plus rapide !)', en: 'Answer within 48h (often faster!)' } as BilingualText,
   submitting: { fr: 'Envoi en cours...', en: 'Sending...' } as BilingualText,
   successTitle: { fr: 'Merci !', en: 'Thank You!' } as BilingualText,
   successMessage: { fr: 'Un expert vous contacte sous 48h.', en: 'An expert will contact you within 48h.' } as BilingualText,

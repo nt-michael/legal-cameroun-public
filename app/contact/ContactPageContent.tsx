@@ -30,11 +30,8 @@ export default function ContactPageContent() {
       {/* Hero Section with Quick Actions */}
       <ContactHero />
 
-      {/* Why Contact Us Section */}
-      <WhyContactUs />
-
       {/* Contact Form and Offices Grid */}
-      <section className="py-16 lg:py-24 bg-gray-50 dark:bg-gray-900">
+      <section className="pt-10 pb-16 lg:pt-12 lg:pb-24 bg-gray-50 dark:bg-gray-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-start">
             {/* Quick Info Sidebar - Now on the left */}
@@ -119,6 +116,9 @@ export default function ContactPageContent() {
           </div>
         </div>
       </section>
+
+      {/* Reasons come after the form: visitors who came to write can do it straight away */}
+      <WhyContactUs />
 
       {/* Offices Section */}
       <ContactOffices />

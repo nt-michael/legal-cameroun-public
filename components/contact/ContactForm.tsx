@@ -259,7 +259,7 @@ export default function ContactForm() {
   }
 
   return (
-    <section ref={sectionRef} className="py-16 lg:py-24 bg-gray-50 dark:bg-gray-900 relative overflow-hidden">
+    <section ref={sectionRef} className="bg-gray-50 dark:bg-gray-900 relative overflow-hidden">
       {/* Subtle pattern background */}
       <div className="absolute inset-0 opacity-5">
         <svg className="w-full h-full" viewBox="0 0 800 800">
@@ -492,6 +492,12 @@ export default function ContactForm() {
                 </>
               )}
             </button>
+            <p className="mt-3 flex items-center justify-center gap-2 text-sm text-gray-500 dark:text-gray-400">
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              {formLabels.responsePromise[language]}
+            </p>
           </div>
         </form>
       </div>
