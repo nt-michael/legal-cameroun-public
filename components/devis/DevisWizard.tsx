@@ -40,6 +40,14 @@ const devisText = {
     fr: 'Répondez à quelques questions pour recevoir un devis personnalisé sous 48h.',
     en: 'Answer a few questions to receive a personalized quote within 48 hours.',
   },
+  // Help lines shown under the questions where visitors hesitate most
+  legalFormHint: { fr: "Vous hésitez ? Choisissez « Autre » : un expert vous conseillera.", en: "Not sure? Choose “Other”: an expert will advise you." },
+  timelineHint: { fr: "Le délai de 3 semaines est réservé à la formule Premium.", en: "The 3-week timeline is only available with the Premium plan." },
+  businessObjectHint: { fr: "Une phrase suffit. Nous la reformulerons dans vos statuts.", en: "One sentence is enough. We will word it properly in your articles." },
+  capitalHint: { fr: "Un montant approximatif suffit à ce stade.", en: "An approximate amount is enough for now." },
+  associatesCountHint: { fr: "Comptez-vous parmi les associés.", en: "Include yourself in the count." },
+  nonAssociateManagersHint: { fr: "Un administrateur non-associé dirige la société sans en détenir de parts ni d'actions.", en: "A non-partner manager runs the company without holding any shares." },
+  serviceHint: { fr: "Votre cas n'est pas dans la liste ? Choisissez « Modification des statuts ».", en: "Your case is not listed? Choose “Amendment of articles”." },
   welcomeConfidential: {
     fr: 'Vos informations sont confidentielles et sécurisées.',
     en: 'Your information is confidential and secure.',
@@ -625,6 +633,7 @@ export default function DevisWizard() {
                 <div>
                   <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
                     {devisText.legalFormLabel[language]}
+                    <span className="block mt-1 text-xs font-normal text-gray-500 dark:text-gray-400">{devisText.legalFormHint[language]}</span>
                   </label>
                   <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                     {companyTypes.map(type => (
@@ -650,6 +659,7 @@ export default function DevisWizard() {
                 <div>
                   <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
                     {devisText.timelineLabel[language]}
+                    <span className="block mt-1 text-xs font-normal text-gray-500 dark:text-gray-400">{devisText.timelineHint[language]}</span>
                   </label>
                   <div className="space-y-3">
                     {timelineOptions.map(option => (
@@ -694,6 +704,7 @@ export default function DevisWizard() {
                 <div>
                   <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                     {devisText.businessObjectLabel[language]}
+                    <span className="block mt-1 text-xs font-normal text-gray-500 dark:text-gray-400">{devisText.businessObjectHint[language]}</span>
                   </label>
                   <textarea
                     value={formData.businessObject}
@@ -716,6 +727,7 @@ export default function DevisWizard() {
                   <div>
                     <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                       {devisText.capitalLabel[language]}
+                      <span className="block mt-1 text-xs font-normal text-gray-500 dark:text-gray-400">{devisText.capitalHint[language]}</span>
                     </label>
                     <input
                       type="number"
@@ -796,6 +808,7 @@ export default function DevisWizard() {
                 <div>
                   <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                     {devisText.associatesCountLabel[language]}
+                    <span className="block mt-1 text-xs font-normal text-gray-500 dark:text-gray-400">{devisText.associatesCountHint[language]}</span>
                   </label>
                   <input
                     type="number"
@@ -811,6 +824,7 @@ export default function DevisWizard() {
                 <div>
                   <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
                     {devisText.nonAssociateManagersLabel[language]}
+                    <span className="block mt-1 text-xs font-normal text-gray-500 dark:text-gray-400">{devisText.nonAssociateManagersHint[language]}</span>
                   </label>
                   <div className="flex gap-4">
                     <button
@@ -1028,6 +1042,7 @@ export default function DevisWizard() {
                 <div>
                   <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
                     {devisText.serviceLabel[language]}
+                    <span className="block mt-1 text-xs font-normal text-gray-500 dark:text-gray-400">{devisText.serviceHint[language]}</span>
                   </label>
                   <div className="grid sm:grid-cols-2 gap-3">
                     {Object.entries(modificationServices).map(([value, label]) => (

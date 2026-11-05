@@ -1,6 +1,7 @@
 'use client';
 
 import { Suspense } from 'react';
+import Link from 'next/link';
 import { useLanguage } from '@/contexts/LanguageContext';
 import DevisWizard from '@/components/devis/DevisWizard';
 
@@ -16,7 +17,21 @@ const pageText = {
   stat2Label: { fr: 'Délai de réponse', en: 'Response time' },
   stat3Label: { fr: 'Experts', en: 'Experts' },
   stat4Label: { fr: 'Clients satisfaits', en: 'Satisfied clients' },
+  reassuranceTitle: { fr: 'Votre devis en toute sérénité', en: 'Your quote, worry-free' },
+  reassurance: [
+    { fr: 'Gratuit et sans engagement', en: 'Free and no commitment' },
+    { fr: 'Réponse sous 48h', en: 'Answer within 48h' },
+    { fr: 'Informations confidentielles', en: 'Confidential information' },
+  ],
+  helpTitle: { fr: 'Une question sur votre projet ?', en: 'A question about your project?' },
+  helpLink: { fr: 'Parler à un expert', en: 'Talk to an expert' },
 };
+
+const checkIcon = (
+  <svg className="w-4 h-4 text-section-accompagnement shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+  </svg>
+);
 
 export default function DevisPageContent() {
   const { language } = useLanguage();
@@ -48,14 +63,39 @@ export default function DevisPageContent() {
       {/* Wizard Section */}
       <section className="py-12 lg:py-16 -mt-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Suspense fallback={
-            <div className="max-w-3xl mx-auto bg-white dark:bg-gray-800 rounded-3xl shadow-xl p-12 text-center">
-              <div className="w-12 h-12 border-4 border-primary-600 border-t-transparent rounded-full animate-spin mx-auto mb-4" />
-              <p className="text-gray-600 dark:text-gray-300">{pageText.loading[language]}</p>
+          {/* The reassurance stays in view at every step: beside the form on desktop, above it on mobile */}
+          <div className="flex flex-col gap-6 lg:flex-row-reverse lg:items-start lg:justify-center lg:gap-8">
+            <aside className="lg:w-72 lg:shrink-0 lg:sticky lg:top-28">
+              <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-700 p-4 lg:p-6">
+                <p className="hidden lg:block font-bold text-gray-900 dark:text-white mb-4">{pageText.reassuranceTitle[language]}</p>
+                <ul className="flex flex-wrap justify-center gap-x-5 gap-y-2 lg:block lg:space-y-3">
+                  {pageText.reassurance.map((item) => (
+                    <li key={item.fr} className="flex items-center gap-2 text-sm text-gray-700 dark:text-gray-200">
+                      {checkIcon}
+                      {item[language]}
+                    </li>
+                  ))}
+                </ul>
+                <div className="hidden lg:block mt-6 pt-5 border-t border-gray-100 dark:border-gray-700">
+                  <p className="text-sm text-gray-600 dark:text-gray-300 mb-2">{pageText.helpTitle[language]}</p>
+                  <Link href="/prendre-un-rendez-vous" className="text-sm font-medium text-primary-600 dark:text-primary-300 hover:underline">
+                    {pageText.helpLink[language]}
+                  </Link>
+                </div>
+              </div>
+            </aside>
+
+            <div className="flex-1 min-w-0 lg:max-w-3xl">
+              <Suspense fallback={
+                <div className="max-w-3xl mx-auto bg-white dark:bg-gray-800 rounded-3xl shadow-xl p-12 text-center">
+                  <div className="w-12 h-12 border-4 border-primary-600 border-t-transparent rounded-full animate-spin mx-auto mb-4" />
+                  <p className="text-gray-600 dark:text-gray-300">{pageText.loading[language]}</p>
+                </div>
+              }>
+                <DevisWizard />
+              </Suspense>
             </div>
-          }>
-            <DevisWizard />
-          </Suspense>
+          </div>
         </div>
       </section>
 
