@@ -73,10 +73,10 @@ export default function TestimonialsCarousel() {
   }, [isPaused]);
 
   return (
-    <section ref={sectionRef} className="py-20 lg:py-32 bg-gradient-to-br from-amber-50 via-orange-50 to-amber-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 overflow-hidden">
+    <section ref={sectionRef} className="py-20 lg:py-32 bg-secondary-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 overflow-hidden">
       {/* Header */}
       <div className="carousel-header max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-12">
-        <span className="inline-block px-4 py-2 bg-amber-100 dark:bg-amber-900/30 rounded-full text-amber-600 dark:text-amber-400 text-sm font-medium mb-4">
+        <span className="inline-block px-4 py-2 bg-secondary-100 dark:bg-secondary-800/30 rounded-full text-secondary-600 dark:text-secondary-400 text-sm font-medium mb-4">
           {sectionText.badge[language]}
         </span>
         <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4">
@@ -94,8 +94,8 @@ export default function TestimonialsCarousel() {
         onMouseLeave={() => setIsPaused(false)}
       >
         {/* Gradient masks */}
-        <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-amber-50 dark:from-gray-900 to-transparent z-10 pointer-events-none" />
-        <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-amber-50 dark:from-gray-900 to-transparent z-10 pointer-events-none" />
+        <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-secondary-50 dark:from-gray-900 to-transparent z-10 pointer-events-none" />
+        <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-secondary-50 dark:from-gray-900 to-transparent z-10 pointer-events-none" />
 
         <div
           ref={carouselRef}
@@ -105,10 +105,10 @@ export default function TestimonialsCarousel() {
           {duplicatedTestimonials.map((testimonial, index) => (
             <div
               key={`${testimonial.author}-${index}`}
-              className="w-[350px] shrink-0 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-amber-100 dark:border-gray-700"
+              className="w-[350px] shrink-0 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-secondary-100 dark:border-gray-700"
             >
               {/* Quote icon */}
-              <div className="w-10 h-10 bg-amber-100 dark:bg-amber-900/30 rounded-xl flex items-center justify-center text-amber-500 mb-4">
+              <div className="w-10 h-10 bg-secondary-100 dark:bg-secondary-800/30 rounded-xl flex items-center justify-center text-secondary-500 mb-4">
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
                 </svg>
@@ -121,7 +121,7 @@ export default function TestimonialsCarousel() {
 
               {/* Author */}
               <div className="flex items-center gap-3">
-                <div className="w-12 h-12 bg-gradient-to-br from-amber-400 to-orange-500 rounded-full flex items-center justify-center text-white font-bold text-lg">
+                <div className="w-12 h-12 bg-gradient-to-br from-secondary-400 to-orange-500 rounded-full flex items-center justify-center text-white font-bold text-lg">
                   {testimonial.author.charAt(0)}
                 </div>
                 <div>
@@ -140,7 +140,7 @@ export default function TestimonialsCarousel() {
 
       {/* Pause indicator */}
       <div className="text-center mt-8">
-        <span className={`inline-flex items-center gap-2 text-sm ${isPaused ? 'text-amber-600 dark:text-amber-400' : 'text-gray-400 dark:text-gray-500'}`}>
+        <span className={`inline-flex items-center gap-2 text-sm ${isPaused ? 'text-secondary-600 dark:text-secondary-400' : 'text-gray-400 dark:text-gray-500'}`}>
           {isPaused ? (
             <>
               <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">

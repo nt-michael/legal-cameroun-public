@@ -31,7 +31,7 @@ export default function ContactPageContent() {
       <ContactHero />
 
       {/* Contact Form and Offices Grid */}
-      <section className="pt-10 pb-16 lg:pt-12 lg:pb-24 bg-gray-50 dark:bg-gray-900">
+      <section className="pt-10 pb-16 lg:pt-12 lg:pb-24 bg-secondary-50/50 dark:bg-gray-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-start">
             {/* Quick Info Sidebar - Now on the left */}

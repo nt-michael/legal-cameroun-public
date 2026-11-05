@@ -32,7 +32,7 @@ const iconMap: Record<string, React.ReactNode> = {
 
 const cardColors = [
   // Gold/secondary warmth
-  { bg: 'from-amber-50 to-amber-100', border: 'border-amber-200', hover: 'hover:border-amber-400', icon: 'text-amber-700', darkBg: 'dark:from-amber-900/20 dark:to-amber-800/20', darkBorder: 'dark:border-amber-800' },
+  { bg: 'from-secondary-50 to-secondary-100', border: 'border-secondary-200', hover: 'hover:border-secondary-400', icon: 'text-secondary-700', darkBg: 'dark:from-secondary-800/20 dark:to-secondary-800/20', darkBorder: 'dark:border-secondary-800' },
   // Primary deep blue
   { bg: 'from-primary-50 to-primary-100', border: 'border-primary-200', hover: 'hover:border-primary-400', icon: 'text-primary-600', darkBg: 'dark:from-primary-900/20 dark:to-primary-800/20', darkBorder: 'dark:border-primary-800' },
   // Cyan/teal (matches --section-creation #0095bb)
@@ -98,7 +98,7 @@ export default function ValuesGrid() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-20 lg:py-32 bg-gray-50 dark:bg-gray-900 relative overflow-hidden">
+    <section ref={sectionRef} className="py-20 lg:py-32 bg-secondary-50/50 dark:bg-gray-900 relative overflow-hidden">
       {/* Subtle pattern background */}
       <div className="absolute inset-0 opacity-5">
         <svg className="w-full h-full" viewBox="0 0 800 800">
