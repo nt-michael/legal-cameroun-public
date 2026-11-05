@@ -66,7 +66,7 @@ export default function GestionDocumentsChecklist({
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <span className="eyebrow">
-            Checklist
+            {language === 'fr' ? 'Liste de contrôle' : 'Checklist'}
           </span>
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4">
             {getText(title, language)}

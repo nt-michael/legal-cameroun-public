@@ -10,7 +10,7 @@ type Pole = 'creation' | 'gestion' | 'accompagnement';
 // Service areas from the brand charter, each with its own colour
 const poles: { id: Pole; name: { fr: string; en: string }; bar: string }[] = [
   { id: 'creation', name: { fr: "Création d'entreprise", en: 'Company formation' }, bar: 'bg-section-creation' },
-  { id: 'gestion', name: { fr: "Gestion d'entreprise", en: 'Company management' }, bar: 'bg-section-gestion' },
+  { id: 'gestion', name: { fr: "Modification d'entreprise", en: 'Company amendments' }, bar: 'bg-section-gestion' },
   { id: 'accompagnement', name: { fr: 'Accompagnement', en: 'Support' }, bar: 'bg-section-accompagnement' },
 ];
 

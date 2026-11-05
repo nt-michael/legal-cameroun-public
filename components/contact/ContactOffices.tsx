@@ -64,7 +64,7 @@ export default function ContactOffices() {
         {/* Header */}
         <div className="text-center mb-12">
           <span className="eyebrow">
-            Nos Coordonnées
+            {language === 'fr' ? 'Nos Coordonnées' : 'Our Contact Details'}
           </span>
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4">
             Où Nous Trouver
