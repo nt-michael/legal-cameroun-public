@@ -51,12 +51,12 @@ function AdvantagesSection({ advantages, disadvantages, language }: { advantages
         <div ref={ref} className="grid md:grid-cols-2 gap-8">
           {/* Advantages */}
           <div
-            className={`bg-green-50 dark:bg-green-900/20 rounded-2xl p-8 ${
+            className={`bg-primary-50 dark:bg-gray-800 rounded-2xl p-8 ${
               inView ? 'animate-fade-in-up' : 'opacity-0'
             }`}
           >
             <div className="flex items-center gap-3 mb-6">
-              <div className="w-12 h-12 bg-green-500 rounded-xl flex items-center justify-center text-white">
+              <div className="w-12 h-12 bg-navy rounded-xl flex items-center justify-center text-white">
                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                 </svg>
@@ -66,7 +66,7 @@ function AdvantagesSection({ advantages, disadvantages, language }: { advantages
             <ul className="space-y-3">
               {advantages.map((advantage, index) => (
                 <li key={index} className="flex items-start gap-3">
-                  <span className="w-2 h-2 bg-green-500 rounded-full mt-2 shrink-0" />
+                  <span className="w-2 h-2 bg-primary-600 rounded-full mt-2 shrink-0" />
                   <span className="text-gray-700 dark:text-gray-300">{advantage[language]}</span>
                 </li>
               ))}
@@ -76,13 +76,13 @@ function AdvantagesSection({ advantages, disadvantages, language }: { advantages
           {/* Disadvantages (if provided) */}
           {disadvantages && disadvantages.length > 0 && (
             <div
-              className={`bg-orange-50 dark:bg-orange-900/20 rounded-2xl p-8 ${
+              className={`bg-secondary-50 dark:bg-gray-800 rounded-2xl p-8 ${
                 inView ? 'animate-fade-in-up' : 'opacity-0'
               }`}
               style={{ animationDelay: '100ms' }}
             >
               <div className="flex items-center gap-3 mb-6">
-                <div className="w-12 h-12 bg-orange-500 rounded-xl flex items-center justify-center text-white">
+                <div className="w-12 h-12 bg-secondary-400 rounded-xl flex items-center justify-center text-navy-deep">
                   <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
                   </svg>
@@ -92,7 +92,7 @@ function AdvantagesSection({ advantages, disadvantages, language }: { advantages
               <ul className="space-y-3">
                 {disadvantages.map((disadvantage, index) => (
                   <li key={index} className="flex items-start gap-3">
-                    <span className="w-2 h-2 bg-orange-500 rounded-full mt-2 shrink-0" />
+                    <span className="w-2 h-2 bg-secondary-500 rounded-full mt-2 shrink-0" />
                     <span className="text-gray-700 dark:text-gray-300">{disadvantage[language]}</span>
                   </li>
                 ))}
@@ -112,7 +112,7 @@ function WhyCreateSection({ title, content, language }: { title: BilingualText; 
   });
 
   return (
-    <section className="py-16 lg:py-24 bg-gray-50 dark:bg-gray-800">
+    <section className="py-16 lg:py-24 bg-secondary-50/50 dark:bg-gray-800">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div
           ref={ref}
@@ -149,7 +149,7 @@ function RequirementsSection({ requirements, language }: { requirements: Bilingu
   });
 
   return (
-    <section className="py-16 lg:py-24 bg-gray-50 dark:bg-gray-800">
+    <section className="py-16 lg:py-24 bg-secondary-50/50 dark:bg-gray-800">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4">
@@ -170,7 +170,7 @@ function RequirementsSection({ requirements, language }: { requirements: Bilingu
             {requirements.map((requirement, index) => (
               <li
                 key={index}
-                className="flex items-center gap-3 bg-gray-50 dark:bg-gray-800 rounded-xl p-4"
+                className="flex items-center gap-3 bg-secondary-50/50 dark:bg-gray-800 rounded-xl p-4"
               >
                 <div className="w-8 h-8 bg-primary-100 dark:bg-primary-900/30 rounded-lg flex items-center justify-center text-primary-600 dark:text-primary-400 shrink-0">
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -232,7 +232,7 @@ export default function SubpageLayout({ data, pricingTiers }: SubpageLayoutProps
       />
 
       {/* Pricing */}
-      <section className="bg-gray-50 dark:bg-gray-800">
+      <section className="bg-secondary-50/50 dark:bg-gray-800">
         <PricingCards
           tiers={tiersWithType}
           title={layoutText.pricing[language]}

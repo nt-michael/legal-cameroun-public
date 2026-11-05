@@ -66,7 +66,7 @@ export default function GestionPricingCards({
   }, []);
 
   return (
-    <section ref={sectionRef} className={`py-16 lg:py-24 ${tone === 'gray' ? 'bg-gray-50 dark:bg-gray-900' : 'bg-white dark:bg-gray-800'}`}>
+    <section ref={sectionRef} className={`py-16 lg:py-24 ${tone === 'gray' ? 'bg-secondary-50/50 dark:bg-gray-900' : 'bg-white dark:bg-gray-800'}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <span className="eyebrow">
@@ -85,59 +85,57 @@ export default function GestionPricingCards({
             <div
               key={tier.name[language]}
               ref={(el) => { cardsRef.current[index] = el; }}
-              className={`relative rounded-3xl p-8 ${
-                tier.highlighted
-                  ? 'bg-gradient-to-br from-primary-600 to-primary-700 text-white shadow-2xl shadow-primary-600/30 scale-105'
-                  : `${tone === 'gray' ? 'bg-white dark:bg-gray-800' : 'bg-gray-50 dark:bg-gray-900'} border border-gray-100 dark:border-gray-700`
-              }`}
+              // Same sober card as the creation plans; the recommended one gets a gold frame and badge
+              className={`relative flex flex-col rounded-2xl p-8 bg-white dark:bg-gray-800 ${tier.highlighted ? 'border-2 border-secondary-400 shadow-xl shadow-secondary-400/20' : 'border border-gray-200 dark:border-gray-700'}`}
             >
               {tier.highlighted && (
-                <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1 bg-secondary-500 text-white text-sm font-semibold rounded-full">
+                <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1.5 bg-secondary-400 text-navy-deep text-sm font-semibold rounded-full">
                   {sectionText.recommended[language]}
                 </div>
               )}
 
               <div className="mb-6">
-                <h3 className={`text-xl font-bold mb-2 ${tier.highlighted ? 'text-white' : 'text-gray-900 dark:text-white'}`}>
+                <h3 className="text-xl font-bold mb-2 text-gray-900 dark:text-white">
                   {tier.name[language]}
                 </h3>
-                <p className={`text-sm ${tier.highlighted ? 'text-primary-100' : 'text-gray-600 dark:text-gray-400'}`}>
+                <p className="text-sm text-gray-600 dark:text-gray-400">
                   {tier.description[language]}
                 </p>
               </div>
 
               <div className="mb-6">
                 {tier.pricePrefix && (
-                  <p className={`text-sm font-medium mb-1 ${
-                    tier.highlighted ? 'text-primary-100' : 'text-gray-500 dark:text-gray-400'
-                  }`}>
+                  <p className="text-sm font-medium mb-1 text-gray-500 dark:text-gray-400">
                     {tier.pricePrefix[language]}
                   </p>
                 )}
                 <div className="flex items-baseline gap-1">
-                  <span className={`text-4xl font-bold ${tier.highlighted ? 'text-white' : 'text-gray-900 dark:text-white'}`}>
+                  <span className="text-4xl font-bold text-secondary-700 dark:text-secondary-300">
                     {tier.price}
                   </span>
+                  <span className="text-lg text-gray-500 dark:text-gray-400">FCFA</span>
                 </div>
                 {tier.priceNote && (
-                  <p className={`text-sm mt-1 ${tier.highlighted ? 'text-primary-100' : 'text-gray-500 dark:text-gray-400'}`}>
-                    {tier.priceNote[language]}
+                  <p className="text-sm mt-1 text-gray-500 dark:text-gray-400">
+                    {/* The amount already ends with FCFA, so the note drops its own "XAF" */}
+                    {tier.priceNote[language].replace(/^XAF\s+/, '')}
                   </p>
                 )}
               </div>
 
-              <ul className="space-y-3 mb-8">
+              <ul className="space-y-3 mb-8 flex-grow">
                 {tier.features.map((feature, i) => (
                   <li key={i} className="flex items-start gap-3">
                     <svg
-                      className={`w-5 h-5 shrink-0 mt-0.5 ${tier.highlighted ? 'text-primary-200' : 'text-green-500'}`}
+                      className="w-5 h-5 shrink-0 mt-0.5 text-secondary-500"
+                      aria-hidden="true"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
                     >
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
-                    <span className={tier.highlighted ? 'text-white' : 'text-gray-700 dark:text-gray-300'}>
+                    <span className="text-gray-700 dark:text-gray-300">
                       {feature[language]}
                     </span>
                   </li>
@@ -146,11 +144,7 @@ export default function GestionPricingCards({
 
               <Link
                 href={tier.ctaHref}
-                className={`block w-full py-3 px-6 rounded-xl font-semibold text-center transition-all duration-300 ${
-                  tier.highlighted
-                    ? 'bg-white text-primary-600 hover:bg-primary-50'
-                    : 'bg-primary-600 text-white hover:bg-primary-700'
-                }`}
+                className={tier.highlighted ? 'btn-gold w-full py-3' : 'block w-full text-center py-3 px-6 rounded-lg font-semibold border-2 border-primary-600 text-primary-600 hover:bg-primary-600 hover:text-white transition-colors'}
               >
                 {tier.ctaText[language]}
               </Link>
@@ -160,8 +154,8 @@ export default function GestionPricingCards({
 
         {note && (
           <div className="mt-8 text-center">
-            <p className="text-sm text-gray-500 dark:text-gray-400 bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-xl px-6 py-3 inline-block">
-              <svg className="w-4 h-4 inline mr-2 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <p className="text-sm text-gray-600 dark:text-gray-400 bg-secondary-50 dark:bg-gray-800 border border-secondary-200 dark:border-gray-700 rounded-xl px-6 py-3 inline-block">
+              <svg className="w-4 h-4 inline mr-2 text-secondary-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
               {getText(note, language)}
