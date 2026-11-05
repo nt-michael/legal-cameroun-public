@@ -180,8 +180,8 @@ export default function FichePageTemplate({ fiche }: FichePageTemplateProps) {
         }}
       >
         {/* Decorative elements */}
-        <div className="absolute top-10 right-10 w-64 h-64 bg-primary-500/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-10 left-10 w-48 h-48 bg-primary-400/10 rounded-full blur-2xl" />
+        <div className="absolute top-10 right-10 w-64 h-64 bg-primary-500/10 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute bottom-10 left-10 w-48 h-48 bg-primary-400/10 rounded-full blur-2xl pointer-events-none" />
 
         <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Breadcrumb */}

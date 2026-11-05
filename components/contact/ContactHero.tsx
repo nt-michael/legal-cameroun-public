@@ -150,8 +150,8 @@ export default function ContactHero() {
       </div>
 
       {/* Decorative elements */}
-      <div className="absolute top-20 right-20 w-64 h-64 bg-primary-500/10 rounded-full blur-3xl" />
-      <div className="absolute bottom-20 left-20 w-48 h-48 bg-primary-400/10 rounded-full blur-2xl" />
+      <div className="absolute top-20 right-20 w-64 h-64 bg-primary-500/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-20 left-20 w-48 h-48 bg-primary-400/10 rounded-full blur-2xl pointer-events-none" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 lg:py-10 w-full">
         {/* Text on the left, shortcuts stacked on the right: a shorter hero, so the form shows sooner */}

@@ -128,8 +128,8 @@ export default function PostContent({ post, url, relatedPosts = [], comments = [
         {/* Decorative elements */}
         {!hasHeroImage && (
           <>
-            <div className="absolute top-0 right-0 w-64 h-64 bg-primary-500/10 rounded-full blur-3xl" />
-            <div className="absolute bottom-0 left-0 w-96 h-96 bg-secondary-500/10 rounded-full blur-3xl" />
+            <div className="absolute top-0 right-0 w-64 h-64 bg-primary-500/10 rounded-full blur-3xl pointer-events-none" />
+            <div className="absolute bottom-0 left-0 w-96 h-96 bg-secondary-500/10 rounded-full blur-3xl pointer-events-none" />
           </>
         )}
       </section>

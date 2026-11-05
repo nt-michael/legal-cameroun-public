@@ -37,8 +37,8 @@ export default function ActualiteHero() {
       </div>
 
       {/* Decorative elements */}
-      <div className="absolute top-20 right-20 w-32 h-32 bg-primary-500/20 rounded-full blur-3xl" />
-      <div className="absolute bottom-20 left-20 w-24 h-24 bg-primary-400/20 rounded-full blur-2xl" />
+      <div className="absolute top-20 right-20 w-32 h-32 bg-primary-500/20 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-20 left-20 w-24 h-24 bg-primary-400/20 rounded-full blur-2xl pointer-events-none" />
 
       <div ref={heroRef} className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         {/* Badge */}

@@ -47,8 +47,8 @@ export default function FichesHero() {
       }}
     >
       {/* Decorative elements */}
-      <div className="absolute top-10 right-10 w-64 h-64 bg-primary-500/10 rounded-full blur-3xl" />
-      <div className="absolute bottom-10 left-10 w-48 h-48 bg-primary-400/10 rounded-full blur-2xl" />
+      <div className="absolute top-10 right-10 w-64 h-64 bg-primary-500/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-10 left-10 w-48 h-48 bg-primary-400/10 rounded-full blur-2xl pointer-events-none" />
 
       {/* Illustration */}
       <div className="absolute right-0 top-1/2 -translate-y-1/2 opacity-10 lg:opacity-20 pointer-events-none">

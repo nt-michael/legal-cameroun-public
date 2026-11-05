@@ -135,7 +135,7 @@ export default function AboutHero() {
       </div>
 
       {/* Decorative elements */}
-      <div className="hero-float absolute top-20 left-10 w-32 h-32 bg-primary-500/10 rounded-full blur-2xl" />
+      <div className="hero-float absolute top-20 left-10 w-32 h-32 bg-primary-500/10 rounded-full blur-2xl pointer-events-none" />
       <div className="hero-float absolute bottom-32 right-20 w-48 h-48 bg-primary-400/10 rounded-full blur-3xl" style={{ animationDelay: '1s' }} />
       <div className="hero-float absolute top-1/2 left-1/4 w-24 h-24 bg-primary-600/10 rounded-full blur-xl" style={{ animationDelay: '0.5s' }} />
 
