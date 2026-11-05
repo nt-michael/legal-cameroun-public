@@ -71,6 +71,7 @@ const navigation: NavItem[] = [
   { name: { fr: 'Nos Offres', en: 'Our Services' }, href: '#', dropdown: 'offers' },
   { name: { fr: 'Tarifs', en: 'Pricing' }, href: '/tarifs' },
   { name: { fr: 'À propos', en: 'About' }, href: '/a-propos' },
+  { name: { fr: 'Actualité', en: 'Blog' }, href: '/actualite' },
   { name: { fr: 'Ressources', en: 'Resources' }, href: '#', dropdown: 'resources' },
   { name: { fr: 'Contact', en: 'Contact' }, href: '/contact' },
 ];
@@ -78,7 +79,6 @@ const navigation: NavItem[] = [
 const resourceLinks: MenuRubrique[] = [
   { name: { fr: 'Fiches pratiques', en: 'Practical guides' }, href: '/fiches-pratiques' },
   { name: { fr: 'Simulateurs', en: 'Simulators' }, href: '/simulateurs' },
-  { name: { fr: 'Actualité', en: 'Blog' }, href: '/actualite' },
 ];
 
 const megaMenuBottom = {
@@ -296,7 +296,7 @@ export default function Header() {
             <div className="flex items-center gap-3">
               <Link
                 href="/prendre-un-rendez-vous"
-                className={`inline-flex items-center rounded-lg border-2 px-4 py-2 text-sm font-semibold transition-colors ${
+                className={`hidden xl:inline-flex items-center rounded-lg border-2 px-4 py-2 text-sm font-semibold transition-colors ${
                   isSolid
                     ? 'border-primary-600 text-primary-600 hover:bg-primary-600 hover:text-white dark:border-primary-300 dark:text-primary-300'
                     : 'border-white/40 text-white hover:bg-white hover:text-gray-900'
