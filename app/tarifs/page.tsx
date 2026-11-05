@@ -27,8 +27,15 @@ export async function generateMetadata(): Promise<Metadata> {
   });
 }
 
+// The price is a bonus on this page: never make the visitor wait more than a few seconds for it
+const PRICE_TIMEOUT_MS = 3000;
+
 export default async function TarifsPage() {
-  // Same source as the booking page: null when WooCommerce is unavailable, and the row then shows no amount
-  const consultationPrice = await getProductPrice(Number(process.env.CONSULTATION_PRODUCT_ID)).catch(() => null);
+  // Same source as the booking page: null when WooCommerce is slow or unavailable, and the row then shows no amount
+  const timeout = new Promise<null>((resolve) => setTimeout(() => resolve(null), PRICE_TIMEOUT_MS));
+  const consultationPrice = await Promise.race([
+    getProductPrice(Number(process.env.CONSULTATION_PRODUCT_ID)).catch(() => null),
+    timeout,
+  ]);
   return <TarifsPageContent consultationPrice={consultationPrice} />;
 }
