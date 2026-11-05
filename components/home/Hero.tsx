@@ -19,20 +19,20 @@ const heroContent = {
     en: 'Your legal partner',
   },
   subtitle: {
-    fr: 'Expertise juridique, administrative, comptable, fiscale de premier choix pour les entreprises et les particuliers.',
-    en: 'Top-tier legal, administrative, accounting and tax expertise for businesses and individuals.',
+    fr: "Statuts, immatriculation, modifications : des juristes basés au Cameroun s'occupent de vos démarches, avec des tarifs annoncés à l'avance.",
+    en: 'Articles, registration, amendments: lawyers based in Cameroon handle your paperwork, with prices stated upfront.',
   },
   description: {
     fr: 'Que ce soit pour une création d\'entreprise, une déclaration fiscale ou sociale, une modification urgente ou une question urgente, nous sommes à votre écoute.',
     en: 'Whether it\'s for business creation, a tax or social declaration, an urgent modification, or an urgent question, we are at your service.',
   },
   ctaPrimary: {
-    fr: 'En savoir plus',
-    en: 'Learn more',
+    fr: 'Créer mon entreprise',
+    en: 'Create my company',
   },
   ctaSecondary: {
-    fr: 'Réservez votre rendez-vous',
-    en: 'Book your appointment',
+    fr: 'Voir les tarifs',
+    en: 'See prices',
   },
   badges: [
     { fr: '300+ clients satisfaits', en: '300+ satisfied clients' },
@@ -62,7 +62,8 @@ export default function Hero() {
 
     // Create particles
     const particlesGeometry = new THREE.BufferGeometry();
-    const particlesCount = 2000;
+    // Fewer particles on phones keeps scrolling smooth on modest devices
+    const particlesCount = window.innerWidth < 768 ? 700 : 2000;
     const posArray = new Float32Array(particlesCount * 3);
 
     for (let i = 0; i < particlesCount * 3; i++) {
@@ -136,7 +137,13 @@ export default function Hero() {
       renderer.render(scene, camera);
     };
 
-    animate();
+    // With reduced motion requested, draw the particles once and keep them still
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduceMotion) {
+      renderer.render(scene, camera);
+    } else {
+      animate();
+    }
 
     return () => {
       cancelAnimationFrame(animationId);
@@ -150,7 +157,7 @@ export default function Hero() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative min-h-screen flex items-center justify-center overflow-hidden" style={{ background: 'linear-gradient(to bottom right, #041c28, #0a3d4f, #041c28)' }}>
+    <section ref={sectionRef} className="relative min-h-screen flex items-center justify-center overflow-hidden pt-28 pb-20" style={{ background: 'linear-gradient(to bottom right, #041c28, #0a3d4f, #041c28)' }}>
       {/* Three.js Canvas */}
       <canvas
         ref={canvasRef}
@@ -182,13 +189,13 @@ export default function Hero() {
         </p> */}
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up animation-delay-300">
-          <Link href="/a-propos" className="btn-primary text-lg px-8 py-4">
+          <Link href="/devis" className="btn-primary text-lg px-8 py-4">
             {heroContent.ctaPrimary[language]}
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>
           </Link>
-          <Link href="/prendre-un-rendez-vous" className="btn-secondary text-lg px-8 py-4 border-white/30! text-white! hover:bg-white hover:text-gray-900">
+          <Link href="#statuts" className="btn-secondary text-lg px-8 py-4 border-white/30! text-white! hover:bg-white hover:text-gray-900">
             {heroContent.ctaSecondary[language]}
           </Link>
         </div>

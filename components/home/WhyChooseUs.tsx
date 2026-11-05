@@ -71,7 +71,7 @@ const sectionText = {
     { fr: 'Satisfaction client garantie', en: 'Guaranteed client satisfaction' },
   ],
   joinOur: { fr: 'Rejoignez nos', en: 'Join our' },
-  satisfiedClients: { fr: '500+ clients satisfaits', en: '500+ satisfied clients' },
+  satisfiedClients: { fr: '300+ clients satisfaits', en: '300+ satisfied clients' },
 };
 
 export default function WhyChooseUs() {

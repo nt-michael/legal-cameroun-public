@@ -8,6 +8,8 @@ import Stats from '@/components/home/Stats';
 import BlogPreview from '@/components/home/BlogPreview';
 import NewsletterSection from '@/components/home/NewsletterSection';
 import CTASection from '@/components/home/CTASection';
+import LegalFormsPreview from '@/components/home/LegalFormsPreview';
+import HomeFAQ from '@/components/home/HomeFAQ';
 import { getFeaturedPosts } from '@/lib/wordpress';
 import { transformPosts } from '@/lib/wordpress-utils';
 import { createPageMetadata } from '@/lib/seo-utils';
@@ -64,11 +66,13 @@ export default async function Home() {
   return (
     <>
       <Hero />
+      <LegalFormsPreview />
       <Services />
       <WhyChooseUs />
       <Stats />
       <HowItWorks />
       <Testimonials />
+      <HomeFAQ />
       <BlogPreview posts={latestPosts} />
       <NewsletterSection />
       <CTASection />

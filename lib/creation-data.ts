@@ -438,6 +438,18 @@ export const etablissementPricingTiers: PricingTier[] = [
   },
 ];
 
+// Each legal form uses the same price list as its own detail page, so summaries never drift from it
+const tiersByForm: Record<string, PricingTier[]> = {
+  individual: etablissementPricingTiers,
+  association: associationPricingTiers,
+};
+
+/** Cheapest plan for a legal form id from `legalForms` (e.g. 'sas', 'individual') */
+export function startingTier(formId: string): PricingTier {
+  const tiers = tiersByForm[formId] ?? pricingTiers;
+  return tiers.reduce((lowest, tier) => (tier.price < lowest.price ? tier : lowest));
+}
+
 // Legal forms for hub page comparison
 export const legalForms: LegalForm[] = [
   {

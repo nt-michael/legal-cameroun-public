@@ -8,6 +8,7 @@ import { useLanguage } from '@/contexts/LanguageContext';
 const services = [
   {
     title: { fr: 'Constitution de Soci\u00e9t\u00e9s', en: 'Company Formation' },
+    href: '/creation-entreprise',
     description: {
       fr: 'Profitez d\'une assistance compl\u00e8te et personnalis\u00e9e pour la cr\u00e9ation de votre soci\u00e9t\u00e9 commerciale ou civile immobili\u00e8re au Cameroun. Nos experts vous accompagnent de A \u00e0 Z, en s\'adaptant \u00e0 vos besoins sp\u00e9cifiques et en vous garantissant un service rapide et efficace.',
       en: 'Enjoy complete and personalized assistance for the creation of your commercial or real estate company in Cameroon. Our experts guide you from A to Z, adapting to your specific needs and guaranteeing fast and efficient service.',
@@ -19,6 +20,7 @@ const services = [
   },
   {
     title: { fr: 'Transmission et Acquisition', en: 'Transfer & Acquisition' },
+    href: '/contact',
     description: {
       fr: 'Obtenez des conseils personnalis\u00e9s et avis\u00e9s pour optimiser fiscalement la transmission de votre entreprise, incluant une expertise dans les processus d\'acquisition par fusion-absorption, cession, pour des op\u00e9rations fluides et r\u00e9ussies.',
       en: 'Get personalized and expert advice to fiscally optimize the transfer of your business, including expertise in acquisition processes through mergers, disposals, for smooth and successful operations.',
@@ -30,6 +32,7 @@ const services = [
   },
   {
     title: { fr: 'Secr\u00e9tariat Juridique', en: 'Legal Secretariat' },
+    href: '/modification-entreprise',
     description: {
       fr: 'B\u00e9n\u00e9ficiez d\'un accompagnement complet en mati\u00e8re de r\u00e9daction d\'actes de soci\u00e9t\u00e9, pour assurer la conformit\u00e9 administrative et l\u00e9gale de votre entreprise, vous permettant de vous concentrer sur votre activit\u00e9 principale.',
       en: 'Benefit from comprehensive support in drafting company documents, to ensure the administrative and legal compliance of your business, allowing you to focus on your core activity.',
@@ -41,6 +44,7 @@ const services = [
   },
   {
     title: { fr: 'Accompagnement', en: 'Support' },
+    href: '/creation-entreprise/association',
     description: {
       fr: 'B\u00e9n\u00e9ficiez d\'un accompagnement sp\u00e9cialis\u00e9 pour la cr\u00e9ation d\'associations, de fondations d\'entreprises et de groupements d\'int\u00e9r\u00eat \u00e9conomique, adapt\u00e9 aux besoins sp\u00e9cifiques des organismes \u00e0 but non lucratif.',
       en: 'Benefit from specialized support for the creation of associations, corporate foundations, and economic interest groups, tailored to the specific needs of non-profit organizations.',
@@ -52,6 +56,7 @@ const services = [
   },
   {
     title: { fr: 'Immobilier', en: 'Real Estate' },
+    href: '/contact',
     description: {
       fr: 'D\u00e9marches d\'immatriculation d\'un terrain jusqu\'\u00e0 l\'obtention du titre foncier, r\u00e8glement de successions immobili\u00e8res, acquisition, cession et gestion immobili\u00e8re, strat\u00e9gie d\'optimisation et de gestion du patrimoine.',
       en: 'Land registration procedures through to obtaining the land title, settlement of real estate successions, acquisition, disposal, and property management, optimization and asset management strategy.',
@@ -63,6 +68,7 @@ const services = [
   },
   {
     title: { fr: 'Op\u00e9rations sur les Comptes', en: 'Account Operations' },
+    href: '/contact',
     description: {
       fr: 'Profitez d\'une gamme compl\u00e8te de services comptables, incluant la pr\u00e9sentation des comptes, les examens limit\u00e9s et les audits contractuels, afin d\'assurer la fiabilit\u00e9, la transparence et la s\u00e9curit\u00e9 de votre gestion financi\u00e8re.',
       en: 'Enjoy a full range of accounting services, including financial statement presentation, limited reviews, and contractual audits, to ensure the reliability, transparency, and security of your financial management.',
@@ -84,6 +90,7 @@ const sectionText = {
     en: 'We offer a full range of support services to meet all your administrative, legal, accounting, financial, and tax needs.',
   },
   learnMore: { fr: 'En savoir plus', en: 'Learn more' },
+  contactUs: { fr: 'Nous contacter', en: 'Contact us' },
   whatsappCta: { fr: 'Continuer sur WhatsApp', en: 'Continue on WhatsApp' },
   whatsappMessage: {
     fr: 'Bonjour, j\'ai une question concernant vos services juridiques.',
@@ -122,7 +129,7 @@ export default function Services() {
           {services.map((service, index) => (
             <Link
               key={service.title.fr}
-              href="/prendre-un-rendez-vous"
+              href={service.href}
               className={`group bg-white rounded-2xl p-8 card-hover border border-gray-100 flex flex-col ${
                 inView ? 'animate-fade-in-up' : 'opacity-0'
               }`}
@@ -138,7 +145,7 @@ export default function Services() {
                 {service.description[language]}
               </p>
               <span className="inline-flex items-center text-primary-600 font-medium mt-auto">
-                {sectionText.learnMore[language]}
+                {service.href === '/contact' ? sectionText.contactUs[language] : sectionText.learnMore[language]}
                 <svg className="w-4 h-4 ml-2 group-hover:translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
