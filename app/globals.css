@@ -34,6 +34,11 @@
   --secondary-700: #7a6545;
   --secondary-800: #5c4c34;
 
+  /* Charter dark blues that stay the same in dark mode (the primary-* scale is inverted there) */
+  --brand-navy: #0a3d4f;
+  --brand-navy-deep: #062735;
+  --brand-navy-ink: #041c28;
+
   /* Section colors */
   --section-creation: #0095bb;
   --section-gestion: #f39433;
@@ -62,6 +67,9 @@
   --color-secondary-600: var(--secondary-600);
   --color-secondary-700: var(--secondary-700);
   --color-secondary-800: var(--secondary-800);
+  --color-navy: var(--brand-navy);
+  --color-navy-deep: var(--brand-navy-deep);
+  --color-navy-ink: var(--brand-navy-ink);
   --color-section-creation: var(--section-creation);
   --color-section-gestion: var(--section-gestion);
   --color-section-accompagnement: var(--section-accompagnement);

@@ -248,7 +248,7 @@ export default function BookingForm({ consultationPrice }: { consultationPrice: 
         setStep(newStep);
         // After "Next" at the bottom of a long step, the new step would start off-screen
         const top = formTopRef.current?.getBoundingClientRect().top;
-        if (top !== undefined && top < 0) {
+        if (top !== undefined && top < 112) {
           const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
           window.scrollTo({ top: window.scrollY + top - 112, behavior: reduceMotion ? 'auto' : 'smooth' });
         }

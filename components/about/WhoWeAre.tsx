@@ -111,11 +111,11 @@ export default function WhoWeAre() {
               <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">{sectionText.legalExperts[language]}</p>
             </div>
             <div className="bg-gradient-to-br from-secondary-50 to-secondary-100 dark:from-secondary-800/20 dark:to-secondary-800/20 rounded-2xl p-6 border border-secondary-200 dark:border-secondary-800 text-center">
-              <p className="text-3xl font-bold text-secondary-600 dark:text-secondary-400">3</p>
+              <p className="text-3xl font-bold text-secondary-700 dark:text-secondary-400">3</p>
               <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">{sectionText.countriesCovered[language]}</p>
             </div>
-            <div className="bg-primary-50 dark:bg-primary-900/20 rounded-2xl p-6 border border-primary-100 dark:border-primary-800 text-center">
-              <p className="text-3xl font-bold text-primary-600 dark:text-primary-300">15 000+</p>
+            <div className="bg-primary-50 dark:bg-gray-800 rounded-2xl p-6 border border-primary-100 dark:border-gray-700 text-center">
+              <p className="text-3xl font-bold text-primary-600">15 000+</p>
               <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">{sectionText.entrepreneursSupported[language]}</p>
             </div>
           </div>

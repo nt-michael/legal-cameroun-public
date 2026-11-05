@@ -17,8 +17,8 @@ gsap.registerPlugin(ScrollTrigger);
 const locationColors: Record<string, string> = {
   Paris: 'bg-primary-500',
   Douala: 'bg-secondary-500',
-  Cotonou: 'bg-green-500',
-  Cameroun: 'bg-orange-500',
+  Cotonou: 'bg-section-accompagnement',
+  Cameroun: 'bg-section-gestion',
 };
 
 export default function AboutTimeline() {
@@ -112,7 +112,7 @@ export default function AboutTimeline() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-16">
-          <span className="inline-block px-4 py-2 bg-secondary-100 dark:bg-secondary-800/30 rounded-full text-secondary-600 dark:text-secondary-400 text-sm font-medium mb-4">
+          <span className="inline-block px-4 py-2 bg-secondary-100 dark:bg-secondary-800/30 rounded-full text-secondary-800 dark:text-secondary-400 text-sm font-medium mb-4">
             {sectionText.badge[language]}
           </span>
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4">
@@ -128,7 +128,7 @@ export default function AboutTimeline() {
           {/* Vertical Line */}
           <div
             ref={lineRef}
-            className="absolute left-8 lg:left-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-secondary-400 via-orange-500 to-secondary-600 origin-top"
+            className="absolute left-8 lg:left-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-secondary-400 via-secondary-500 to-secondary-600 origin-top"
             style={{ transform: 'translateX(-50%)' }}
           />
 
@@ -161,7 +161,7 @@ export default function AboutTimeline() {
                 >
                   <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-100 dark:border-gray-700 transition-shadow duration-300">
                     <div className={`flex items-center gap-3 mb-3 ${index % 2 === 0 ? 'lg:justify-end' : 'lg:justify-start'}`}>
-                      <span className="text-sm font-semibold text-secondary-600 dark:text-secondary-400 bg-secondary-100 dark:bg-secondary-800/30 px-3 py-1 rounded-full">
+                      <span className="text-sm font-semibold text-secondary-800 dark:text-secondary-400 bg-secondary-100 dark:bg-secondary-800/30 px-3 py-1 rounded-full">
                         {event.year}
                       </span>
                       {event.location && (

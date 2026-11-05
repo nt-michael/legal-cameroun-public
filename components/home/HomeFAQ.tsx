@@ -29,7 +29,7 @@ const items: FAQItem[] = [
     },
     answer: {
       fr: `Une SAS, une SARL ou une SARLU coûte à partir de ${companyFr} FCFA HT, plus les frais administratifs. Un établissement commercial ou une association coûte à partir de ${smallFr} FCFA HT. Le prix exact dépend de la formule choisie.`,
-      en: `A SAS, SARL or SARLU starts from XAF ${companyEn} excl. tax, plus administrative fees. A commercial establishment or an association starts from XAF ${smallEn} excl. tax. The exact price depends on the plan you choose.`,
+      en: `A SAS, SARL or SARLU starts from ${companyEn} FCFA excl. tax, plus administrative fees. A commercial establishment or an association starts from ${smallEn} FCFA excl. tax. The exact price depends on the plan you choose.`,
     },
   },
   {

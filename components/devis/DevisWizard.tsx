@@ -41,7 +41,7 @@ const devisText = {
     en: 'Answer a few questions to receive your personalized quote by email within 48 hours.',
   },
   // Help lines shown under the questions where visitors hesitate most
-  legalFormHint: { fr: "Vous hésitez ? Choisissez « Autre » : un expert vous conseillera.", en: "Not sure? Choose “Other”: an expert will advise you." },
+  legalFormHint: { fr: "Vous hésitez ? Choisissez « Autre » : un expert vous conseillera.", en: "Not sure? Choose “Autre”: an expert will advise you." },
   timelineHint: { fr: "Le délai de 3 semaines est réservé à la formule Premium.", en: "The 3-week timeline is only available with the Premium plan." },
   businessObjectHint: { fr: "Une phrase suffit. Nous la reformulerons dans vos statuts.", en: "One sentence is enough. We will word it properly in your articles." },
   capitalHint: { fr: "Un montant approximatif suffit à ce stade.", en: "An approximate amount is enough for now." },
@@ -407,7 +407,7 @@ export default function DevisWizard() {
         setCurrentStep(step);
         // After "Next" at the bottom of a long step, the new step would start off-screen
         const top = wizardTopRef.current?.getBoundingClientRect().top;
-        if (top !== undefined && top < 0) {
+        if (top !== undefined && top < 112) {
           const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
           window.scrollTo({ top: window.scrollY + top - 112, behavior: reduceMotion ? 'auto' : 'smooth' });
         }

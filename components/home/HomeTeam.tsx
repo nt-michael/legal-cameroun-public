@@ -28,9 +28,9 @@ export default function HomeTeam() {
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-3">
             {aboutHeroData.tagline[language]}
           </h2>
-          <p className="text-lg font-medium text-primary-600 dark:text-primary-300 mb-4">{whoWeAreData.intro[language]}</p>
+          <p className="text-lg font-medium text-primary-600 mb-4">{whoWeAreData.intro[language]}</p>
           <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-6">{whoWeAreData.team[language]}</p>
-          <Link href="/a-propos" className="inline-flex items-center text-primary-600 dark:text-primary-300 font-medium hover:underline">
+          <Link href="/a-propos" className="inline-flex items-center text-primary-600 font-medium hover:underline">
             {linkText[language]}
             <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />

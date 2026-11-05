@@ -223,7 +223,7 @@ export default function ContactForm() {
 
   if (isSuccess) {
     return (
-      <section ref={sectionRef} className="py-16 lg:py-24 bg-secondary-50/50 dark:bg-gray-900">
+      <section ref={sectionRef}>
         <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
           <div
             ref={successRef}

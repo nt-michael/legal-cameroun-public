@@ -14,17 +14,9 @@ const heroContent = {
     fr: 'Votre LEGALTECH au Cameroun.',
     en: 'Your LEGALTECH in Cameroon.',
   },
-  title2: {
-    fr: 'Votre partenaire juridique',
-    en: 'Your legal partner',
-  },
   subtitle: {
     fr: "Statuts, immatriculation, modifications : des juristes basés au Cameroun s'occupent de vos démarches, avec des tarifs annoncés à l'avance.",
     en: 'Articles, registration, amendments: lawyers based in Cameroon handle your paperwork, with prices stated upfront.',
-  },
-  description: {
-    fr: 'Que ce soit pour une création d\'entreprise, une déclaration fiscale ou sociale, une modification urgente ou une question urgente, nous sommes à votre écoute.',
-    en: 'Whether it\'s for business creation, a tax or social declaration, an urgent modification, or an urgent question, we are at your service.',
   },
   ctaPrimary: {
     fr: 'Créer mon entreprise',
@@ -35,9 +27,9 @@ const heroContent = {
     en: 'See prices',
   },
   stats: [
-    { value: '300+', label: { fr: 'clients satisfaits', en: 'satisfied clients' } },
-    { value: '08', label: { fr: "années d'expérience", en: 'years of experience' } },
-    { value: '15 000', label: { fr: 'entreprises installées', en: 'businesses established' } },
+    { value: { fr: '300+', en: '300+' }, label: { fr: 'clients satisfaits', en: 'satisfied clients' } },
+    { value: { fr: '08', en: '08' }, label: { fr: "années d'expérience", en: 'years of experience' } },
+    { value: { fr: '15 000', en: '15,000' }, label: { fr: 'entreprises installées', en: 'businesses established' } },
   ],
   statsTitle: { fr: 'Legal Cameroun en chiffres', en: 'Legal Cameroun in figures' },
 };
@@ -193,7 +185,7 @@ export default function Hero() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
               </Link>
-              <Link href="#statuts" className="btn-secondary text-lg px-8 py-4 border-white/30! text-white! hover:bg-white hover:text-gray-900">
+              <Link href="/tarifs" className="btn-secondary text-lg px-8 py-4 border-white/30! text-white! hover:bg-white hover:text-gray-900">
                 {heroContent.ctaSecondary[language]}
               </Link>
             </div>
@@ -207,8 +199,8 @@ export default function Hero() {
               </p>
               <ul className="grid grid-cols-3 gap-4 lg:grid-cols-1 lg:gap-6">
                 {heroContent.stats.map((stat) => (
-                  <li key={stat.value} className="text-center lg:text-left lg:flex lg:items-baseline lg:gap-3">
-                    <span className="block text-2xl sm:text-3xl lg:text-4xl font-bold text-white">{stat.value}</span>
+                  <li key={stat.value.fr} className="text-center lg:text-left lg:flex lg:items-baseline lg:gap-3">
+                    <span className="block text-2xl sm:text-3xl lg:text-4xl font-bold text-white">{stat.value[language]}</span>
                     <span className="block text-xs sm:text-sm text-gray-300">{stat.label[language]}</span>
                   </li>
                 ))}

@@ -34,7 +34,7 @@ export default function BlogPreview({ posts }: BlogPreviewProps) {
   const { language } = useLanguage();
 
   return (
-    <section className="section-padding bg-white dark:bg-gray-900">
+    <section className="section-padding bg-white">
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
         <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 mb-12">

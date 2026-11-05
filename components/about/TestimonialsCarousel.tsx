@@ -73,10 +73,10 @@ export default function TestimonialsCarousel() {
   }, [isPaused]);
 
   return (
-    <section ref={sectionRef} className="py-20 lg:py-32 bg-secondary-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 overflow-hidden">
+    <section ref={sectionRef} className="py-20 lg:py-32 bg-secondary-50 dark:bg-gray-900 overflow-hidden">
       {/* Header */}
       <div className="carousel-header max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-12">
-        <span className="inline-block px-4 py-2 bg-secondary-100 dark:bg-secondary-800/30 rounded-full text-secondary-600 dark:text-secondary-400 text-sm font-medium mb-4">
+        <span className="inline-block px-4 py-2 bg-secondary-100 dark:bg-secondary-800/30 rounded-full text-secondary-800 dark:text-secondary-400 text-sm font-medium mb-4">
           {sectionText.badge[language]}
         </span>
         <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4">
@@ -121,7 +121,7 @@ export default function TestimonialsCarousel() {
 
               {/* Author */}
               <div className="flex items-center gap-3">
-                <div className="w-12 h-12 bg-gradient-to-br from-secondary-400 to-orange-500 rounded-full flex items-center justify-center text-white font-bold text-lg">
+                <div className="w-12 h-12 bg-gradient-to-br from-secondary-400 to-secondary-600 rounded-full flex items-center justify-center text-white font-bold text-lg">
                   {testimonial.author.charAt(0)}
                 </div>
                 <div>
@@ -140,7 +140,7 @@ export default function TestimonialsCarousel() {
 
       {/* Pause indicator */}
       <div className="text-center mt-8">
-        <span className={`inline-flex items-center gap-2 text-sm ${isPaused ? 'text-secondary-600 dark:text-secondary-400' : 'text-gray-400 dark:text-gray-500'}`}>
+        <span className={`inline-flex items-center gap-2 text-sm ${isPaused ? 'text-secondary-700 dark:text-secondary-400' : 'text-gray-400 dark:text-gray-500'}`}>
           {isPaused ? (
             <>
               <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">

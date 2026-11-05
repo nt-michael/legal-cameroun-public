@@ -25,7 +25,7 @@ export default function SimulateursHero() {
   }, []);
 
   return (
-    <section className="relative bg-gradient-to-br from-primary-900 via-primary-600 to-primary-900 pt-32 pb-20 overflow-hidden">
+    <section className="relative bg-gradient-to-br from-navy-ink via-navy to-navy-ink pt-32 pb-20 overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-10">
         <div

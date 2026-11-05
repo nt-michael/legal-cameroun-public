@@ -78,7 +78,7 @@ export default function DevisPageContent() {
                 </ul>
                 <div className="hidden lg:block mt-6 pt-5 border-t border-gray-100 dark:border-gray-700">
                   <p className="text-sm text-gray-600 dark:text-gray-300 mb-2">{pageText.helpTitle[language]}</p>
-                  <Link href="/prendre-un-rendez-vous" className="text-sm font-medium text-primary-600 dark:text-primary-300 hover:underline">
+                  <Link href="/prendre-un-rendez-vous" className="text-sm font-medium text-primary-600 hover:underline">
                     {pageText.helpLink[language]}
                   </Link>
                 </div>

@@ -5,6 +5,7 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import WhatsAppFAB from "@/components/common/WhatsAppFAB";
 import NewsletterModal from "@/components/common/NewsletterModal";
+import ScrollToTopOnNavigate from "@/components/common/ScrollToTopOnNavigate";
 import { LanguageProvider } from "@/contexts/LanguageContext";
 import { ThemeProvider } from "@/contexts/ThemeContext";
 import LanguageHtmlSetter from "@/components/seo/LanguageHtmlSetter";
@@ -48,14 +49,16 @@ export default async function RootLayout({
 }>) {
   const lang = await getRequestLanguage();
 
+  // data-scroll-behavior lets Next.js turn off smooth scrolling while it changes page
   return (
-    <html lang={lang} suppressHydrationWarning>
+    <html lang={lang} suppressHydrationWarning data-scroll-behavior="smooth">
       <body
         className={`${inriaSans.variable} antialiased`}
       >
         <ThemeProvider>
           <LanguageProvider initialLanguage={lang}>
             <LanguageHtmlSetter />
+            <ScrollToTopOnNavigate />
             <Header />
             <main>{children}</main>
             <Footer />

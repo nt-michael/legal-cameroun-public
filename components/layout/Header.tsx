@@ -137,21 +137,30 @@ export default function Header() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Escape closes any open dropdown, as visitors expect
+  // Escape closes the open dropdown and puts focus back on its button; a click elsewhere closes it too
   useEffect(() => {
     if (!openMenu) return;
     const handleKey = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') setOpenMenu(null);
+      if (event.key !== 'Escape') return;
+      setOpenMenu(null);
+      document.getElementById(`menu-button-${openMenu}`)?.focus();
+    };
+    const handlePointerDown = (event: PointerEvent) => {
+      if (!(event.target as Element | null)?.closest('header')) setOpenMenu(null);
     };
     window.addEventListener('keydown', handleKey);
-    return () => window.removeEventListener('keydown', handleKey);
+    document.addEventListener('pointerdown', handlePointerDown);
+    return () => {
+      window.removeEventListener('keydown', handleKey);
+      document.removeEventListener('pointerdown', handlePointerDown);
+    };
   }, [openMenu]);
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50">
       {/* Top Utility Bar */}
       <div
-        className="bg-primary-800"
+        className="bg-navy-ink"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-end gap-4 h-8">
@@ -191,7 +200,7 @@ export default function Header() {
 
       {/* Main Navigation */}
       <nav
-        className={`bg-primary-600 transition-shadow duration-300 ${isScrolled || openMenu ? 'shadow-lg' : ''}`}
+        className={`relative bg-navy transition-shadow duration-300 ${isScrolled || openMenu ? 'shadow-lg' : ''}`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
@@ -228,14 +237,23 @@ export default function Header() {
               return (
                 <div
                   key={item.name.fr}
-                  className="relative"
-                  onMouseEnter={() => openDropdown(dropdown)}
-                  onMouseLeave={closeDropdownSoon}
+                  // The offers panel spans the whole bar, so only the small resources list is positioned here
+                  className={dropdown === 'resources' ? 'relative' : ''}
+                  onPointerEnter={(event) => event.pointerType === 'mouse' && openDropdown(dropdown)}
+                  onPointerLeave={(event) => event.pointerType === 'mouse' && closeDropdownSoon()}
+                  onBlur={(event) => {
+                    if (!event.currentTarget.contains(event.relatedTarget as Node | null)) closeDropdown();
+                  }}
                 >
                   <button
-                    onClick={() => setOpenMenu(isOpen ? null : dropdown)}
+                    id={`menu-button-${dropdown}`}
+                    // A mouse has already opened it on hover, so its click keeps it open; touch and keyboard toggle it
+                    onClick={(event) => {
+                      if ((event.nativeEvent as PointerEvent).pointerType === 'mouse') openDropdown(dropdown);
+                      else setOpenMenu(isOpen ? null : dropdown);
+                    }}
                     aria-expanded={isOpen}
-                    aria-haspopup="true"
+                    aria-controls={`menu-panel-${dropdown}`}
                     className={`flex items-center gap-1 font-medium transition-colors ${
                       isOpen ? 'text-secondary-300' : linkColor
                     }`}
@@ -252,9 +270,73 @@ export default function Header() {
                     </svg>
                   </button>
 
+                  {/* Mega menu: full-width panel right after its button, so Tab moves from the button into its links.
+                      It opens at once with a short fade, and only the hovered line lights up */}
+                  {dropdown === 'offers' && (
+                    <div
+                      id="menu-panel-offers"
+                      className={`hidden lg:block absolute left-0 right-0 top-full whitespace-normal bg-white dark:bg-gray-900 shadow-2xl border-t border-gray-100 dark:border-gray-800 transition duration-200 ease-out ${
+                        isMegaMenuOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2 pointer-events-none'
+                      }`}
+                    >
+                      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+                        <div className="grid grid-cols-3 divide-x divide-gray-100 dark:divide-gray-800">
+                          {menuItems.map((item) => (
+                            <div key={item.name.fr} className="px-6 first:pl-0 last:pr-0">
+                              <Link
+                                href={item.href}
+                                onClick={closeDropdown}
+                                className={`block text-xs font-semibold uppercase tracking-wider text-primary-600 hover:text-primary-500 mx-3 mb-3 pb-3 border-b-2 ${item.accent}`}
+                              >
+                                {item.name[language]}
+                              </Link>
+                              <div className="space-y-1">
+                                {item.rubriques.map((rubrique) => (
+                                  <Link
+                                    key={rubrique.name.fr}
+                                    href={rubrique.href}
+                                    onClick={closeDropdown}
+                                    className="block rounded-lg px-3 py-2 text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-primary-50 hover:text-primary-600 dark:hover:bg-gray-800 transition-colors duration-150"
+                                  >
+                                    {rubrique.name[language]}
+                                  </Link>
+                                ))}
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+
+                        {/* Featured section at bottom */}
+                        <div className="mt-8 pt-6 border-t border-gray-100 dark:border-gray-800">
+                          <div className="flex items-center justify-between">
+                            <div className="flex items-center gap-4">
+                              <div className="w-12 h-12 bg-primary-100 rounded-xl flex items-center justify-center">
+                                <svg className="w-6 h-6 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                                </svg>
+                              </div>
+                              <div>
+                                <p className="font-semibold text-gray-900 dark:text-white">{megaMenuBottom.needHelp[language]}</p>
+                                <p className="text-sm text-gray-500">{megaMenuBottom.expertsHelp[language]}</p>
+                              </div>
+                            </div>
+                            <Link
+                              href="/prendre-un-rendez-vous"
+                              onClick={closeDropdown}
+                              className="btn-primary text-sm"
+                            >
+                              {megaMenuBottom.talkToExpert[language]}
+                            </Link>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
                   {/* Small list under the button; the top padding bridges the gap so hovering down keeps it open */}
                   {dropdown === 'resources' && (
                     <div
+                      id="menu-panel-resources"
                       className={`absolute left-1/2 -translate-x-1/2 top-full pt-5 transition duration-200 ease-out ${
                         isOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2 pointer-events-none'
                       }`}
@@ -298,6 +380,7 @@ export default function Header() {
             className="lg:hidden p-2 shrink-0"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Toggle menu"
+            aria-expanded={isMobileMenuOpen}
           >
             <svg
               className="w-6 h-6 text-white"
@@ -315,73 +398,12 @@ export default function Header() {
         </div>
         </div>
 
-        {/* Mega Menu - Desktop */}
-        {/* Opens at once with a short fade; every column stays readable and only the hovered line lights up */}
-        <div
-          className={`hidden lg:block absolute left-0 right-0 top-full bg-white dark:bg-gray-900 shadow-2xl border-t border-gray-100 dark:border-gray-800 transition duration-200 ease-out ${
-            isMegaMenuOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2 pointer-events-none'
-          }`}
-          onMouseEnter={() => openDropdown('offers')}
-          onMouseLeave={closeDropdownSoon}
-        >
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-            <div className="grid grid-cols-3 divide-x divide-gray-100 dark:divide-gray-800">
-              {menuItems.map((item) => (
-                <div key={item.name.fr} className="px-6 first:pl-0 last:pr-0">
-                  <Link
-                    href={item.href}
-                    onClick={closeDropdown}
-                    className={`block text-xs font-semibold uppercase tracking-wider text-primary-600 dark:text-primary-300 hover:text-primary-500 mx-3 mb-3 pb-3 border-b-2 ${item.accent}`}
-                  >
-                    {item.name[language]}
-                  </Link>
-                  <div className="space-y-1">
-                    {item.rubriques.map((rubrique) => (
-                      <Link
-                        key={rubrique.name.fr}
-                        href={rubrique.href}
-                        onClick={closeDropdown}
-                        className="block rounded-lg px-3 py-2 text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-primary-50 hover:text-primary-600 dark:hover:bg-gray-800 transition-colors duration-150"
-                      >
-                        {rubrique.name[language]}
-                      </Link>
-                    ))}
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            {/* Featured section at bottom */}
-            <div className="mt-8 pt-6 border-t border-gray-100 dark:border-gray-800">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 bg-primary-100 rounded-xl flex items-center justify-center">
-                    <svg className="w-6 h-6 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                    </svg>
-                  </div>
-                  <div>
-                    <p className="font-semibold text-gray-900 dark:text-white">{megaMenuBottom.needHelp[language]}</p>
-                    <p className="text-sm text-gray-500">{megaMenuBottom.expertsHelp[language]}</p>
-                  </div>
-                </div>
-                <Link
-                  href="/prendre-un-rendez-vous"
-                  onClick={closeDropdown}
-                  className="btn-primary text-sm"
-                >
-                  {megaMenuBottom.talkToExpert[language]}
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
-
         {/* Mobile Menu */}
         <div
           className={`lg:hidden transition-all duration-300 overflow-hidden ${
             isMobileMenuOpen ? 'max-h-[80vh] opacity-100' : 'max-h-0 opacity-0'
           }`}
+          inert={!isMobileMenuOpen}
         >
           <div className="bg-white rounded-xl shadow-xl mt-2 py-4 px-4 max-h-[70vh] overflow-y-auto">
             {navigation.map((item) => (
@@ -493,7 +515,7 @@ export default function Header() {
 
             <Link
               href="/devis"
-              className="btn-primary w-full mt-4 text-center"
+              className="btn-gold w-full mt-4 text-center"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               {createCompanyLabel[language]}

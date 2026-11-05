@@ -166,7 +166,7 @@ export default function Services() {
                       <p className="text-gray-600 dark:text-gray-300 mb-4 flex-grow text-sm leading-relaxed">
                         {service.description[language]}
                       </p>
-                      <span className="inline-flex items-center text-primary-600 dark:text-primary-300 font-medium mt-auto">
+                      <span className="inline-flex items-center text-primary-600 font-medium mt-auto">
                         {service.href === '/contact' ? sectionText.contactUs[language] : sectionText.learnMore[language]}
                         <svg className="w-4 h-4 ml-2 group-hover:translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />

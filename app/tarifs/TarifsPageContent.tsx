@@ -106,7 +106,8 @@ const creationRows: PriceRow[] = legalForms.map((form) => {
 });
 
 const gestionRows: PriceRow[] = [
-  ...modificationTypes.map((operation) => {
+  // An operation added later without a price list is simply left off this page
+  ...modificationTypes.filter((operation) => operationPricing[operation.id]).map((operation) => {
     const pricing = operationPricing[operation.id];
     return {
       id: operation.id,
@@ -196,12 +197,14 @@ function PriceSection({ pole, rows }: { pole: Pole; rows: PriceRow[] }) {
 
             <div className="flex flex-wrap items-center gap-x-5 gap-y-3 md:justify-end">
               {row.detailHref && (
-                <Link href={row.detailHref} className="text-sm font-medium text-primary-600 dark:text-primary-300 hover:underline">
+                <Link href={row.detailHref} className="text-sm font-medium text-primary-600 hover:underline">
                   {pageText.details[language]}
+                  <span className="sr-only"> : {row.name[language]}</span>
                 </Link>
               )}
               <Link href={row.ctaHref} className="btn-primary text-sm px-4 py-2 whitespace-nowrap">
                 {row.ctaText[language]}
+                <span className="sr-only"> : {row.name[language]}</span>
               </Link>
             </div>
           </li>
