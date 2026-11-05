@@ -106,9 +106,11 @@ export default function TransfertSiegeContent() {
         <div className="absolute top-0 left-0 w-64 h-64 bg-primary-500/10 rounded-full blur-3xl" />
         <div className="absolute bottom-0 right-0 w-96 h-96 bg-secondary-500/10 rounded-full blur-3xl" />
       </section>
+      {/* Company management colour from the brand charter */}
+      <div className="h-1 bg-section-gestion" aria-hidden="true" />
 
       {/* Why Transfer Section */}
-      <section className="py-16 lg:py-24 bg-white dark:bg-gray-800">
+      <section className="py-16 lg:py-24 bg-gray-50 dark:bg-gray-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4">
@@ -120,7 +122,7 @@ export default function TransfertSiegeContent() {
             {whyTransfer.map((item, index) => (
               <div
                 key={index}
-                className="bg-gray-50 dark:bg-gray-900 rounded-2xl p-6 text-center hover:shadow-lg transition-all duration-300 border border-gray-100 dark:border-gray-700"
+                className="bg-white dark:bg-gray-800 rounded-2xl p-6 text-center hover:shadow-lg transition-all duration-300 border border-gray-100 dark:border-gray-700"
               >
                 <div className="w-14 h-14 bg-primary-100 dark:bg-primary-900/30 rounded-xl flex items-center justify-center text-primary-600 dark:text-primary-400 mx-auto mb-4">
                   {whyIcons[item.icon]}
@@ -136,6 +138,13 @@ export default function TransfertSiegeContent() {
           </div>
         </div>
       </section>
+
+      {/* Pricing */}
+      <GestionPricingCards
+        tiers={pricingTiers}
+        title={pageText.pricingTitle}
+        subtitle={pageText.pricingSubtitle}
+      />
 
       {/* Process Timeline */}
       <GestionTimeline
@@ -218,16 +227,10 @@ export default function TransfertSiegeContent() {
 
       {/* Documents */}
       <GestionDocumentsChecklist
+        tone="white"
         documents={documents}
         title={pageText.documentsTitle}
         subtitle={pageText.documentsSubtitle}
-      />
-
-      {/* Pricing */}
-      <GestionPricingCards
-        tiers={pricingTiers}
-        title={pageText.pricingTitle}
-        subtitle={pageText.pricingSubtitle}
       />
 
       {/* FAQ */}

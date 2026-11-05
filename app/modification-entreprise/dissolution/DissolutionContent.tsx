@@ -82,6 +82,8 @@ export default function DissolutionContent() {
         <div className="absolute top-0 left-0 w-64 h-64 bg-red-500/10 rounded-full blur-3xl" />
         <div className="absolute bottom-0 right-0 w-96 h-96 bg-red-500/10 rounded-full blur-3xl" />
       </section>
+      {/* Company management colour from the brand charter */}
+      <div className="h-1 bg-section-gestion" aria-hidden="true" />
 
       {/* Why Dissolve Section */}
       <section className="py-16 lg:py-24 bg-white dark:bg-gray-800">
@@ -115,8 +117,16 @@ export default function DissolutionContent() {
         </div>
       </section>
 
+      {/* Pricing */}
+      <GestionPricingCards
+        tone="gray"
+        tiers={pricingTiers}
+        title={pageText.pricingTitle}
+        subtitle={pageText.pricingSubtitle}
+      />
+
       {/* Process Phases */}
-      <section className="py-16 lg:py-24 bg-gray-50 dark:bg-gray-900">
+      <section className="py-16 lg:py-24 bg-white dark:bg-gray-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <span className="inline-block px-4 py-2 bg-primary-100 dark:bg-primary-900/30 rounded-full text-primary-600 dark:text-primary-400 text-sm font-medium mb-4">
@@ -142,7 +152,7 @@ export default function DissolutionContent() {
                   {phase.steps.map((step) => (
                     <div
                       key={step.number}
-                      className="bg-white dark:bg-gray-800 rounded-xl p-5 border border-gray-100 dark:border-gray-700"
+                      className="bg-gray-50 dark:bg-gray-900 rounded-xl p-5 border border-gray-100 dark:border-gray-700"
                     >
                       <div className={`w-10 h-10 rounded-lg flex items-center justify-center text-white font-bold text-sm mb-3 ${
                         phaseIndex === 0 ? 'bg-primary-600' : 'bg-secondary-600'
@@ -163,6 +173,13 @@ export default function DissolutionContent() {
           </div>
         </div>
       </section>
+
+      {/* Documents */}
+      <GestionDocumentsChecklist
+        documents={documents}
+        title={pageText.documentsTitle}
+        subtitle={pageText.documentsSubtitle}
+      />
 
       {/* Liquidator Role & Employee Obligations */}
       <section className="py-16 lg:py-24 bg-white dark:bg-gray-800">
@@ -218,20 +235,6 @@ export default function DissolutionContent() {
           </div>
         </div>
       </section>
-
-      {/* Documents */}
-      <GestionDocumentsChecklist
-        documents={documents}
-        title={pageText.documentsTitle}
-        subtitle={pageText.documentsSubtitle}
-      />
-
-      {/* Pricing */}
-      <GestionPricingCards
-        tiers={pricingTiers}
-        title={pageText.pricingTitle}
-        subtitle={pageText.pricingSubtitle}
-      />
 
       {/* FAQ */}
       <FAQSection

@@ -149,7 +149,7 @@ function RequirementsSection({ requirements, language }: { requirements: Bilingu
   });
 
   return (
-    <section className="py-16 lg:py-24 bg-white dark:bg-gray-900">
+    <section className="py-16 lg:py-24 bg-gray-50 dark:bg-gray-800">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4">
@@ -162,7 +162,7 @@ function RequirementsSection({ requirements, language }: { requirements: Bilingu
 
         <div
           ref={ref}
-          className={`bg-gray-50 dark:bg-gray-800 rounded-2xl p-8 ${
+          className={`bg-white dark:bg-gray-900 rounded-2xl p-8 ${
             inView ? 'animate-fade-in' : 'opacity-0'
           }`}
         >
@@ -170,7 +170,7 @@ function RequirementsSection({ requirements, language }: { requirements: Bilingu
             {requirements.map((requirement, index) => (
               <li
                 key={index}
-                className="flex items-center gap-3 bg-white dark:bg-gray-700 rounded-xl p-4 shadow-sm"
+                className="flex items-center gap-3 bg-gray-50 dark:bg-gray-800 rounded-xl p-4"
               >
                 <div className="w-8 h-8 bg-primary-100 dark:bg-primary-900/30 rounded-lg flex items-center justify-center text-primary-600 dark:text-primary-400 shrink-0">
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -214,6 +214,8 @@ export default function SubpageLayout({ data, pricingTiers }: SubpageLayoutProps
         }}
         showTrustBadges={true}
       />
+      {/* Company formation colour from the brand charter */}
+      <div className="h-1 bg-section-creation" aria-hidden="true" />
 
       {/* Why Create */}
       <WhyCreateSection
@@ -221,6 +223,22 @@ export default function SubpageLayout({ data, pricingTiers }: SubpageLayoutProps
         content={data.whyCreate.content}
         language={language}
       />
+
+      {/* Advantages/Disadvantages */}
+      <AdvantagesSection
+        advantages={data.advantages}
+        disadvantages={data.disadvantages}
+        language={language}
+      />
+
+      {/* Pricing */}
+      <section className="bg-gray-50 dark:bg-gray-800">
+        <PricingCards
+          tiers={tiersWithType}
+          title={layoutText.pricing[language]}
+          subtitle={layoutText.pricingSubtitle[language]}
+        />
+      </section>
 
       {/* Steps */}
       <section className="bg-white dark:bg-gray-900">
@@ -232,12 +250,10 @@ export default function SubpageLayout({ data, pricingTiers }: SubpageLayoutProps
         />
       </section>
 
-      {/* Advantages/Disadvantages */}
-      <AdvantagesSection
-        advantages={data.advantages}
-        disadvantages={data.disadvantages}
-        language={language}
-      />
+      {/* Requirements */}
+      {data.requirements && data.requirements.length > 0 && (
+        <RequirementsSection requirements={data.requirements} language={language} />
+      )}
 
       {/* Legal regime (key features of the legal form) */}
       {data.legalRegime && (
@@ -252,7 +268,7 @@ export default function SubpageLayout({ data, pricingTiers }: SubpageLayoutProps
 
       {/* Comparison Table */}
       {data.comparison && (
-        <section className="bg-gray-50 dark:bg-gray-800">
+        <section className="bg-white dark:bg-gray-900">
           <ComparisonTable
             headers={data.comparison.headers}
             rows={data.comparison.rows}
@@ -261,20 +277,6 @@ export default function SubpageLayout({ data, pricingTiers }: SubpageLayoutProps
           />
         </section>
       )}
-
-      {/* Requirements */}
-      {data.requirements && data.requirements.length > 0 && (
-        <RequirementsSection requirements={data.requirements} language={language} />
-      )}
-
-      {/* Pricing */}
-      <section className="bg-gray-50 dark:bg-gray-800">
-        <PricingCards
-          tiers={tiersWithType}
-          title={layoutText.pricing[language]}
-          subtitle={layoutText.pricingSubtitle[language]}
-        />
-      </section>
 
       {/* FAQ */}
       <FAQSection

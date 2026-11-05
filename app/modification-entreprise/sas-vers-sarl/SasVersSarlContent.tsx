@@ -109,6 +109,8 @@ export default function SasVersSarlContent() {
         <div className="absolute top-0 left-0 w-64 h-64 bg-primary-500/10 rounded-full blur-3xl" />
         <div className="absolute bottom-0 right-0 w-96 h-96 bg-secondary-500/10 rounded-full blur-3xl" />
       </section>
+      {/* Company management colour from the brand charter */}
+      <div className="h-1 bg-section-gestion" aria-hidden="true" />
 
       {/* Advantages Section */}
       <section className="py-16 lg:py-24 bg-white dark:bg-gray-800">
@@ -143,12 +145,28 @@ export default function SasVersSarlContent() {
         </div>
       </section>
 
+      {/* Pricing */}
+      <GestionPricingCards
+        tone="gray"
+        tiers={pricingTiers}
+        title={pageText.pricingTitle}
+        subtitle={pageText.pricingSubtitle}
+      />
+
       {/* Process Timeline */}
       <GestionTimeline
+        tone="white"
         steps={processSteps}
         title={pageText.timelineTitle}
         subtitle={pageText.timelineSubtitle}
         badge={pageText.timelineBadge}
+      />
+
+      {/* Documents */}
+      <GestionDocumentsChecklist
+        documents={documents}
+        title={pageText.documentsTitle}
+        subtitle={pageText.documentsSubtitle}
       />
 
       {/* Info Box */}
@@ -173,20 +191,6 @@ export default function SasVersSarlContent() {
           </div>
         </div>
       </section>
-
-      {/* Documents */}
-      <GestionDocumentsChecklist
-        documents={documents}
-        title={pageText.documentsTitle}
-        subtitle={pageText.documentsSubtitle}
-      />
-
-      {/* Pricing */}
-      <GestionPricingCards
-        tiers={pricingTiers}
-        title={pageText.pricingTitle}
-        subtitle={pageText.pricingSubtitle}
-      />
 
       {/* FAQ */}
       <FAQSection
