@@ -155,7 +155,7 @@ export default function AboutTimeline() {
 
                 {/* Content Card */}
                 <div
-                  className={`timeline-content ml-24 lg:ml-0 lg:w-[calc(50%-4rem)] ${
+                  className={`timeline-content flex-1 min-w-0 break-words lg:flex-none ml-24 lg:ml-0 lg:w-[calc(50%-4rem)] ${
                     index % 2 === 0 ? 'lg:mr-auto lg:pr-8 lg:text-right' : 'lg:ml-auto lg:pl-8 lg:text-left'
                   }`}
                 >

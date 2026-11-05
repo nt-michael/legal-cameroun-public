@@ -59,7 +59,7 @@ export default function GestionPageContent() {
     <main className="min-h-screen bg-gray-50 dark:bg-gray-900">
       {/* Hero Section */}
       <section
-        className="relative py-20 lg:py-32 overflow-hidden"
+        className="relative pt-28 pb-20 lg:pt-36 lg:pb-32 overflow-hidden"
         style={{ background: 'linear-gradient(to bottom right, #041c28, #0a3d4f, #041c28)' }}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

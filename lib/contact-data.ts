@@ -37,8 +37,8 @@ export const contactHeroData = {
     en: 'Whether it\'s a quick business setup in Bonabéri, an urgent amendment, or just a question about your articles of incorporation... we truly listen.',
   } as BilingualText,
   responseTime: {
-    fr: 'Contactez-nous dès aujourd\'hui — réponse sous 24h (souvent plus rapide !)',
-    en: 'Contact us today — response within 24h (often faster!)',
+    fr: 'Contactez-nous dès aujourd\'hui — réponse sous 48h (souvent plus rapide !)',
+    en: 'Contact us today — response within 48h (often faster!)',
   } as BilingualText,
   trustBadge: {
     fr: '+15 000 entrepreneurs nous font déjà confiance depuis 8 ans.',
@@ -231,7 +231,7 @@ export const formLabels = {
   submit: { fr: 'Envoyer mon message', en: 'Send My Message' } as BilingualText,
   submitting: { fr: 'Envoi en cours...', en: 'Sending...' } as BilingualText,
   successTitle: { fr: 'Merci !', en: 'Thank You!' } as BilingualText,
-  successMessage: { fr: 'Un expert vous contacte sous 24h.', en: 'An expert will contact you within 24h.' } as BilingualText,
+  successMessage: { fr: 'Un expert vous contacte sous 48h.', en: 'An expert will contact you within 48h.' } as BilingualText,
   successCta: { fr: 'En attendant, réservez un RDV ?', en: 'In the meantime, book an appointment?' } as BilingualText,
   successButton: { fr: 'Réserver un RDV', en: 'Book an appointment' } as BilingualText,
   subjectPlaceholder: { fr: 'Sélectionnez un sujet', en: 'Select a subject' } as BilingualText,

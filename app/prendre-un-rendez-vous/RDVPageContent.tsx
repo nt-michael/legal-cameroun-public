@@ -37,7 +37,7 @@ export default function RDVPageContent({ consultationPrice }: { consultationPric
     <main className="min-h-screen bg-gray-50 dark:bg-gray-900">
       {/* Hero Section */}
       <section
-        className="relative pb-16 pt-20 lg:pb-26 lg:pt-30 overflow-hidden"
+        className="relative pb-16 pt-28 lg:pb-26 lg:pt-36 overflow-hidden"
         style={{ background: 'linear-gradient(to bottom right, #041c28, #0a3d4f, #041c28)' }}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

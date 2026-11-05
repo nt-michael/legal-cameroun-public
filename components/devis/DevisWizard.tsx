@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import gsap from 'gsap';
@@ -237,6 +237,8 @@ export default function DevisWizard() {
   const [consent, setConsent] = useState(false);
   const [consentError, setConsentError] = useState('');
   const [direction, setDirection] = useState<'next' | 'prev'>('next');
+  // Top of the wizard, used to bring the new step into view on small screens
+  const wizardTopRef = useRef<HTMLDivElement>(null);
 
   // Load from URL params and localStorage
   useEffect(() => {
@@ -395,6 +397,12 @@ export default function DevisWizard() {
       duration: 0.2,
       onComplete: () => {
         setCurrentStep(step);
+        // After "Next" at the bottom of a long step, the new step would start off-screen
+        const top = wizardTopRef.current?.getBoundingClientRect().top;
+        if (top !== undefined && top < 0) {
+          const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+          window.scrollTo({ top: window.scrollY + top - 112, behavior: reduceMotion ? 'auto' : 'smooth' });
+        }
         // Animate in
         gsap.fromTo(
           '.step-content',
@@ -506,7 +514,7 @@ export default function DevisWizard() {
   }
 
   return (
-    <div className="max-w-3xl mx-auto">
+    <div ref={wizardTopRef} className="max-w-3xl mx-auto">
       <ProgressBar currentStep={currentStep} steps={steps} />
 
       <div className="bg-white dark:bg-gray-800 rounded-3xl shadow-xl p-6 sm:p-8 lg:p-12">

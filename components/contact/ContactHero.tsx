@@ -128,7 +128,7 @@ export default function ContactHero() {
   return (
     <section
       ref={heroRef}
-      className="relative min-h-[70vh] flex items-center overflow-hidden"
+      className="relative min-h-[70vh] flex items-center overflow-hidden pt-28 pb-16"
       style={{
         background: 'linear-gradient(to bottom right, #041c28, #0a3d4f, #041c28)',
       }}

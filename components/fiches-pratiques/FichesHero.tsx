@@ -41,7 +41,7 @@ export default function FichesHero() {
   return (
     <section
       ref={heroRef}
-      className="relative py-20 lg:py-28 overflow-hidden"
+      className="relative pt-28 pb-20 lg:pt-36 lg:pb-28 overflow-hidden"
       style={{
         background: 'linear-gradient(to bottom right, #041c28, #0a3d4f, #041c28)',
       }}

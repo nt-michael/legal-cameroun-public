@@ -25,7 +25,7 @@ export default function DevisPageContent() {
     <main className="min-h-screen bg-gray-50 dark:bg-gray-900">
       {/* Hero Section */}
       <section
-        className="relative py-16 lg:py-24"
+        className="relative pt-28 pb-16 lg:pt-36 lg:pb-24"
         style={{ background: 'linear-gradient(to bottom right, #041c28, #0a3d4f, #041c28)' }}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -68,7 +68,7 @@ export default function DevisPageContent() {
               <div className="text-sm text-gray-600 dark:text-gray-400">{pageText.stat1Label[language]}</div>
             </div>
             <div>
-              <div className="text-3xl font-bold text-primary-600 mb-1">24h</div>
+              <div className="text-3xl font-bold text-primary-600 mb-1">48h</div>
               <div className="text-sm text-gray-600 dark:text-gray-400">{pageText.stat2Label[language]}</div>
             </div>
             <div>

@@ -597,6 +597,25 @@ small, .text-xs, .text-sm {
 /* Prevent horizontal overflow */
 html {
   overflow-x: hidden;
+  /* In-page links (#statuts, #comparateur...) glide and stop below the fixed header */
+  scroll-behavior: smooth;
+  scroll-padding-top: 7rem;
+}
+
+/* Visitors who ask their system for less motion get instant scrolling and no animations */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-delay: 0ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
 body {

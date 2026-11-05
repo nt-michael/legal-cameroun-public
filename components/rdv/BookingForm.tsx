@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Language } from '@/lib/translations';
@@ -122,6 +122,8 @@ export default function BookingForm({ consultationPrice }: { consultationPrice: 
   const searchParams = useSearchParams();
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [step, setStep] = useState(0);
+  // Top of the form, used to bring the new step into view on small screens
+  const formTopRef = useRef<HTMLDivElement>(null);
   const [formData, setFormData] = useState<BookingFormData>(initialFormData);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -244,6 +246,12 @@ export default function BookingForm({ consultationPrice }: { consultationPrice: 
       duration: 0.2,
       onComplete: () => {
         setStep(newStep);
+        // After "Next" at the bottom of a long step, the new step would start off-screen
+        const top = formTopRef.current?.getBoundingClientRect().top;
+        if (top !== undefined && top < 0) {
+          const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+          window.scrollTo({ top: window.scrollY + top - 112, behavior: reduceMotion ? 'auto' : 'smooth' });
+        }
         gsap.fromTo(
           '.booking-step-content',
           { opacity: 0, y: newStep > step ? 20 : -20 },
@@ -322,7 +330,7 @@ export default function BookingForm({ consultationPrice }: { consultationPrice: 
   const availableDatesList = Object.keys(dateMap).sort();
 
   return (
-    <div className="max-w-2xl mx-auto relative">
+    <div ref={formTopRef} className="max-w-2xl mx-auto relative">
       {/* Success Modal */}
       {showSuccessModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm animate-fade-in">
