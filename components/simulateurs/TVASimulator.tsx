@@ -348,7 +348,7 @@ export default function TVASimulator() {
             </div>
             <div className="bg-white rounded-2xl p-4 border border-gray-100">
               <div className="text-sm text-gray-500 mb-1">{simText.vatDeductible[language]}</div>
-              <div className="text-xl font-bold text-orange-600">
+              <div className="text-xl font-bold text-secondary-700">
                 {formatFCFA(result.tvaDeductible)}
               </div>
             </div>
@@ -395,7 +395,7 @@ export default function TVASimulator() {
                   </div>
                   <div className="h-4 bg-gray-200 rounded-full overflow-hidden">
                     <div
-                      className="h-full bg-orange-500 rounded-full transition-all duration-1000"
+                      className="h-full bg-secondary-500 rounded-full transition-all duration-1000"
                       style={{
                         width: `${(result.tvaDeductible / (result.tvaCollectee + result.tvaDeductible || 1)) * 100}%`,
                       }}
