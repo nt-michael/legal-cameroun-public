@@ -65,13 +65,13 @@ export default function WhyChooseUsSection() {
           {whyChooseUs.map((item, index) => (
             <div
               key={item.title[language]}
-              className={`group relative bg-gray-50 dark:bg-gray-800 rounded-2xl p-8 hover:bg-white dark:hover:bg-gray-700 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 ${
+              className={`group relative bg-gray-50 dark:bg-gray-800 rounded-2xl p-8 transition-all duration-300 ${
                 inView ? 'animate-fade-in-up opacity-100' : 'opacity-0'
               }`}
               style={{ animationDelay: `${index * 100}ms` }}
             >
               {/* Icon */}
-              <div className="w-16 h-16 bg-primary-100 dark:bg-primary-900/30 rounded-2xl flex items-center justify-center text-primary-600 dark:text-primary-400 mb-6 group-hover:bg-primary-600 group-hover:text-white transition-all duration-300 group-hover:scale-110">
+              <div className="w-16 h-16 bg-primary-100 dark:bg-primary-900/30 rounded-2xl flex items-center justify-center text-primary-600 dark:text-primary-400 mb-6 transition-all duration-300">
                 {iconMap[item.icon]}
               </div>
 

@@ -92,7 +92,7 @@ export default function WhyContactUs() {
             <div
               key={item.title[language]}
               ref={(el) => { cardsRef.current[index] = el; }}
-              className="bg-white dark:bg-gray-900 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300 border border-gray-200 dark:border-gray-700"
+              className="bg-white dark:bg-gray-900 rounded-2xl p-6 shadow-lg transition-shadow duration-300 border border-gray-200 dark:border-gray-700"
             >
               {/* Icon */}
               <div className="w-16 h-16 bg-primary-600 rounded-xl flex items-center justify-center text-white mb-4 shadow-lg shadow-primary-500/30">

@@ -130,14 +130,14 @@ export default function OfficesSection() {
                 />
 
                 {/* Paris pin */}
-                <g className="cursor-pointer" transform="translate(100, 100)">
+                <g className="" transform="translate(100, 100)">
                   <circle r="20" fill="url(#parisGlow)" opacity="0.3" />
                   <circle r="12" className="fill-primary-500" />
                   <text y="35" textAnchor="middle" className="fill-gray-600 dark:fill-gray-300 text-xs font-medium">Paris</text>
                 </g>
 
                 {/* Douala pin */}
-                <g className="cursor-pointer" transform="translate(250, 200)">
+                <g className="" transform="translate(250, 200)">
                   <circle r="25" fill="url(#doualaGlow)" opacity="0.4" className="animate-ping" style={{ animationDuration: '3s' }} />
                   <circle r="16" className="fill-primary-600" />
                   <circle r="6" className="fill-white" />
@@ -145,7 +145,7 @@ export default function OfficesSection() {
                 </g>
 
                 {/* Cotonou pin */}
-                <g className="cursor-pointer" transform="translate(300, 280)">
+                <g className="" transform="translate(300, 280)">
                   <circle r="18" fill="url(#cotonouGlow)" opacity="0.3" />
                   <circle r="10" className="fill-primary-400" />
                   <text y="30" textAnchor="middle" className="fill-gray-600 dark:fill-gray-300 text-xs font-medium">Cotonou</text>
@@ -191,7 +191,7 @@ export default function OfficesSection() {
                 <div
                   key={office.city}
                   ref={(el) => { cardsRef.current[index] = el; }}
-                  className={`bg-gray-50 dark:bg-gray-900 rounded-2xl p-6 border-l-4 ${colors.accent} hover:shadow-lg transition-all duration-300 cursor-pointer`}
+                  className={`bg-gray-50 dark:bg-gray-900 rounded-2xl p-6 border-l-4 ${colors.accent} transition-all duration-300`}
                 >
                   <div className="flex items-start gap-4">
                     <div className={`office-pin w-12 h-12 ${colors.bg} rounded-xl flex items-center justify-center text-white shrink-0 transition-transform duration-300`}>

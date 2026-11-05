@@ -131,7 +131,7 @@ export default function ValuesGrid() {
               <div
                 key={value.title[language]}
                 ref={(el) => { cardsRef.current[index] = el; }}
-                className={`bg-gradient-to-br ${colors.bg} ${colors.darkBg} rounded-2xl p-6 border-2 ${colors.border} ${colors.darkBorder} ${colors.hover} transition-all duration-300 cursor-pointer`}
+                className={`bg-gradient-to-br ${colors.bg} ${colors.darkBg} rounded-2xl p-6 border-2 ${colors.border} ${colors.darkBorder} transition-all duration-300`}
               >
                 <div className={`w-14 h-14 bg-white dark:bg-gray-800 rounded-xl flex items-center justify-center ${colors.icon} dark:text-white mb-4 shadow-sm`}>
                   {iconMap[value.icon]}

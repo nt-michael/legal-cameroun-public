@@ -128,7 +128,7 @@ export default function SasVersSarlContent() {
             {advantages.map((item, index) => (
               <div
                 key={index}
-                className="bg-gray-50 dark:bg-gray-900 rounded-2xl p-6 hover:shadow-lg transition-all duration-300 border border-gray-100 dark:border-gray-700"
+                className="bg-gray-50 dark:bg-gray-900 rounded-2xl p-6 transition-all duration-300 border border-gray-100 dark:border-gray-700"
               >
                 <div className="w-14 h-14 bg-green-100 dark:bg-green-900/30 rounded-xl flex items-center justify-center text-green-600 dark:text-green-400 mb-4">
                   {advantageIcons[item.icon]}

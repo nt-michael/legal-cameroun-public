@@ -134,7 +134,7 @@ export default function PricingCards({ tiers, title, subtitle }: PricingCardsPro
               className={`pricing-card relative rounded-2xl p-8 transition-all duration-500 ${
                 tier.highlighted
                   ? 'pricing-card-highlighted bg-gradient-to-br from-primary-600 to-primary-700 text-white shadow-2xl shadow-primary-500/30 z-10'
-                  : 'bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:shadow-xl hover:scale-[1.02]'
+                  : 'bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700'
               }`}
             >
               {/* Badge */}

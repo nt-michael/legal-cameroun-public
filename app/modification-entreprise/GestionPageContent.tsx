@@ -149,7 +149,7 @@ export default function GestionPageContent() {
             {whyModifyReasons.map((reason, index) => (
               <div
                 key={index}
-                className="bg-gray-50 dark:bg-gray-900 rounded-2xl p-6 hover:shadow-lg transition-all duration-300 border border-gray-100 dark:border-gray-700"
+                className="bg-gray-50 dark:bg-gray-900 rounded-2xl p-6 transition-all duration-300 border border-gray-100 dark:border-gray-700"
               >
                 <div className="w-12 h-12 bg-primary-100 dark:bg-primary-900/30 rounded-xl flex items-center justify-center text-primary-600 dark:text-primary-400 mb-4">
                   {reasonIcons[reason.icon]}

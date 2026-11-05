@@ -79,7 +79,7 @@ export default function ContactOffices() {
               <div
                 key={office.city[language]}
                 ref={(el) => { cardsRef.current[index] = el; }}
-                className={`${colors.bg} rounded-2xl p-6 border-l-4 ${colors.border} transition-all duration-300 cursor-pointer ${
+                className={`${colors.bg} rounded-2xl p-6 border-l-4 ${colors.border} transition-all duration-300 ${
                   office.isPrimary ? 'ring-2 ring-primary-400 ring-offset-2 dark:ring-offset-gray-800' : ''
                 }`}
               >

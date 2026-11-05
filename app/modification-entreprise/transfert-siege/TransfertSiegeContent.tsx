@@ -122,7 +122,7 @@ export default function TransfertSiegeContent() {
             {whyTransfer.map((item, index) => (
               <div
                 key={index}
-                className="bg-white dark:bg-gray-800 rounded-2xl p-6 text-center hover:shadow-lg transition-all duration-300 border border-gray-100 dark:border-gray-700"
+                className="bg-white dark:bg-gray-800 rounded-2xl p-6 text-center transition-all duration-300 border border-gray-100 dark:border-gray-700"
               >
                 <div className="w-14 h-14 bg-primary-100 dark:bg-primary-900/30 rounded-xl flex items-center justify-center text-primary-600 dark:text-primary-400 mx-auto mb-4">
                   {whyIcons[item.icon]}

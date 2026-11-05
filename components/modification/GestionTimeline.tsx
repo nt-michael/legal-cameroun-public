@@ -116,7 +116,7 @@ export default function GestionTimeline({
 
                 {/* Content Card */}
                 <div className={`flex-1 min-w-0 break-words lg:flex-none ml-24 lg:ml-0 lg:w-[calc(50%-3rem)] ${index % 2 === 0 ? 'lg:mr-auto lg:pr-8' : 'lg:ml-auto lg:pl-8'}`}>
-                  <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700 hover:shadow-lg transition-shadow duration-300">
+                  <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700 transition-shadow duration-300">
                     <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
                       {step.title[language]}
                     </h3>

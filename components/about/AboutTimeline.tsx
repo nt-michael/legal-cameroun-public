@@ -143,7 +143,7 @@ export default function AboutTimeline() {
               >
                 {/* Pin */}
                 <div
-                  className={`timeline-pin absolute left-8 lg:left-1/2 -translate-x-1/2 w-16 h-16 rounded-full flex items-center justify-center z-10 cursor-pointer transition-shadow duration-300 hover:shadow-lg hover:shadow-amber-500/30 ${
+                  className={`timeline-pin absolute left-8 lg:left-1/2 -translate-x-1/2 w-16 h-16 rounded-full flex items-center justify-center z-10 transition-shadow duration-300 ${
                     locationColors[event.location || 'Cameroun'] || 'bg-amber-500'
                   }`}
                 >
@@ -159,7 +159,7 @@ export default function AboutTimeline() {
                     index % 2 === 0 ? 'lg:mr-auto lg:pr-8 lg:text-right' : 'lg:ml-auto lg:pl-8 lg:text-left'
                   }`}
                 >
-                  <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-100 dark:border-gray-700 hover:shadow-xl transition-shadow duration-300">
+                  <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-100 dark:border-gray-700 transition-shadow duration-300">
                     <div className={`flex items-center gap-3 mb-3 ${index % 2 === 0 ? 'lg:justify-end' : 'lg:justify-start'}`}>
                       <span className="text-sm font-semibold text-amber-600 dark:text-amber-400 bg-amber-100 dark:bg-amber-900/30 px-3 py-1 rounded-full">
                         {event.year}

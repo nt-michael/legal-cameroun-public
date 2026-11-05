@@ -105,7 +105,7 @@ export default function TestimonialsCarousel() {
           {duplicatedTestimonials.map((testimonial, index) => (
             <div
               key={`${testimonial.author}-${index}`}
-              className="w-[350px] shrink-0 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-amber-100 dark:border-gray-700 hover:shadow-xl transition-shadow duration-300"
+              className="w-[350px] shrink-0 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-amber-100 dark:border-gray-700"
             >
               {/* Quote icon */}
               <div className="w-10 h-10 bg-amber-100 dark:bg-amber-900/30 rounded-xl flex items-center justify-center text-amber-500 mb-4">
