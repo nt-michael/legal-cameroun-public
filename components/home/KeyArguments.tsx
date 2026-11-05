@@ -46,7 +46,7 @@ export default function KeyArguments() {
 
   return (
     <section className="bg-white dark:bg-gray-900 border-b border-gray-100 dark:border-gray-800">
-      <ul ref={ref} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+      <ul ref={ref} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6 lg:gap-8">
         {argumentsList.map((item, index) => (
           <li
             key={item.icon}

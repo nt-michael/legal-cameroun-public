@@ -27,7 +27,7 @@ export default function LegalFormsPreview() {
   return (
     <section className="section-padding bg-white dark:bg-gray-900" id="statuts">
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-12">
+        <div className="text-center mb-8 sm:mb-12">
           <span className="inline-block px-4 py-2 bg-primary-100 rounded-full text-primary-600 text-sm font-medium mb-4">
             {sectionText.badge[language]}
           </span>

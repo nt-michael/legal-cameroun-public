@@ -157,7 +157,7 @@ export default function Hero() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative min-h-screen flex items-center justify-center overflow-hidden pt-28 pb-20" style={{ background: 'linear-gradient(to bottom right, #041c28, #0a3d4f, #041c28)' }}>
+    <section ref={sectionRef} className="relative min-h-[70svh] lg:min-h-[78vh] flex items-center justify-center overflow-hidden pt-28 pb-20" style={{ background: 'linear-gradient(to bottom right, #041c28, #0a3d4f, #041c28)' }}>
       {/* Three.js Canvas */}
       <canvas
         ref={canvasRef}
@@ -201,7 +201,7 @@ export default function Hero() {
         </div>
 
         {/* Trust Badges */}
-        <div className="mt-16 flex flex-wrap justify-center gap-8 animate-fade-in-up animation-delay-400">
+        <div className="mt-10 sm:mt-16 flex flex-wrap justify-center gap-x-6 gap-y-2 sm:gap-8 animate-fade-in-up animation-delay-400">
           {heroContent.badges.map((badge) => (
             <div key={badge.fr} className="flex items-center gap-2 text-gray-400">
               <svg className="w-5 h-5 text-primary-400" fill="currentColor" viewBox="0 0 20 20">
