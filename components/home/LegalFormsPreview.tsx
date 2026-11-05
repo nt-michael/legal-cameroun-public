@@ -28,7 +28,7 @@ export default function LegalFormsPreview() {
     <section className="section-padding bg-white dark:bg-gray-900" id="statuts">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-8 sm:mb-12">
-          <span className="inline-block px-4 py-2 bg-primary-100 rounded-full text-primary-600 text-sm font-medium mb-4">
+          <span className="eyebrow">
             {sectionText.badge[language]}
           </span>
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4">
@@ -46,7 +46,7 @@ export default function LegalFormsPreview() {
               <Link
                 key={form.id}
                 href={form.href ?? '/creation-entreprise'}
-                className={`group bg-gray-50 dark:bg-gray-800 rounded-2xl p-4 sm:p-6 border border-gray-100 dark:border-gray-700 card-hover flex flex-col ${
+                className={`group bg-white dark:bg-gray-800 rounded-2xl p-4 sm:p-6 border border-gray-200 dark:border-gray-700 hover:border-secondary-400 transition-colors flex flex-col ${
                   inView ? 'animate-fade-in-up' : 'opacity-0'
                 }`}
                 style={{ animationDelay: `${index * 80}ms` }}

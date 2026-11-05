@@ -34,12 +34,12 @@ export default function BlogPreview({ posts }: BlogPreviewProps) {
   const { language } = useLanguage();
 
   return (
-    <section className="section-padding bg-gray-50">
+    <section className="section-padding bg-white dark:bg-gray-900">
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
         <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 mb-12">
           <div>
-            <span className="inline-block px-4 py-2 bg-primary-100 rounded-full text-primary-600 text-sm font-medium mb-4">
+            <span className="eyebrow">
               {sectionText.badge[language]}
             </span>
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">

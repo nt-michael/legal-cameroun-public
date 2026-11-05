@@ -102,8 +102,6 @@ export default function Header() {
   const { theme, setTheme } = useTheme();
 
   const isMegaMenuOpen = openMenu === 'offers';
-  // Any open dropdown gives the bar a solid background so the panel reads as part of it
-  const isSolid = isScrolled || openMenu !== null;
 
   const openDropdown = (id: DropdownId) => {
     if (hoverTimeoutRef.current) {
@@ -153,11 +151,7 @@ export default function Header() {
     <header className="fixed top-0 left-0 right-0 z-50">
       {/* Top Utility Bar */}
       <div
-        className={`transition-all duration-300 ${
-          isSolid
-            ? 'bg-gray-100 dark:bg-gray-800'
-            : 'bg-white/10 backdrop-blur-sm'
-        }`}
+        className="bg-primary-800"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-end gap-4 h-8">
@@ -165,23 +159,19 @@ export default function Header() {
             <button
               onClick={() => setLanguage(language === 'fr' ? 'en' : 'fr')}
               className={`text-xs font-medium transition-colors ${
-                isSolid
-                  ? 'text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200'
-                  : 'text-white/70 hover:text-white'
+                'text-white/70 hover:text-white'
               }`}
             >
               {language === 'fr' ? 'EN' : 'FR'}
             </button>
 
-            <span className={`text-xs ${isSolid ? 'text-gray-300 dark:text-gray-600' : 'text-white/30'}`}>|</span>
+            <span className={`text-xs ${'text-white/30'}`}>|</span>
 
             {/* Theme Toggle */}
             <button
               onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
               className={`transition-colors ${
-                isSolid
-                  ? 'text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200'
-                  : 'text-white/70 hover:text-white'
+                'text-white/70 hover:text-white'
               }`}
               aria-label="Toggle theme"
             >
@@ -201,11 +191,7 @@ export default function Header() {
 
       {/* Main Navigation */}
       <nav
-        className={`transition-all duration-300 ${
-          isSolid
-            ? 'bg-white/95 dark:bg-gray-900/95 backdrop-blur-md shadow-lg'
-            : 'bg-transparent'
-        }`}
+        className={`bg-primary-600 transition-shadow duration-300 ${isScrolled || openMenu ? 'shadow-lg' : ''}`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
@@ -218,7 +204,7 @@ export default function Header() {
               height={50}
               className="h-12 w-auto transition-all duration-300"
               style={{
-                filter: isSolid && theme === 'light' ? 'none' : 'brightness(0) invert(1)'
+                filter: 'brightness(0) invert(1)'
               }}
               priority
             />
@@ -227,9 +213,7 @@ export default function Header() {
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center gap-6 xl:gap-8 whitespace-nowrap">
             {navigation.map((item) => {
-              const linkColor = isSolid
-                ? 'text-gray-700 dark:text-gray-200 hover:text-primary-600'
-                : 'text-white/90 hover:text-white';
+              const linkColor = 'text-white/90 hover:text-white';
 
               if (!item.dropdown) {
                 return (
@@ -253,7 +237,7 @@ export default function Header() {
                     aria-expanded={isOpen}
                     aria-haspopup="true"
                     className={`flex items-center gap-1 font-medium transition-colors ${
-                      isOpen ? 'text-primary-600 dark:text-primary-300' : linkColor
+                      isOpen ? 'text-secondary-300' : linkColor
                     }`}
                   >
                     {item.name[language]}
@@ -297,22 +281,13 @@ export default function Header() {
               <Link
                 href="/prendre-un-rendez-vous"
                 className={`hidden xl:inline-flex items-center rounded-lg border-2 px-4 py-2 text-sm font-semibold transition-colors ${
-                  isSolid
-                    ? 'border-primary-600 text-primary-600 hover:bg-primary-600 hover:text-white dark:border-primary-300 dark:text-primary-300'
-                    : 'border-white/40 text-white hover:bg-white hover:text-gray-900'
+                  'border-white/40 text-white hover:bg-white hover:text-gray-900'
                 }`}
               >
                 {t.nav.appointment}
               </Link>
-              {/* On the dark hero the dark button would disappear, so it turns white until the bar is solid */}
-              <Link
-                href="/devis"
-                className={
-                  isSolid
-                    ? 'btn-primary text-sm'
-                    : 'inline-flex items-center rounded-lg bg-white px-6 py-3 text-sm font-semibold text-primary-600 hover:bg-primary-50 transition-colors'
-                }
-              >
+              {/* Main action in the charter's gold, readable on the dark blue bar */}
+              <Link href="/devis" className="btn-gold text-sm">
                 {createCompanyLabel[language]}
               </Link>
             </div>
@@ -325,7 +300,7 @@ export default function Header() {
             aria-label="Toggle menu"
           >
             <svg
-              className={`w-6 h-6 ${isScrolled ? 'text-gray-900' : 'text-white'}`}
+              className="w-6 h-6 text-white"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"

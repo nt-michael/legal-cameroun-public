@@ -44,10 +44,10 @@ export default function CreationSteps() {
   const { language } = useLanguage();
 
   return (
-    <section className="section-padding bg-gray-50 dark:bg-gray-800">
+    <section className="section-padding bg-secondary-50/50 dark:bg-gray-800">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-12">
-          <span className="inline-block px-4 py-2 bg-primary-100 rounded-full text-primary-600 text-sm font-medium mb-4">
+          <span className="eyebrow">
             {sectionText.badge[language]}
           </span>
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white">{sectionText.heading[language]}</h2>

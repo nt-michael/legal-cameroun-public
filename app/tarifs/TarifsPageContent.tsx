@@ -215,13 +215,13 @@ export default function TarifsPageContent({ consultationPrice }: { consultationP
   const { language } = useLanguage();
 
   return (
-    <main className="min-h-screen bg-gray-50 dark:bg-gray-900">
+    <main className="min-h-screen bg-secondary-50/50 dark:bg-gray-900">
       <section
         className="relative pt-28 pb-14 lg:pt-36 lg:pb-20"
         style={{ background: 'linear-gradient(to bottom right, #041c28, #0a3d4f, #041c28)' }}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <span className="inline-block px-4 py-2 bg-white/10 rounded-full text-primary-300 text-sm font-medium mb-4">
+          <span className="eyebrow text-secondary-300!">
             {pageText.badge[language]}
           </span>
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4">{pageText.title[language]}</h1>
@@ -243,7 +243,7 @@ export default function TarifsPageContent({ consultationPrice }: { consultationP
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <Link
                 href="/devis"
-                className="inline-flex items-center justify-center bg-white text-primary-600 px-6 py-3 rounded-lg font-semibold hover:bg-primary-50 transition-colors"
+                className="btn-gold"
               >
                 {pageText.ctaPrimary[language]}
               </Link>

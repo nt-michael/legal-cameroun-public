@@ -121,11 +121,11 @@ export default function Services() {
   const { language } = useLanguage();
 
   return (
-    <section className="section-padding bg-gray-50 dark:bg-gray-800" id="services">
+    <section className="section-padding bg-secondary-50/50 dark:bg-gray-800" id="services">
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <span className="inline-block px-4 py-2 bg-primary-100 rounded-full text-primary-600 text-sm font-medium mb-4">
+          <span className="eyebrow">
             {sectionText.badge[language]}
           </span>
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4">
@@ -151,13 +151,13 @@ export default function Services() {
                     <Link
                       key={service.title.fr}
                       href={service.href}
-                      className={`group relative overflow-hidden bg-white dark:bg-gray-900 rounded-2xl p-6 sm:p-8 card-hover border border-gray-100 dark:border-gray-700 flex flex-col ${
+                      className={`group relative overflow-hidden bg-white dark:bg-gray-900 rounded-2xl p-6 sm:p-8 border border-gray-200 dark:border-gray-700 hover:border-secondary-400 transition-colors flex flex-col ${
                         inView ? 'animate-fade-in-up' : 'opacity-0'
                       }`}
                       style={{ animationDelay: `${(poleIndex * 2 + index) * 80}ms` }}
                     >
                       <span className={`absolute inset-x-0 top-0 h-1 ${pole.bar}`} aria-hidden="true" />
-                      <div className="w-14 h-14 bg-gray-50 dark:bg-gray-800 rounded-xl flex items-center justify-center mb-5">
+                      <div className="w-14 h-14 bg-secondary-50 dark:bg-gray-800 rounded-xl flex items-center justify-center mb-5">
                         {service.icon}
                       </div>
                       <h4 className="text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-primary-600 transition-colors">

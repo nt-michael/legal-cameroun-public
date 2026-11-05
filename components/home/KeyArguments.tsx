@@ -45,7 +45,7 @@ export default function KeyArguments() {
   const { language } = useLanguage();
 
   return (
-    <section className="bg-white dark:bg-gray-900 border-b border-gray-100 dark:border-gray-800">
+    <section className="bg-secondary-50 dark:bg-gray-800">
       <ul ref={ref} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6 lg:gap-8">
         {argumentsList.map((item, index) => (
           <li
@@ -53,7 +53,9 @@ export default function KeyArguments() {
             className={`flex items-start gap-4 ${inView ? 'animate-fade-in-up' : 'opacity-0'}`}
             style={{ animationDelay: `${index * 80}ms` }}
           >
-            <Image src={`/custom-icons/SVG/${item.icon}`} alt="" width={44} height={44} className="shrink-0" />
+            <span className="shrink-0 w-14 h-14 rounded-xl bg-white dark:bg-gray-900 border border-secondary-200 dark:border-gray-700 flex items-center justify-center">
+              <Image src={`/custom-icons/SVG/${item.icon}`} alt="" width={36} height={36} />
+            </span>
             <div>
               <p className="font-bold text-gray-900 dark:text-white">{item.title[language]}</p>
               <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">{item.description[language]}</p>

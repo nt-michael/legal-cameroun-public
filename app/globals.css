@@ -30,6 +30,9 @@
   --secondary-400: #cab393;
   --secondary-500: #b89e7a;
   --secondary-600: #a08660;
+  /* Darker shades of the charter gold, dark enough for small text on cream */
+  --secondary-700: #7a6545;
+  --secondary-800: #5c4c34;
 
   /* Section colors */
   --section-creation: #0095bb;
@@ -57,6 +60,8 @@
   --color-secondary-400: var(--secondary-400);
   --color-secondary-500: var(--secondary-500);
   --color-secondary-600: var(--secondary-600);
+  --color-secondary-700: var(--secondary-700);
+  --color-secondary-800: var(--secondary-800);
   --color-section-creation: var(--section-creation);
   --color-section-gestion: var(--section-gestion);
   --color-section-accompagnement: var(--section-accompagnement);
@@ -556,6 +561,48 @@ small, .text-xs, .text-sm {
   background: #0a6a85;
   border-color: #0a6a85;
   color: white;
+}
+
+/* Gold call to action, as in the charter's institutional colours */
+.btn-gold {
+  background: #cab393;
+  color: #062735;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: background-color 0.2s ease;
+}
+
+.btn-gold:hover {
+  background: #d5c0a0;
+}
+
+/* Small gold heading above a section title, with a short rule before it */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--secondary-700);
+  margin-bottom: 1rem;
+}
+
+.eyebrow::before {
+  content: '';
+  width: 2rem;
+  height: 1px;
+  background: var(--secondary-400);
+}
+
+.dark .eyebrow {
+  color: var(--secondary-300);
 }
 
 /* Section styles */
