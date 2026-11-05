@@ -631,11 +631,11 @@ export default function DevisWizard() {
               <div className="space-y-6">
                 {/* Company Type */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
+                  <label id="devis-legal-form-label" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
                     {devisText.legalFormLabel[language]}
-                    <span className="block mt-1 text-xs font-normal text-gray-500 dark:text-gray-400">{devisText.legalFormHint[language]}</span>
+                    <span id="devis-legal-form-hint" className="block mt-1 text-xs font-normal text-gray-500 dark:text-gray-400">{devisText.legalFormHint[language]}</span>
                   </label>
-                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                  <div role="group" aria-labelledby="devis-legal-form-label" aria-describedby="devis-legal-form-hint" className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                     {companyTypes.map(type => (
                       <button
                         key={type.value}
@@ -657,11 +657,11 @@ export default function DevisWizard() {
 
                 {/* Timeline */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
+                  <label id="devis-timeline-label" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
                     {devisText.timelineLabel[language]}
-                    <span className="block mt-1 text-xs font-normal text-gray-500 dark:text-gray-400">{devisText.timelineHint[language]}</span>
+                    <span id="devis-timeline-hint" className="block mt-1 text-xs font-normal text-gray-500 dark:text-gray-400">{devisText.timelineHint[language]}</span>
                   </label>
-                  <div className="space-y-3">
+                  <div role="group" aria-labelledby="devis-timeline-label" aria-describedby="devis-timeline-hint" className="space-y-3">
                     {timelineOptions.map(option => (
                       <button
                         key={option.value}
@@ -702,11 +702,13 @@ export default function DevisWizard() {
               <div className="space-y-6">
                 {/* Business Object */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  <label htmlFor="devis-business-object" id="devis-business-object-label" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                     {devisText.businessObjectLabel[language]}
-                    <span className="block mt-1 text-xs font-normal text-gray-500 dark:text-gray-400">{devisText.businessObjectHint[language]}</span>
+                    <span id="devis-business-object-hint" className="block mt-1 text-xs font-normal text-gray-500 dark:text-gray-400">{devisText.businessObjectHint[language]}</span>
                   </label>
                   <textarea
+                    id="devis-business-object"
+                    aria-describedby="devis-business-object-hint"
                     value={formData.businessObject}
                     onChange={(e) => updateFormData({ businessObject: e.target.value })}
                     placeholder={devisText.businessObjectPlaceholder[language]}
@@ -725,11 +727,13 @@ export default function DevisWizard() {
                 {/* Capital */}
                 {requiresCapital(formData.companyType) && (
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    <label htmlFor="devis-capital" id="devis-capital-label" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                       {devisText.capitalLabel[language]}
-                      <span className="block mt-1 text-xs font-normal text-gray-500 dark:text-gray-400">{devisText.capitalHint[language]}</span>
+                      <span id="devis-capital-hint" className="block mt-1 text-xs font-normal text-gray-500 dark:text-gray-400">{devisText.capitalHint[language]}</span>
                     </label>
                     <input
+                    id="devis-capital"
+                    aria-describedby="devis-capital-hint"
                       type="number"
                       value={formData.capital}
                       onChange={(e) => updateFormData({ capital: parseInt(e.target.value) || 0 })}
@@ -806,11 +810,13 @@ export default function DevisWizard() {
 
                 {/* Associates Count */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  <label htmlFor="devis-associates-count" id="devis-associates-count-label" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                     {devisText.associatesCountLabel[language]}
-                    <span className="block mt-1 text-xs font-normal text-gray-500 dark:text-gray-400">{devisText.associatesCountHint[language]}</span>
+                    <span id="devis-associates-count-hint" className="block mt-1 text-xs font-normal text-gray-500 dark:text-gray-400">{devisText.associatesCountHint[language]}</span>
                   </label>
                   <input
+                    id="devis-associates-count"
+                    aria-describedby="devis-associates-count-hint"
                     type="number"
                     value={formData.associatesCount}
                     onChange={(e) => updateFormData({ associatesCount: parseInt(e.target.value) || 1 })}
@@ -822,11 +828,11 @@ export default function DevisWizard() {
 
                 {/* Non-Associate Managers */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
+                  <label id="devis-non-associate-managers-label" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
                     {devisText.nonAssociateManagersLabel[language]}
-                    <span className="block mt-1 text-xs font-normal text-gray-500 dark:text-gray-400">{devisText.nonAssociateManagersHint[language]}</span>
+                    <span id="devis-non-associate-managers-hint" className="block mt-1 text-xs font-normal text-gray-500 dark:text-gray-400">{devisText.nonAssociateManagersHint[language]}</span>
                   </label>
-                  <div className="flex gap-4">
+                  <div role="group" aria-labelledby="devis-non-associate-managers-label" aria-describedby="devis-non-associate-managers-hint" className="flex gap-4">
                     <button
                       onClick={() => updateFormData({
                         hasNonAssociateManagers: true,
@@ -1040,11 +1046,11 @@ export default function DevisWizard() {
               <div className="space-y-6">
                 {/* Service */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
+                  <label id="devis-service-label" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
                     {devisText.serviceLabel[language]}
-                    <span className="block mt-1 text-xs font-normal text-gray-500 dark:text-gray-400">{devisText.serviceHint[language]}</span>
+                    <span id="devis-service-hint" className="block mt-1 text-xs font-normal text-gray-500 dark:text-gray-400">{devisText.serviceHint[language]}</span>
                   </label>
-                  <div className="grid sm:grid-cols-2 gap-3">
+                  <div role="group" aria-labelledby="devis-service-label" aria-describedby="devis-service-hint" className="grid sm:grid-cols-2 gap-3">
                     {Object.entries(modificationServices).map(([value, label]) => (
                       <button
                         key={value}
