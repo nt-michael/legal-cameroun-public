@@ -304,7 +304,15 @@ export default function Header() {
               >
                 {t.nav.appointment}
               </Link>
-              <Link href="/devis" className="btn-primary text-sm">
+              {/* On the dark hero the dark button would disappear, so it turns white until the bar is solid */}
+              <Link
+                href="/devis"
+                className={
+                  isSolid
+                    ? 'btn-primary text-sm'
+                    : 'inline-flex items-center rounded-lg bg-white px-6 py-3 text-sm font-semibold text-primary-600 hover:bg-primary-50 transition-colors'
+                }
+              >
                 {createCompanyLabel[language]}
               </Link>
             </div>
