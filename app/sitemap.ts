@@ -38,6 +38,7 @@ const pages: Array<{
   { path: '/a-propos',                                    changeFrequency: 'monthly', priority: 0.7 },
   { path: '/contact',                                     changeFrequency: 'monthly', priority: 0.7 },
   { path: '/devis',                                       changeFrequency: 'monthly', priority: 0.7 },
+  { path: '/tarifs',                                      changeFrequency: 'monthly', priority: 0.8 },
   { path: '/prendre-un-rendez-vous',                      changeFrequency: 'monthly', priority: 0.7 },
   { path: '/mentions-legales',                            changeFrequency: 'monthly', priority: 0.3 },
   { path: '/politique-de-confidentialite',                changeFrequency: 'monthly', priority: 0.3 },
