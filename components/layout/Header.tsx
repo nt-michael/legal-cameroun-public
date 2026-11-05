@@ -400,49 +400,63 @@ export default function Header() {
         </div>
         </div>
 
-        {/* Mobile Menu */}
+        {/* Mobile Menu: same dark blue panel, gold titles, icons and one-line descriptions as the desktop one */}
         <div
           className={`lg:hidden transition-all duration-300 overflow-hidden ${
-            isMobileMenuOpen ? 'max-h-[80vh] opacity-100' : 'max-h-0 opacity-0'
+            isMobileMenuOpen ? 'max-h-[calc(100vh-6rem)] opacity-100' : 'max-h-0 opacity-0'
           }`}
           inert={!isMobileMenuOpen}
         >
-          <div className="bg-white rounded-xl shadow-xl mt-2 py-4 px-4 max-h-[70vh] overflow-y-auto">
+          <div className="bg-navy-ink border-t border-secondary-400/60 px-4 py-5 max-h-[calc(100vh-6rem)] overflow-y-auto">
             {navigation.map((item) => (
               <div key={item.name.fr}>
                 {item.dropdown === 'offers' ? (
-                  <div className="py-2">
-                    <p className="font-bold text-gray-900 mb-2">{mobileOffersLabel[language]}</p>
+                  <div className="pb-2">
+                    <p className="text-xs font-bold uppercase tracking-[0.18em] text-secondary-300 mb-2">{mobileOffersLabel[language]}</p>
                     {menuItems.map((menuItem, idx) => (
-                      <div key={menuItem.name.fr} className="mb-4">
+                      <div key={menuItem.name.fr} className="border-b border-white/10">
                         <button
                           onClick={() => setActiveDropdown(activeDropdown === idx ? null : idx)}
                           aria-expanded={activeDropdown === idx}
-                          className={`flex items-center justify-between w-full py-2 text-gray-700 font-medium text-sm border-b-2 ${menuItem.accent}`}
+                          className="flex items-center justify-between w-full py-3 text-white font-semibold"
                         >
-                          {menuItem.name[language]}
+                          <span className="flex items-center gap-2">
+                            <span className={`h-2 w-2 rounded-full ${menuItem.dot}`} aria-hidden="true" />
+                            {menuItem.name[language]}
+                          </span>
                           <svg
                             className={`w-4 h-4 transition-transform ${activeDropdown === idx ? 'rotate-180' : ''}`}
                             fill="none"
                             stroke="currentColor"
                             viewBox="0 0 24 24"
+                            aria-hidden="true"
                           >
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                           </svg>
                         </button>
                         <div
                           className={`overflow-hidden transition-all duration-200 ${
-                            activeDropdown === idx ? 'max-h-96' : 'max-h-0'
+                            activeDropdown === idx ? 'max-h-[40rem] pb-3' : 'max-h-0'
                           }`}
                         >
                           {menuItem.rubriques.map((rubrique) => (
                             <Link
                               key={rubrique.name.fr}
                               href={rubrique.href}
-                              className="block py-2 pl-4 text-sm text-gray-600 hover:text-primary-600"
+                              className="flex items-start gap-3 rounded-lg p-2 active:bg-white/5"
                               onClick={() => setIsMobileMenuOpen(false)}
                             >
-                              {rubrique.name[language]}
+                              {rubrique.icon && (
+                                <span className="shrink-0 w-9 h-9 rounded-lg bg-white flex items-center justify-center" aria-hidden="true">
+                                  <Image src={`/custom-icons/SVG/${rubrique.icon}`} alt="" width={22} height={22} />
+                                </span>
+                              )}
+                              <span className="min-w-0">
+                                <span className="block text-sm font-semibold text-white">{rubrique.name[language]}</span>
+                                {rubrique.description && (
+                                  <span className="block text-xs text-gray-400 leading-snug">{rubrique.description[language]}</span>
+                                )}
+                              </span>
                             </Link>
                           ))}
                         </div>
@@ -450,29 +464,29 @@ export default function Header() {
                     ))}
                   </div>
                 ) : item.dropdown === 'resources' ? (
-                  <div className="py-1">
+                  <div className="border-b border-white/10">
                     <button
                       onClick={() => setIsMobileResourcesOpen((open) => !open)}
                       aria-expanded={isMobileResourcesOpen}
-                      className="flex items-center justify-between w-full py-3 text-gray-700 font-medium"
+                      className="flex items-center justify-between w-full py-3 text-white font-medium"
                     >
                       {item.name[language]}
                       <svg
-                        className={`w-4 h-4 transition-transform ${isMobileResourcesOpen ? 'rotate-180' : ''}`}
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                        aria-hidden="true"
-                      >
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                      </svg>
+                            className={`w-4 h-4 transition-transform ${isMobileResourcesOpen ? 'rotate-180' : ''}`}
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                            aria-hidden="true"
+                          >
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                          </svg>
                     </button>
-                    <div className={`overflow-hidden transition-all duration-200 ${isMobileResourcesOpen ? 'max-h-60' : 'max-h-0'}`}>
+                    <div className={`overflow-hidden transition-all duration-200 ${isMobileResourcesOpen ? 'max-h-60 pb-2' : 'max-h-0'}`}>
                       {resourceLinks.map((link) => (
                         <Link
                           key={link.href}
                           href={link.href}
-                          className="block py-2 pl-4 text-sm text-gray-600 hover:text-primary-600"
+                          className="block py-2 pl-4 text-sm text-gray-300 hover:text-secondary-200"
                           onClick={() => setIsMobileMenuOpen(false)}
                         >
                           {link.name[language]}
@@ -483,7 +497,7 @@ export default function Header() {
                 ) : (
                   <Link
                     href={item.href}
-                    className="block py-3 text-gray-700 font-medium hover:text-primary-600"
+                    className="block py-3 text-white font-medium border-b border-white/10 hover:text-secondary-200"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
                     {item.name[language]}
@@ -491,44 +505,46 @@ export default function Header() {
                 )}
               </div>
             ))}
-            {/* Language and Theme - Mobile */}
-            <div className="mt-4 pt-4 border-t border-gray-200 dark:border-gray-700 flex items-center justify-between">
-              <button
-                onClick={() => setLanguage(language === 'fr' ? 'en' : 'fr')}
-                className="text-sm text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200"
-              >
-                {language === 'fr' ? 'English' : 'Français'}
-              </button>
-              <button
-                onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
-                className="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200"
-              >
-                {theme === 'light' ? (
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
-                  </svg>
-                ) : (
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
-                  </svg>
-                )}
-              </button>
-            </div>
 
             <Link
               href="/contact?sujet=creation"
-              className="btn-gold w-full mt-4 text-center"
+              className="btn-gold w-full mt-5 text-center"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               {createCompanyLabel[language]}
             </Link>
             <Link
               href="/prendre-un-rendez-vous"
-              className="btn-secondary w-full mt-3 text-center"
+              className="block w-full mt-3 text-center rounded-lg border-2 border-white/40 px-6 py-3 font-semibold text-white hover:bg-white hover:text-gray-900 transition-colors"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               {t.nav.appointment}
             </Link>
+
+            {/* Language and Theme - Mobile */}
+            <div className="mt-5 pt-4 border-t border-white/10 flex items-center justify-between">
+              <button
+                onClick={() => setLanguage(language === 'fr' ? 'en' : 'fr')}
+                className="text-sm text-white/70 hover:text-white"
+              >
+                {language === 'fr' ? 'English' : 'Français'}
+              </button>
+              <button
+                onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
+                className="text-white/70 hover:text-white"
+                aria-label="Toggle theme"
+              >
+                {theme === 'light' ? (
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                  </svg>
+                ) : (
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                  </svg>
+                )}
+              </button>
+            </div>
           </div>
         </div>
       </nav>
