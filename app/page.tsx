@@ -1,10 +1,10 @@
 import { Metadata } from 'next';
 import Hero from '@/components/home/Hero';
 import Services from '@/components/home/Services';
-import WhyChooseUs from '@/components/home/WhyChooseUs';
-import HowItWorks from '@/components/home/HowItWorks';
 import Testimonials from '@/components/home/Testimonials';
-import Stats from '@/components/home/Stats';
+import KeyArguments from '@/components/home/KeyArguments';
+import CreationSteps from '@/components/home/CreationSteps';
+import HomeTeam from '@/components/home/HomeTeam';
 import BlogPreview from '@/components/home/BlogPreview';
 import NewsletterSection from '@/components/home/NewsletterSection';
 import CTASection from '@/components/home/CTASection';
@@ -66,11 +66,11 @@ export default async function Home() {
   return (
     <>
       <Hero />
+      <KeyArguments />
       <LegalFormsPreview />
+      <CreationSteps />
+      <HomeTeam />
       <Services />
-      <WhyChooseUs />
-      <Stats />
-      <HowItWorks />
       <Testimonials />
       <HomeFAQ />
       <BlogPreview posts={latestPosts} />
