@@ -3,7 +3,6 @@
 import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import gsap from 'gsap';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useTheme } from '@/contexts/ThemeContext';
 import type { BilingualText } from '@/lib/translations';
@@ -16,13 +15,17 @@ interface MenuRubrique {
 interface MenuItem {
   name: BilingualText;
   href: string;
+  /** Underline in the colour of the service area, as the brand charter asks */
+  accent: string;
   rubriques: MenuRubrique[];
 }
+
+type DropdownId = 'offers' | 'resources';
 
 interface NavItem {
   name: BilingualText;
   href: string;
-  hasDropdown?: boolean;
+  dropdown?: DropdownId;
 }
 
 // Menu structure
@@ -30,6 +33,7 @@ const menuItems: MenuItem[] = [
   {
     name: { fr: 'Création d\'entreprise', en: 'Business Creation' },
     href: '/creation-entreprise',
+    accent: 'border-section-creation',
     rubriques: [
       { name: { fr: 'Créer une SAS', en: 'Create a SAS' }, href: '/creation-entreprise/sas' },
       { name: { fr: 'Créer une SARL', en: 'Create a SARL' }, href: '/creation-entreprise/sarl' },
@@ -41,6 +45,7 @@ const menuItems: MenuItem[] = [
   {
     name: { fr: 'Modification d\'entreprise', en: 'Business Modification' },
     href: '/modification-entreprise',
+    accent: 'border-section-gestion',
     rubriques: [
       { name: { fr: 'Transfert de siège social', en: 'Headquarters Transfer' }, href: '/modification-entreprise/transfert-siege' },
       { name: { fr: 'Transformation SAS en SARL', en: 'SAS to SARL Conversion' }, href: '/modification-entreprise/sas-vers-sarl' },
@@ -52,6 +57,7 @@ const menuItems: MenuItem[] = [
   {
     name: { fr: 'Accompagnement', en: 'Support' },
     href: '/prendre-un-rendez-vous',
+    accent: 'border-section-accompagnement',
     rubriques: [
       { name: { fr: 'Devis', en: 'Quote' }, href: '/devis' },
       { name: { fr: 'Avec un expert', en: 'With an Expert' }, href: '/prendre-un-rendez-vous' },
@@ -60,14 +66,19 @@ const menuItems: MenuItem[] = [
   },
 ];
 
+// The logo links home, so the bar keeps only what a visitor looks for
 const navigation: NavItem[] = [
-  { name: { fr: 'Accueil', en: 'Home' }, href: '/' },
-  { name: { fr: 'Nos Offres', en: 'Our Services' }, href: '#', hasDropdown: true },
-  { name: { fr: 'Fiches Pratiques', en: 'Practical Guides' }, href: '/fiches-pratiques' },
-  { name: { fr: 'Simulateurs', en: 'Simulators' }, href: '/simulateurs' },
+  { name: { fr: 'Nos Offres', en: 'Our Services' }, href: '#', dropdown: 'offers' },
+  { name: { fr: 'Tarifs', en: 'Pricing' }, href: '/tarifs' },
   { name: { fr: 'À propos', en: 'About' }, href: '/a-propos' },
-  { name: { fr: 'Actualité', en: 'Blog' }, href: '/actualite' },
+  { name: { fr: 'Ressources', en: 'Resources' }, href: '#', dropdown: 'resources' },
   { name: { fr: 'Contact', en: 'Contact' }, href: '/contact' },
+];
+
+const resourceLinks: MenuRubrique[] = [
+  { name: { fr: 'Fiches pratiques', en: 'Practical guides' }, href: '/fiches-pratiques' },
+  { name: { fr: 'Simulateurs', en: 'Simulators' }, href: '/simulateurs' },
+  { name: { fr: 'Actualité', en: 'Blog' }, href: '/actualite' },
 ];
 
 const megaMenuBottom = {
@@ -77,33 +88,39 @@ const megaMenuBottom = {
 };
 
 const mobileOffersLabel = { fr: 'Nos Offres', en: 'Our Services' };
+const createCompanyLabel = { fr: 'Créer mon entreprise', en: 'Create my company' };
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<number | null>(null);
-  const [isMegaMenuOpen, setIsMegaMenuOpen] = useState(false);
-  const megaMenuRef = useRef<HTMLDivElement>(null);
-  const megaMenuContentRef = useRef<HTMLDivElement>(null);
-  const menuItemsRef = useRef<(HTMLDivElement | null)[]>([]);
+  const [isMobileResourcesOpen, setIsMobileResourcesOpen] = useState(false);
+  const [openMenu, setOpenMenu] = useState<DropdownId | null>(null);
   const hoverTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   const { language, setLanguage, t } = useLanguage();
   const { theme, setTheme } = useTheme();
 
-  const handleMouseEnterDropdown = () => {
+  const isMegaMenuOpen = openMenu === 'offers';
+  // Any open dropdown gives the bar a solid background so the panel reads as part of it
+  const isSolid = isScrolled || openMenu !== null;
+
+  const openDropdown = (id: DropdownId) => {
     if (hoverTimeoutRef.current) {
       clearTimeout(hoverTimeoutRef.current);
       hoverTimeoutRef.current = null;
     }
-    setIsMegaMenuOpen(true);
+    setOpenMenu(id);
   };
 
-  const handleMouseLeaveDropdown = () => {
+  const closeDropdownSoon = () => {
+    // Short grace period so the panel stays open while the mouse travels down to it
     hoverTimeoutRef.current = setTimeout(() => {
-      setIsMegaMenuOpen(false);
-    }, 150);
+      setOpenMenu(null);
+    }, 200);
   };
+
+  const closeDropdown = () => setOpenMenu(null);
 
   useEffect(() => {
     let ticking = false;
@@ -122,78 +139,22 @@ export default function Header() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // GSAP animation for mega menu
+  // Escape closes any open dropdown, as visitors expect
   useEffect(() => {
-    if (!megaMenuRef.current || !megaMenuContentRef.current) return;
-
-    if (isMegaMenuOpen) {
-      // Open animation
-      gsap.set(megaMenuRef.current, { display: 'block' });
-      gsap.fromTo(
-        megaMenuRef.current,
-        { opacity: 0, y: -10 },
-        { opacity: 1, y: 0, duration: 0.3, ease: 'power2.out' }
-      );
-
-      // Stagger animate menu items
-      gsap.fromTo(
-        menuItemsRef.current.filter(Boolean),
-        { opacity: 0, y: 20 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.4,
-          stagger: 0.05,
-          ease: 'power2.out',
-          delay: 0.1,
-        }
-      );
-    } else {
-      // Close animation
-      gsap.to(megaMenuRef.current, {
-        opacity: 0,
-        y: -10,
-        duration: 0.2,
-        ease: 'power2.in',
-        onComplete: () => {
-          if (megaMenuRef.current) {
-            gsap.set(megaMenuRef.current, { display: 'none' });
-          }
-        },
-      });
-    }
-  }, [isMegaMenuOpen]);
-
-  // GSAP animation for dropdown items
-  const animateDropdownItems = (index: number) => {
-    const container = document.querySelector(`[data-dropdown="${index}"]`);
-    if (container) {
-      const items = container.querySelectorAll('.rubrique-item');
-      gsap.fromTo(
-        items,
-        { opacity: 0, x: -10 },
-        {
-          opacity: 1,
-          x: 0,
-          duration: 0.3,
-          stagger: 0.03,
-          ease: 'power2.out',
-        }
-      );
-    }
-  };
-
-  const handleMenuItemHover = (index: number) => {
-    setActiveDropdown(index);
-    setTimeout(() => animateDropdownItems(index), 50);
-  };
+    if (!openMenu) return;
+    const handleKey = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setOpenMenu(null);
+    };
+    window.addEventListener('keydown', handleKey);
+    return () => window.removeEventListener('keydown', handleKey);
+  }, [openMenu]);
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50">
       {/* Top Utility Bar */}
       <div
         className={`transition-all duration-300 ${
-          isScrolled || isMegaMenuOpen
+          isSolid
             ? 'bg-gray-100 dark:bg-gray-800'
             : 'bg-white/10 backdrop-blur-sm'
         }`}
@@ -204,7 +165,7 @@ export default function Header() {
             <button
               onClick={() => setLanguage(language === 'fr' ? 'en' : 'fr')}
               className={`text-xs font-medium transition-colors ${
-                isScrolled || isMegaMenuOpen
+                isSolid
                   ? 'text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200'
                   : 'text-white/70 hover:text-white'
               }`}
@@ -212,13 +173,13 @@ export default function Header() {
               {language === 'fr' ? 'EN' : 'FR'}
             </button>
 
-            <span className={`text-xs ${isScrolled || isMegaMenuOpen ? 'text-gray-300 dark:text-gray-600' : 'text-white/30'}`}>|</span>
+            <span className={`text-xs ${isSolid ? 'text-gray-300 dark:text-gray-600' : 'text-white/30'}`}>|</span>
 
             {/* Theme Toggle */}
             <button
               onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
               className={`transition-colors ${
-                isScrolled || isMegaMenuOpen
+                isSolid
                   ? 'text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200'
                   : 'text-white/70 hover:text-white'
               }`}
@@ -241,7 +202,7 @@ export default function Header() {
       {/* Main Navigation */}
       <nav
         className={`transition-all duration-300 ${
-          isScrolled || isMegaMenuOpen
+          isSolid
             ? 'bg-white/95 dark:bg-gray-900/95 backdrop-blur-md shadow-lg'
             : 'bg-transparent'
         }`}
@@ -257,55 +218,96 @@ export default function Header() {
               height={50}
               className="h-12 w-auto transition-all duration-300"
               style={{
-                filter: (isScrolled || isMegaMenuOpen) && theme === 'light' ? 'none' : 'brightness(0) invert(1)'
+                filter: isSolid && theme === 'light' ? 'none' : 'brightness(0) invert(1)'
               }}
               priority
             />
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center gap-8">
-            {navigation.map((item) => (
-              <div key={item.name.fr} className="relative">
-                {item.hasDropdown ? (
+          <div className="hidden lg:flex items-center gap-6 xl:gap-8 whitespace-nowrap">
+            {navigation.map((item) => {
+              const linkColor = isSolid
+                ? 'text-gray-700 dark:text-gray-200 hover:text-primary-600'
+                : 'text-white/90 hover:text-white';
+
+              if (!item.dropdown) {
+                return (
+                  <Link key={item.name.fr} href={item.href} className={`font-medium transition-colors ${linkColor}`}>
+                    {item.name[language]}
+                  </Link>
+                );
+              }
+
+              const dropdown = item.dropdown;
+              const isOpen = openMenu === dropdown;
+              return (
+                <div
+                  key={item.name.fr}
+                  className="relative"
+                  onMouseEnter={() => openDropdown(dropdown)}
+                  onMouseLeave={closeDropdownSoon}
+                >
                   <button
-                    onMouseEnter={handleMouseEnterDropdown}
-                    onMouseLeave={handleMouseLeaveDropdown}
+                    onClick={() => setOpenMenu(isOpen ? null : dropdown)}
+                    aria-expanded={isOpen}
+                    aria-haspopup="true"
                     className={`flex items-center gap-1 font-medium transition-colors ${
-                      isScrolled || isMegaMenuOpen
-                        ? 'text-gray-700 hover:text-primary-600'
-                        : 'text-white/90 hover:text-white'
+                      isOpen ? 'text-primary-600 dark:text-primary-300' : linkColor
                     }`}
                   >
                     {item.name[language]}
                     <svg
-                      className={`w-4 h-4 transition-transform duration-300 ${isMegaMenuOpen ? 'rotate-180' : ''}`}
+                      className={`w-4 h-4 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
+                      aria-hidden="true"
                     >
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                     </svg>
                   </button>
-                ) : (
-                  <Link
-                    href={item.href}
-                    className={`font-medium transition-colors ${
-                      isScrolled || isMegaMenuOpen
-                        ? 'text-gray-700 hover:text-primary-600'
-                        : 'text-white/90 hover:text-white'
-                    }`}
-                  >
-                    {item.name[language]}
-                  </Link>
-                )}
-              </div>
-            ))}
 
-            {/* CTA Button */}
-            <Link href="/prendre-un-rendez-vous" className="btn-primary text-sm">
-              {t.nav.appointment}
-            </Link>
+                  {/* Small list under the button; the top padding bridges the gap so hovering down keeps it open */}
+                  {dropdown === 'resources' && (
+                    <div
+                      className={`absolute left-1/2 -translate-x-1/2 top-full pt-5 transition duration-200 ease-out ${
+                        isOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2 pointer-events-none'
+                      }`}
+                    >
+                      <div className="w-56 rounded-xl bg-white dark:bg-gray-900 shadow-2xl border border-gray-100 dark:border-gray-800 p-2">
+                        {resourceLinks.map((link) => (
+                          <Link
+                            key={link.href}
+                            href={link.href}
+                            onClick={closeDropdown}
+                            className="block rounded-lg px-3 py-2 text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-primary-50 hover:text-primary-600 dark:hover:bg-gray-800 transition-colors duration-150"
+                          >
+                            {link.name[language]}
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+
+            <div className="flex items-center gap-3">
+              <Link
+                href="/prendre-un-rendez-vous"
+                className={`inline-flex items-center rounded-lg border-2 px-4 py-2 text-sm font-semibold transition-colors ${
+                  isSolid
+                    ? 'border-primary-600 text-primary-600 hover:bg-primary-600 hover:text-white dark:border-primary-300 dark:text-primary-300'
+                    : 'border-white/40 text-white hover:bg-white hover:text-gray-900'
+                }`}
+              >
+                {t.nav.appointment}
+              </Link>
+              <Link href="/devis" className="btn-primary text-sm">
+                {createCompanyLabel[language]}
+              </Link>
+            </div>
           </div>
 
           {/* Mobile Menu Button */}
@@ -331,41 +333,32 @@ export default function Header() {
         </div>
 
         {/* Mega Menu - Desktop */}
+        {/* Opens at once with a short fade; every column stays readable and only the hovered line lights up */}
         <div
-          ref={megaMenuRef}
-          className="hidden absolute left-0 right-0 top-full bg-white shadow-2xl border-t border-gray-100"
-          style={{ display: 'none' }}
-          onMouseEnter={handleMouseEnterDropdown}
-          onMouseLeave={handleMouseLeaveDropdown}
+          className={`hidden lg:block absolute left-0 right-0 top-full bg-white dark:bg-gray-900 shadow-2xl border-t border-gray-100 dark:border-gray-800 transition duration-200 ease-out ${
+            isMegaMenuOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2 pointer-events-none'
+          }`}
+          onMouseEnter={() => openDropdown('offers')}
+          onMouseLeave={closeDropdownSoon}
         >
-          <div ref={megaMenuContentRef} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-            <div className="grid grid-cols-4 gap-8">
-              {menuItems.map((item, index) => (
-                <div
-                  key={item.name.fr}
-                  ref={(el) => { menuItemsRef.current[index] = el; }}
-                  className="relative"
-                  onMouseEnter={() => handleMenuItemHover(index)}
-                >
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <div className="grid grid-cols-3 divide-x divide-gray-100 dark:divide-gray-800">
+              {menuItems.map((item) => (
+                <div key={item.name.fr} className="px-6 first:pl-0 last:pr-0">
                   <Link
                     href={item.href}
-                    className={`block font-bold text-lg mb-4 transition-colors ${
-                      activeDropdown === index ? 'text-primary-600' : 'text-gray-900 hover:text-primary-600'
-                    }`}
+                    onClick={closeDropdown}
+                    className={`block text-xs font-semibold uppercase tracking-wider text-primary-600 dark:text-primary-300 hover:text-primary-500 mx-3 mb-3 pb-3 border-b-2 ${item.accent}`}
                   >
                     {item.name[language]}
                   </Link>
-                  <div
-                    data-dropdown={index}
-                    className={`space-y-2 transition-opacity ${
-                      activeDropdown === index ? 'opacity-100' : 'opacity-70'
-                    }`}
-                  >
+                  <div className="space-y-1">
                     {item.rubriques.map((rubrique) => (
                       <Link
                         key={rubrique.name.fr}
                         href={rubrique.href}
-                        className="rubrique-item block text-sm text-gray-600 hover:text-primary-600 hover:translate-x-1 transition-all py-1"
+                        onClick={closeDropdown}
+                        className="block rounded-lg px-3 py-2 text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-primary-50 hover:text-primary-600 dark:hover:bg-gray-800 transition-colors duration-150"
                       >
                         {rubrique.name[language]}
                       </Link>
@@ -376,7 +369,7 @@ export default function Header() {
             </div>
 
             {/* Featured section at bottom */}
-            <div className="mt-8 pt-6 border-t border-gray-100">
+            <div className="mt-8 pt-6 border-t border-gray-100 dark:border-gray-800">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-4">
                   <div className="w-12 h-12 bg-primary-100 rounded-xl flex items-center justify-center">
@@ -385,12 +378,13 @@ export default function Header() {
                     </svg>
                   </div>
                   <div>
-                    <p className="font-semibold text-gray-900">{megaMenuBottom.needHelp[language]}</p>
+                    <p className="font-semibold text-gray-900 dark:text-white">{megaMenuBottom.needHelp[language]}</p>
                     <p className="text-sm text-gray-500">{megaMenuBottom.expertsHelp[language]}</p>
                   </div>
                 </div>
                 <Link
                   href="/prendre-un-rendez-vous"
+                  onClick={closeDropdown}
                   className="btn-primary text-sm"
                 >
                   {megaMenuBottom.talkToExpert[language]}
@@ -409,14 +403,15 @@ export default function Header() {
           <div className="bg-white rounded-xl shadow-xl mt-2 py-4 px-4 max-h-[70vh] overflow-y-auto">
             {navigation.map((item) => (
               <div key={item.name.fr}>
-                {item.hasDropdown ? (
+                {item.dropdown === 'offers' ? (
                   <div className="py-2">
                     <p className="font-bold text-gray-900 mb-2">{mobileOffersLabel[language]}</p>
                     {menuItems.map((menuItem, idx) => (
                       <div key={menuItem.name.fr} className="mb-4">
                         <button
                           onClick={() => setActiveDropdown(activeDropdown === idx ? null : idx)}
-                          className="flex items-center justify-between w-full py-2 text-gray-700 font-medium text-sm"
+                          aria-expanded={activeDropdown === idx}
+                          className={`flex items-center justify-between w-full py-2 text-gray-700 font-medium text-sm border-b-2 ${menuItem.accent}`}
                         >
                           {menuItem.name[language]}
                           <svg
@@ -446,6 +441,37 @@ export default function Header() {
                         </div>
                       </div>
                     ))}
+                  </div>
+                ) : item.dropdown === 'resources' ? (
+                  <div className="py-1">
+                    <button
+                      onClick={() => setIsMobileResourcesOpen((open) => !open)}
+                      aria-expanded={isMobileResourcesOpen}
+                      className="flex items-center justify-between w-full py-3 text-gray-700 font-medium"
+                    >
+                      {item.name[language]}
+                      <svg
+                        className={`w-4 h-4 transition-transform ${isMobileResourcesOpen ? 'rotate-180' : ''}`}
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        aria-hidden="true"
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </button>
+                    <div className={`overflow-hidden transition-all duration-200 ${isMobileResourcesOpen ? 'max-h-60' : 'max-h-0'}`}>
+                      {resourceLinks.map((link) => (
+                        <Link
+                          key={link.href}
+                          href={link.href}
+                          className="block py-2 pl-4 text-sm text-gray-600 hover:text-primary-600"
+                          onClick={() => setIsMobileMenuOpen(false)}
+                        >
+                          {link.name[language]}
+                        </Link>
+                      ))}
+                    </div>
                   </div>
                 ) : (
                   <Link
@@ -483,8 +509,15 @@ export default function Header() {
             </div>
 
             <Link
-              href="/prendre-un-rendez-vous"
+              href="/devis"
               className="btn-primary w-full mt-4 text-center"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              {createCompanyLabel[language]}
+            </Link>
+            <Link
+              href="/prendre-un-rendez-vous"
+              className="btn-secondary w-full mt-3 text-center"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               {t.nav.appointment}
