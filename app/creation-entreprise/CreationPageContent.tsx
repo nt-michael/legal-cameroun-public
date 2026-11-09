@@ -10,6 +10,7 @@ import {
   PricingCards,
   // AidesAvantages,
   SubpagesGrid,
+  CompanyTypeCards,
 } from '@/components/creation';
 import { hubHero, generalSteps, pricingTiers } from '@/lib/creation-data';
 
@@ -60,6 +61,9 @@ export default function CreationPageContent() {
         subtitle={{ fr: "De la cr\u00e9ation de votre dossier \u00e0 l\u2019immatriculation, nous vous accompagnons \u00e0 chaque \u00e9tape.", en: "From creating your file to registration, we guide you through every step." }}
         variant="vertical"
       />
+
+      {/* One card per company type, straight to the contact form (legal team audit, Nov 2026) */}
+      <CompanyTypeCards />
 
       {/* Pricing */}
       <section className="bg-gray-50 dark:bg-gray-800">
