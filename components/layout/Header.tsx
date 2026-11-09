@@ -54,7 +54,6 @@ const menuItems: MenuItem[] = [
       { name: { fr: 'Créer une SARLU', en: 'Create a SARLU' }, href: '/creation-entreprise/sarlu', description: formDescription('sarlu'), icon: '18ICONE_BICHROME.svg' },
       { name: { fr: 'Créer un Établissement', en: 'Create an Establishment' }, href: '/creation-entreprise/etablissement', description: formDescription('individual'), icon: '44ICONE_BICHROME.svg' },
       { name: { fr: 'Créer une Association', en: 'Create an Association' }, href: '/creation-entreprise/association', description: formDescription('association'), icon: '25ICONE_BICHROME.svg' },
-      { name: { fr: 'Tous les statuts', en: 'All Legal Forms' }, href: '/creation-entreprise', description: { fr: 'Comparer et choisir le bon statut', en: 'Compare and pick the right structure' }, icon: '6ICONE_BICHROME.svg' },
     ],
   },
   {
@@ -67,7 +66,6 @@ const menuItems: MenuItem[] = [
       { name: { fr: 'Transformation SAS en SARL', en: 'SAS to SARL Conversion' }, href: '/modification-entreprise/sas-vers-sarl', description: operationDescription('sas-vers-sarl'), icon: '26ICONE_BICHROME.svg' },
       { name: { fr: 'Transformation SARL en SAS', en: 'SARL to SAS Conversion' }, href: '/modification-entreprise/sarl-vers-sas', description: operationDescription('sarl-vers-sas'), icon: '30ICONE_BICHROME.svg' },
       { name: { fr: 'Dissolution d\'entreprise', en: 'Business Dissolution' }, href: '/modification-entreprise/dissolution', description: operationDescription('dissolution'), icon: '34ICONE_BICHROME.svg' },
-      { name: { fr: 'Toutes les modifications', en: 'All Modifications' }, href: '/modification-entreprise', description: { fr: 'Dirigeant, capital, objet social…', en: 'Director, share capital, business purpose…' }, icon: '4ICONE_BICHROME.svg' },
     ],
   },
   {
