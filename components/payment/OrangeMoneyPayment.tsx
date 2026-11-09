@@ -15,7 +15,6 @@ export interface OrangeMoneyInstructions {
 }
 
 const text = {
-  title: { fr: 'Payer avec Orange Money', en: 'Pay with Orange Money' },
   orderRef: { fr: 'Commande n°', en: 'Order no.' },
   amountLabel: { fr: 'Montant à payer', en: 'Amount to pay' },
   dialButton: { fr: 'Payer avec Orange Money', en: 'Pay with Orange Money' },
@@ -24,14 +23,15 @@ const text = {
     en: 'Opens your phone with the code already typed: press "Call".',
   },
   otherDevice: {
-    fr: 'Sur iPhone ou sur ordinateur, composez ce code depuis votre téléphone Orange :',
-    en: 'On iPhone or on a computer, dial this code from your Orange phone:',
+    fr: 'Composez ce code depuis votre téléphone Orange',
+    en: 'Dial this code from your Orange phone',
   },
-  step1: { fr: 'Composez le code ci-dessous.', en: 'Dial the code below.' },
+  orDial: { fr: 'ou composez ce code', en: 'or dial this code' },
+  step1Android: { fr: 'Appuyez sur le bouton, ou composez le code.', en: 'Press the button, or dial the code.' },
+  step1: { fr: 'Composez le code ci-dessus.', en: 'Dial the code above.' },
   step2: { fr: 'Vérifiez que le bénéficiaire affiché est bien', en: 'Check that the payee shown is' },
   step3: { fr: 'Validez avec votre code PIN, sur votre téléphone uniquement.', en: 'Confirm with your PIN, on your phone only.' },
   step4: { fr: 'Gardez le SMS de confirmation d’Orange : il contient le numéro de transaction.', en: 'Keep Orange’s confirmation SMS: it contains the transaction ID.' },
-  merchantCode: { fr: 'Code marchand', en: 'Merchant code' },
   copy: { fr: 'Copier', en: 'Copy' },
   copied: { fr: 'Copié', en: 'Copied' },
   pinWarning: {
@@ -86,10 +86,17 @@ function CopyButton({ value, label }: { value: string; label: string }) {
           setTimeout(() => setCopied(false), 2000);
         }).catch(() => {});
       }}
-      className="shrink-0 rounded-lg border border-gray-300 dark:border-gray-600 px-3 py-1.5 text-sm font-medium text-gray-700 dark:text-gray-200 hover:border-secondary-400"
+      className="shrink-0 inline-flex items-center gap-1.5 rounded-lg px-3 py-2 text-sm font-semibold text-primary-700 dark:text-secondary-300 hover:bg-secondary-50 dark:hover:bg-gray-800"
       aria-label={`${text.copy[language]} : ${label}`}
     >
-      {copied ? text.copied[language] : text.copy[language]}
+      <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+        {copied ? (
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+        ) : (
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+        )}
+      </svg>
+      <span className="hidden min-[400px]:inline">{copied ? text.copied[language] : text.copy[language]}</span>
     </button>
   );
 }
@@ -160,48 +167,66 @@ export default function OrangeMoneyPayment({
   }
 
   return (
-    <div className="space-y-6">
-      <div className="rounded-2xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 p-6 sm:p-8">
-        <h3 className="text-xl font-bold text-gray-900 dark:text-white">{text.title[language]}</h3>
-        <p className="text-sm text-gray-500 dark:text-gray-400 mb-5">
-          {text.orderRef[language]} {payment.order_id}
-        </p>
+    <div>
+      {/* The amount: the one figure the customer must find again on their phone */}
+      <div className="rounded-2xl bg-secondary-50 dark:bg-gray-900 px-5 py-4">
+        <div className="flex items-baseline justify-between gap-4">
+          <p className="text-sm text-gray-600 dark:text-gray-300">{text.amountLabel[language]}</p>
+          <p className="text-xs text-gray-500 dark:text-gray-400 whitespace-nowrap">
+            {text.orderRef[language]}&nbsp;{payment.order_id}
+          </p>
+        </div>
+        <p className="text-3xl font-bold text-gray-900 dark:text-white whitespace-nowrap">{amount}</p>
+      </div>
 
-        <p className="text-sm text-gray-600 dark:text-gray-300">{text.amountLabel[language]}</p>
-        <p className="text-3xl font-bold text-gray-900 dark:text-white mb-6">{amount}</p>
-
-        {isAndroid && (
-          <div className="mb-6">
+      <div className="mt-6">
+        {isAndroid ? (
+          <>
             <a href={telHref} className="btn-gold w-full justify-center text-lg">
               {text.dialButton[language]}
             </a>
             <p className="mt-2 text-sm text-gray-500 dark:text-gray-400 text-center">{text.dialHint[language]}</p>
-          </div>
+            <p className="mt-5 mb-2 text-center text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400">
+              {text.orDial[language]}
+            </p>
+          </>
+        ) : (
+          <p className="mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">{text.otherDevice[language]}</p>
         )}
 
-        {!isAndroid && <p className="text-sm text-gray-600 dark:text-gray-300 mb-3">{text.otherDevice[language]}</p>}
-
-        <div className="flex items-center justify-between gap-3 rounded-xl bg-secondary-50 dark:bg-gray-900 px-4 py-3 mb-6">
-          <code className="text-base sm:text-xl font-bold text-gray-900 dark:text-white whitespace-nowrap">{payment.ussd}</code>
+        <div className="flex items-center justify-between gap-2 rounded-xl border border-gray-200 dark:border-gray-700 pl-4 pr-1.5 py-1.5">
+          <span className="min-w-0 text-base sm:text-xl font-bold tracking-wide text-gray-900 dark:text-white whitespace-nowrap">{payment.ussd}</span>
           <CopyButton value={payment.ussd} label={payment.ussd} />
         </div>
-
-        <ol className="space-y-2 text-gray-700 dark:text-gray-300 list-decimal pl-5">
-          <li>{text.step1[language]}</li>
-          <li>
-            {text.step2[language]} <strong>{payment.merchant_name}</strong> ({text.merchantCode[language]} {payment.merchant_code}), {amount}.
-          </li>
-          <li>{text.step3[language]}</li>
-          <li>{text.step4[language]}</li>
-        </ol>
-
-        <p className="mt-5 rounded-lg border border-secondary-300 bg-secondary-50 dark:bg-gray-900 px-4 py-3 text-sm font-medium text-secondary-800 dark:text-secondary-200">
-          {text.pinWarning[language]}
-        </p>
       </div>
 
+      <ol className="mt-6 space-y-3">
+        {[
+          isAndroid ? text.step1Android[language] : text.step1[language],
+          <>
+            {text.step2[language]} <strong className="text-gray-900 dark:text-white">{payment.merchant_name}</strong>, {amount}.
+          </>,
+          text.step3[language],
+          text.step4[language],
+        ].map((step, index) => (
+          <li key={index} className="flex gap-3 text-sm text-gray-700 dark:text-gray-300">
+            <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-navy text-xs font-bold text-white" aria-hidden="true">
+              {index + 1}
+            </span>
+            <span className="pt-0.5">{step}</span>
+          </li>
+        ))}
+      </ol>
+
+      <p className="mt-5 flex gap-2 text-sm text-secondary-800 dark:text-secondary-200">
+        <svg className="h-5 w-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+        </svg>
+        {text.pinWarning[language]}
+      </p>
+
       <form
-        className="rounded-2xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 p-6 sm:p-8"
+        className="mt-8 border-t border-gray-200 dark:border-gray-700 pt-6"
         onSubmit={(event) => {
           event.preventDefault();
           if (!sending) declare();
@@ -223,7 +248,7 @@ export default function OrangeMoneyPayment({
           maxLength={60}
           value={transactionId}
           onChange={(event) => setTransactionId(event.target.value)}
-          className="w-full rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 px-4 py-3 mb-4 font-mono uppercase text-gray-900 dark:text-white"
+          className="w-full rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 px-4 py-3 mb-4 uppercase tracking-wide text-gray-900 dark:text-white focus:border-secondary-400 focus:outline-none"
         />
 
         <label htmlFor="om-phone" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
@@ -240,7 +265,7 @@ export default function OrangeMoneyPayment({
           maxLength={20}
           value={payerPhone}
           onChange={(event) => setPayerPhone(event.target.value)}
-          className="w-full rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 px-4 py-3 mb-4 text-gray-900 dark:text-white"
+          className="w-full rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 px-4 py-3 mb-4 text-gray-900 dark:text-white focus:border-secondary-400 focus:outline-none"
         />
 
         {error && (

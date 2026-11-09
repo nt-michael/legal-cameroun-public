@@ -24,6 +24,7 @@ const text: Record<string, any> = {
   step0Subtitle: { fr: 'Pour recevoir votre pack par email', en: 'To receive your pack by email' },
   step1Title: { fr: 'Récapitulatif', en: 'Summary' },
   step1Subtitle: { fr: 'Vérifiez avant de payer', en: 'Review before paying' },
+  paymentTitle: { fr: 'Paiement', en: 'Payment' },
   firstName: { fr: 'Prénom', en: 'First name' },
   lastName: { fr: 'Nom', en: 'Last name' },
   email: { fr: 'Email', en: 'Email' },
@@ -138,10 +139,10 @@ export default function PurchaseStepper({ pack, onClose }: PurchaseStepperProps)
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
       <div className="bg-white dark:bg-gray-800 rounded-3xl shadow-2xl w-full max-w-lg max-h-[calc(100dvh-2rem)] overflow-y-auto">
         {/* Modal header */}
-        <div className="bg-gradient-to-r from-primary-600 to-primary-800 px-6 py-4 flex items-center justify-between">
+        <div className="bg-navy px-6 py-4 flex items-center justify-between">
           <div>
             <p className="text-white/70 text-xs font-medium uppercase tracking-wider">
-              {step === 0 ? text.step0Title[language] : text.step1Title[language]}
+              {payment ? text.paymentTitle[language] : step === 0 ? text.step0Title[language] : text.step1Title[language]}
             </p>
             <h2 className="text-white font-bold text-lg">{pack.name[language]}</h2>
           </div>
@@ -160,8 +161,8 @@ export default function PurchaseStepper({ pack, onClose }: PurchaseStepperProps)
         {/* Progress bar */}
         <div className="flex h-1 bg-gray-100 dark:bg-gray-700">
           <div
-            className="bg-primary-500 transition-all duration-500"
-            style={{ width: step === 0 ? '50%' : '100%' }}
+            className="bg-secondary-400 transition-all duration-500"
+            style={{ width: payment ? '100%' : step === 0 ? '33%' : '66%' }}
           />
         </div>
 
