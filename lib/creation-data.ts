@@ -238,7 +238,7 @@ const COMPARISON_ROW_DATA: ComparisonRow[] = [
 // Trust badges shown throughout the section
 export const trustBadges = [
   { value: '1 500+', label: { fr: 'Entrepreneurs accompagnés', en: 'Entrepreneurs supported' } },
-  { value: '8', label: { fr: "Années d'expérience", en: 'Years of experience' } },
+  { value: '5', label: { fr: "Années d'expérience", en: 'Years of experience' } },
   // { value: '50+', label: { fr: 'Juristes diplômés', en: 'Qualified lawyers' } },
   // { value: '48h', label: { fr: 'Traitement Premium', en: 'Premium processing' } },
 ];

@@ -64,7 +64,7 @@ export const hubHeroData = {
   ],
   stats: [
     { value: '1 500+', label: { fr: 'entrepreneurs accompagnés', en: 'entrepreneurs supported' } },
-    { value: '5 ans', label: { fr: 'd\'expérience', en: 'of experience' } },
+    { value: '5', label: { fr: 'ans d\'expérience', en: 'years of experience' } },
     { value: '100%', label: { fr: 'Experts locaux', en: 'Local experts' } },
   ],
 };

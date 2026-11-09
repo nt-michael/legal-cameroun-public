@@ -73,10 +73,10 @@ export const aboutHeroData = {
       } as BilingualText,
     },
     {
-      value: '5 ans',
+      value: '5',
       label: {
-        fr: 'd\'expérience',
-        en: 'of experience',
+        fr: 'ans d\'expérience',
+        en: 'years of experience',
       } as BilingualText,
     },
     {
