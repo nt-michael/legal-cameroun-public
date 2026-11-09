@@ -160,9 +160,9 @@ export default function Hero() {
       {/* Gradient Overlay */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-gray-900/50" />
 
-      {/* Content: text on the left, key figures on the right, over the particles */}
+      {/* Content: text first, key figures in a band underneath, over the particles */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-        <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_22rem] lg:items-center lg:gap-16">
+        <div className="flex flex-col gap-12 lg:gap-16">
           <div className="text-center lg:text-left">
             <div className="animate-fade-in-down">
               <span className="eyebrow text-secondary-300!">
@@ -191,17 +191,17 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* Key figures card */}
+          {/* Key figures band */}
           <div className="animate-fade-in-up animation-delay-400">
-            <div className="rounded-2xl border border-white/15 bg-white/5 backdrop-blur-sm p-6 sm:p-8">
-              <p className="text-sm font-semibold uppercase tracking-wider text-secondary-300 mb-6">
+            <div className="rounded-2xl border border-white/15 bg-white/5 backdrop-blur-sm px-6 py-6 sm:px-8 lg:flex lg:items-center lg:gap-10">
+              <p className="text-sm font-semibold uppercase tracking-wider text-secondary-300 mb-5 text-center lg:mb-0 lg:text-left lg:shrink-0 lg:max-w-[12rem]">
                 {heroContent.statsTitle[language]}
               </p>
-              <ul className="grid grid-cols-3 gap-4 lg:grid-cols-1 lg:gap-6">
+              <ul className="grid grid-cols-3 gap-4 lg:flex-1 lg:divide-x lg:divide-white/15">
                 {heroContent.stats.map((stat) => (
-                  <li key={stat.value.fr} className="text-center lg:text-left lg:flex lg:items-baseline lg:gap-3">
+                  <li key={stat.value.fr} className="text-center lg:px-6">
                     <span className="block text-2xl sm:text-3xl lg:text-4xl font-bold text-white">{stat.value[language]}</span>
-                    <span className="block text-xs sm:text-sm text-gray-300">{stat.label[language]}</span>
+                    <span className="block mt-1 text-xs sm:text-sm text-gray-300">{stat.label[language]}</span>
                   </li>
                 ))}
               </ul>
