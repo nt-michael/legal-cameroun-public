@@ -267,7 +267,27 @@ export default function BookingForm({ consultationPrice }: { consultationPrice: 
     }
   };
 
+  // Step 0 has a single choice: picking a consultation type moves on by itself.
+  // The short pause lets the visitor see the card being selected first.
+  const autoAdvanceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  useEffect(() => () => {
+    if (autoAdvanceRef.current) clearTimeout(autoAdvanceRef.current);
+  }, []);
+
+  const selectConsultationType = (value: string) => {
+    updateFormData({ consultationType: value });
+    if (autoAdvanceRef.current) clearTimeout(autoAdvanceRef.current);
+    autoAdvanceRef.current = setTimeout(() => {
+      autoAdvanceRef.current = null;
+      goToStep(1);
+    }, 300);
+  };
+
   const prevStep = () => {
+    if (autoAdvanceRef.current) {
+      clearTimeout(autoAdvanceRef.current);
+      autoAdvanceRef.current = null;
+    }
     goToStep(step - 1);
   };
 
@@ -386,7 +406,8 @@ export default function BookingForm({ consultationPrice }: { consultationPrice: 
                 {consultationTypes.map((type) => (
                   <button
                     key={type.value}
-                    onClick={() => updateFormData({ consultationType: type.value })}
+                    type="button"
+                    onClick={() => selectConsultationType(type.value)}
                     className={`p-5 rounded-2xl border-2 text-left transition-all duration-300 hover:scale-[1.02] ${
                       formData.consultationType === type.value
                         ? 'border-primary-500 bg-primary-50 dark:bg-primary-900/20 shadow-lg'
