@@ -29,15 +29,15 @@ const services = [
     ),
   },
   {
-    title: { fr: 'Transmission et Acquisition', en: 'Transfer & Acquisition' },
+    title: { fr: 'Votre projet de modification', en: 'Your amendment project' },
     pole: 'gestion' as Pole,
-    href: '/contact',
+    href: '/modification-entreprise',
     description: {
-      fr: 'Obtenez des conseils personnalis\u00e9s et avis\u00e9s pour optimiser fiscalement la transmission de votre entreprise, incluant une expertise dans les processus d\'acquisition par fusion-absorption, cession, pour des op\u00e9rations fluides et r\u00e9ussies.',
-      en: 'Get personalized and expert advice to fiscally optimize the transfer of your business, including expertise in acquisition processes through mergers, disposals, for smooth and successful operations.',
+      fr: 'Changement de dirigeant, transfert de si\u00e8ge, modification du capital ou de l\'objet social, transformation ou dissolution : nos juristes prennent en charge vos d\u00e9marches, de la r\u00e9daction des actes au d\u00e9p\u00f4t au greffe.',
+      en: 'Change of director, headquarters transfer, change of share capital or business purpose, conversion or dissolution: our lawyers handle your formalities, from drafting the documents to filing with the registry.',
     },
     icon: (
-      <Image src="/custom-icons/SVG/23ICONE_BICHROME.svg" alt="Transmission" width={32} height={32}
+      <Image src="/custom-icons/SVG/23ICONE_BICHROME.svg" alt="" width={32} height={32}
         />
     ),
   },
@@ -55,20 +55,7 @@ const services = [
     ),
   },
   {
-    title: { fr: 'Accompagnement', en: 'Support' },
-    pole: 'creation' as Pole,
-    href: '/creation-entreprise/association',
-    description: {
-      fr: 'B\u00e9n\u00e9ficiez d\'un accompagnement sp\u00e9cialis\u00e9 pour la cr\u00e9ation d\'associations, de fondations d\'entreprises et de groupements d\'int\u00e9r\u00eat \u00e9conomique, adapt\u00e9 aux besoins sp\u00e9cifiques des organismes \u00e0 but non lucratif.',
-      en: 'Benefit from specialized support for the creation of associations, corporate foundations, and economic interest groups, tailored to the specific needs of non-profit organizations.',
-    },
-    icon: (
-      <Image src="/custom-icons/SVG/36ICONE_BICHROME.svg" alt="Accompagnement" width={32} height={32}
-        />
-    ),
-  },
-  {
-    title: { fr: 'Immobilier', en: 'Real Estate' },
+    title: { fr: 'Conseil patrimonial', en: 'Wealth advisory' },
     pole: 'accompagnement' as Pole,
     href: '/contact',
     description: {
@@ -76,7 +63,7 @@ const services = [
       en: 'Land registration procedures through to obtaining the land title, settlement of real estate successions, acquisition, disposal, and property management, optimization and asset management strategy.',
     },
     icon: (
-      <Image src="/custom-icons/SVG/27ICONE_BICHROME.svg" alt="Immobilier" width={32} height={32}
+      <Image src="/custom-icons/SVG/27ICONE_BICHROME.svg" alt="" width={32} height={32}
         />
     ),
   },
