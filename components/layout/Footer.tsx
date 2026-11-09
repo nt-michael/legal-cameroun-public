@@ -110,8 +110,8 @@ const socialLinks = [
 const footerText = {
   byRodec: { fr: 'par RODEC Conseils', en: 'by RODEC Conseils' },
   description: {
-    fr: 'Plateforme d\'accompagnement juridique, comptable et fiscale de premier choix au Cameroun, offrant des services de qualité supérieure aux entreprises et aux particuliers depuis plus de 08 ans.',
-    en: 'Leading legal, accounting, and tax support platform in Cameroon, offering superior quality services to businesses and individuals for over 08 years.',
+    fr: 'Plateforme d\'accompagnement juridique, comptable et fiscale de premier choix au Cameroun, offrant des services de qualité supérieure aux entreprises et aux particuliers depuis plus de 5 ans.',
+    en: 'Leading legal, accounting, and tax support platform in Cameroon, offering superior quality services to businesses and individuals for over 5 years.',
   },
   contact: { fr: 'Contact', en: 'Contact' },
   addressLine1: { fr: 'Immeuble Elite Offices Rue Dubois de Saligny', en: 'Elite Offices Building, Rue Dubois de Saligny' },

@@ -41,8 +41,8 @@ export const contactHeroData = {
     en: 'Contact us today — response within 48h (often faster!)',
   } as BilingualText,
   trustBadge: {
-    fr: '+15 000 entrepreneurs nous font déjà confiance depuis 8 ans.',
-    en: '15,000+ entrepreneurs have trusted us for over 8 years.',
+    fr: '+1 500 entrepreneurs nous font déjà confiance depuis 5 ans.',
+    en: '1,500+ entrepreneurs have trusted us for over 5 years.',
   } as BilingualText,
   quickActions: [
     {

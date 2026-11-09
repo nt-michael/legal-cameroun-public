@@ -63,8 +63,8 @@ export const hubHeroData = {
     { fr: 'Greffe en 24-48h', en: 'Court registry in 24-48h' },
   ],
   stats: [
-    { value: '15 000+', label: { fr: 'entrepreneurs accompagnés', en: 'entrepreneurs supported' } },
-    { value: '8 ans', label: { fr: 'd\'expérience', en: 'of experience' } },
+    { value: '1 500+', label: { fr: 'entrepreneurs accompagnés', en: 'entrepreneurs supported' } },
+    { value: '5 ans', label: { fr: 'd\'expérience', en: 'of experience' } },
     { value: '100%', label: { fr: 'Experts locaux', en: 'Local experts' } },
   ],
 };

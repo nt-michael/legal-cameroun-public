@@ -10,8 +10,8 @@ const argumentsList = [
     icon: '28ICONE_BICHROME.svg',
     title: { fr: 'Expertise reconnue', en: 'Recognized expertise' },
     description: {
-      fr: 'Plus de 08 ans d\'expérience et une équipe d\'experts hautement qualifiés.',
-      en: 'Over 8 years of experience and a team of highly qualified experts.',
+      fr: 'Plus de 5 ans d\'expérience et une équipe d\'experts hautement qualifiés.',
+      en: 'Over 5 years of experience and a team of highly qualified experts.',
     },
   },
   {

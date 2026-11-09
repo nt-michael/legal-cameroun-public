@@ -115,7 +115,7 @@ export default function WhoWeAre() {
               <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">{sectionText.countriesCovered[language]}</p>
             </div>
             <div className="bg-primary-50 dark:bg-gray-800 rounded-2xl p-6 border border-primary-100 dark:border-gray-700 text-center">
-              <p className="text-3xl font-bold text-primary-600">15 000+</p>
+              <p className="text-3xl font-bold text-primary-600">1 500+</p>
               <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">{sectionText.entrepreneursSupported[language]}</p>
             </div>
           </div>
