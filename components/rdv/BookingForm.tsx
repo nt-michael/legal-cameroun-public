@@ -267,20 +267,29 @@ export default function BookingForm({ consultationPrice }: { consultationPrice: 
     }
   };
 
-  // Step 0 has a single choice: picking a consultation type moves on by itself.
-  // The short pause lets the visitor see the card being selected first.
+  // Picking a consultation type (step 0) or a time slot (step 1) moves on by itself.
+  // The short pause lets the visitor see the choice being selected first; "Back" still works.
   const autoAdvanceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   useEffect(() => () => {
     if (autoAdvanceRef.current) clearTimeout(autoAdvanceRef.current);
   }, []);
 
-  const selectConsultationType = (value: string) => {
-    updateFormData({ consultationType: value });
+  const advanceAfterChoice = (newStep: number) => {
     if (autoAdvanceRef.current) clearTimeout(autoAdvanceRef.current);
     autoAdvanceRef.current = setTimeout(() => {
       autoAdvanceRef.current = null;
-      goToStep(1);
+      goToStep(newStep);
     }, 300);
+  };
+
+  const selectConsultationType = (value: string) => {
+    updateFormData({ consultationType: value });
+    advanceAfterChoice(1);
+  };
+
+  const selectTimeSlot = (display: string, value: string) => {
+    updateFormData({ selectedTime: display, slotStartTime: value });
+    advanceAfterChoice(2);
   };
 
   const prevStep = () => {
@@ -484,7 +493,7 @@ export default function BookingForm({ consultationPrice }: { consultationPrice: 
                     {dateMap[formData.selectedDate].map((item, index) => (
                         <button
                         key={index}
-                        onClick={() => updateFormData({ selectedTime: item.display, slotStartTime: item.value })}
+                        onClick={() => selectTimeSlot(item.display, item.value)}
                         className={`p-3 rounded-xl text-center font-medium transition-all duration-200 ${
                             formData.selectedTime === item.display
                             ? 'bg-primary-600 text-white'
