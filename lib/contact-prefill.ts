@@ -5,6 +5,7 @@
 import type { Language } from '@/lib/translations';
 import { companyTypes, plans, modificationServices } from '@/lib/devis-data';
 import { contactSubjects } from '@/lib/contact-data';
+import { secretariatServices } from '@/lib/secretariat-data';
 
 export interface ContactPrefill {
   subject: string;
@@ -24,13 +25,19 @@ export function contactPrefill(params: SearchParams, language: Language): Contac
   const type = single(params.type);
   const plan = single(params.plan);
   const service = single(params.service);
+  const besoin = single(params.besoin);
 
   const companyType = companyTypes.find((item) => item.value === type);
   const planLabel = Object.hasOwn(plans, plan) ? plans[plan][language] : '';
-  const serviceLabel = Object.hasOwn(modificationServices, service) ? modificationServices[service][language] : '';
+  // A legal secretariat card (?besoin=) reads like a service for the message
+  const secretariat = Object.hasOwn(secretariatServices, besoin) ? secretariatServices[besoin] : undefined;
+  const serviceLabel = Object.hasOwn(modificationServices, service)
+    ? modificationServices[service][language]
+    : secretariat?.name[language] ?? '';
 
   // Subject: an explicit ?sujet= wins, then what the clicked offer implies
   let subject = contactSubjects.some((item) => item.value === sujet) ? sujet : '';
+  if (!subject && secretariat) subject = secretariat.subject;
   if (!subject && serviceLabel) subject = service === 'dissolution' ? 'dissolution' : 'modification';
   if (!subject && (companyType || planLabel)) subject = 'creation';
 
@@ -41,5 +48,5 @@ export function contactPrefill(params: SearchParams, language: Language): Contac
   if (planLabel) parts.push(language === 'fr' ? `formule ${planLabel}` : `${planLabel} plan`);
   const message = parts.length > 0 ? `${language === 'fr' ? 'Projet : ' : 'Project: '}${parts.join(', ')}.\n` : '';
 
-  return { subject, message, focusForm: Boolean(sujet || type || plan || service) };
+  return { subject, message, focusForm: Boolean(sujet || type || plan || service || besoin) };
 }

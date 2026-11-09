@@ -44,7 +44,7 @@ const services = [
   {
     title: { fr: 'Secr\u00e9tariat Juridique', en: 'Legal Secretariat' },
     pole: 'gestion' as Pole,
-    href: '/modification-entreprise',
+    href: '/secretariat-juridique',
     description: {
       fr: 'B\u00e9n\u00e9ficiez d\'un accompagnement complet en mati\u00e8re de r\u00e9daction d\'actes de soci\u00e9t\u00e9, pour assurer la conformit\u00e9 administrative et l\u00e9gale de votre entreprise, vous permettant de vous concentrer sur votre activit\u00e9 principale.',
       en: 'Benefit from comprehensive support in drafting company documents, to ensure the administrative and legal compliance of your business, allowing you to focus on your core activity.',
