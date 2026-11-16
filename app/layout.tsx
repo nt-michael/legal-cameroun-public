@@ -9,6 +9,7 @@ import ScrollToTopOnNavigate from "@/components/common/ScrollToTopOnNavigate";
 import { LanguageProvider } from "@/contexts/LanguageContext";
 import { ThemeProvider } from "@/contexts/ThemeContext";
 import LanguageHtmlSetter from "@/components/seo/LanguageHtmlSetter";
+import OrganizationJsonLd from "@/components/seo/OrganizationJsonLd";
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import { Analytics } from "@vercel/analytics/next";
 import { getRequestLanguage } from "@/lib/lang";
@@ -57,6 +58,7 @@ export default async function RootLayout({
       <body
         className={`${inriaSans.variable} antialiased`}
       >
+        <OrganizationJsonLd lang={lang} />
         <ThemeProvider>
           <LanguageProvider initialLanguage={lang}>
             <LanguageHtmlSetter />
