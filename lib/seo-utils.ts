@@ -2,7 +2,7 @@ import { cache } from 'react';
 import { Metadata } from 'next';
 import { getAllPagesSEO, WPPageSEO } from './wordpress';
 import { getRequestLanguage } from './lang';
-import { absoluteUrl } from './site-config';
+import { absoluteUrl, DEFAULT_SHARE_IMAGE } from './site-config';
 
 // Cached per request — only one WP fetch per page render
 const fetchPagesSEO = cache(getAllPagesSEO);
@@ -43,10 +43,20 @@ export async function createPageMetadata(
   };
 
   // og:url must agree with the canonical, or an English share resolves to the
-  // French page.
-  if (base.openGraph) {
-    base.openGraph = { ...base.openGraph, url: canonical } as Metadata['openGraph'];
-  }
+  // French page. Pages without their own image get the default share image,
+  // so links posted on WhatsApp or LinkedIn always show a preview.
+  const og = (base.openGraph ?? {}) as Record<string, unknown>;
+  base.openGraph = {
+    ...og,
+    url: canonical,
+    images: og.images ?? [DEFAULT_SHARE_IMAGE],
+  } as Metadata['openGraph'];
+  const twitter = (base.twitter ?? {}) as Record<string, unknown>;
+  base.twitter = {
+    card: 'summary_large_image',
+    ...twitter,
+    images: twitter.images ?? [DEFAULT_SHARE_IMAGE.url],
+  } as Metadata['twitter'];
 
   const configs = await fetchPagesSEO();
   const wp = configs.find((c) => c.slug === path);

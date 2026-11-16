@@ -12,7 +12,7 @@ import LanguageHtmlSetter from "@/components/seo/LanguageHtmlSetter";
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import { Analytics } from "@vercel/analytics/next";
 import { getRequestLanguage } from "@/lib/lang";
-import { SITE_URL } from "@/lib/site-config";
+import { SITE_URL, DEFAULT_SHARE_IMAGE } from "@/lib/site-config";
 
 const inriaSans = localFont({
   src: [
@@ -36,9 +36,11 @@ export const metadata: Metadata = {
     siteName: 'Legal Cameroun',
     locale: 'fr_CM',
     type: 'website',
+    images: [DEFAULT_SHARE_IMAGE],
   },
   twitter: {
     card: 'summary_large_image',
+    images: [DEFAULT_SHARE_IMAGE.url],
   },
 };
 
