@@ -102,15 +102,15 @@ export default function FichesGrid() {
               }}
               onMouseEnter={() => handleCardHover(index, true)}
               onMouseLeave={() => handleCardHover(index, false)}
-              className="group block bg-white dark:bg-gray-800 rounded-2xl p-6 border border-gray-100 dark:border-gray-700 shadow-sm transition-colors"
+              className="group block bg-white dark:bg-gray-800 rounded-2xl p-6 border border-gray-200 dark:border-gray-700 transition-colors hover:border-secondary-400"
             >
               {/* Icon */}
-              <div className="w-14 h-14 bg-teal-50 dark:bg-teal-900/30 rounded-xl flex items-center justify-center text-teal-600 dark:text-teal-400 mb-4 group-hover:bg-teal-100 dark:group-hover:bg-teal-900/50 transition-colors">
+              <div className="w-14 h-14 bg-secondary-50 dark:bg-gray-900 rounded-xl flex items-center justify-center text-primary-600 dark:text-secondary-300 mb-4">
                 {icons[fiche.icon]}
               </div>
 
               {/* Title */}
-              <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2 group-hover:text-teal-600 dark:group-hover:text-teal-400 transition-colors">
+              <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">
                 {fiche.shortTitle[language]}
               </h3>
 
@@ -120,7 +120,7 @@ export default function FichesGrid() {
               </p>
 
               {/* Link */}
-              <span className="inline-flex items-center gap-2 text-sm font-medium text-teal-600 dark:text-teal-400 group-hover:gap-3 transition-all">
+              <span className="inline-flex items-center gap-2 text-sm font-semibold text-primary-600 dark:text-secondary-300 group-hover:gap-3 transition-all">
                 {sectionText.readGuide[language]}
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
