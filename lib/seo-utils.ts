@@ -62,8 +62,10 @@ function nonEmpty(value: string | undefined): string | undefined {
 }
 
 function mergeSEO(defaults: Metadata, wp: WPPageSEO, lang: 'fr' | 'en'): Metadata {
+  // On English pages, a missing English value keeps the English default from the code.
+  // Falling back to the French WordPress value put French text on English pages.
   function pick(base: string | undefined, en: string | undefined): string | undefined {
-    return lang === 'en' ? nonEmpty(en) ?? nonEmpty(base) : nonEmpty(base);
+    return lang === 'en' ? nonEmpty(en) : nonEmpty(base);
   }
 
   const merged: Metadata = { ...defaults };
