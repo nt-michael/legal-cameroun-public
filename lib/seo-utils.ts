@@ -54,8 +54,11 @@ export async function createPageMetadata(
   return mergeSEO(base, wp, lang);
 }
 
+// The WordPress SEO manager used to store "Création d\'entreprise" (missing wp_unslash).
+// The plugin is fixed, but old entries stay broken until someone saves them again.
 function nonEmpty(value: string | undefined): string | undefined {
-  return value && value.trim() !== '' ? value.trim() : undefined;
+  const text = value?.replace(/\\+(['"])/g, '$1').trim();
+  return text ? text : undefined;
 }
 
 function mergeSEO(defaults: Metadata, wp: WPPageSEO, lang: 'fr' | 'en'): Metadata {
