@@ -29,7 +29,7 @@ const heroContent = {
   stats: [
     { value: { fr: '300+', en: '300+' }, label: { fr: 'clients satisfaits', en: 'satisfied clients' } },
     { value: { fr: '5', en: '5' }, label: { fr: "années d'expérience", en: 'years of experience' } },
-    { value: { fr: '1 500+', en: '1,500+' }, label: { fr: 'entreprises installées', en: 'businesses established' } },
+    { value: { fr: '500+', en: '500+' }, label: { fr: 'entreprises installées', en: 'businesses established' } },
   ],
   statsTitle: { fr: 'Legal Cameroun en chiffres', en: 'Legal Cameroun in figures' },
 };
