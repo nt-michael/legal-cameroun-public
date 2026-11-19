@@ -74,7 +74,7 @@ export interface SubpageData {
 
 // Trust badges shown throughout the section
 export const trustBadges = [
-  { value: '1 500+', label: { fr: 'Entrepreneurs accompagnés', en: 'Entrepreneurs supported' } },
+  { value: '500+', label: { fr: 'Entrepreneurs accompagnés', en: 'Entrepreneurs supported' } },
   { value: '5', label: { fr: "Années d'expérience", en: 'Years of experience' } },
   // { value: '50+', label: { fr: 'Juristes diplômés', en: 'Qualified lawyers' } },
   // { value: '48h', label: { fr: 'Traitement Premium', en: 'Premium processing' } },
@@ -791,7 +791,7 @@ export const subpagesData: Record<string, SubpageData> = {
 export const hubHero = {
   title: { fr: 'Créez l\'Entreprise Faite pour Vous au Cameroun', en: 'Create the Right Business for You in Cameroon' },
   subtitle: { fr: 'Zéro stress, rapide (48h Premium), économique.', en: 'Zero stress, fast (48h Premium), affordable.' },
-  description: { fr: 'SASU, SAS, SARL, SARLU, SCI, Établissement commercial... +1 500 entrepreneurs accompagnés depuis 5 ans par des juristes basés au Cameroun.', en: 'SASU, SAS, SARL, SARLU, SCI, Commercial establishment... 1,500+ entrepreneurs supported for 5 years by lawyers based in Cameroon.' },
+  description: { fr: 'SASU, SAS, SARL, SARLU, SCI, Établissement commercial... +500 entrepreneurs accompagnés depuis 5 ans par des juristes basés au Cameroun.', en: 'SASU, SAS, SARL, SARLU, SCI, Commercial establishment... 500+ entrepreneurs supported for 5 years by lawyers based in Cameroon.' },
   primaryCta: {
     text: { fr: 'C\'est parti ! Démarrer le questionnaire', en: 'Let\'s go! Start the questionnaire' },
     href: '/contact?sujet=creation',

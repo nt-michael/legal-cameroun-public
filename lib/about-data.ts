@@ -49,8 +49,8 @@ export const aboutHeroData = {
     en: 'We are the team that understands your business is unique — just like you.',
   } as BilingualText,
   description: {
-    fr: '+1 500 entrepreneurs accompagnés en 5 ans, une conviction :',
-    en: '+1,500 entrepreneurs supported in 5 years, one conviction:',
+    fr: '+500 entrepreneurs accompagnés en 5 ans, une conviction :',
+    en: '+500 entrepreneurs supported in 5 years, one conviction:',
   } as BilingualText,
   values: {
     fr: 'Zéro stress, rapidité, proximité et expertise locale font la différence.',
@@ -66,7 +66,7 @@ export const aboutHeroData = {
   } as BilingualText,
   stats: [
     {
-      value: '1 500+',
+      value: '500+',
       label: {
         fr: 'entrepreneurs accompagnés',
         en: 'entrepreneurs supported',
@@ -146,8 +146,8 @@ export const timelineEvents: TimelineEvent[] = [
       en: 'Today',
     },
     description: {
-      fr: '+1 500 entreprises accompagnées, des startups aux PME, en passant par des projets innovants.',
-      en: '+1,500 businesses supported, from startups to SMEs, including innovative projects.',
+      fr: '+500 entreprises accompagnées, des startups aux PME, en passant par des projets innovants.',
+      en: '+500 businesses supported, from startups to SMEs, including innovative projects.',
     },
     location: 'Cameroun',
   },

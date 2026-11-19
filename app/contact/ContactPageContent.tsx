@@ -17,7 +17,7 @@ const pageText = {
   guaranteed24h: { fr: 'Sous 48h garantie', en: 'Guaranteed within 48h' },
   teamCommitment: { fr: "Notre équipe s\u2019engage à vous répondre dans les plus brefs délais. Pour les urgences, privilégiez l\u2019appel direct ou WhatsApp.", en: 'Our team is committed to responding as quickly as possible. For emergencies, prefer direct calls or WhatsApp.' },
   whyTrustUs: { fr: 'Pourquoi nous faire confiance ?', en: 'Why trust us?' },
-  stat1: { fr: '+1 500 entreprises accompagnées', en: '+1,500 businesses supported' },
+  stat1: { fr: '+500 entreprises accompagnées', en: '+500 businesses supported' },
   stat2: { fr: "5 ans d\u2019expertise OHADA", en: '5 years of OHADA expertise' },
   stat3: { fr: 'Présence à Douala, Paris, Cotonou', en: 'Offices in Douala, Paris, Cotonou' },
   stat4: { fr: 'Données confidentielles et sécurisées', en: 'Confidential and secure data' },
