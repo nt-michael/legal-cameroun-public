@@ -19,8 +19,8 @@ export default function NotFound() {
   return (
     <main className="min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-b from-[#0a3d4f] to-[#041c28] dark:from-[#020e14] dark:to-[#000508]">
       {/* Decorative blur orbs */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-primary-500/10 rounded-full blur-3xl" />
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-secondary-500/10 rounded-full blur-3xl" />
+      <div className="absolute top-0 right-0 w-96 h-96 bg-primary-500/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-96 h-96 bg-secondary-500/10 rounded-full blur-3xl pointer-events-none" />
 
       <div className="relative z-10 text-center px-4 max-w-lg mx-auto">
         {/* Icon */}

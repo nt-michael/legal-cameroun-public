@@ -41,8 +41,8 @@ export default function AboutPageContent() {
         }}
       >
         {/* Decorative elements */}
-        <div className="absolute top-10 left-10 w-40 h-40 bg-primary-400/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-10 right-10 w-60 h-60 bg-primary-300/10 rounded-full blur-3xl" />
+        <div className="absolute top-10 left-10 w-40 h-40 bg-primary-400/10 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute bottom-10 right-10 w-60 h-60 bg-primary-300/10 rounded-full blur-3xl pointer-events-none" />
 
         <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6">

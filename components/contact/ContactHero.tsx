@@ -128,7 +128,7 @@ export default function ContactHero() {
   return (
     <section
       ref={heroRef}
-      className="relative min-h-[70vh] flex items-center overflow-hidden"
+      className="relative flex items-center overflow-hidden pt-28 pb-16"
       style={{
         background: 'linear-gradient(to bottom right, #041c28, #0a3d4f, #041c28)',
       }}
@@ -150,10 +150,12 @@ export default function ContactHero() {
       </div>
 
       {/* Decorative elements */}
-      <div className="absolute top-20 right-20 w-64 h-64 bg-primary-500/10 rounded-full blur-3xl" />
-      <div className="absolute bottom-20 left-20 w-48 h-48 bg-primary-400/10 rounded-full blur-2xl" />
+      <div className="absolute top-20 right-20 w-64 h-64 bg-primary-500/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-20 left-20 w-48 h-48 bg-primary-400/10 rounded-full blur-2xl pointer-events-none" />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 w-full">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 lg:py-10 w-full">
+        {/* Text on the left, shortcuts stacked on the right: a shorter hero, so the form shows sooner */}
+        <div className="lg:grid lg:grid-cols-[minmax(0,1fr)_auto] lg:items-end lg:gap-12">
         <div className="max-w-3xl">
           {/* Badge */}
           <span className="inline-block px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-primary-300 text-sm font-medium mb-6">
@@ -169,7 +171,7 @@ export default function ContactHero() {
           </h1>
 
           {/* Content */}
-          <div ref={contentRef} className="space-y-4 mb-10">
+          <div ref={contentRef} className="space-y-4 mb-10 lg:mb-0">
             <p className="text-xl text-gray-300">
               {contactHeroData.subtitle[language]}
             </p>
@@ -180,9 +182,10 @@ export default function ContactHero() {
               {contactHeroData.trustBadge[language]}
             </p>
           </div>
+        </div>
 
           {/* Quick Actions */}
-          <div ref={actionsRef} className="flex flex-col sm:flex-row gap-4">
+          <div ref={actionsRef} className="flex flex-col sm:flex-row lg:flex-col gap-4">
             {contactHeroData.quickActions.map((action, index) => (
               action.variant === 'phone' ? (
                 <a

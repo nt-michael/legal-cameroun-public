@@ -51,9 +51,9 @@ export default function SimulateurPageTemplate({
   const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(WHATSAPP_MESSAGE_SIMULATEUR[language])}`;
 
   return (
-    <main className="min-h-screen bg-gray-50">
+    <main className="min-h-screen bg-secondary-50/50">
       {/* Hero Section - Background spans full width including navbar area */}
-      <section className="relative bg-gradient-to-br from-slate-900 via-slate-800 to-primary-900 overflow-hidden">
+      <section className="relative bg-gradient-to-br from-navy-ink via-navy to-navy-ink overflow-hidden">
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-5">
           <div

@@ -174,14 +174,14 @@ export default function FichePageTemplate({ fiche }: FichePageTemplateProps) {
       {/* Hero Section */}
       <section
         ref={heroRef}
-        className="relative py-16 lg:py-24 overflow-hidden"
+        className="relative pt-28 pb-16 lg:pt-36 lg:pb-24 overflow-hidden"
         style={{
           background: 'linear-gradient(to bottom right, #041c28, #0a3d4f, #041c28)',
         }}
       >
         {/* Decorative elements */}
-        <div className="absolute top-10 right-10 w-64 h-64 bg-primary-500/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-10 left-10 w-48 h-48 bg-primary-400/10 rounded-full blur-2xl" />
+        <div className="absolute top-10 right-10 w-64 h-64 bg-primary-500/10 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute bottom-10 left-10 w-48 h-48 bg-primary-400/10 rounded-full blur-2xl pointer-events-none" />
 
         <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Breadcrumb */}
@@ -296,7 +296,7 @@ export default function FichePageTemplate({ fiche }: FichePageTemplateProps) {
       </section>
 
       {/* Resources Section */}
-      <section className="py-12 lg:py-16 bg-gray-50 dark:bg-gray-800">
+      <section className="py-12 lg:py-16 bg-secondary-50/50 dark:bg-gray-800">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-8 text-center">
             {templateText.downloadableResources[language]}

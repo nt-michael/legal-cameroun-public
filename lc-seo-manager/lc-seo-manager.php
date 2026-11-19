@@ -3,7 +3,7 @@
  * Plugin Name: LC SEO Manager
  * Plugin URI:  https://legalcameroun.com
  * Description: Manage per-page SEO metadata for the Legal Cameroun Next.js front-end.
- * Version:     1.0.0
+ * Version:     1.0.1
  * Author:      RODEC Conseils
  * License:     GPL-2.0+
  */
@@ -153,6 +153,11 @@ add_action( 'admin_menu', function () {
 
 add_action( 'admin_init', 'lc_seo_handle_admin_actions' );
 
+/** Turns \' back into ' and \" back into " (left over from the old save handler) */
+function lc_seo_remove_quote_backslashes( $value ) {
+	return is_string( $value ) ? preg_replace( '/\\\\+([\'"])/', '$1', $value ) : $value;
+}
+
 function lc_seo_handle_admin_actions(): void {
 	if ( ! isset( $_POST['lc_seo_action'] ) ) {
 		return;
@@ -164,51 +169,57 @@ function lc_seo_handle_admin_actions(): void {
 		wp_die( 'Insufficient permissions.' );
 	}
 
-	$action  = sanitize_text_field( $_POST['lc_seo_action'] );
+	// WordPress adds a backslash before every quote in $_POST ("magic quotes").
+	// Without wp_unslash, "Création d'entreprise" was stored as "Création d\'entreprise".
+	$post    = wp_unslash( $_POST );
+	$action  = sanitize_text_field( $post['lc_seo_action'] );
 	$configs = get_option( LC_SEO_OPTION, [] );
 
 	if ( $action === 'save' ) {
-		$slug_choice = sanitize_text_field( $_POST['slug_choice'] ?? '' );
+		$slug_choice = sanitize_text_field( $post['slug_choice'] ?? '' );
 		$slug = $slug_choice === '__other__'
-			? sanitize_text_field( $_POST['slug'] ?? '' )
+			? sanitize_text_field( $post['slug'] ?? '' )
 			: $slug_choice;
 
 		if ( $slug ) {
 			$configs[ $slug ] = [
 				'slug'                    => $slug,
-				'name'                    => sanitize_text_field( $_POST['name'] ?? '' ),
-				'title'                   => sanitize_text_field( $_POST['title'] ?? '' ),
-				'description'             => sanitize_textarea_field( $_POST['description'] ?? '' ),
-				'keywords'                => sanitize_text_field( $_POST['keywords'] ?? '' ),
-				'canonical'               => esc_url_raw( $_POST['canonical'] ?? '' ),
-				'robots'                  => sanitize_text_field( $_POST['robots'] ?? '' ),
-				'og_title'                => sanitize_text_field( $_POST['og_title'] ?? '' ),
-				'og_description'          => sanitize_textarea_field( $_POST['og_description'] ?? '' ),
-				'og_type'                 => sanitize_text_field( $_POST['og_type'] ?? 'website' ),
-				'og_image'                => esc_url_raw( $_POST['og_image'] ?? '' ),
-				'og_image_width'          => (int) ( $_POST['og_image_width'] ?? 0 ),
-				'og_image_height'         => (int) ( $_POST['og_image_height'] ?? 0 ),
-				'og_image_alt'            => sanitize_text_field( $_POST['og_image_alt'] ?? '' ),
-				'twitter_card'            => sanitize_text_field( $_POST['twitter_card'] ?? 'summary_large_image' ),
-				'twitter_title'           => sanitize_text_field( $_POST['twitter_title'] ?? '' ),
-				'twitter_description'     => sanitize_textarea_field( $_POST['twitter_description'] ?? '' ),
-				'twitter_image'           => esc_url_raw( $_POST['twitter_image'] ?? '' ),
+				'name'                    => sanitize_text_field( $post['name'] ?? '' ),
+				'title'                   => sanitize_text_field( $post['title'] ?? '' ),
+				'description'             => sanitize_textarea_field( $post['description'] ?? '' ),
+				'keywords'                => sanitize_text_field( $post['keywords'] ?? '' ),
+				'canonical'               => esc_url_raw( $post['canonical'] ?? '' ),
+				'robots'                  => sanitize_text_field( $post['robots'] ?? '' ),
+				'og_title'                => sanitize_text_field( $post['og_title'] ?? '' ),
+				'og_description'          => sanitize_textarea_field( $post['og_description'] ?? '' ),
+				'og_type'                 => sanitize_text_field( $post['og_type'] ?? 'website' ),
+				'og_image'                => esc_url_raw( $post['og_image'] ?? '' ),
+				'og_image_width'          => (int) ( $post['og_image_width'] ?? 0 ),
+				'og_image_height'         => (int) ( $post['og_image_height'] ?? 0 ),
+				'og_image_alt'            => sanitize_text_field( $post['og_image_alt'] ?? '' ),
+				'twitter_card'            => sanitize_text_field( $post['twitter_card'] ?? 'summary_large_image' ),
+				'twitter_title'           => sanitize_text_field( $post['twitter_title'] ?? '' ),
+				'twitter_description'     => sanitize_textarea_field( $post['twitter_description'] ?? '' ),
+				'twitter_image'           => esc_url_raw( $post['twitter_image'] ?? '' ),
 				// English variants
-				'title_en'                => sanitize_text_field( $_POST['title_en'] ?? '' ),
-				'description_en'          => sanitize_textarea_field( $_POST['description_en'] ?? '' ),
-				'keywords_en'             => sanitize_text_field( $_POST['keywords_en'] ?? '' ),
-				'og_title_en'             => sanitize_text_field( $_POST['og_title_en'] ?? '' ),
-				'og_description_en'       => sanitize_textarea_field( $_POST['og_description_en'] ?? '' ),
-				'og_image_alt_en'         => sanitize_text_field( $_POST['og_image_alt_en'] ?? '' ),
-				'twitter_title_en'        => sanitize_text_field( $_POST['twitter_title_en'] ?? '' ),
-				'twitter_description_en'  => sanitize_textarea_field( $_POST['twitter_description_en'] ?? '' ),
+				'title_en'                => sanitize_text_field( $post['title_en'] ?? '' ),
+				'description_en'          => sanitize_textarea_field( $post['description_en'] ?? '' ),
+				'keywords_en'             => sanitize_text_field( $post['keywords_en'] ?? '' ),
+				'og_title_en'             => sanitize_text_field( $post['og_title_en'] ?? '' ),
+				'og_description_en'       => sanitize_textarea_field( $post['og_description_en'] ?? '' ),
+				'og_image_alt_en'         => sanitize_text_field( $post['og_image_alt_en'] ?? '' ),
+				'twitter_title_en'        => sanitize_text_field( $post['twitter_title_en'] ?? '' ),
+				'twitter_description_en'  => sanitize_textarea_field( $post['twitter_description_en'] ?? '' ),
 			];
+			// Entries saved before the wp_unslash fix still hold "d\'entreprise":
+			// opening and saving them again is enough to repair them.
+			$configs[ $slug ] = array_map( 'lc_seo_remove_quote_backslashes', $configs[ $slug ] );
 			update_option( LC_SEO_OPTION, $configs );
 		}
 		wp_safe_redirect( admin_url( 'admin.php?page=lc-seo-manager&saved=1' ) );
 		exit;
 	} elseif ( $action === 'delete' ) {
-		$slug = sanitize_text_field( $_POST['delete_slug'] ?? '' );
+		$slug = sanitize_text_field( $post['delete_slug'] ?? '' );
 		if ( $slug && isset( $configs[ $slug ] ) ) {
 			unset( $configs[ $slug ] );
 			update_option( LC_SEO_OPTION, $configs );

@@ -16,9 +16,9 @@ gsap.registerPlugin(ScrollTrigger);
 
 const locationColors: Record<string, string> = {
   Paris: 'bg-primary-500',
-  Douala: 'bg-amber-500',
-  Cotonou: 'bg-green-500',
-  Cameroun: 'bg-orange-500',
+  Douala: 'bg-secondary-500',
+  Cotonou: 'bg-section-accompagnement',
+  Cameroun: 'bg-section-gestion',
 };
 
 export default function AboutTimeline() {
@@ -108,11 +108,11 @@ export default function AboutTimeline() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-20 lg:py-32 bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-gray-800">
+    <section ref={sectionRef} className="py-20 lg:py-32 bg-gradient-to-b from-secondary-50/60 to-white dark:from-gray-900 dark:to-gray-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-16">
-          <span className="inline-block px-4 py-2 bg-amber-100 dark:bg-amber-900/30 rounded-full text-amber-600 dark:text-amber-400 text-sm font-medium mb-4">
+          <span className="inline-block px-4 py-2 bg-secondary-100 dark:bg-secondary-800/30 rounded-full text-secondary-800 dark:text-secondary-400 text-sm font-medium mb-4">
             {sectionText.badge[language]}
           </span>
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4">
@@ -128,7 +128,7 @@ export default function AboutTimeline() {
           {/* Vertical Line */}
           <div
             ref={lineRef}
-            className="absolute left-8 lg:left-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-amber-400 via-orange-500 to-amber-600 origin-top"
+            className="absolute left-8 lg:left-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-secondary-400 via-secondary-500 to-secondary-600 origin-top"
             style={{ transform: 'translateX(-50%)' }}
           />
 
@@ -143,8 +143,8 @@ export default function AboutTimeline() {
               >
                 {/* Pin */}
                 <div
-                  className={`timeline-pin absolute left-8 lg:left-1/2 -translate-x-1/2 w-16 h-16 rounded-full flex items-center justify-center z-10 cursor-pointer transition-shadow duration-300 hover:shadow-lg hover:shadow-amber-500/30 ${
-                    locationColors[event.location || 'Cameroun'] || 'bg-amber-500'
+                  className={`timeline-pin absolute left-8 lg:left-1/2 -translate-x-1/2 w-16 h-16 rounded-full flex items-center justify-center z-10 transition-shadow duration-300 ${
+                    locationColors[event.location || 'Cameroun'] || 'bg-secondary-500'
                   }`}
                 >
                   <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -155,13 +155,13 @@ export default function AboutTimeline() {
 
                 {/* Content Card */}
                 <div
-                  className={`timeline-content ml-24 lg:ml-0 lg:w-[calc(50%-4rem)] ${
+                  className={`timeline-content flex-1 min-w-0 break-words lg:flex-none ml-24 lg:ml-0 lg:w-[calc(50%-4rem)] ${
                     index % 2 === 0 ? 'lg:mr-auto lg:pr-8 lg:text-right' : 'lg:ml-auto lg:pl-8 lg:text-left'
                   }`}
                 >
-                  <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-100 dark:border-gray-700 hover:shadow-xl transition-shadow duration-300">
+                  <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-100 dark:border-gray-700 transition-shadow duration-300">
                     <div className={`flex items-center gap-3 mb-3 ${index % 2 === 0 ? 'lg:justify-end' : 'lg:justify-start'}`}>
-                      <span className="text-sm font-semibold text-amber-600 dark:text-amber-400 bg-amber-100 dark:bg-amber-900/30 px-3 py-1 rounded-full">
+                      <span className="text-sm font-semibold text-secondary-800 dark:text-secondary-400 bg-secondary-100 dark:bg-secondary-800/30 px-3 py-1 rounded-full">
                         {event.year}
                       </span>
                       {event.location && (

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Language } from '@/lib/translations';
@@ -122,6 +122,8 @@ export default function BookingForm({ consultationPrice }: { consultationPrice: 
   const searchParams = useSearchParams();
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [step, setStep] = useState(0);
+  // Top of the form, used to bring the new step into view on small screens
+  const formTopRef = useRef<HTMLDivElement>(null);
   const [formData, setFormData] = useState<BookingFormData>(initialFormData);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -244,6 +246,12 @@ export default function BookingForm({ consultationPrice }: { consultationPrice: 
       duration: 0.2,
       onComplete: () => {
         setStep(newStep);
+        // After "Next" at the bottom of a long step, the new step would start off-screen
+        const top = formTopRef.current?.getBoundingClientRect().top;
+        if (top !== undefined && top < 112) {
+          const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+          window.scrollTo({ top: window.scrollY + top - 112, behavior: reduceMotion ? 'auto' : 'smooth' });
+        }
         gsap.fromTo(
           '.booking-step-content',
           { opacity: 0, y: newStep > step ? 20 : -20 },
@@ -259,7 +267,36 @@ export default function BookingForm({ consultationPrice }: { consultationPrice: 
     }
   };
 
+  // Picking a consultation type (step 0) or a time slot (step 1) moves on by itself.
+  // The short pause lets the visitor see the choice being selected first; "Back" still works.
+  const autoAdvanceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  useEffect(() => () => {
+    if (autoAdvanceRef.current) clearTimeout(autoAdvanceRef.current);
+  }, []);
+
+  const advanceAfterChoice = (newStep: number) => {
+    if (autoAdvanceRef.current) clearTimeout(autoAdvanceRef.current);
+    autoAdvanceRef.current = setTimeout(() => {
+      autoAdvanceRef.current = null;
+      goToStep(newStep);
+    }, 300);
+  };
+
+  const selectConsultationType = (value: string) => {
+    updateFormData({ consultationType: value });
+    advanceAfterChoice(1);
+  };
+
+  const selectTimeSlot = (display: string, value: string) => {
+    updateFormData({ selectedTime: display, slotStartTime: value });
+    advanceAfterChoice(2);
+  };
+
   const prevStep = () => {
+    if (autoAdvanceRef.current) {
+      clearTimeout(autoAdvanceRef.current);
+      autoAdvanceRef.current = null;
+    }
     goToStep(step - 1);
   };
 
@@ -322,7 +359,7 @@ export default function BookingForm({ consultationPrice }: { consultationPrice: 
   const availableDatesList = Object.keys(dateMap).sort();
 
   return (
-    <div className="max-w-2xl mx-auto relative">
+    <div ref={formTopRef} className="max-w-2xl mx-auto relative">
       {/* Success Modal */}
       {showSuccessModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm animate-fade-in">
@@ -378,7 +415,8 @@ export default function BookingForm({ consultationPrice }: { consultationPrice: 
                 {consultationTypes.map((type) => (
                   <button
                     key={type.value}
-                    onClick={() => updateFormData({ consultationType: type.value })}
+                    type="button"
+                    onClick={() => selectConsultationType(type.value)}
                     className={`p-5 rounded-2xl border-2 text-left transition-all duration-300 hover:scale-[1.02] ${
                       formData.consultationType === type.value
                         ? 'border-primary-500 bg-primary-50 dark:bg-primary-900/20 shadow-lg'
@@ -455,7 +493,7 @@ export default function BookingForm({ consultationPrice }: { consultationPrice: 
                     {dateMap[formData.selectedDate].map((item, index) => (
                         <button
                         key={index}
-                        onClick={() => updateFormData({ selectedTime: item.display, slotStartTime: item.value })}
+                        onClick={() => selectTimeSlot(item.display, item.value)}
                         className={`p-3 rounded-xl text-center font-medium transition-all duration-200 ${
                             formData.selectedTime === item.display
                             ? 'bg-primary-600 text-white'

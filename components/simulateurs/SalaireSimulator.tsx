@@ -323,7 +323,7 @@ export default function SalaireSimulator() {
           onClick={() => setActiveView('employeur')}
           className={`flex-1 py-4 px-6 text-center font-medium transition-colors ${
             activeView === 'employeur'
-              ? 'bg-orange-50 text-orange-600 border-b-2 border-orange-600'
+              ? 'bg-secondary-50 text-secondary-700 border-b-2 border-secondary-700'
               : 'text-gray-500 hover:text-gray-700 hover:bg-gray-50'
           }`}
         >
@@ -419,14 +419,14 @@ export default function SalaireSimulator() {
 
           {/* Plafond Notice */}
           {isAbovePlafond && (
-            <div className="mt-4 p-3 bg-yellow-50 border border-yellow-200 rounded-xl">
+            <div className="mt-4 p-3 bg-secondary-50 border border-secondary-200 rounded-xl">
               <div className="flex items-start gap-2">
-                <svg className="w-5 h-5 text-yellow-600 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-5 h-5 text-secondary-700 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
                 </svg>
-                <div className="text-sm text-yellow-800">
+                <div className="text-sm text-secondary-800">
                   <strong>{simText.cnpsCeilingExceeded[language]}</strong>
-                  <p className="text-yellow-700 text-xs mt-1">
+                  <p className="text-secondary-800 text-xs mt-1">
                     {simText.cnpsCeilingNote[language]} {formatFCFA(CNPS_PLAFOND)}{simText.perMonth[language]}.
                   </p>
                 </div>
@@ -588,7 +588,7 @@ export default function SalaireSimulator() {
                     title="CNPS"
                   />
                   <div
-                    className="absolute top-0 h-full bg-orange-400 transition-all duration-1000"
+                    className="absolute top-0 h-full bg-secondary-400 transition-all duration-1000"
                     style={{
                       left: `${(result.cotisationsSalariales.total / result.brut) * 100}%`,
                       width: `${(result.impotsSalariaux.total / result.brut) * 100}%`,
@@ -610,7 +610,7 @@ export default function SalaireSimulator() {
                     CNPS ({formatPercent(result.cotisationsSalariales.total / result.brut)})
                   </span>
                   <span className="flex items-center gap-1">
-                    <span className="w-3 h-3 bg-orange-400 rounded-full" />
+                    <span className="w-3 h-3 bg-secondary-400 rounded-full" />
                     {simText.taxes[language]} ({formatPercent(result.impotsSalariaux.total / result.brut)})
                   </span>
                   <span className="flex items-center gap-1">
@@ -631,7 +631,7 @@ export default function SalaireSimulator() {
                 </div>
                 <div className="bg-white rounded-2xl p-4 border border-gray-100">
                   <div className="text-sm text-gray-500 mb-1">{simText.employerCharges[language]}</div>
-                  <div className="text-xl font-bold text-orange-600">+{formatFCFA(result.chargesPatronales)}</div>
+                  <div className="text-xl font-bold text-secondary-700">+{formatFCFA(result.chargesPatronales)}</div>
                 </div>
                 <div className="bg-red-50 rounded-2xl p-4 border border-red-100">
                   <div className="text-sm text-gray-500 mb-1">{simText.totalEmployerCostLabel[language]}</div>
@@ -650,42 +650,42 @@ export default function SalaireSimulator() {
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-gray-100">
-                    <tr className="bg-orange-50">
-                      <td colSpan={3} className="px-4 py-2 font-medium text-orange-700">{simText.cnpsEmployerContributions[language]}</td>
+                    <tr className="bg-secondary-50">
+                      <td colSpan={3} className="px-4 py-2 font-medium text-secondary-800">{simText.cnpsEmployerContributions[language]}</td>
                     </tr>
                     <tr>
                       <td className="px-4 py-2 text-gray-600">{simText.familyBenefits[language]}</td>
                       <td className="px-4 py-2 text-right text-gray-500">{formatPercent(CNPS_RATES.prestation_familiale)}</td>
-                      <td className="px-4 py-2 text-right font-medium text-orange-600">+{formatFCFA(result.cotisationsPatronales.prestationFamiliale)}</td>
+                      <td className="px-4 py-2 text-right font-medium text-secondary-700">+{formatFCFA(result.cotisationsPatronales.prestationFamiliale)}</td>
                     </tr>
                     <tr>
                       <td className="px-4 py-2 text-gray-600">{simText.workAccident[language]}</td>
                       <td className="px-4 py-2 text-right text-gray-500">{formatPercent(CNPS_RATES.accident_travail)}</td>
-                      <td className="px-4 py-2 text-right font-medium text-orange-600">+{formatFCFA(result.cotisationsPatronales.accidentTravail)}</td>
+                      <td className="px-4 py-2 text-right font-medium text-secondary-700">+{formatFCFA(result.cotisationsPatronales.accidentTravail)}</td>
                     </tr>
                     <tr>
                       <td className="px-4 py-2 text-gray-600">{simText.pensionOldAge[language]}</td>
                       <td className="px-4 py-2 text-right text-gray-500">{formatPercent(CNPS_RATES.pension_employer)}</td>
-                      <td className="px-4 py-2 text-right font-medium text-orange-600">+{formatFCFA(result.cotisationsPatronales.pension)}</td>
+                      <td className="px-4 py-2 text-right font-medium text-secondary-700">+{formatFCFA(result.cotisationsPatronales.pension)}</td>
                     </tr>
-                    <tr className="bg-orange-50">
-                      <td colSpan={3} className="px-4 py-2 font-medium text-orange-700">{simText.employerTaxes[language]}</td>
+                    <tr className="bg-secondary-50">
+                      <td colSpan={3} className="px-4 py-2 font-medium text-secondary-800">{simText.employerTaxes[language]}</td>
                     </tr>
                     <tr>
                       <td className="px-4 py-2 text-gray-600">FNE</td>
                       <td className="px-4 py-2 text-right text-gray-500">{formatPercent(SALARY_TAX_RATES.fne)}</td>
-                      <td className="px-4 py-2 text-right font-medium text-orange-600">+{formatFCFA(result.impotsPatronaux.fne)}</td>
+                      <td className="px-4 py-2 text-right font-medium text-secondary-700">+{formatFCFA(result.impotsPatronaux.fne)}</td>
                     </tr>
                     <tr>
                       <td className="px-4 py-2 text-gray-600">{simText.housingFund[language]}</td>
                       <td className="px-4 py-2 text-right text-gray-500">{formatPercent(SALARY_TAX_RATES.credit_foncier_employer)}</td>
-                      <td className="px-4 py-2 text-right font-medium text-orange-600">+{formatFCFA(result.impotsPatronaux.creditFoncier)}</td>
+                      <td className="px-4 py-2 text-right font-medium text-secondary-700">+{formatFCFA(result.impotsPatronaux.creditFoncier)}</td>
                     </tr>
                   </tbody>
                   <tfoot className="bg-gray-50">
                     <tr>
                       <td colSpan={2} className="px-4 py-3 font-bold">{simText.totalEmployerCharges[language]}</td>
-                      <td className="px-4 py-3 text-right font-bold text-orange-600">+{formatFCFA(result.chargesPatronales)}</td>
+                      <td className="px-4 py-3 text-right font-bold text-secondary-700">+{formatFCFA(result.chargesPatronales)}</td>
                     </tr>
                   </tfoot>
                 </table>
@@ -701,7 +701,7 @@ export default function SalaireSimulator() {
                     title={simText.grossSalary[language]}
                   />
                   <div
-                    className="absolute top-0 h-full bg-orange-500 transition-all duration-1000"
+                    className="absolute top-0 h-full bg-secondary-500 transition-all duration-1000"
                     style={{
                       left: `${(result.brut / result.coutTotal) * 100}%`,
                       width: `${(result.chargesPatronales / result.coutTotal) * 100}%`,
@@ -715,7 +715,7 @@ export default function SalaireSimulator() {
                     {simText.gross[language]} ({formatPercent(result.brut / result.coutTotal)})
                   </span>
                   <span className="flex items-center gap-1">
-                    <span className="w-3 h-3 bg-orange-500 rounded-full" />
+                    <span className="w-3 h-3 bg-secondary-500 rounded-full" />
                     {simText.charges[language]} ({formatPercent(result.chargesPatronales / result.coutTotal)})
                   </span>
                 </div>

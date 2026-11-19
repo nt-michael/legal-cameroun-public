@@ -5,13 +5,15 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import WhatsAppFAB from "@/components/common/WhatsAppFAB";
 import NewsletterModal from "@/components/common/NewsletterModal";
+import ScrollToTopOnNavigate from "@/components/common/ScrollToTopOnNavigate";
 import { LanguageProvider } from "@/contexts/LanguageContext";
 import { ThemeProvider } from "@/contexts/ThemeContext";
 import LanguageHtmlSetter from "@/components/seo/LanguageHtmlSetter";
+import OrganizationJsonLd from "@/components/seo/OrganizationJsonLd";
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import { Analytics } from "@vercel/analytics/next";
 import { getRequestLanguage } from "@/lib/lang";
-import { SITE_URL } from "@/lib/site-config";
+import { SITE_URL, DEFAULT_SHARE_IMAGE } from "@/lib/site-config";
 
 const inriaSans = localFont({
   src: [
@@ -35,9 +37,11 @@ export const metadata: Metadata = {
     siteName: 'Legal Cameroun',
     locale: 'fr_CM',
     type: 'website',
+    images: [DEFAULT_SHARE_IMAGE],
   },
   twitter: {
     card: 'summary_large_image',
+    images: [DEFAULT_SHARE_IMAGE.url],
   },
 };
 
@@ -48,14 +52,17 @@ export default async function RootLayout({
 }>) {
   const lang = await getRequestLanguage();
 
+  // data-scroll-behavior lets Next.js turn off smooth scrolling while it changes page
   return (
-    <html lang={lang} suppressHydrationWarning>
+    <html lang={lang} suppressHydrationWarning data-scroll-behavior="smooth">
       <body
         className={`${inriaSans.variable} antialiased`}
       >
+        <OrganizationJsonLd lang={lang} />
         <ThemeProvider>
           <LanguageProvider initialLanguage={lang}>
             <LanguageHtmlSetter />
+            <ScrollToTopOnNavigate />
             <Header />
             <main>{children}</main>
             <Footer />

@@ -9,3 +9,4 @@ export { default as LegalFormsComparison } from './LegalFormsComparison';
 export { default as SubpagesGrid } from './SubpagesGrid';
 export { default as AidesAvantages } from './AidesAvantages';
 export { default as SubpageLayout } from './SubpageLayout';
+export { default as CompanyTypeCards } from './CompanyTypeCards';

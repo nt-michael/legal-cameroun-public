@@ -32,7 +32,7 @@ const iconMap: Record<string, React.ReactNode> = {
 
 const cardColors = [
   // Gold/secondary warmth
-  { bg: 'from-amber-50 to-amber-100', border: 'border-amber-200', hover: 'hover:border-amber-400', icon: 'text-amber-700', darkBg: 'dark:from-amber-900/20 dark:to-amber-800/20', darkBorder: 'dark:border-amber-800' },
+  { bg: 'from-secondary-50 to-secondary-100', border: 'border-secondary-200', hover: 'hover:border-secondary-400', icon: 'text-secondary-700', darkBg: 'dark:from-secondary-800/20 dark:to-secondary-800/20', darkBorder: 'dark:border-secondary-800' },
   // Primary deep blue
   { bg: 'from-primary-50 to-primary-100', border: 'border-primary-200', hover: 'hover:border-primary-400', icon: 'text-primary-600', darkBg: 'dark:from-primary-900/20 dark:to-primary-800/20', darkBorder: 'dark:border-primary-800' },
   // Cyan/teal (matches --section-creation #0095bb)
@@ -98,7 +98,7 @@ export default function ValuesGrid() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-20 lg:py-32 bg-gray-50 dark:bg-gray-900 relative overflow-hidden">
+    <section ref={sectionRef} className="py-20 lg:py-32 bg-secondary-50/50 dark:bg-gray-900 relative overflow-hidden">
       {/* Subtle pattern background */}
       <div className="absolute inset-0 opacity-5">
         <svg className="w-full h-full" viewBox="0 0 800 800">
@@ -112,7 +112,7 @@ export default function ValuesGrid() {
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-16">
-          <span className="inline-block px-4 py-2 bg-primary-100 dark:bg-primary-900/30 rounded-full text-primary-600 dark:text-primary-400 text-sm font-medium mb-4">
+          <span className="eyebrow">
             {sectionText.badge[language]}
           </span>
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4">
@@ -131,7 +131,7 @@ export default function ValuesGrid() {
               <div
                 key={value.title[language]}
                 ref={(el) => { cardsRef.current[index] = el; }}
-                className={`bg-gradient-to-br ${colors.bg} ${colors.darkBg} rounded-2xl p-6 border-2 ${colors.border} ${colors.darkBorder} ${colors.hover} transition-all duration-300 cursor-pointer`}
+                className={`bg-gradient-to-br ${colors.bg} ${colors.darkBg} rounded-2xl p-6 border-2 ${colors.border} ${colors.darkBorder} transition-all duration-300`}
               >
                 <div className={`w-14 h-14 bg-white dark:bg-gray-800 rounded-xl flex items-center justify-center ${colors.icon} dark:text-white mb-4 shadow-sm`}>
                   {iconMap[value.icon]}

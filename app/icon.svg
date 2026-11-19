@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Favicon: the "L" of the official Legal Cameroun logo (Full logo_blue.svg), white on the charter dark blue -->
+  <rect width="64" height="64" rx="14" fill="#0a3d4f"/>
+  <g transform="translate(17 8.2) scale(0.24)" fill="#ffffff">
+    <path d="M121.01,198.19c-22.31-27.53-56.39-45.12-94.59-45.12-1.28,0-2.56.02-3.83.06-6.19.19-12.27.84-18.2,1.93V22.28L22.59,5.83v131.79c42.42,1.52,79.1,25.58,98.42,60.57Z"/>
+    <path d="M4.39,141.27V9.5C4.39,4.25,8.9,0,14.45,0h0c5.56,0,10.06,4.25,10.06,9.5v131.77c0,5.25-4.5,9.5-10.06,9.5h0c-5.56,0-10.06-4.25-10.06-9.5Z"/>
+  </g>
+</svg>

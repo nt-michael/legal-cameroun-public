@@ -44,7 +44,7 @@ export default function FichesFooterCTA() {
   return (
     <section
       ref={sectionRef}
-      className="py-16 lg:py-20 bg-gradient-to-br from-amber-50 to-orange-50 dark:from-gray-800 dark:to-gray-900"
+      className="py-16 lg:py-20 bg-secondary-50 dark:bg-gray-800"
     >
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <div ref={contentRef}>

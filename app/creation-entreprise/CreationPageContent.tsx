@@ -10,6 +10,7 @@ import {
   PricingCards,
   // AidesAvantages,
   SubpagesGrid,
+  CompanyTypeCards,
 } from '@/components/creation';
 import { hubHero, generalSteps, pricingTiers } from '@/lib/creation-data';
 
@@ -61,6 +62,9 @@ export default function CreationPageContent() {
         variant="vertical"
       />
 
+      {/* One card per company type, straight to the contact form (legal team audit, Nov 2026) */}
+      <CompanyTypeCards />
+
       {/* Pricing */}
       <section className="bg-gray-50 dark:bg-gray-800">
         <PricingCards
@@ -91,7 +95,7 @@ export default function CreationPageContent() {
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link
-                href="/devis"
+                href="/contact?sujet=creation"
                 className="inline-flex items-center justify-center gap-2 bg-white text-primary-600 px-8 py-4 rounded-xl font-semibold text-lg hover:bg-primary-50 transition-all duration-300 hover:scale-105"
               >
                 {pageText.ctaPrimary[language]}

@@ -6,6 +6,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { contactSubjects, formLabels } from '@/lib/contact-data';
 import { useLanguage } from '@/contexts/LanguageContext';
+import type { ContactPrefill } from '@/lib/contact-prefill';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -25,7 +26,7 @@ interface FormErrors {
   message?: string;
 }
 
-export default function ContactForm() {
+export default function ContactForm({ prefill }: { prefill?: ContactPrefill }) {
   const sectionRef = useRef<HTMLElement>(null);
   const formRef = useRef<HTMLFormElement>(null);
   const successRef = useRef<HTMLDivElement>(null);
@@ -35,8 +36,9 @@ export default function ContactForm() {
     fullName: '',
     email: '',
     phone: '',
-    subject: '',
-    message: '',
+    // Pre-filled from the quote button the visitor clicked; still fully editable
+    subject: prefill?.subject ?? '',
+    message: prefill?.message ?? '',
   });
   const [errors, setErrors] = useState<FormErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -46,6 +48,17 @@ export default function ContactForm() {
   const [submitError, setSubmitError] = useState('');
   const [consent, setConsent] = useState(false);
   const [consentError, setConsentError] = useState('');
+
+  // Coming from a quote button: bring the form into view, after the page has settled at the top
+  const focusForm = prefill?.focusForm ?? false;
+  useEffect(() => {
+    if (!focusForm) return;
+    const timer = setTimeout(() => {
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      sectionRef.current?.scrollIntoView({ block: 'start', behavior: reduceMotion ? 'auto' : 'smooth' });
+    }, 150);
+    return () => clearTimeout(timer);
+  }, [focusForm]);
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -223,7 +236,7 @@ export default function ContactForm() {
 
   if (isSuccess) {
     return (
-      <section ref={sectionRef} className="py-16 lg:py-24 bg-gray-50 dark:bg-gray-900">
+      <section ref={sectionRef}>
         <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
           <div
             ref={successRef}
@@ -259,7 +272,7 @@ export default function ContactForm() {
   }
 
   return (
-    <section ref={sectionRef} className="py-16 lg:py-24 bg-gray-50 dark:bg-gray-900 relative overflow-hidden">
+    <section ref={sectionRef} className="relative overflow-hidden">
       {/* Subtle pattern background */}
       <div className="absolute inset-0 opacity-5">
         <svg className="w-full h-full" viewBox="0 0 800 800">
@@ -492,6 +505,12 @@ export default function ContactForm() {
                 </>
               )}
             </button>
+            <p className="mt-3 flex items-center justify-center gap-2 text-sm text-gray-500 dark:text-gray-400">
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              {formLabels.responsePromise[language]}
+            </p>
           </div>
         </form>
       </div>

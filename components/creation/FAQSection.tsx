@@ -85,7 +85,7 @@ export default function FAQSection({ items, title, subtitle }: FAQSectionProps) 
   };
 
   return (
-    <section className="py-16 lg:py-24 bg-gray-50 dark:bg-gray-900">
+    <section className="py-16 lg:py-24 bg-secondary-50/50 dark:bg-gray-900">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         {(title || subtitle) && (
           <div className="text-center mb-12">

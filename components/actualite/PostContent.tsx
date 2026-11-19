@@ -37,7 +37,7 @@ export default function PostContent({ post, url, relatedPosts = [], comments = [
   return (
     <main className="min-h-screen bg-white dark:bg-gray-900">
       {/* Hero Section */}
-      <section className="relative py-16 lg:py-24 overflow-hidden">
+      <section className="relative pt-28 pb-16 lg:pt-36 lg:pb-24 overflow-hidden">
         {/* Featured Image Background */}
         {hasHeroImage && (
           <div className="absolute inset-0 z-0">
@@ -128,8 +128,8 @@ export default function PostContent({ post, url, relatedPosts = [], comments = [
         {/* Decorative elements */}
         {!hasHeroImage && (
           <>
-            <div className="absolute top-0 right-0 w-64 h-64 bg-primary-500/10 rounded-full blur-3xl" />
-            <div className="absolute bottom-0 left-0 w-96 h-96 bg-secondary-500/10 rounded-full blur-3xl" />
+            <div className="absolute top-0 right-0 w-64 h-64 bg-primary-500/10 rounded-full blur-3xl pointer-events-none" />
+            <div className="absolute bottom-0 left-0 w-96 h-96 bg-secondary-500/10 rounded-full blur-3xl pointer-events-none" />
           </>
         )}
       </section>

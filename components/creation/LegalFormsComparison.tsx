@@ -53,7 +53,7 @@ export default function LegalFormsComparison() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-12">
-          <span className="inline-block px-4 py-2 bg-primary-100 dark:bg-primary-900/30 rounded-full text-primary-600 dark:text-primary-400 text-sm font-medium mb-4">
+          <span className="eyebrow">
             {sectionText.badge[language]}
           </span>
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4">
@@ -174,7 +174,7 @@ export default function LegalFormsComparison() {
                   </p>
                   <div className="flex flex-col gap-3">
                     <Link
-                      href={`/devis?type=${activeForm.id === 'individual' ? 'etablissement' : activeForm.id}`}
+                      href={`/contact?type=${activeForm.id === 'individual' ? 'etablissement' : activeForm.id}`}
                       className="inline-flex items-center justify-center gap-2 bg-white text-primary-600 px-6 py-3 rounded-xl font-semibold hover:bg-primary-50 transition-all duration-300 hover:scale-105"
                     >
                       {sectionText.startNow[language]}

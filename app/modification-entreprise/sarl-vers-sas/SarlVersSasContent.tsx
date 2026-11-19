@@ -94,7 +94,7 @@ export default function SarlVersSasContent() {
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
-                href="/devis?service=sarl-sas"
+                href="/contact?service=sarl-sas"
                 className="inline-flex items-center justify-center gap-2 bg-white text-primary-600 px-8 py-4 rounded-xl font-semibold hover:bg-primary-50 transition-all duration-300 shadow-lg"
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -112,9 +112,11 @@ export default function SarlVersSasContent() {
           </div>
         </div>
 
-        <div className="absolute top-0 left-0 w-64 h-64 bg-primary-500/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 right-0 w-96 h-96 bg-secondary-500/10 rounded-full blur-3xl" />
+        <div className="absolute top-0 left-0 w-64 h-64 bg-primary-500/10 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute bottom-0 right-0 w-96 h-96 bg-secondary-500/10 rounded-full blur-3xl pointer-events-none" />
       </section>
+      {/* Company management colour from the brand charter */}
+      <div className="h-1 bg-section-gestion" aria-hidden="true" />
 
       {/* Advantages Section */}
       <section className="py-16 lg:py-24 bg-white dark:bg-gray-800">
@@ -132,7 +134,7 @@ export default function SarlVersSasContent() {
             {advantages.map((item, index) => (
               <div
                 key={index}
-                className="bg-gray-50 dark:bg-gray-900 rounded-2xl p-6 hover:shadow-lg transition-all duration-300 border border-gray-100 dark:border-gray-700"
+                className="bg-gray-50 dark:bg-gray-900 rounded-2xl p-6 transition-all duration-300 border border-gray-100 dark:border-gray-700"
               >
                 <div className="w-14 h-14 bg-green-100 dark:bg-green-900/30 rounded-xl flex items-center justify-center text-green-600 dark:text-green-400 mb-4">
                   {advantageIcons[item.icon]}
@@ -148,6 +150,30 @@ export default function SarlVersSasContent() {
           </div>
         </div>
       </section>
+
+      {/* Pricing */}
+      <GestionPricingCards
+        tone="gray"
+        tiers={pricingTiers}
+        title={pageText.pricingTitle}
+        subtitle={pageText.pricingSubtitle}
+      />
+
+      {/* Process Timeline */}
+      <GestionTimeline
+        tone="white"
+        steps={processSteps}
+        title={pageText.timelineTitle}
+        subtitle={pageText.timelineSubtitle}
+        badge={pageText.timelineBadge}
+      />
+
+      {/* Documents */}
+      <GestionDocumentsChecklist
+        documents={documents}
+        title={pageText.documentsTitle}
+        subtitle={pageText.documentsSubtitle}
+      />
 
       {/* Comparison Box */}
       <section className="py-8 bg-white dark:bg-gray-800">
@@ -214,28 +240,6 @@ export default function SarlVersSasContent() {
         </div>
       </section>
 
-      {/* Process Timeline */}
-      <GestionTimeline
-        steps={processSteps}
-        title={pageText.timelineTitle}
-        subtitle={pageText.timelineSubtitle}
-        badge={pageText.timelineBadge}
-      />
-
-      {/* Documents */}
-      <GestionDocumentsChecklist
-        documents={documents}
-        title={pageText.documentsTitle}
-        subtitle={pageText.documentsSubtitle}
-      />
-
-      {/* Pricing */}
-      <GestionPricingCards
-        tiers={pricingTiers}
-        title={pageText.pricingTitle}
-        subtitle={pageText.pricingSubtitle}
-      />
-
       {/* FAQ */}
       <FAQSection
         items={faq}
@@ -253,7 +257,7 @@ export default function SarlVersSasContent() {
             {gestionCtaData.subtitle[language]}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/devis?service=sarl-sas" className="btn-primary">
+            <Link href="/contact?service=sarl-sas" className="btn-primary">
               {pageText.ctaPrimary[language]}
             </Link>
             <Link href={gestionCtaData.secondaryCta.href} className="btn-secondary">

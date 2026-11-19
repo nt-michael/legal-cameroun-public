@@ -14,6 +14,8 @@ interface GestionTimelineProps {
   title?: string | BilingualText;
   subtitle?: string | BilingualText;
   badge?: string | BilingualText;
+  /** Section background, so neighbouring sections can alternate */
+  tone?: 'white' | 'gray';
 }
 
 export default function GestionTimeline({
@@ -21,6 +23,7 @@ export default function GestionTimeline({
   title = 'Comment Ça Marche',
   subtitle = 'Un processus simple et efficace',
   badge = 'Processus',
+  tone = 'gray',
 }: GestionTimelineProps) {
   const sectionRef = useRef<HTMLElement>(null);
   const stepsRef = useRef<(HTMLDivElement | null)[]>([]);
@@ -75,10 +78,10 @@ export default function GestionTimeline({
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-16 lg:py-24 bg-gray-50 dark:bg-gray-900">
+    <section ref={sectionRef} className={`py-16 lg:py-24 ${tone === 'white' ? 'bg-white dark:bg-gray-800' : 'bg-gray-50 dark:bg-gray-900'}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <span className="inline-block px-4 py-2 bg-primary-100 dark:bg-primary-900/30 rounded-full text-primary-600 dark:text-primary-400 text-sm font-medium mb-4">
+          <span className="eyebrow">
             {getText(badge, language)}
           </span>
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4">
@@ -112,8 +115,8 @@ export default function GestionTimeline({
                 </div>
 
                 {/* Content Card */}
-                <div className={`ml-24 lg:ml-0 lg:w-[calc(50%-3rem)] ${index % 2 === 0 ? 'lg:mr-auto lg:pr-8' : 'lg:ml-auto lg:pl-8'}`}>
-                  <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700 hover:shadow-lg transition-shadow duration-300">
+                <div className={`flex-1 min-w-0 break-words lg:flex-none ml-24 lg:ml-0 lg:w-[calc(50%-3rem)] ${index % 2 === 0 ? 'lg:mr-auto lg:pr-8' : 'lg:ml-auto lg:pl-8'}`}>
+                  <div className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-700 transition-shadow duration-300">
                     <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
                       {step.title[language]}
                     </h3>

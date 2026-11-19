@@ -2,7 +2,7 @@ import { cache } from 'react';
 import { Metadata } from 'next';
 import { getAllPagesSEO, WPPageSEO } from './wordpress';
 import { getRequestLanguage } from './lang';
-import { absoluteUrl } from './site-config';
+import { absoluteUrl, DEFAULT_SHARE_IMAGE } from './site-config';
 
 // Cached per request — only one WP fetch per page render
 const fetchPagesSEO = cache(getAllPagesSEO);
@@ -43,10 +43,20 @@ export async function createPageMetadata(
   };
 
   // og:url must agree with the canonical, or an English share resolves to the
-  // French page.
-  if (base.openGraph) {
-    base.openGraph = { ...base.openGraph, url: canonical } as Metadata['openGraph'];
-  }
+  // French page. Pages without their own image get the default share image,
+  // so links posted on WhatsApp or LinkedIn always show a preview.
+  const og = (base.openGraph ?? {}) as Record<string, unknown>;
+  base.openGraph = {
+    ...og,
+    url: canonical,
+    images: og.images ?? [DEFAULT_SHARE_IMAGE],
+  } as Metadata['openGraph'];
+  const twitter = (base.twitter ?? {}) as Record<string, unknown>;
+  base.twitter = {
+    card: 'summary_large_image',
+    ...twitter,
+    images: twitter.images ?? [DEFAULT_SHARE_IMAGE.url],
+  } as Metadata['twitter'];
 
   const configs = await fetchPagesSEO();
   const wp = configs.find((c) => c.slug === path);
@@ -54,13 +64,18 @@ export async function createPageMetadata(
   return mergeSEO(base, wp, lang);
 }
 
+// The WordPress SEO manager used to store "Création d\'entreprise" (missing wp_unslash).
+// The plugin is fixed, but old entries stay broken until someone saves them again.
 function nonEmpty(value: string | undefined): string | undefined {
-  return value && value.trim() !== '' ? value.trim() : undefined;
+  const text = value?.replace(/\\+(['"])/g, '$1').trim();
+  return text ? text : undefined;
 }
 
 function mergeSEO(defaults: Metadata, wp: WPPageSEO, lang: 'fr' | 'en'): Metadata {
+  // On English pages, a missing English value keeps the English default from the code.
+  // Falling back to the French WordPress value put French text on English pages.
   function pick(base: string | undefined, en: string | undefined): string | undefined {
-    return lang === 'en' ? nonEmpty(en) ?? nonEmpty(base) : nonEmpty(base);
+    return lang === 'en' ? nonEmpty(en) : nonEmpty(base);
   }
 
   const merged: Metadata = { ...defaults };

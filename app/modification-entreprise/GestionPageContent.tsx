@@ -59,7 +59,7 @@ export default function GestionPageContent() {
     <main className="min-h-screen bg-gray-50 dark:bg-gray-900">
       {/* Hero Section */}
       <section
-        className="relative py-20 lg:py-32 overflow-hidden"
+        className="relative pt-28 pb-20 lg:pt-36 lg:pb-32 overflow-hidden"
         style={{ background: 'linear-gradient(to bottom right, #041c28, #0a3d4f, #041c28)' }}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -92,7 +92,7 @@ export default function GestionPageContent() {
             {/* CTAs */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
               <Link
-                href="/devis?service=modification"
+                href="/contact?service=modification"
                 className="inline-flex items-center justify-center gap-2 bg-white text-primary-600 px-8 py-4 rounded-xl font-semibold hover:bg-primary-50 transition-all duration-300 shadow-lg"
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -126,15 +126,15 @@ export default function GestionPageContent() {
         </div>
 
         {/* Decorative */}
-        <div className="absolute top-0 left-0 w-64 h-64 bg-primary-500/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 right-0 w-96 h-96 bg-secondary-500/10 rounded-full blur-3xl" />
+        <div className="absolute top-0 left-0 w-64 h-64 bg-primary-500/10 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute bottom-0 right-0 w-96 h-96 bg-secondary-500/10 rounded-full blur-3xl pointer-events-none" />
       </section>
 
       {/* Why Modify Section */}
       <section className="py-16 lg:py-24 bg-white dark:bg-gray-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <span className="inline-block px-4 py-2 bg-primary-100 dark:bg-primary-900/30 rounded-full text-primary-600 dark:text-primary-400 text-sm font-medium mb-4">
+            <span className="eyebrow">
               {{ fr: 'Pourquoi Modifier ?', en: 'Why Modify?' }[language]}
             </span>
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4">
@@ -149,7 +149,7 @@ export default function GestionPageContent() {
             {whyModifyReasons.map((reason, index) => (
               <div
                 key={index}
-                className="bg-gray-50 dark:bg-gray-900 rounded-2xl p-6 hover:shadow-lg transition-all duration-300 border border-gray-100 dark:border-gray-700"
+                className="bg-gray-50 dark:bg-gray-900 rounded-2xl p-6 transition-all duration-300 border border-gray-100 dark:border-gray-700"
               >
                 <div className="w-12 h-12 bg-primary-100 dark:bg-primary-900/30 rounded-xl flex items-center justify-center text-primary-600 dark:text-primary-400 mb-4">
                   {reasonIcons[reason.icon]}

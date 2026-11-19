@@ -16,7 +16,7 @@ interface PricingCardsProps {
 
 function CheckIcon() {
   return (
-    <svg className="w-5 h-5 text-green-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <svg className="w-5 h-5 text-secondary-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
     </svg>
   );
@@ -55,17 +55,6 @@ export default function PricingCards({ tiers, title, subtitle }: PricingCardsPro
             ease: 'power3.out',
           }
         );
-      }
-
-      // Animate the highlighted card with extra pop
-      const highlightedCard = containerRef.current?.querySelector('.pricing-card-highlighted');
-      if (highlightedCard) {
-        gsap.to(highlightedCard, {
-          scale: 1.05,
-          duration: 0.3,
-          delay: 0.8,
-          ease: 'back.out(1.7)',
-        });
       }
 
       // Animate badges
@@ -131,16 +120,13 @@ export default function PricingCards({ tiers, title, subtitle }: PricingCardsPro
           {tiers.map((tier) => (
             <div
               key={tier.name[language]}
-              className={`pricing-card relative rounded-2xl p-8 transition-all duration-500 ${
-                tier.highlighted
-                  ? 'pricing-card-highlighted bg-gradient-to-br from-primary-600 to-primary-700 text-white shadow-2xl shadow-primary-500/30 z-10'
-                  : 'bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:shadow-xl hover:scale-[1.02]'
-              }`}
+              // Same sober card for every plan; the recommended one only gets a gold frame and badge
+              className={`pricing-card relative flex flex-col rounded-2xl p-8 bg-white dark:bg-gray-800 ${tier.highlighted ? 'border-2 border-secondary-400 shadow-xl shadow-secondary-400/20' : 'border border-gray-200 dark:border-gray-700'}`}
             >
               {/* Badge */}
               {tier.badge && (
                 <div className="pricing-badge absolute -top-4 left-1/2 -translate-x-1/2">
-                  <span className="inline-block px-4 py-1.5 bg-secondary-500 text-white text-sm font-semibold rounded-full shadow-lg">
+                  <span className="inline-block px-4 py-1.5 bg-secondary-400 text-navy-deep text-sm font-semibold rounded-full">
                     {tier.badge[language]}
                   </span>
                 </div>
@@ -148,51 +134,32 @@ export default function PricingCards({ tiers, title, subtitle }: PricingCardsPro
 
               {/* Header */}
               <div className="text-center mb-8">
-                <h3 className={`text-xl font-bold mb-2 ${
-                  tier.highlighted ? 'text-white' : 'text-gray-900 dark:text-white'
-                }`}>
+                <h3 className="text-xl font-bold mb-2 text-gray-900 dark:text-white">
                   {tier.name[language]}
                 </h3>
                 {tier.pricePrefix && (
-                  <p className={`text-sm font-medium mb-1 ${
-                    tier.highlighted ? 'text-primary-100' : 'text-gray-500 dark:text-gray-400'
-                  }`}>
+                  <p className="text-sm font-medium mb-1 text-gray-500 dark:text-gray-400">
                     {tier.pricePrefix[language]}
                   </p>
                 )}
                 <div className="flex items-baseline justify-center gap-1">
-                  <span className={`text-4xl sm:text-5xl font-bold ${
-                    tier.highlighted ? 'text-white' : 'text-gray-900 dark:text-white'
-                  }`}>
+                  <span className="text-4xl sm:text-5xl font-bold text-secondary-700 dark:text-secondary-300">
                     {formatPrice(tier.price)}
                   </span>
-                  <span className={`text-lg ${
-                    tier.highlighted ? 'text-primary-100' : 'text-gray-500 dark:text-gray-400'
-                  }`}>
-                    {tier.currency}
-                  </span>
+                  {/* FCFA everywhere on the site, whatever the data file says */}
+                  <span className="text-lg text-gray-500 dark:text-gray-400">FCFA</span>
                 </div>
-                <p className={`text-sm mt-1 ${
-                  tier.highlighted ? 'text-primary-100' : 'text-gray-500 dark:text-gray-400'
-                }`}>
+                <p className="text-sm mt-1 text-gray-500 dark:text-gray-400">
                   {tier.period[language]}
                 </p>
               </div>
 
               {/* Features */}
-              <ul className="space-y-4 mb-8">
+              <ul className="space-y-4 mb-8 flex-grow">
                 {tier.features.map((feature, featureIndex) => (
                   <li key={featureIndex} className="pricing-feature flex items-start gap-3">
-                    {tier.highlighted ? (
-                      <svg className="w-5 h-5 text-secondary-300 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                    ) : (
-                      <CheckIcon />
-                    )}
-                    <span className={`text-sm ${
-                      tier.highlighted ? 'text-primary-50' : 'text-gray-600 dark:text-gray-300'
-                    }`}>
+                    <CheckIcon />
+                    <span className="text-sm text-gray-700 dark:text-gray-300">
                       {feature[language]}
                     </span>
                   </li>
@@ -202,11 +169,7 @@ export default function PricingCards({ tiers, title, subtitle }: PricingCardsPro
               {/* CTA */}
               <Link
                 href={tier.cta.href}
-                className={`block w-full text-center py-4 px-6 rounded-xl font-semibold transition-all duration-300 ${
-                  tier.highlighted
-                    ? 'bg-white text-primary-600 hover:bg-primary-50 hover:scale-105 shadow-lg'
-                    : 'bg-primary-600 text-white hover:bg-primary-700 hover:scale-105'
-                }`}
+                className={tier.highlighted ? 'btn-gold w-full py-3' : 'block w-full text-center py-3 px-6 rounded-lg font-semibold border-2 border-primary-600 text-primary-600 hover:bg-primary-600 hover:text-white transition-colors'}
               >
                 {tier.cta.text[language]}
               </Link>

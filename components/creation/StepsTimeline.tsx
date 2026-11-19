@@ -127,7 +127,7 @@ export default function StepsTimeline({
                   </div>
 
                   {/* Content */}
-                  <div className="step-card flex-1 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300">
+                  <div className="step-card flex-1 bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg transition-shadow duration-300">
                     <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
                       {step.title[language]}
                     </h3>
@@ -174,7 +174,7 @@ export default function StepsTimeline({
                 className="relative text-center"
               >
                 {/* Step number circle */}
-                <div className="step-circle relative z-10 mx-auto mb-6 flex items-center justify-center w-24 h-24 rounded-full bg-gradient-to-br from-primary-500 to-primary-600 text-white text-2xl font-bold shadow-xl shadow-primary-500/30 transition-transform duration-300 hover:scale-110">
+                <div className="step-circle relative z-10 mx-auto mb-6 flex items-center justify-center w-24 h-24 rounded-full bg-gradient-to-br from-primary-500 to-primary-600 text-white text-2xl font-bold shadow-xl shadow-primary-500/30 transition-transform duration-300">
                   {step.number}
                 </div>
 
@@ -188,7 +188,7 @@ export default function StepsTimeline({
                 )}
 
                 {/* Content */}
-                <div className="step-card bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                <div className="step-card bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg transition-all duration-300">
                   <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">
                     {step.title[language]}
                   </h3>

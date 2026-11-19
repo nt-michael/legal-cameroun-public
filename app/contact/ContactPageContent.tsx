@@ -1,6 +1,8 @@
 'use client';
 
+import Link from 'next/link';
 import { useLanguage } from '@/contexts/LanguageContext';
+import type { ContactPrefill } from '@/lib/contact-prefill';
 import {
   ContactHero,
   ContactOffices,
@@ -15,14 +17,16 @@ const pageText = {
   guaranteed24h: { fr: 'Sous 48h garantie', en: 'Guaranteed within 48h' },
   teamCommitment: { fr: "Notre équipe s\u2019engage à vous répondre dans les plus brefs délais. Pour les urgences, privilégiez l\u2019appel direct ou WhatsApp.", en: 'Our team is committed to responding as quickly as possible. For emergencies, prefer direct calls or WhatsApp.' },
   whyTrustUs: { fr: 'Pourquoi nous faire confiance ?', en: 'Why trust us?' },
-  stat1: { fr: '+15 000 entreprises accompagnées', en: '+15,000 businesses supported' },
-  stat2: { fr: "8 ans d\u2019expertise OHADA", en: '8 years of OHADA expertise' },
+  stat1: { fr: '+1 500 entreprises accompagnées', en: '+1,500 businesses supported' },
+  stat2: { fr: "5 ans d\u2019expertise OHADA", en: '5 years of OHADA expertise' },
   stat3: { fr: 'Présence à Douala, Paris, Cotonou', en: 'Offices in Douala, Paris, Cotonou' },
   stat4: { fr: 'Données confidentielles et sécurisées', en: 'Confidential and secure data' },
+  detailedQuestion: { fr: 'Vous voulez un devis plus précis dès le départ ?', en: 'Want a more precise quote from the start?' },
+  detailedLink: { fr: 'Remplissez le questionnaire détaillé (5 min)', en: 'Fill in the detailed questionnaire (5 min)' },
   needImmediate: { fr: "Besoin d\u2019une réponse immédiate ?", en: 'Need an immediate response?' },
 };
 
-export default function ContactPageContent() {
+export default function ContactPageContent({ prefill }: { prefill?: ContactPrefill }) {
   const { language } = useLanguage();
 
   return (
@@ -30,11 +34,8 @@ export default function ContactPageContent() {
       {/* Hero Section with Quick Actions */}
       <ContactHero />
 
-      {/* Why Contact Us Section */}
-      <WhyContactUs />
-
       {/* Contact Form and Offices Grid */}
-      <section className="py-16 lg:py-24 bg-gray-50 dark:bg-gray-900">
+      <section id="formulaire" className="pt-10 pb-16 lg:pt-12 lg:pb-24 bg-secondary-50/50 dark:bg-gray-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-start">
             {/* Quick Info Sidebar - Now on the left */}
@@ -114,11 +115,21 @@ export default function ContactPageContent() {
 
             {/* Contact Form - Now on the right */}
             <div className="order-1 lg:order-2">
-              <ContactForm />
+              <ContactForm prefill={prefill} />
+              {/* The short form is the default; visitors who want to give every detail up front can */}
+              <p className="mt-6 text-center text-sm text-gray-600 dark:text-gray-300">
+                {pageText.detailedQuestion[language]}{' '}
+                <Link href="/devis" className="font-medium text-primary-600 hover:underline">
+                  {pageText.detailedLink[language]}
+                </Link>
+              </p>
             </div>
           </div>
         </div>
       </section>
+
+      {/* Reasons come after the form: visitors who came to write can do it straight away */}
+      <WhyContactUs />
 
       {/* Offices Section */}
       <ContactOffices />

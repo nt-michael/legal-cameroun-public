@@ -44,16 +44,16 @@ const colorClasses: Record<string, { bg: string; icon: string; border: string; h
     hover: 'hover:shadow-primary-100/50',
   },
   gold: {
-    bg: 'bg-yellow-50',
-    icon: 'bg-yellow-100 text-yellow-600 group-hover:bg-yellow-500 group-hover:text-white',
-    border: 'border-yellow-100 hover:border-yellow-300',
-    hover: 'hover:shadow-yellow-100/50',
+    bg: 'bg-secondary-50',
+    icon: 'bg-secondary-100 text-secondary-700 group-hover:bg-secondary-400 group-hover:text-navy-deep',
+    border: 'border-secondary-100 hover:border-secondary-300',
+    hover: 'hover:shadow-secondary-100/50',
   },
   beige: {
-    bg: 'bg-orange-50',
-    icon: 'bg-orange-100 text-orange-600 group-hover:bg-orange-500 group-hover:text-white',
-    border: 'border-orange-100 hover:border-orange-300',
-    hover: 'hover:shadow-orange-100/50',
+    bg: 'bg-secondary-50',
+    icon: 'bg-secondary-100 text-secondary-700 group-hover:bg-secondary-400 group-hover:text-navy-deep',
+    border: 'border-secondary-100 hover:border-secondary-300',
+    hover: 'hover:shadow-secondary-100/50',
   },
 };
 

@@ -141,7 +141,7 @@ export default function PacksSection() {
                 </p>
               </div>
             ) : downloadError ? (
-              <div className="my-6 p-4 bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-700 rounded-2xl text-sm text-amber-800 dark:text-amber-300 text-center leading-relaxed">
+              <div className="my-6 p-4 bg-secondary-50 dark:bg-secondary-800/20 border border-secondary-200 dark:border-secondary-700 rounded-2xl text-sm text-secondary-800 dark:text-secondary-300 text-center leading-relaxed">
                 {language === 'fr'
                   ? 'Vérifiez votre boîte email. Si vous avez été débité sans recevoir votre document, contactez Legal Cameroun avec votre preuve de paiement et vous serez servi.'
                   : 'Check your email inbox. If you were debited but didn\'t receive your document, contact Legal Cameroun with proof of payment and you\'ll be served.'}

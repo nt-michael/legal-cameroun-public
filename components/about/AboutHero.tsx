@@ -113,7 +113,7 @@ export default function AboutHero() {
   return (
     <section
       ref={heroRef}
-      className="relative min-h-[90vh] flex items-center overflow-hidden"
+      className="relative min-h-[90vh] flex items-center overflow-hidden pt-28 pb-16"
       style={{
         background: 'linear-gradient(to bottom right, #041c28, #0a3d4f, #041c28)',
       }}
@@ -135,7 +135,7 @@ export default function AboutHero() {
       </div>
 
       {/* Decorative elements */}
-      <div className="hero-float absolute top-20 left-10 w-32 h-32 bg-primary-500/10 rounded-full blur-2xl" />
+      <div className="hero-float absolute top-20 left-10 w-32 h-32 bg-primary-500/10 rounded-full blur-2xl pointer-events-none" />
       <div className="hero-float absolute bottom-32 right-20 w-48 h-48 bg-primary-400/10 rounded-full blur-3xl" style={{ animationDelay: '1s' }} />
       <div className="hero-float absolute top-1/2 left-1/4 w-24 h-24 bg-primary-600/10 rounded-full blur-xl" style={{ animationDelay: '0.5s' }} />
 

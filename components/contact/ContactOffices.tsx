@@ -63,8 +63,8 @@ export default function ContactOffices() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-12">
-          <span className="inline-block px-4 py-2 bg-primary-100 dark:bg-primary-900/30 rounded-full text-primary-600 dark:text-primary-400 text-sm font-medium mb-4">
-            Nos Coordonnées
+          <span className="eyebrow">
+            {language === 'fr' ? 'Nos Coordonnées' : 'Our Contact Details'}
           </span>
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4">
             Où Nous Trouver
@@ -79,7 +79,7 @@ export default function ContactOffices() {
               <div
                 key={office.city[language]}
                 ref={(el) => { cardsRef.current[index] = el; }}
-                className={`${colors.bg} rounded-2xl p-6 border-l-4 ${colors.border} transition-all duration-300 cursor-pointer ${
+                className={`${colors.bg} rounded-2xl p-6 border-l-4 ${colors.border} transition-all duration-300 ${
                   office.isPrimary ? 'ring-2 ring-primary-400 ring-offset-2 dark:ring-offset-gray-800' : ''
                 }`}
               >

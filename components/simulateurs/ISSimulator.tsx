@@ -267,12 +267,12 @@ export default function ISSimulator() {
               )}
             </div>
             <div className={`p-4 rounded-xl border-2 ${
-              isAboveThreshold ? 'border-yellow-500 bg-yellow-50' : 'border-gray-200 bg-white'
+              isAboveThreshold ? 'border-secondary-400 bg-secondary-50' : 'border-gray-200 bg-white'
             }`}>
-              <div className="text-2xl font-bold text-yellow-600">{formatPercent(IS_RATE_LARGE)}</div>
+              <div className="text-2xl font-bold text-secondary-700">{formatPercent(IS_RATE_LARGE)}</div>
               <div className="text-sm text-gray-500">CA &gt; 3 Mrd FCFA</div>
               {isAboveThreshold && (
-                <span className="inline-block mt-2 text-xs bg-yellow-100 text-yellow-700 px-2 py-1 rounded-full">
+                <span className="inline-block mt-2 text-xs bg-secondary-100 text-secondary-800 px-2 py-1 rounded-full">
                   {simText.yourRate[language]}
                 </span>
               )}
@@ -290,7 +290,7 @@ export default function ISSimulator() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
             <div className="bg-white rounded-2xl p-4 border border-gray-100">
               <div className="text-sm text-gray-500 mb-1">{simText.appliedRate[language]}</div>
-              <div className={`text-2xl font-bold ${isAboveThreshold ? 'text-yellow-600' : 'text-primary-600'}`}>
+              <div className={`text-2xl font-bold ${isAboveThreshold ? 'text-secondary-700' : 'text-primary-600'}`}>
                 {formatPercent(result.taux)}
               </div>
               <div className="text-xs text-gray-400 mt-1">{result.seuilApplique}</div>

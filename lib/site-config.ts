@@ -15,3 +15,11 @@ export function absoluteUrl(path: string, lang: 'fr' | 'en' = 'fr'): string {
   const clean = path === '/' ? '' : path;
   return lang === 'en' ? `${SITE_URL}/en${clean}` : `${SITE_URL}${clean || '/'}`;
 }
+
+/** Image shown when a page is shared (WhatsApp, LinkedIn, Facebook) and has no image of its own */
+export const DEFAULT_SHARE_IMAGE = {
+  url: '/images/og-default.png',
+  width: 1200,
+  height: 630,
+  alt: 'Legal Cameroun, votre legaltech au Cameroun',
+};

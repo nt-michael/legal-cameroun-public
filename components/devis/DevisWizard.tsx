@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import gsap from 'gsap';
@@ -28,8 +28,8 @@ const devisText = {
   // Success state
   successTitle: { fr: 'Demande Envoyée !', en: 'Request Sent!' },
   successMessage: {
-    fr: 'Merci pour votre demande. Notre équipe vous contactera sous 48h pour discuter de votre projet.',
-    en: 'Thank you for your request. Our team will contact you within 48 hours to discuss your project.',
+    fr: 'Merci pour votre demande. Un juriste vous envoie votre devis personnalisé par e-mail sous 48h.',
+    en: 'Thank you for your request. A lawyer will email you a personalized quote within 48 hours.',
   },
   bookNow: { fr: 'Prendre RDV Maintenant', en: 'Book Appointment Now' },
   newRequest: { fr: 'Nouvelle Demande', en: 'New Request' },
@@ -37,9 +37,17 @@ const devisText = {
   // Step 0: Welcome
   welcomeTitle: { fr: 'Obtenez Votre Devis Gratuit', en: 'Get Your Free Quote' },
   welcomeSubtitle: {
-    fr: 'Répondez à quelques questions pour recevoir un devis personnalisé sous 48h.',
-    en: 'Answer a few questions to receive a personalized quote within 48 hours.',
+    fr: 'Répondez à quelques questions pour recevoir votre devis personnalisé par e-mail sous 48h.',
+    en: 'Answer a few questions to receive your personalized quote by email within 48 hours.',
   },
+  // Help lines shown under the questions where visitors hesitate most
+  legalFormHint: { fr: "Vous hésitez ? Choisissez « Autre » : un expert vous conseillera.", en: "Not sure? Choose “Autre”: an expert will advise you." },
+  timelineHint: { fr: "Le délai de 3 semaines est réservé à la formule Premium.", en: "The 3-week timeline is only available with the Premium plan." },
+  businessObjectHint: { fr: "Une phrase suffit. Nous la reformulerons dans vos statuts.", en: "One sentence is enough. We will word it properly in your articles." },
+  capitalHint: { fr: "Un montant approximatif suffit à ce stade.", en: "An approximate amount is enough for now." },
+  associatesCountHint: { fr: "Comptez-vous parmi les associés.", en: "Include yourself in the count." },
+  nonAssociateManagersHint: { fr: "Un administrateur non-associé dirige la société sans en détenir de parts ni d'actions.", en: "A non-partner manager runs the company without holding any shares." },
+  serviceHint: { fr: "Votre cas n'est pas dans la liste ? Choisissez « Modification des statuts ».", en: "Your case is not listed? Choose “Amendment of articles”." },
   welcomeConfidential: {
     fr: 'Vos informations sont confidentielles et sécurisées.',
     en: 'Your information is confidential and secure.',
@@ -237,6 +245,8 @@ export default function DevisWizard() {
   const [consent, setConsent] = useState(false);
   const [consentError, setConsentError] = useState('');
   const [direction, setDirection] = useState<'next' | 'prev'>('next');
+  // Top of the wizard, used to bring the new step into view on small screens
+  const wizardTopRef = useRef<HTMLDivElement>(null);
 
   // Load from URL params and localStorage
   useEffect(() => {
@@ -395,6 +405,12 @@ export default function DevisWizard() {
       duration: 0.2,
       onComplete: () => {
         setCurrentStep(step);
+        // After "Next" at the bottom of a long step, the new step would start off-screen
+        const top = wizardTopRef.current?.getBoundingClientRect().top;
+        if (top !== undefined && top < 112) {
+          const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+          window.scrollTo({ top: window.scrollY + top - 112, behavior: reduceMotion ? 'auto' : 'smooth' });
+        }
         // Animate in
         gsap.fromTo(
           '.step-content',
@@ -506,7 +522,7 @@ export default function DevisWizard() {
   }
 
   return (
-    <div className="max-w-3xl mx-auto">
+    <div ref={wizardTopRef} className="max-w-3xl mx-auto">
       <ProgressBar currentStep={currentStep} steps={steps} />
 
       <div className="bg-white dark:bg-gray-800 rounded-3xl shadow-xl p-6 sm:p-8 lg:p-12">
@@ -615,10 +631,11 @@ export default function DevisWizard() {
               <div className="space-y-6">
                 {/* Company Type */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
+                  <label id="devis-legal-form-label" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
                     {devisText.legalFormLabel[language]}
+                    <span id="devis-legal-form-hint" className="block mt-1 text-xs font-normal text-gray-500 dark:text-gray-400">{devisText.legalFormHint[language]}</span>
                   </label>
-                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                  <div role="group" aria-labelledby="devis-legal-form-label" aria-describedby="devis-legal-form-hint" className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                     {companyTypes.map(type => (
                       <button
                         key={type.value}
@@ -640,10 +657,11 @@ export default function DevisWizard() {
 
                 {/* Timeline */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
+                  <label id="devis-timeline-label" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
                     {devisText.timelineLabel[language]}
+                    <span id="devis-timeline-hint" className="block mt-1 text-xs font-normal text-gray-500 dark:text-gray-400">{devisText.timelineHint[language]}</span>
                   </label>
-                  <div className="space-y-3">
+                  <div role="group" aria-labelledby="devis-timeline-label" aria-describedby="devis-timeline-hint" className="space-y-3">
                     {timelineOptions.map(option => (
                       <button
                         key={option.value}
@@ -684,10 +702,13 @@ export default function DevisWizard() {
               <div className="space-y-6">
                 {/* Business Object */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  <label htmlFor="devis-business-object" id="devis-business-object-label" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                     {devisText.businessObjectLabel[language]}
+                    <span id="devis-business-object-hint" className="block mt-1 text-xs font-normal text-gray-500 dark:text-gray-400">{devisText.businessObjectHint[language]}</span>
                   </label>
                   <textarea
+                    id="devis-business-object"
+                    aria-describedby="devis-business-object-hint"
                     value={formData.businessObject}
                     onChange={(e) => updateFormData({ businessObject: e.target.value })}
                     placeholder={devisText.businessObjectPlaceholder[language]}
@@ -706,10 +727,13 @@ export default function DevisWizard() {
                 {/* Capital */}
                 {requiresCapital(formData.companyType) && (
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    <label htmlFor="devis-capital" id="devis-capital-label" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                       {devisText.capitalLabel[language]}
+                      <span id="devis-capital-hint" className="block mt-1 text-xs font-normal text-gray-500 dark:text-gray-400">{devisText.capitalHint[language]}</span>
                     </label>
                     <input
+                    id="devis-capital"
+                    aria-describedby="devis-capital-hint"
                       type="number"
                       value={formData.capital}
                       onChange={(e) => updateFormData({ capital: parseInt(e.target.value) || 0 })}
@@ -786,10 +810,13 @@ export default function DevisWizard() {
 
                 {/* Associates Count */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  <label htmlFor="devis-associates-count" id="devis-associates-count-label" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                     {devisText.associatesCountLabel[language]}
+                    <span id="devis-associates-count-hint" className="block mt-1 text-xs font-normal text-gray-500 dark:text-gray-400">{devisText.associatesCountHint[language]}</span>
                   </label>
                   <input
+                    id="devis-associates-count"
+                    aria-describedby="devis-associates-count-hint"
                     type="number"
                     value={formData.associatesCount}
                     onChange={(e) => updateFormData({ associatesCount: parseInt(e.target.value) || 1 })}
@@ -801,10 +828,11 @@ export default function DevisWizard() {
 
                 {/* Non-Associate Managers */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
+                  <label id="devis-non-associate-managers-label" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
                     {devisText.nonAssociateManagersLabel[language]}
+                    <span id="devis-non-associate-managers-hint" className="block mt-1 text-xs font-normal text-gray-500 dark:text-gray-400">{devisText.nonAssociateManagersHint[language]}</span>
                   </label>
-                  <div className="flex gap-4">
+                  <div role="group" aria-labelledby="devis-non-associate-managers-label" aria-describedby="devis-non-associate-managers-hint" className="flex gap-4">
                     <button
                       onClick={() => updateFormData({
                         hasNonAssociateManagers: true,
@@ -1018,10 +1046,11 @@ export default function DevisWizard() {
               <div className="space-y-6">
                 {/* Service */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
+                  <label id="devis-service-label" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
                     {devisText.serviceLabel[language]}
+                    <span id="devis-service-hint" className="block mt-1 text-xs font-normal text-gray-500 dark:text-gray-400">{devisText.serviceHint[language]}</span>
                   </label>
-                  <div className="grid sm:grid-cols-2 gap-3">
+                  <div role="group" aria-labelledby="devis-service-label" aria-describedby="devis-service-hint" className="grid sm:grid-cols-2 gap-3">
                     {Object.entries(modificationServices).map(([value, label]) => (
                       <button
                         key={value}

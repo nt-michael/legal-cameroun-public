@@ -14,31 +14,24 @@ const heroContent = {
     fr: 'Votre LEGALTECH au Cameroun.',
     en: 'Your LEGALTECH in Cameroon.',
   },
-  title2: {
-    fr: 'Votre partenaire juridique',
-    en: 'Your legal partner',
-  },
   subtitle: {
-    fr: 'Expertise juridique, administrative, comptable, fiscale de premier choix pour les entreprises et les particuliers.',
-    en: 'Top-tier legal, administrative, accounting and tax expertise for businesses and individuals.',
-  },
-  description: {
-    fr: 'Que ce soit pour une création d\'entreprise, une déclaration fiscale ou sociale, une modification urgente ou une question urgente, nous sommes à votre écoute.',
-    en: 'Whether it\'s for business creation, a tax or social declaration, an urgent modification, or an urgent question, we are at your service.',
+    fr: "Statuts, immatriculation, modifications : des juristes basés au Cameroun s'occupent de vos démarches, avec des tarifs annoncés à l'avance.",
+    en: 'Articles, registration, amendments: lawyers based in Cameroon handle your paperwork, with prices stated upfront.',
   },
   ctaPrimary: {
-    fr: 'En savoir plus',
-    en: 'Learn more',
+    fr: 'Créer mon entreprise',
+    en: 'Create my company',
   },
   ctaSecondary: {
-    fr: 'Réservez votre rendez-vous',
-    en: 'Book your appointment',
+    fr: 'Voir les tarifs',
+    en: 'See prices',
   },
-  badges: [
-    { fr: '300+ clients satisfaits', en: '300+ satisfied clients' },
-    { fr: '08 années d\'expérience', en: '08 years of experience' },
-    { fr: '15 000 entreprises installées', en: '15,000 businesses established' },
+  stats: [
+    { value: { fr: '300+', en: '300+' }, label: { fr: 'clients satisfaits', en: 'satisfied clients' } },
+    { value: { fr: '5', en: '5' }, label: { fr: "années d'expérience", en: 'years of experience' } },
+    { value: { fr: '1 500+', en: '1,500+' }, label: { fr: 'entreprises installées', en: 'businesses established' } },
   ],
+  statsTitle: { fr: 'Legal Cameroun en chiffres', en: 'Legal Cameroun in figures' },
 };
 
 export default function Hero() {
@@ -62,7 +55,8 @@ export default function Hero() {
 
     // Create particles
     const particlesGeometry = new THREE.BufferGeometry();
-    const particlesCount = 2000;
+    // Fewer particles on phones keeps scrolling smooth on modest devices
+    const particlesCount = window.innerWidth < 768 ? 700 : 2000;
     const posArray = new Float32Array(particlesCount * 3);
 
     for (let i = 0; i < particlesCount * 3; i++) {
@@ -136,7 +130,13 @@ export default function Hero() {
       renderer.render(scene, camera);
     };
 
-    animate();
+    // With reduced motion requested, draw the particles once and keep them still
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduceMotion) {
+      renderer.render(scene, camera);
+    } else {
+      animate();
+    }
 
     return () => {
       cancelAnimationFrame(animationId);
@@ -150,7 +150,7 @@ export default function Hero() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative min-h-screen flex items-center justify-center overflow-hidden" style={{ background: 'linear-gradient(to bottom right, #041c28, #0a3d4f, #041c28)' }}>
+    <section ref={sectionRef} className="relative min-h-[70svh] lg:min-h-[78vh] flex items-center justify-center overflow-hidden pt-28 pb-20" style={{ background: 'linear-gradient(to bottom right, #041c28, #0a3d4f, #041c28)' }}>
       {/* Three.js Canvas */}
       <canvas
         ref={canvasRef}
@@ -160,49 +160,53 @@ export default function Hero() {
       {/* Gradient Overlay */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-gray-900/50" />
 
-      {/* Content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <div className="animate-fade-in-down">
-          <span className="inline-block px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-primary-300 text-sm font-medium mb-6">
-            {heroContent.badge[language]}
-          </span>
-        </div>
-
-        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 animate-fade-in-up animation-delay-100">
-          {heroContent.title1[language]}
-          {/* <span className="block gradient-text-gold">{heroContent.title2[language]}</span> */}
-        </h1>
-
-        <p className="text-lg sm:text-xl text-gray-300 max-w-3xl mx-auto mb-4 animate-fade-in-up animation-delay-200">
-          {heroContent.subtitle[language]}
-        </p>
-
-        {/* <p className="text-base sm:text-lg text-gray-400 max-w-3xl mx-auto mb-10 animate-fade-in-up animation-delay-200">
-          {heroContent.description[language]}
-        </p> */}
-
-        <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up animation-delay-300">
-          <Link href="/a-propos" className="btn-primary text-lg px-8 py-4">
-            {heroContent.ctaPrimary[language]}
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-            </svg>
-          </Link>
-          <Link href="/prendre-un-rendez-vous" className="btn-secondary text-lg px-8 py-4 border-white/30! text-white! hover:bg-white hover:text-gray-900">
-            {heroContent.ctaSecondary[language]}
-          </Link>
-        </div>
-
-        {/* Trust Badges */}
-        <div className="mt-16 flex flex-wrap justify-center gap-8 animate-fade-in-up animation-delay-400">
-          {heroContent.badges.map((badge) => (
-            <div key={badge.fr} className="flex items-center gap-2 text-gray-400">
-              <svg className="w-5 h-5 text-primary-400" fill="currentColor" viewBox="0 0 20 20">
-                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-              </svg>
-              <span className="text-sm">{badge[language]}</span>
+      {/* Content: text first, key figures in a band underneath, over the particles */}
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+        <div className="flex flex-col gap-12 lg:gap-16">
+          <div className="text-center lg:text-left">
+            <div className="animate-fade-in-down">
+              <span className="eyebrow text-secondary-300!">
+                {heroContent.badge[language]}
+              </span>
             </div>
-          ))}
+
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 animate-fade-in-up animation-delay-100">
+              {heroContent.title1[language]}
+            </h1>
+
+            <p className="text-lg sm:text-xl text-gray-300 max-w-2xl mx-auto lg:mx-0 mb-8 animate-fade-in-up animation-delay-200">
+              {heroContent.subtitle[language]}
+            </p>
+
+            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start animate-fade-in-up animation-delay-300">
+              <Link href="/contact?sujet=creation" className="btn-gold text-lg px-8 py-4">
+                {heroContent.ctaPrimary[language]}
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </Link>
+              <Link href="/tarifs" className="btn-secondary text-lg px-8 py-4 border-white/30! text-white! hover:bg-white hover:text-gray-900">
+                {heroContent.ctaSecondary[language]}
+              </Link>
+            </div>
+          </div>
+
+          {/* Key figures band */}
+          <div className="animate-fade-in-up animation-delay-400">
+            <div className="rounded-2xl border border-white/15 bg-white/5 backdrop-blur-sm px-6 py-6 sm:px-8 lg:flex lg:items-center lg:gap-10">
+              <p className="text-sm font-semibold uppercase tracking-wider text-secondary-300 mb-5 text-center lg:mb-0 lg:text-left lg:shrink-0 lg:max-w-[12rem]">
+                {heroContent.statsTitle[language]}
+              </p>
+              <ul className="grid grid-cols-3 gap-4 lg:flex-1 lg:divide-x lg:divide-white/15">
+                {heroContent.stats.map((stat) => (
+                  <li key={stat.value.fr} className="text-center lg:px-6">
+                    <span className="block text-2xl sm:text-3xl lg:text-4xl font-bold text-white">{stat.value[language]}</span>
+                    <span className="block mt-1 text-xs sm:text-sm text-gray-300">{stat.label[language]}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
 
