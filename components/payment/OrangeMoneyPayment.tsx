@@ -302,40 +302,6 @@ export default function OrangeMoneyPayment({
         <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-1">{text.declareTitle[language]}</h3>
         <p className="text-sm text-gray-600 dark:text-gray-300 mb-5">{text.declareIntro[language]}</p>
 
-        <label htmlFor="om-transaction" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
-          {text.transactionLabel[language]}{' '}
-          <span className="font-normal text-gray-500 dark:text-gray-400">({text.optional[language]})</span>
-        </label>
-        <p id="om-transaction-hint" className="text-xs text-gray-500 dark:text-gray-400 mb-1">{text.transactionHint[language]}</p>
-        <input
-          id="om-transaction"
-          aria-describedby="om-transaction-hint"
-          autoComplete="off"
-          autoCapitalize="characters"
-          spellCheck={false}
-          maxLength={60}
-          value={transactionId}
-          onChange={(event) => setTransactionId(event.target.value)}
-          className="w-full rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 px-4 py-3 mb-4 uppercase tracking-wide text-gray-900 dark:text-white focus:border-secondary-400 focus:outline-none"
-        />
-
-        <label htmlFor="om-phone" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
-          {text.phoneLabel[language]}{' '}
-          <span className="font-normal text-gray-500 dark:text-gray-400">({text.optional[language]})</span>
-        </label>
-        <p id="om-phone-hint" className="text-xs text-gray-500 dark:text-gray-400 mb-1">{text.phoneHint[language]}</p>
-        <input
-          id="om-phone"
-          aria-describedby="om-phone-hint"
-          type="tel"
-          inputMode="tel"
-          autoComplete="tel"
-          maxLength={20}
-          value={payerPhone}
-          onChange={(event) => setPayerPhone(event.target.value)}
-          className="w-full rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 px-4 py-3 mb-4 text-gray-900 dark:text-white focus:border-secondary-400 focus:outline-none"
-        />
-
         <p className="block text-sm font-medium text-gray-700 dark:text-gray-300" id="om-screenshot-label">
           {text.screenshotLabel[language]}{' '}
           <span className="font-normal text-gray-500 dark:text-gray-400">({text.optional[language]})</span>
@@ -383,6 +349,40 @@ export default function OrangeMoneyPayment({
             </label>
           )}
         </div>
+
+        <label htmlFor="om-transaction" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+          {text.transactionLabel[language]}{' '}
+          <span className="font-normal text-gray-500 dark:text-gray-400">({text.optional[language]})</span>
+        </label>
+        <p id="om-transaction-hint" className="text-xs text-gray-500 dark:text-gray-400 mb-1">{text.transactionHint[language]}</p>
+        <input
+          id="om-transaction"
+          aria-describedby="om-transaction-hint"
+          autoComplete="off"
+          autoCapitalize="characters"
+          spellCheck={false}
+          maxLength={60}
+          value={transactionId}
+          onChange={(event) => setTransactionId(event.target.value)}
+          className="w-full rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 px-4 py-3 mb-4 uppercase tracking-wide text-gray-900 dark:text-white focus:border-secondary-400 focus:outline-none"
+        />
+
+        <label htmlFor="om-phone" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+          {text.phoneLabel[language]}{' '}
+          <span className="font-normal text-gray-500 dark:text-gray-400">({text.optional[language]})</span>
+        </label>
+        <p id="om-phone-hint" className="text-xs text-gray-500 dark:text-gray-400 mb-1">{text.phoneHint[language]}</p>
+        <input
+          id="om-phone"
+          aria-describedby="om-phone-hint"
+          type="tel"
+          inputMode="tel"
+          autoComplete="tel"
+          maxLength={20}
+          value={payerPhone}
+          onChange={(event) => setPayerPhone(event.target.value)}
+          className="w-full rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 px-4 py-3 mb-4 text-gray-900 dark:text-white focus:border-secondary-400 focus:outline-none"
+        />
 
         {error && (
           <p className="mb-4 text-sm text-red-600" role="alert">
