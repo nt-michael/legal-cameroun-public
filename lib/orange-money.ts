@@ -70,6 +70,33 @@ export function isPlausibleTransactionId(value: string): boolean {
   return /^[A-Z0-9][A-Z0-9.\-]{5,39}$/.test(value);
 }
 
+// ─── Payment screenshot ───
+
+/** Vercel refuses request bodies above 4.5 MB; the browser shrinks bigger images before sending */
+export const SCREENSHOT_MAX_BYTES = 4 * 1024 * 1024;
+
+/**
+ * Image type read from the file's first bytes, not from its name or the browser's claim.
+ * Returns null for anything that is not a JPEG, PNG or WebP image.
+ */
+export function detectScreenshotType(data: Buffer): { contentType: string; extension: string } | null {
+  if (data.length >= 3 && data[0] === 0xff && data[1] === 0xd8 && data[2] === 0xff) {
+    return { contentType: 'image/jpeg', extension: 'jpg' };
+  }
+  if (data.length >= 8 && data.subarray(0, 8).equals(Buffer.from([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a]))) {
+    return { contentType: 'image/png', extension: 'png' };
+  }
+  if (data.length >= 12 && data.toString('ascii', 0, 4) === 'RIFF' && data.toString('ascii', 8, 12) === 'WEBP') {
+    return { contentType: 'image/webp', extension: 'webp' };
+  }
+  return null;
+}
+
+/** Random file name: the media URL is public, so it must not be guessable from the order number */
+export function screenshotFilename(orderId: number, extension: string): string {
+  return `paiement-om-${orderId}-${crypto.randomBytes(16).toString('hex')}.${extension}`;
+}
+
 /** Cameroon mobile number, with or without +237 / 237 */
 export function normalizeCameroonPhone(value: unknown): string | null {
   if (typeof value !== 'string') return null;

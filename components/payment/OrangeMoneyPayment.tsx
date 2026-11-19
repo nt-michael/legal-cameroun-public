@@ -31,7 +31,10 @@ const text = {
   step1: { fr: 'Composez le code ci-dessus.', en: 'Dial the code above.' },
   step2: { fr: 'Vérifiez que le bénéficiaire affiché est bien', en: 'Check that the payee shown is' },
   step3: { fr: 'Validez avec votre code PIN, sur votre téléphone uniquement.', en: 'Confirm with your PIN, on your phone only.' },
-  step4: { fr: 'Gardez le SMS de confirmation d’Orange : il contient le numéro de transaction.', en: 'Keep Orange’s confirmation SMS: it contains the transaction ID.' },
+  step4: {
+    fr: 'Gardez le SMS de confirmation d’Orange, ou faites une capture d’écran : il contient le numéro de transaction.',
+    en: 'Keep Orange’s confirmation SMS, or take a screenshot: it contains the transaction ID.',
+  },
   copy: { fr: 'Copier', en: 'Copy' },
   copied: { fr: 'Copié', en: 'Copied' },
   pinWarning: {
@@ -39,10 +42,22 @@ const text = {
     en: 'Legal Cameroun will never ask for your PIN, neither by phone nor on WhatsApp.',
   },
   declareTitle: { fr: 'Après le paiement', en: 'After paying' },
+  declareIntro: {
+    fr: 'Donnez au moins un de ces trois éléments. Plus vous en donnez, plus vite nous retrouvons votre paiement.',
+    en: 'Give at least one of these three. The more you give, the faster we find your payment.',
+  },
+  optional: { fr: 'facultatif', en: 'optional' },
   transactionLabel: { fr: 'Numéro de transaction (dans le SMS Orange)', en: 'Transaction ID (in the Orange SMS)' },
   transactionHint: { fr: 'Recopiez-le tel quel, lettres et chiffres.', en: 'Copy it exactly, letters and digits.' },
   phoneLabel: { fr: 'Numéro Orange qui a payé', en: 'Orange number that paid' },
   phoneHint: { fr: 'Exemple : 6XX XX XX XX', en: 'Example: 6XX XX XX XX' },
+  screenshotLabel: { fr: 'Capture d’écran du paiement', en: 'Screenshot of the payment' },
+  screenshotHint: {
+    fr: 'L’écran de confirmation ou le SMS d’Orange. Image JPG, PNG ou WebP.',
+    en: 'Orange’s confirmation screen or SMS. JPG, PNG or WebP image.',
+  },
+  screenshotButton: { fr: 'Choisir une image', en: 'Choose an image' },
+  screenshotRemove: { fr: 'Retirer', en: 'Remove' },
   submit: { fr: 'J’ai payé, envoyer', en: 'I have paid, send' },
   sending: { fr: 'Envoi…', en: 'Sending…' },
   successTitle: { fr: 'Merci, paiement reçu pour vérification', en: 'Thank you, payment received for checking' },
@@ -58,6 +73,22 @@ const errorText: Record<string, BilingualText> = {
     en: 'This transaction ID does not look valid. Check Orange’s SMS.',
   },
   invalid_phone: { fr: 'Entrez un numéro camerounais à 9 chiffres, commençant par 6.', en: 'Enter a 9-digit Cameroonian number starting with 6.' },
+  missing_proof: {
+    fr: 'Donnez au moins un élément : le numéro de transaction, le numéro qui a payé ou une capture.',
+    en: 'Give at least one item: the transaction ID, the number that paid or a screenshot.',
+  },
+  invalid_screenshot: {
+    fr: 'Ce fichier n’est pas une image lisible. Choisissez une capture JPG, PNG ou WebP.',
+    en: 'This file is not a readable image. Choose a JPG, PNG or WebP screenshot.',
+  },
+  screenshot_too_large: {
+    fr: 'Cette image est trop lourde. Choisissez une capture d’écran plutôt qu’une photo.',
+    en: 'This image is too large. Choose a screenshot rather than a photo.',
+  },
+  upload_failed: {
+    fr: 'La capture n’a pas pu être envoyée. Réessayez, ou donnez plutôt le numéro de transaction.',
+    en: 'The screenshot could not be sent. Try again, or give the transaction ID instead.',
+  },
   transaction_used: {
     fr: 'Ce numéro de transaction a déjà été utilisé pour une autre commande.',
     en: 'This transaction ID has already been used for another order.',
@@ -73,6 +104,32 @@ const errorText: Record<string, BilingualText> = {
 };
 
 const formatter = new Intl.NumberFormat('fr-FR');
+
+/** Must match SCREENSHOT_MAX_BYTES on the server (Vercel refuses bodies above 4.5 MB) */
+const SCREENSHOT_MAX_BYTES = 4 * 1024 * 1024;
+const SCREENSHOT_TYPES = ['image/jpeg', 'image/png', 'image/webp'];
+
+/**
+ * Phone screenshots can weigh several MB. Large ones are redrawn as a JPEG of at most
+ * 1600 px, which keeps the text readable and the upload light on a mobile connection.
+ * If the browser cannot read the image, the original file is sent and the server decides.
+ */
+async function shrinkScreenshot(file: File): Promise<Blob> {
+  if (file.size <= 1.5 * 1024 * 1024) return file;
+  try {
+    const bitmap = await createImageBitmap(file);
+    const scale = Math.min(1, 1600 / Math.max(bitmap.width, bitmap.height));
+    const canvas = document.createElement('canvas');
+    canvas.width = Math.round(bitmap.width * scale);
+    canvas.height = Math.round(bitmap.height * scale);
+    canvas.getContext('2d')?.drawImage(bitmap, 0, 0, canvas.width, canvas.height);
+    bitmap.close();
+    const blob = await new Promise<Blob | null>((resolve) => canvas.toBlob(resolve, 'image/jpeg', 0.85));
+    return blob ?? file;
+  } catch {
+    return file;
+  }
+}
 
 function CopyButton({ value, label }: { value: string; label: string }) {
   const { language } = useLanguage();
@@ -119,6 +176,7 @@ export default function OrangeMoneyPayment({
 
   const [transactionId, setTransactionId] = useState('');
   const [payerPhone, setPayerPhone] = useState('');
+  const [screenshot, setScreenshot] = useState<File | null>(null);
   const [error, setError] = useState('');
   const [sending, setSending] = useState(false);
   const [done, setDone] = useState(false);
@@ -128,18 +186,27 @@ export default function OrangeMoneyPayment({
 
   const declare = async () => {
     setError('');
+    if (!transactionId.trim() && !payerPhone.trim() && !screenshot) {
+      setError(errorText.missing_proof[language]);
+      return;
+    }
     setSending(true);
     try {
-      const res = await fetch('/api/payments/orange-money/declare', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          orderId: payment.order_id,
-          token: payment.payment_token,
-          transactionId,
-          payerPhone,
-        }),
-      });
+      const body = new FormData();
+      body.append('orderId', String(payment.order_id));
+      body.append('token', payment.payment_token);
+      body.append('transactionId', transactionId);
+      body.append('payerPhone', payerPhone);
+      if (screenshot) {
+        const image = await shrinkScreenshot(screenshot);
+        if (image.size > SCREENSHOT_MAX_BYTES) {
+          setError(errorText.screenshot_too_large[language]);
+          return;
+        }
+        body.append('screenshot', image, screenshot.name);
+      }
+      // No Content-Type header: the browser sets the multipart boundary itself
+      const res = await fetch('/api/payments/orange-money/declare', { method: 'POST', body });
       const data = await res.json().catch(() => ({}));
       if (!res.ok) {
         setError((errorText[data.error] ?? errorText.default)[language]);
@@ -232,16 +299,17 @@ export default function OrangeMoneyPayment({
           if (!sending) declare();
         }}
       >
-        <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-4">{text.declareTitle[language]}</h3>
+        <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-1">{text.declareTitle[language]}</h3>
+        <p className="text-sm text-gray-600 dark:text-gray-300 mb-5">{text.declareIntro[language]}</p>
 
         <label htmlFor="om-transaction" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
-          {text.transactionLabel[language]}
+          {text.transactionLabel[language]}{' '}
+          <span className="font-normal text-gray-500 dark:text-gray-400">({text.optional[language]})</span>
         </label>
         <p id="om-transaction-hint" className="text-xs text-gray-500 dark:text-gray-400 mb-1">{text.transactionHint[language]}</p>
         <input
           id="om-transaction"
           aria-describedby="om-transaction-hint"
-          required
           autoComplete="off"
           autoCapitalize="characters"
           spellCheck={false}
@@ -252,13 +320,13 @@ export default function OrangeMoneyPayment({
         />
 
         <label htmlFor="om-phone" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
-          {text.phoneLabel[language]}
+          {text.phoneLabel[language]}{' '}
+          <span className="font-normal text-gray-500 dark:text-gray-400">({text.optional[language]})</span>
         </label>
         <p id="om-phone-hint" className="text-xs text-gray-500 dark:text-gray-400 mb-1">{text.phoneHint[language]}</p>
         <input
           id="om-phone"
           aria-describedby="om-phone-hint"
-          required
           type="tel"
           inputMode="tel"
           autoComplete="tel"
@@ -267,6 +335,54 @@ export default function OrangeMoneyPayment({
           onChange={(event) => setPayerPhone(event.target.value)}
           className="w-full rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 px-4 py-3 mb-4 text-gray-900 dark:text-white focus:border-secondary-400 focus:outline-none"
         />
+
+        <p className="block text-sm font-medium text-gray-700 dark:text-gray-300" id="om-screenshot-label">
+          {text.screenshotLabel[language]}{' '}
+          <span className="font-normal text-gray-500 dark:text-gray-400">({text.optional[language]})</span>
+        </p>
+        <p id="om-screenshot-hint" className="text-xs text-gray-500 dark:text-gray-400 mb-1">{text.screenshotHint[language]}</p>
+        <div className="mb-5">
+          {screenshot ? (
+            <div className="flex items-center justify-between gap-3 rounded-xl border border-gray-300 dark:border-gray-600 px-4 py-2.5">
+              <span className="min-w-0 truncate text-sm text-gray-900 dark:text-white">{screenshot.name}</span>
+              <button
+                type="button"
+                onClick={() => setScreenshot(null)}
+                className="shrink-0 text-sm font-semibold text-primary-700 dark:text-secondary-300 hover:underline"
+              >
+                {text.screenshotRemove[language]}
+              </button>
+            </div>
+          ) : (
+            <label
+              htmlFor="om-screenshot"
+              className="flex cursor-pointer items-center justify-center gap-2 rounded-xl border border-dashed border-gray-300 dark:border-gray-600 px-4 py-3 text-sm font-semibold text-primary-700 dark:text-secondary-300 hover:border-secondary-400 focus-within:border-secondary-400"
+            >
+              <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+              </svg>
+              {text.screenshotButton[language]}
+              <input
+                id="om-screenshot"
+                type="file"
+                accept={SCREENSHOT_TYPES.join(',')}
+                aria-labelledby="om-screenshot-label"
+                aria-describedby="om-screenshot-hint"
+                className="sr-only"
+                onChange={(event) => {
+                  const chosen = event.target.files?.[0] ?? null;
+                  event.target.value = '';
+                  if (chosen && !SCREENSHOT_TYPES.includes(chosen.type)) {
+                    setError(errorText.invalid_screenshot[language]);
+                    return;
+                  }
+                  setError('');
+                  setScreenshot(chosen);
+                }}
+              />
+            </label>
+          )}
+        </div>
 
         {error && (
           <p className="mb-4 text-sm text-red-600" role="alert">
