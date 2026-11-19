@@ -32,7 +32,7 @@ const argumentsList = [
   },
   {
     icon: '2ICONE_BICHROME.svg',
-    title: { fr: 'Disponibles du lundi au vendredi', en: 'Available Monday to Friday' },
+    title: { fr: 'Du lundi au vendredi', en: 'Monday to Friday' },
     description: {
       fr: 'Une équipe joignable de 9h à 19h, avec une réponse sous 48h.',
       en: 'A team you can reach from 9 AM to 7 PM, with a reply within 48 hours.',
