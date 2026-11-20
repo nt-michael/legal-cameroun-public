@@ -301,6 +301,45 @@ export function isWordPressConfigured(): boolean {
   return isConfigured;
 }
 
+/**
+ * Uploads a file to the WordPress media library and makes it private, so it is not
+ * listed by the public /wp-json/wp/v2/media endpoint. The file URL itself stays
+ * reachable by anyone who has it, which is why callers must use an unguessable name.
+ */
+export async function uploadPrivateMedia(file: {
+  data: Buffer;
+  filename: string;
+  contentType: string;
+  title: string;
+}): Promise<{ id: number; url: string }> {
+  const upload = await fetch(`${WP_API_URL}/media`, {
+    method: 'POST',
+    headers: {
+      Authorization: getAuthHeader(),
+      'Content-Type': file.contentType,
+      'Content-Disposition': `attachment; filename="${file.filename}"`,
+    },
+    body: new Uint8Array(file.data),
+    signal: AbortSignal.timeout(30_000),
+  });
+  if (!upload.ok) {
+    throw new Error(`WordPress media upload failed: ${upload.status} ${upload.statusText}`);
+  }
+  const media = (await upload.json()) as { id: number; source_url: string };
+
+  const hide = await fetch(`${WP_API_URL}/media/${media.id}`, {
+    method: 'POST',
+    headers: { Authorization: getAuthHeader(), 'Content-Type': 'application/json' },
+    body: JSON.stringify({ status: 'private', title: file.title }),
+    signal: AbortSignal.timeout(REQUEST_TIMEOUT_MS),
+  });
+  if (!hide.ok) {
+    console.error(`Could not make media ${media.id} private: ${hide.status}`);
+  }
+
+  return { id: media.id, url: media.source_url };
+}
+
 // ─── SEO Manager types & functions ──────────────────────────────────────────
 
 export interface WPPageSEO {

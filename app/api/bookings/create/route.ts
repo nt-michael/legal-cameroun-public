@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { createOrder, updateOrderStatus } from '@/lib/woocommerce';
-import { initializePayment } from '@/lib/notch';
+import { ORANGE_MONEY_METHOD, paymentInstructions } from '@/lib/orange-money';
 import { createInvitee } from '@/lib/calendly';
 import { TERMS_OF_SALE_VERSION } from '@/lib/legal';
 
@@ -55,6 +55,7 @@ export async function POST(request: Request) {
             phone,
             product_id: parseInt(productId),
             meta_data: orderMeta,
+            ...(isFree ? {} : { payment_method: ORANGE_MONEY_METHOD }),
         });
 
         if (!order.id) {
@@ -92,46 +93,17 @@ export async function POST(request: Request) {
             return NextResponse.json({ success: true, order_id: order.id });
         }
 
-        // 3. Initialize Notch Pay
-        // We need a unique reference. Use "Order-ID-Timestamp"?
-        // Or just Order ID if we can ensure uniqueness.
-        // Charge exactly the order total, which WooCommerce computes from the
-        // "Consultation" product price: the price is managed in WooCommerce only.
+        // 3. Orange Money merchant payment: charge exactly the order total, which WooCommerce
+        // computes from the "Consultation" product price (the price is managed in WooCommerce only).
+        // The order stays "pending" until the customer declares the transaction; the Calendly
+        // slot is booked at that moment (see /api/payments/orange-money/declare).
         const amount = Math.round(Number(order.total));
         if (!Number.isFinite(amount) || amount <= 0) {
             await updateOrderStatus(order.id, 'failed').catch(() => {});
             throw new Error('Invalid consultation price in WooCommerce');
         }
 
-        const paymentData = {
-            email,
-            currency: 'XAF',
-            amount,
-            reference: `WC-${order.id}-${Date.now()}`,
-            description: `Consultation: ${consultationType}`,
-            callback: '',
-        };
-
-        // Note: If `callback` is REDIRECT, we should point to a Frontend Page like /prendre-un-rendez-vous/succes?ref=...
-        // The WEBHOOK should be configured in Notch Dashboard or passed via `notification_url` if supported.
-        // I'll set callback to a frontend success check page.
-        const origin = process.env.Frontend_SITE_URL || request.headers.get('origin') || process.env.WC_SITE_URL || '';
-        paymentData.callback = `${origin}/prendre-un-rendez-vous?success=true&order=${order.id}`;
-
-        const paymentResponse = await initializePayment(paymentData);
-
-        if (!paymentResponse.authorization_url) {
-            throw new Error('No authorization URL returned from Notch Pay');
-        }
-
-        // Update Order with Notch Reference?
-        // Good practice.
-        // Async update or just proceed.
-
-        return NextResponse.json({
-            payment_url: paymentResponse.authorization_url,
-            order_id: order.id
-        });
+        return NextResponse.json({ payment: paymentInstructions(order.id, amount) });
 
     } catch (error: any) {
         console.error('Booking Creation Error:', error);

@@ -5,6 +5,7 @@ import Link from 'next/link';
 import gsap from 'gsap';
 import { Pack } from '@/lib/packs-config';
 import { useLanguage } from '@/contexts/LanguageContext';
+import OrangeMoneyPayment, { type OrangeMoneyInstructions } from '@/components/payment/OrangeMoneyPayment';
 
 interface PurchaseStepperProps {
   pack: Pack;
@@ -23,6 +24,7 @@ const text: Record<string, any> = {
   step0Subtitle: { fr: 'Pour recevoir votre pack par email', en: 'To receive your pack by email' },
   step1Title: { fr: 'Récapitulatif', en: 'Summary' },
   step1Subtitle: { fr: 'Vérifiez avant de payer', en: 'Review before paying' },
+  paymentTitle: { fr: 'Paiement', en: 'Payment' },
   firstName: { fr: 'Prénom', en: 'First name' },
   lastName: { fr: 'Nom', en: 'Last name' },
   email: { fr: 'Email', en: 'Email' },
@@ -32,12 +34,16 @@ const text: Record<string, any> = {
   price: { fr: 'Prix', en: 'Price' },
   name: { fr: 'Nom', en: 'Name' },
   payNote: {
-    fr: 'Vous serez redirigé vers Notch Pay pour finaliser le paiement.',
-    en: 'You will be redirected to Notch Pay to complete payment.',
+    fr: 'À l’étape suivante, vous payez par Orange Money, directement à RODEC.',
+    en: 'Next, you pay with Orange Money, directly to RODEC.',
   },
   back: { fr: 'Retour', en: 'Back' },
   continue: { fr: 'Continuer', en: 'Continue' },
-  pay: { fr: 'Payer maintenant', en: 'Pay now' },
+  pay: { fr: 'Continuer vers le paiement', en: 'Continue to payment' },
+  packByEmail: {
+    fr: 'Dès que le paiement est validé, vous recevez vos documents par e-mail.',
+    en: 'As soon as the payment is validated, you receive your documents by email.',
+  },
   processing: { fr: 'Traitement...', en: 'Processing...' },
   errFirstName: { fr: 'Prénom requis', en: 'First name required' },
   errLastName: { fr: 'Nom requis', en: 'Last name required' },
@@ -66,6 +72,8 @@ export default function PurchaseStepper({ pack, onClose }: PurchaseStepperProps)
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [termsAccepted, setTermsAccepted] = useState(false);
   const [termsError, setTermsError] = useState('');
+  // Set once the order exists: the summary gives way to the Orange Money payment step
+  const [payment, setPayment] = useState<OrangeMoneyInstructions | null>(null);
 
   const formatPrice = (price: number) =>
     new Intl.NumberFormat('fr-FR').format(price) + ' FCFA';
@@ -118,11 +126,9 @@ export default function PurchaseStepper({ pack, onClose }: PurchaseStepperProps)
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || 'Submission failed');
-      if (data.payment_url) {
-        window.location.href = data.payment_url;
-      } else {
-        throw new Error('No payment URL returned');
-      }
+      if (!data.payment) throw new Error('No payment instructions returned');
+      setPayment(data.payment);
+      setIsSubmitting(false);
     } catch (err: any) {
       setErrors({ general: err.message || text.errGeneral[language] });
       setIsSubmitting(false);
@@ -131,12 +137,12 @@ export default function PurchaseStepper({ pack, onClose }: PurchaseStepperProps)
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
-      <div className="bg-white dark:bg-gray-800 rounded-3xl shadow-2xl w-full max-w-lg overflow-hidden">
+      <div className="bg-white dark:bg-gray-800 rounded-3xl shadow-2xl w-full max-w-lg max-h-[calc(100dvh-2rem)] overflow-y-auto">
         {/* Modal header */}
-        <div className="bg-gradient-to-r from-primary-600 to-primary-800 px-6 py-4 flex items-center justify-between">
+        <div className="bg-navy px-6 py-4 flex items-center justify-between">
           <div>
             <p className="text-white/70 text-xs font-medium uppercase tracking-wider">
-              {step === 0 ? text.step0Title[language] : text.step1Title[language]}
+              {payment ? text.paymentTitle[language] : step === 0 ? text.step0Title[language] : text.step1Title[language]}
             </p>
             <h2 className="text-white font-bold text-lg">{pack.name[language]}</h2>
           </div>
@@ -155,11 +161,20 @@ export default function PurchaseStepper({ pack, onClose }: PurchaseStepperProps)
         {/* Progress bar */}
         <div className="flex h-1 bg-gray-100 dark:bg-gray-700">
           <div
-            className="bg-primary-500 transition-all duration-500"
-            style={{ width: step === 0 ? '50%' : '100%' }}
+            className="bg-secondary-400 transition-all duration-500"
+            style={{ width: payment ? '100%' : step === 0 ? '33%' : '66%' }}
           />
         </div>
 
+        {payment ? (
+          <div className="p-6">
+            <OrangeMoneyPayment
+              payment={payment}
+              successExtra={<p className="mt-3 text-sm text-gray-700 dark:text-gray-300">{text.packByEmail[language]}</p>}
+            />
+          </div>
+        ) : (
+        <>
         {/* Step content */}
         <div className="p-6 purchase-step">
           {step === 0 && (
@@ -365,6 +380,8 @@ export default function PurchaseStepper({ pack, onClose }: PurchaseStepperProps)
             </button>
           )}
         </div>
+        </>
+        )}
       </div>
     </div>
   );

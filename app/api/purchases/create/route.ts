@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { createOrder } from '@/lib/woocommerce';
-import { initializePayment } from '@/lib/notch';
+import { ORANGE_MONEY_METHOD, paymentInstructions } from '@/lib/orange-money';
 import { getPackBySlug } from '@/lib/packs-config';
 import { TERMS_OF_SALE_VERSION } from '@/lib/legal';
 import { createDownloadToken } from '@/lib/download-token';
@@ -45,36 +45,22 @@ export async function POST(request: Request) {
                 { key: 'pack_name', value: pack.name.fr },
                 { key: 'terms_of_sale_version', value: TERMS_OF_SALE_VERSION }, // proof of CGV acceptance
             ],
+            payment_method: ORANGE_MONEY_METHOD,
         });
 
         if (!order.id) {
             throw new Error('Failed to retrieve Order ID from WooCommerce');
         }
 
-        const origin =
-            process.env.Frontend_SITE_URL ||
-            request.headers.get('origin') ||
-            '';
-
-        // The token lets only this buyer fetch the files once the order is paid
+        // The token lets only this buyer fetch the files once the team has validated the payment
         const downloadToken = createDownloadToken(order.id);
 
-        const paymentResponse = await initializePayment({
-            email,
-            currency: 'XAF',
-            amount: pack.price,
-            reference: `WC-${order.id}-${Date.now()}`,
-            description: pack.name.fr,
-            callback: `${origin}/fiches-pratiques?success=true&order=${order.id}&token=${downloadToken}`,
-        });
-
-        if (!paymentResponse.authorization_url) {
-            throw new Error('No authorization URL returned from Notch Pay');
-        }
+        // Orange Money merchant payment: the WooCommerce total is what the customer must send
+        const amount = Math.round(Number(order.total)) || pack.price;
 
         return NextResponse.json({
-            payment_url: paymentResponse.authorization_url,
-            order_id: order.id,
+            payment: paymentInstructions(order.id, amount),
+            download_token: downloadToken,
         });
     } catch (error: any) {
         console.error('Purchase Creation Error:', error);

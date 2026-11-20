@@ -6,6 +6,7 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { Language } from '@/lib/translations';
 import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
+import OrangeMoneyPayment, { type OrangeMoneyInstructions } from '@/components/payment/OrangeMoneyPayment';
 
 interface BookingFormData {
   consultationType: string;
@@ -59,18 +60,16 @@ const bookingText: Record<string, any> = {
   consultationLabel: { fr: 'Consultation', en: 'Consultation' },
   nameLabel: { fr: 'Nom', en: 'Name' },
   confirmNote: {
-    fr: 'Vous serez redirigé vers le paiement pour finaliser la réservation',
-    en: 'You will be redirected to payment to finalize the booking',
+    fr: 'À l’étape suivante, vous payez par Orange Money, directement à RODEC',
+    en: 'Next, you pay with Orange Money, directly to RODEC',
   },
 
-  // Success state (Not used directly here as we redirect, but kept if needed for return page)
-  successTitle: { fr: 'Redirection en cours...', en: 'Redirecting...' },
   
   // Navigation
   back: { fr: 'Retour', en: 'Back' },
   continue: { fr: 'Continuer', en: 'Continue' },
   confirming: { fr: 'Traitement...', en: 'Processing...' },
-  confirmButton: { fr: 'Payer et Confirmer', en: 'Pay and Confirm' },
+  confirmButton: { fr: 'Continuer vers le paiement', en: 'Continue to payment' },
 
   // Validation errors
   errSelectConsultation: { fr: 'Veuillez sélectionner un type de consultation', en: 'Please select a consultation type' },
@@ -127,6 +126,8 @@ export default function BookingForm({ consultationPrice }: { consultationPrice: 
   const [formData, setFormData] = useState<BookingFormData>(initialFormData);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
+  // Set once the order exists: the form gives way to the Orange Money payment step
+  const [payment, setPayment] = useState<OrangeMoneyInstructions | null>(null);
   const [consent, setConsent] = useState(false);
   const [consentError, setConsentError] = useState('');
   const [termsAccepted, setTermsAccepted] = useState(false);
@@ -324,11 +325,12 @@ export default function BookingForm({ consultationPrice }: { consultationPrice: 
         throw new Error(data.error || 'Submission failed');
       }
 
-      if (data.payment_url) {
-        window.location.href = data.payment_url;
-      } else {
-        throw new Error('No payment URL returned');
+      if (!data.payment) {
+        throw new Error('No payment instructions returned');
       }
+      setPayment(data.payment);
+      setIsSubmitting(false);
+      formTopRef.current?.scrollIntoView({ block: 'start' });
 
     } catch (error: any) {
       console.error('Booking Error:', error);
@@ -400,6 +402,10 @@ export default function BookingForm({ consultationPrice }: { consultationPrice: 
       </div>
 
       <div className="bg-white dark:bg-gray-800 rounded-3xl shadow-xl p-6 sm:p-8 lg:p-10">
+        {payment ? (
+          <OrangeMoneyPayment payment={payment} />
+        ) : (
+        <>
         <div className="booking-step-content">
           {/* Step 0: Consultation Type */}
           {step === 0 && (
@@ -779,6 +785,8 @@ export default function BookingForm({ consultationPrice }: { consultationPrice: 
             </button>
           )}
         </div>
+        </>
+        )}
       </div>
     </div>
   );
