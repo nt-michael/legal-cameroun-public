@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { BilingualText } from '@/lib/translations';
-import { legalForms, startingTier } from '@/lib/creation-data';
+import { legalForms, startingTier, hasSinglePlan } from '@/lib/creation-data';
 import {
   modificationTypes,
   hubPricingTiers,
@@ -23,6 +23,8 @@ interface PriceRow {
   /** Amount in FCFA, or null when there is no fixed amount to show */
   price: number | null;
   priceLabel?: BilingualText;
+  /** True when the price is the only one, not a starting price */
+  fixedPrice?: boolean;
   note?: BilingualText;
   detailHref?: string;
   ctaHref: string;
@@ -37,6 +39,7 @@ const pageText = {
     en: 'No surprises. We provide clear and detailed quotes before any work begins.',
   },
   from: { fr: 'À partir de', en: 'From' },
+  fixed: { fr: 'Prix unique', en: 'Fixed price' },
   details: { fr: 'Voir le détail', en: 'See details' },
   quote: { fr: 'Demander un devis', en: 'Request a quote' },
   free: { fr: 'Gratuit', en: 'Free' },
@@ -98,6 +101,7 @@ const creationRows: PriceRow[] = legalForms.map((form) => {
     name: form.name,
     description: form.description,
     price: tier.price,
+    fixedPrice: hasSinglePlan(form.id),
     note: tier.period,
     detailHref: form.href,
     ctaHref: `/contact?type=${devisType}`,
@@ -182,7 +186,7 @@ function PriceSection({ pole, rows }: { pole: Pole; rows: PriceRow[] }) {
             <div className="md:text-right">
               {row.price !== null ? (
                 <>
-                  <p className="text-xs text-gray-500 dark:text-gray-400">{pageText.from[language]}</p>
+                  <p className="text-xs text-gray-500 dark:text-gray-400">{(row.fixedPrice ? pageText.fixed : pageText.from)[language]}</p>
                   <p className="text-xl font-bold text-gray-900 dark:text-white whitespace-nowrap">
                     {formatter.format(row.price)} FCFA
                   </p>
