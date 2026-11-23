@@ -17,6 +17,8 @@ export interface BlogPost {
   categorySlug: string;
   categories: Array<{ name: string; slug: string }>;
   author: string;
+  /** Job title from the author's WordPress biography, in the page language */
+  authorRole?: string;
   authorAvatar?: string;
   readTime: string;
   link?: string;
@@ -118,6 +120,13 @@ export function getRelativeTime(dateString: string, locale: 'fr' | 'en' = 'fr'):
   return locale === 'fr' ? "À l'instant" : 'Just now';
 }
 
+// The author's WordPress biography holds the job title as "French | English"; without "|" the same text is used for both
+export function authorRole(description: string | undefined, locale: 'fr' | 'en'): string | undefined {
+  if (!description) return undefined;
+  const [fr, en] = decodeHtmlEntities(stripHtml(description)).split('|').map((part) => part.trim());
+  return (locale === 'en' && en ? en : fr) || undefined;
+}
+
 // Transform WordPress post to app format
 export function transformPost(wpPost: WPPost, locale: 'fr' | 'en' = 'fr'): BlogPost {
   const featuredMedia = wpPost._embedded?.['wp:featuredmedia']?.[0];
@@ -148,6 +157,7 @@ export function transformPost(wpPost: WPPost, locale: 'fr' | 'en' = 'fr'): BlogP
     categorySlug: terms[0]?.slug || 'uncategorized',
     categories: terms.map(t => ({ name: (locale === 'en' && t.name_en) ? t.name_en : t.name, slug: t.slug })),
     author: author?.name || 'Legal Cameroun',
+    authorRole: authorRole(author?.description, locale),
     authorAvatar: author?.avatar_urls?.['96'],
     readTime: calculateReadTime(wpPost.content.rendered, locale),
     link: wpPost.link,

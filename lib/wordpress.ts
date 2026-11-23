@@ -73,7 +73,7 @@ export interface WPPost {
       };
     }>;
     'wp:term'?: Array<Array<{ id: number; name: string; slug: string; name_en?: string }>>;
-    author?: Array<{ name: string; avatar_urls: Record<string, string> }>;
+    author?: Array<{ name: string; description?: string; avatar_urls: Record<string, string> }>;
   };
 }
 
