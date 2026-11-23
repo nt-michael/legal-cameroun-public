@@ -167,7 +167,7 @@ export const pricingTiers: PricingTier[] = [
 export const associationPricingTiers: PricingTier[] = [
   {
     name: { fr: 'Starter', en: 'Starter' },
-    price: 150000,
+    price: 250000,
     currency: 'XAF',
     period: { fr: 'HT', en: 'Excl. tax' },
     features: [
@@ -183,7 +183,7 @@ export const associationPricingTiers: PricingTier[] = [
   },
   {
     name: { fr: 'Standard', en: 'Standard' },
-    price: 200000,
+    price: 300000,
     currency: 'XAF',
     period: { fr: 'HT', en: 'Excl. tax' },
     features: [
@@ -200,7 +200,7 @@ export const associationPricingTiers: PricingTier[] = [
   },
   {
     name: { fr: 'Premium', en: 'Premium' },
-    price: 250000,
+    price: 350000,
     currency: 'XAF',
     period: { fr: 'HT', en: 'Excl. tax' },
     highlighted: true,
@@ -219,12 +219,11 @@ export const associationPricingTiers: PricingTier[] = [
   },
 ];
 
-// Établissement (sole trader) pricing. Prices from the legal team's draft:
-// to be confirmed by management before deploying.
+// Établissement (sole trader) pricing. Starter set to 50 000 by management (2026-11-23).
 export const etablissementPricingTiers: PricingTier[] = [
   {
     name: { fr: 'Starter', en: 'Starter' },
-    price: 150000,
+    price: 50000,
     currency: 'XAF',
     period: { fr: 'HT', en: 'Excl. tax' },
     features: [
