@@ -22,8 +22,8 @@ const items: FAQItem[] = [
       en: 'How much does it cost to create a company?',
     },
     answer: {
-      fr: `Une SAS, une SARL ou une SARLU coûte à partir de ${fr(pricingTiers)} FCFA HT, plus les frais administratifs. Un établissement commercial coûte à partir de ${fr(etablissementPricingTiers)} FCFA HT, une association à partir de ${fr(associationPricingTiers)} FCFA HT. Le prix exact dépend de la formule choisie.`,
-      en: `A SAS, SARL or SARLU starts from ${en(pricingTiers)} FCFA excl. tax, plus administrative fees. A commercial establishment starts from ${en(etablissementPricingTiers)} FCFA excl. tax, an association from ${en(associationPricingTiers)} FCFA excl. tax. The exact price depends on the plan you choose.`,
+      fr: `Une SAS, une SARL ou une SARLU coûte à partir de ${fr(pricingTiers)} FCFA HT, plus les frais administratifs. Le prix exact dépend de la formule choisie. Un établissement commercial coûte ${fr(etablissementPricingTiers)} FCFA HT et une association ${fr(associationPricingTiers)} FCFA HT, en forfait unique.`,
+      en: `A SAS, SARL or SARLU starts from ${en(pricingTiers)} FCFA excl. tax, plus administrative fees. The exact price depends on the plan you choose. A commercial establishment costs ${en(etablissementPricingTiers)} FCFA excl. tax and an association ${en(associationPricingTiers)} FCFA excl. tax, as a single package.`,
     },
   },
   {

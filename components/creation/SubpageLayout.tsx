@@ -18,6 +18,9 @@ const layoutText = {
   comparisonSubtitle: { fr: "Comparez les caractéristiques principales avec d'autres formes juridiques.", en: 'Compare key features with other legal forms.' },
   pricing: { fr: 'Nos Forfaits', en: 'Our Packages' },
   pricingSubtitle: { fr: 'Choisissez la formule adaptée à vos besoins.', en: 'Choose the plan that suits your needs.' },
+  // Used when the legal form is sold as one single package
+  pricingSingle: { fr: 'Notre forfait', en: 'Our package' },
+  pricingSingleSubtitle: { fr: 'Un prix fixe, sans formule à choisir.', en: 'One fixed price, no plan to choose.' },
   faq: { fr: 'Questions Fréquentes', en: 'Frequently Asked Questions' },
   faqSubtitle: { fr: 'Retrouvez les réponses aux questions les plus posées.', en: 'Find answers to the most frequently asked questions.' },
   readyTitle: { fr: 'Prêt à Créer Votre Entreprise ?', en: 'Ready to Create Your Business?' },
@@ -235,8 +238,8 @@ export default function SubpageLayout({ data, pricingTiers }: SubpageLayoutProps
       <section className="bg-secondary-50/50 dark:bg-gray-800">
         <PricingCards
           tiers={tiersWithType}
-          title={layoutText.pricing[language]}
-          subtitle={layoutText.pricingSubtitle[language]}
+          title={(tiersWithType.length === 1 ? layoutText.pricingSingle : layoutText.pricing)[language]}
+          subtitle={(tiersWithType.length === 1 ? layoutText.pricingSingleSubtitle : layoutText.pricingSubtitle)[language]}
         />
       </section>
 

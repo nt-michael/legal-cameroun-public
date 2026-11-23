@@ -9,6 +9,8 @@ export interface PricingTier {
   currency: string;
   period: BilingualText;
   features: BilingualText[];
+  /** Items the plan does not include, shown without a check mark */
+  excluded?: BilingualText[];
   highlighted?: boolean;
   badge?: BilingualText;
   pricePrefix?: BilingualText;
@@ -163,10 +165,10 @@ export const pricingTiers: PricingTier[] = [
   },
 ];
 
-// Association-specific pricing (slightly different features)
+// Association: one single package (Standard and Premium removed by management, 2026-11-23)
 export const associationPricingTiers: PricingTier[] = [
   {
-    name: { fr: 'Starter', en: 'Starter' },
+    name: { fr: 'Forfait Association', en: 'Association package' },
     price: 250000,
     currency: 'XAF',
     period: { fr: 'HT', en: 'Excl. tax' },
@@ -177,52 +179,16 @@ export const associationPricingTiers: PricingTier[] = [
       { fr: 'Support par email', en: 'Email support' },
     ],
     cta: {
-      text: { fr: 'Choisir Starter', en: 'Choose Starter' },
-      href: '/contact?plan=starter&type=association',
-    },
-  },
-  {
-    name: { fr: 'Standard', en: 'Standard' },
-    price: 300000,
-    currency: 'XAF',
-    period: { fr: 'HT', en: 'Excl. tax' },
-    features: [
-      { fr: 'Tout Starter inclus', en: 'All Starter features included' },
-      { fr: 'Validation par un juriste', en: 'Validation by a lawyer' },
-      { fr: 'Déclaration préfecture', en: 'Prefecture declaration' },
-      { fr: 'Suivi de dossier', en: 'Case tracking' },
-      { fr: 'Support prioritaire', en: 'Priority support' },
-    ],
-    cta: {
-      text: { fr: 'Choisir Standard', en: 'Choose Standard' },
-      href: '/contact?plan=standard&type=association',
-    },
-  },
-  {
-    name: { fr: 'Premium', en: 'Premium' },
-    price: 350000,
-    currency: 'XAF',
-    period: { fr: 'HT', en: 'Excl. tax' },
-    highlighted: true,
-    badge: { fr: 'Choix n°1', en: 'Top choice' },
-    features: [
-      { fr: 'Tout Standard inclus', en: 'All Standard features included' },
-      { fr: 'Traitement en 48h', en: 'Processing in 48h' },
-      { fr: 'Statuts Word éditables', en: 'Editable Word articles' },
-      { fr: 'Assistance 30 jours', en: '30-day assistance' },
-      { fr: 'Conseiller dédié', en: 'Dedicated advisor' },
-    ],
-    cta: {
-      text: { fr: 'Choisir Premium', en: 'Choose Premium' },
-      href: '/contact?plan=premium&type=association',
+      text: { fr: 'Démarrer mon dossier', en: 'Start my file' },
+      href: '/contact?type=association',
     },
   },
 ];
 
-// Établissement (sole trader) pricing. Starter set to 50 000 by management (2026-11-23).
+// Établissement (sole trader): one single package (Standard and Premium removed by management, 2026-11-23)
 export const etablissementPricingTiers: PricingTier[] = [
   {
-    name: { fr: 'Starter', en: 'Starter' },
+    name: { fr: 'Forfait Établissement', en: 'Establishment package' },
     price: 50000,
     currency: 'XAF',
     period: { fr: 'HT', en: 'Excl. tax' },
@@ -231,45 +197,11 @@ export const etablissementPricingTiers: PricingTier[] = [
       { fr: 'Constitution du dossier', en: 'Preparation of the file' },
       { fr: 'Guide des démarches', en: 'Step-by-step guide' },
       { fr: 'Assistance par e-mail', en: 'Email support' },
-      { fr: 'Immatriculation non incluse', en: 'Registration not included' },
     ],
+    excluded: [{ fr: 'Immatriculation non incluse', en: 'Registration not included' }],
     cta: {
-      text: { fr: 'Choisir Starter', en: 'Choose Starter' },
-      href: '/contact?plan=starter&type=etablissement',
-    },
-  },
-  {
-    name: { fr: 'Standard', en: 'Standard' },
-    price: 200000,
-    currency: 'XAF',
-    period: { fr: 'HT', en: 'Excl. tax' },
-    features: [
-      { fr: 'Tout Starter inclus', en: 'All Starter features included' },
-      { fr: 'Dépôt du dossier', en: 'Filing of the application' },
-      { fr: 'Accomplissement des formalités de création', en: 'Completion of the formation formalities' },
-      { fr: 'Immatriculation au RCCM', en: 'Registration with the RCCM' },
-      { fr: 'Remise des documents obtenus', en: 'Delivery of the documents obtained' },
-    ],
-    cta: {
-      text: { fr: 'Choisir Standard', en: 'Choose Standard' },
-      href: '/contact?plan=standard&type=etablissement',
-    },
-  },
-  {
-    name: { fr: 'Premium', en: 'Premium' },
-    price: 300000,
-    currency: 'XAF',
-    period: { fr: 'HT', en: 'Excl. tax' },
-    highlighted: true,
-    badge: { fr: 'Choix n°1', en: 'Top choice' },
-    features: [
-      { fr: 'Tout Standard inclus', en: 'All Standard features included' },
-      { fr: 'Accompagnement juridique et administratif après création', en: 'Legal and administrative support after formation' },
-      { fr: 'Assistance et conseils personnalisés pendant 3 mois', en: 'Personalized assistance and advice for 3 months' },
-    ],
-    cta: {
-      text: { fr: 'Choisir Premium', en: 'Choose Premium' },
-      href: '/contact?plan=premium&type=etablissement',
+      text: { fr: 'Démarrer mon dossier', en: 'Start my file' },
+      href: '/contact?type=etablissement',
     },
   },
 ];
@@ -279,6 +211,11 @@ const tiersByForm: Record<string, PricingTier[]> = {
   individual: etablissementPricingTiers,
   association: associationPricingTiers,
 };
+
+/** True when a legal form id from `legalForms` is sold as one single package, so its price is fixed */
+export function hasSinglePlan(formId: string): boolean {
+  return (tiersByForm[formId] ?? pricingTiers).length === 1;
+}
 
 /** Cheapest plan for a legal form id from `legalForms` (e.g. 'sas', 'individual') */
 export function startingTier(formId: string): PricingTier {
