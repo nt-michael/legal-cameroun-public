@@ -12,14 +12,8 @@ function lowest(tiers: PricingTier[]): number {
   return Math.min(...tiers.map((tier) => tier.price));
 }
 
-const companyFr = new Intl.NumberFormat('fr-FR').format(lowest(pricingTiers));
-const companyEn = new Intl.NumberFormat('en-US').format(lowest(pricingTiers));
-const smallFr = new Intl.NumberFormat('fr-FR').format(
-  Math.min(lowest(etablissementPricingTiers), lowest(associationPricingTiers))
-);
-const smallEn = new Intl.NumberFormat('en-US').format(
-  Math.min(lowest(etablissementPricingTiers), lowest(associationPricingTiers))
-);
+const fr = (tiers: PricingTier[]) => new Intl.NumberFormat('fr-FR').format(lowest(tiers));
+const en = (tiers: PricingTier[]) => new Intl.NumberFormat('en-US').format(lowest(tiers));
 
 const items: FAQItem[] = [
   {
@@ -28,8 +22,8 @@ const items: FAQItem[] = [
       en: 'How much does it cost to create a company?',
     },
     answer: {
-      fr: `Une SAS, une SARL ou une SARLU coûte à partir de ${companyFr} FCFA HT, plus les frais administratifs. Un établissement commercial ou une association coûte à partir de ${smallFr} FCFA HT. Le prix exact dépend de la formule choisie.`,
-      en: `A SAS, SARL or SARLU starts from ${companyEn} FCFA excl. tax, plus administrative fees. A commercial establishment or an association starts from ${smallEn} FCFA excl. tax. The exact price depends on the plan you choose.`,
+      fr: `Une SAS, une SARL ou une SARLU coûte à partir de ${fr(pricingTiers)} FCFA HT, plus les frais administratifs. Le prix exact dépend de la formule choisie. Un établissement commercial coûte ${fr(etablissementPricingTiers)} FCFA HT et une association ${fr(associationPricingTiers)} FCFA HT, en forfait unique.`,
+      en: `A SAS, SARL or SARLU starts from ${en(pricingTiers)} FCFA excl. tax, plus administrative fees. The exact price depends on the plan you choose. A commercial establishment costs ${en(etablissementPricingTiers)} FCFA excl. tax and an association ${en(associationPricingTiers)} FCFA excl. tax, as a single package.`,
     },
   },
   {

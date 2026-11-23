@@ -6,7 +6,7 @@ import { useInView } from 'react-intersection-observer';
 import gsap from 'gsap';
 import { PricingTier } from '@/lib/creation-data';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { BilingualText, getText } from '@/lib/translations';
+import { BilingualText, Language, getText } from '@/lib/translations';
 
 interface PricingCardsProps {
   tiers: PricingTier[];
@@ -22,8 +22,62 @@ function CheckIcon() {
   );
 }
 
+function MinusIcon() {
+  return (
+    <svg className="w-5 h-5 text-gray-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 12h12" />
+    </svg>
+  );
+}
+
+// Items a plan does not include: grey dash instead of the gold check, so they never read as included
+function ExcludedItems({ tier, language }: { tier: PricingTier; language: Language }) {
+  return (
+    <>
+      {tier.excluded?.map((item, itemIndex) => (
+        <li key={`excluded-${itemIndex}`} className="pricing-feature flex items-start gap-3">
+          <MinusIcon />
+          <span className="text-sm text-gray-500 dark:text-gray-400">{item[language]}</span>
+        </li>
+      ))}
+    </>
+  );
+}
+
 function formatPrice(price: number): string {
   return new Intl.NumberFormat('fr-FR').format(price);
+}
+
+const fixedPriceLabel: BilingualText = { fr: 'Prix unique', en: 'Fixed price' };
+
+// One wide card when a legal form is sold as a single package: price and button on the navy side, contents on the other
+function SinglePackage({ tier, language }: { tier: PricingTier; language: Language }) {
+  return (
+    <div className="pricing-card max-w-4xl mx-auto grid md:grid-cols-[2fr_3fr] overflow-hidden rounded-2xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800">
+      <div className="bg-navy text-white p-8 sm:p-10 flex flex-col">
+        <h3 className="text-xl font-bold">{tier.name[language]}</h3>
+        <p className="mt-6 text-sm font-medium text-secondary-300">{fixedPriceLabel[language]}</p>
+        <div className="flex items-baseline gap-2">
+          <span className="text-4xl sm:text-5xl font-bold text-secondary-400">{formatPrice(tier.price)}</span>
+          <span className="text-lg text-white/70">FCFA</span>
+        </div>
+        <p className="text-sm mt-1 text-white/70">{tier.period[language]}</p>
+        <Link href={tier.cta.href} className="btn-gold w-full py-3 mt-8">
+          {tier.cta.text[language]}
+        </Link>
+      </div>
+
+      <ul className="p-8 sm:p-10 space-y-4 self-center">
+        {tier.features.map((feature, featureIndex) => (
+          <li key={featureIndex} className="pricing-feature flex items-start gap-3">
+            <CheckIcon />
+            <span className="text-gray-700 dark:text-gray-300">{feature[language]}</span>
+          </li>
+        ))}
+        <ExcludedItems tier={tier} language={language} />
+      </ul>
+    </div>
+  );
 }
 
 export default function PricingCards({ tiers, title, subtitle }: PricingCardsProps) {
@@ -113,6 +167,11 @@ export default function PricingCards({ tiers, title, subtitle }: PricingCardsPro
           </div>
         )}
 
+        {tiers.length === 1 ? (
+          <div ref={(node) => { ref(node); containerRef.current = node; }}>
+            <SinglePackage tier={tiers[0]} language={language} />
+          </div>
+        ) : (
         <div
           ref={(node) => { ref(node); containerRef.current = node; }}
           className="grid grid-cols-1 md:grid-cols-3 gap-8"
@@ -164,6 +223,7 @@ export default function PricingCards({ tiers, title, subtitle }: PricingCardsPro
                     </span>
                   </li>
                 ))}
+                <ExcludedItems tier={tier} language={language} />
               </ul>
 
               {/* CTA */}
@@ -176,6 +236,7 @@ export default function PricingCards({ tiers, title, subtitle }: PricingCardsPro
             </div>
           ))}
         </div>
+        )}
       </div>
     </section>
   );

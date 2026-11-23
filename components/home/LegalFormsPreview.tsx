@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { useInView } from 'react-intersection-observer';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { legalForms, startingTier } from '@/lib/creation-data';
+import { legalForms, startingTier, hasSinglePlan } from '@/lib/creation-data';
 
 const sectionText = {
   badge: { fr: 'Création d\'entreprise', en: 'Company formation' },
@@ -13,6 +13,7 @@ const sectionText = {
     en: 'Pick a structure to see what is included and start your formation.',
   },
   from: { fr: 'À partir de', en: 'From' },
+  fixed: { fr: 'Prix unique', en: 'Fixed price' },
   learnMore: { fr: 'Voir le détail', en: 'See details' },
   unsure: { fr: 'Vous hésitez ?', en: 'Not sure?' },
   compare: { fr: 'Comparer les statuts', en: 'Compare structures' },
@@ -57,7 +58,7 @@ export default function LegalFormsPreview() {
                 <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-300 leading-relaxed mb-4 sm:mb-6 flex-grow">
                   {form.description[language]}
                 </p>
-                <p className="text-xs text-gray-500 dark:text-gray-400">{sectionText.from[language]}</p>
+                <p className="text-xs text-gray-500 dark:text-gray-400">{(hasSinglePlan(form.id) ? sectionText.fixed : sectionText.from)[language]}</p>
                 <p className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white">
                   {formatter.format(tier.price)} FCFA
                 </p>
