@@ -103,8 +103,11 @@ export default function PostContent({ post, url, relatedPosts = [], comments = [
                   </span>
                 </div>
               )}
-              <span className="text-sm">
+              <span className="text-sm leading-tight">
                 {text.by[language]} <span className="font-medium text-white">{post.author}</span>
+                {post.authorRole && (
+                  <span className="block text-xs text-gray-400">{post.authorRole}</span>
+                )}
               </span>
             </div>
 

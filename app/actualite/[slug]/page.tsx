@@ -122,7 +122,7 @@ export default async function PostPage({ params }: PageProps) {
     image: post.image !== '/images/default-post.jpg' ? post.image : undefined,
     datePublished: post.date,
     dateModified: post.modified,
-    author: { '@type': 'Person', name: post.author },
+    author: { '@type': 'Person', name: post.author, ...(post.authorRole && { jobTitle: post.authorRole }) },
     publisher: {
       '@type': 'Organization',
       name: 'Legal Cameroun',
