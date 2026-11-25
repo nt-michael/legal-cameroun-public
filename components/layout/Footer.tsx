@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { GA_ID, openCookieSettings } from '@/lib/consent';
 import type { BilingualText } from '@/lib/translations';
 
 interface FooterRubrique {
@@ -223,6 +224,16 @@ export default function Footer() {
                   {link.name[language]}
                 </Link>
               ))}
+              {/* Lets visitors change their cookie choice at any time */}
+              {GA_ID && (
+                <button
+                  type="button"
+                  onClick={openCookieSettings}
+                  className="text-gray-400 hover:text-primary-400 text-sm transition-colors"
+                >
+                  {language === 'fr' ? 'Gérer les cookies' : 'Cookie settings'}
+                </button>
+              )}
             </div>
           </div>
         </div>
