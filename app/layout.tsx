@@ -5,6 +5,7 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import WhatsAppFAB from "@/components/common/WhatsAppFAB";
 import NewsletterModal from "@/components/common/NewsletterModal";
+import CookieConsent from "@/components/common/CookieConsent";
 import ScrollToTopOnNavigate from "@/components/common/ScrollToTopOnNavigate";
 import { LanguageProvider } from "@/contexts/LanguageContext";
 import { ThemeProvider } from "@/contexts/ThemeContext";
@@ -68,6 +69,7 @@ export default async function RootLayout({
             <Footer />
             <WhatsAppFAB />
             <NewsletterModal />
+            <CookieConsent />
           </LanguageProvider>
         </ThemeProvider>
         <SpeedInsights />

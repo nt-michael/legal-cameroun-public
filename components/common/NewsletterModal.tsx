@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { consentPending } from '@/lib/consent';
 
 const DISMISSED_KEY = 'newsletter_dismissed';
 const SUBSCRIBED_KEY = 'newsletter_subscribed';
@@ -64,7 +65,8 @@ export default function NewsletterModal() {
 
     const onScroll = () => {
       const scrolled = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight || 1);
-      if (scrolled >= SCROLL_THRESHOLD) {
+      // Never stack the newsletter on top of the cookie banner: wait until the visitor has answered it
+      if (scrolled >= SCROLL_THRESHOLD && !consentPending()) {
         window.removeEventListener('scroll', onScroll);
         open();
       }
