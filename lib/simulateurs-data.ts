@@ -175,8 +175,8 @@ export function calculateIS(chiffreAffaires: number, benefice: number): ISResult
     taux,
     impot: Math.max(0, impot),
     seuilApplique: chiffreAffaires <= IS_THRESHOLD
-      ? `CA ≤ 3 milliards → ${formatPercent(IS_RATE_SMALL)}`
-      : `CA > 3 milliards → ${formatPercent(IS_RATE_LARGE)}`,
+      ? `CA ≤ 3 milliards, taux ${formatPercent(IS_RATE_SMALL)}`
+      : `CA > 3 milliards, taux ${formatPercent(IS_RATE_LARGE)}`,
   };
 }
 
@@ -503,8 +503,8 @@ export const heroData = {
     en: 'Estimate your taxes and contributions in just a few clicks. Calculations based on the 2026 General Tax Code and current DGI/CNPS rates.',
   } as BilingualText,
   privacyNote: {
-    fr: 'Calculs 100% locaux — Aucune donnée sauvegardée',
-    en: '100% local calculations — No data saved',
+    fr: 'Calculs 100\u00a0% locaux. Aucune donnée sauvegardée',
+    en: '100% local calculations. No data saved',
   } as BilingualText,
   disclaimer: {
     fr: 'Ces simulateurs sont fournis à titre indicatif. Pour vos déclarations fiscales réelles, consultez un expert-comptable ou juriste.',

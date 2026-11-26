@@ -20,12 +20,12 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const title = page > 1
     ? `Actualité Juridique & Fiscale au Cameroun - Page ${page} - Legal Cameroun`
     : 'Actualité Juridique & Fiscale au Cameroun - Legal Cameroun';
-  const description = `Analyses, guides pratiques et actualités du droit des affaires au Cameroun. Restez informé des évolutions juridiques et fiscales — page ${page}.`;
+  const description = `Analyses, guides pratiques et actualités du droit des affaires au Cameroun. Restez informé des évolutions juridiques et fiscales. Page ${page}.`;
 
   const titleEn = page > 1
     ? `Legal & Tax News in Cameroon - Page ${page} - Legal Cameroun`
     : 'Legal & Tax News in Cameroon - Legal Cameroun';
-  const descriptionEn = `Analyses, practical guides and news on Cameroonian business law. Stay informed of the latest legal and tax developments — page ${page}.`;
+  const descriptionEn = `Analyses, practical guides and news on Cameroonian business law. Stay informed of the latest legal and tax developments. Page ${page}.`;
 
   return createPageMetadata(`/actualite/page/${page}`, {
     fr: {

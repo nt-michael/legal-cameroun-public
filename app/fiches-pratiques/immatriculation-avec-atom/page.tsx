@@ -22,7 +22,7 @@ export async function generateMetadata(): Promise<Metadata> {
       openGraph: {
         title: 'Immatriculation Fiscale avec ATOM',
         description:
-          'Maîtrisez le nouveau système électronique de la DGI – étape par étape.',
+          'Maîtrisez le nouveau système électronique de la DGI, étape par étape.',
         type: 'article',
         siteName: 'Legal Cameroun',
       },
@@ -44,7 +44,7 @@ export async function generateMetadata(): Promise<Metadata> {
       ],
       openGraph: {
         title: 'Registration with ATOM',
-        description: 'Master the new DGI electronic system – step by step.',
+        description: 'Master the new DGI electronic system, step by step.',
         type: 'article',
         siteName: 'Legal Cameroun',
       },

@@ -3,9 +3,9 @@ import TarifsPageContent from './TarifsPageContent';
 import { createPageMetadata } from '@/lib/seo-utils';
 import { getProductPrice } from '@/lib/woocommerce';
 
-const frTitle = 'Tarifs | Création et modification d\'entreprise au Cameroun — Legal Cameroun';
+const frTitle = 'Tarifs | Création et modification d\'entreprise au Cameroun | Legal Cameroun';
 const frDescription = 'Tous nos prix en un coup d\'œil : création de SAS, SARL, SARLU, établissement et association, transfert de siège, transformation et dissolution. Devis gratuit, réponse sous 48h.';
-const enTitle = 'Pricing | Company Formation and Amendments in Cameroon — Legal Cameroun';
+const enTitle = 'Pricing | Company Formation and Amendments in Cameroon | Legal Cameroun';
 const enDescription = 'All our prices at a glance: SAS, SARL, SARLU, establishment and association formation, office transfer, conversion and dissolution. Free quote, answer within 48h.';
 
 export async function generateMetadata(): Promise<Metadata> {

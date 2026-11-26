@@ -92,7 +92,7 @@ export const whyChooseUs = [
   {
     icon: 'speed',
     title: { fr: 'Rapidité', en: 'Speed' },
-    description: { fr: 'Questionnaire en ligne → Traitement en 48h.', en: 'Online questionnaire → Processing in 48h.' },
+    description: { fr: 'Questionnaire en ligne, puis traitement en 48\u00a0h.', en: 'Online questionnaire, then processing in 48h.' },
   },
   {
     icon: 'reliability',
@@ -402,7 +402,7 @@ export const subpagesData: Record<string, SubpageData> = {
       {
         number: 2,
         title: { fr: 'On s\'occupe de tout', en: 'We handle everything' },
-        description: { fr: 'Nos juristes valident, gèrent le greffe et l\'annonce légale → RCCM.', en: 'Our lawyers validate, manage the court registry and legal notice → RCCM.' },
+        description: { fr: 'Nos juristes valident le dossier, gèrent le greffe et l\'annonce légale jusqu\'au RCCM.', en: 'Our lawyers validate the file, manage the court registry and the legal notice through to the RCCM.' },
       },
       {
         number: 3,
@@ -433,7 +433,7 @@ export const subpagesData: Record<string, SubpageData> = {
     slug: 'sarl',
     heroTitle: { fr: 'Créer une SARL', en: 'Create a SARL' },
     heroSubtitle: { fr: 'Sécurisée et Encadrée', en: 'Secure and Regulated' },
-    heroDescription: { fr: 'Protection du patrimoine, cadre légal strict \– Parfait pour les PME stables.', en: 'Asset protection, strict legal framework – Perfect for stable SMEs.' },
+    heroDescription: { fr: 'Protection du patrimoine, cadre légal strict. Parfait pour les PME stables.', en: 'Asset protection, strict legal framework. Perfect for stable SMEs.' },
     whyCreate: {
       title: { fr: 'Pourquoi créer une SARL ?', en: 'Why Create a SARL?' },
       content: [
@@ -456,7 +456,7 @@ export const subpagesData: Record<string, SubpageData> = {
       {
         number: 1,
         title: { fr: 'Rédiger les statuts', en: 'Draft the articles of association' },
-        description: { fr: 'Statuts encadrés par la loi – accompagnement professionnel recommandé.', en: 'Articles regulated by law – professional assistance recommended.' },
+        description: { fr: 'Statuts encadrés par la loi. Accompagnement professionnel recommandé.', en: 'Articles regulated by law. Professional assistance recommended.' },
       },
       {
         number: 2,
@@ -524,7 +524,7 @@ export const subpagesData: Record<string, SubpageData> = {
       {
         number: 1,
         title: { fr: 'Questionnaire', en: 'Questionnaire' },
-        description: { fr: 'Remplissez le questionnaire → Dossier complet + signature en ligne.', en: 'Fill out the questionnaire → Complete file + online signature.' },
+        description: { fr: 'Remplissez le questionnaire, puis recevez le dossier complet à signer en ligne.', en: 'Fill out the questionnaire, then receive the complete file to sign online.' },
       },
       {
         number: 2,
@@ -690,7 +690,7 @@ export const subpagesData: Record<string, SubpageData> = {
       {
         number: 4,
         title: { fr: 'Déclaration préfecture', en: 'Prefecture declaration' },
-        description: { fr: 'Déposez le dossier → Silence vaut acceptation.', en: 'Submit the file → Silence implies acceptance.' },
+        description: { fr: 'Déposez le dossier : le silence vaut acceptation.', en: 'Submit the file: silence implies acceptance.' },
       },
       {
         number: 5,
