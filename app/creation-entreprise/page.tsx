@@ -6,18 +6,18 @@ export async function generateMetadata(): Promise<Metadata> {
   return createPageMetadata('/creation-entreprise', {
     fr: {
       title: "Création d'Entreprise au Cameroun | SAS, SARL, SARLU, Association",
-      description: "Créez votre entreprise au Cameroun avec l'aide de nos experts. Établissement, SAS, SARL, SARLU, Association — immatriculation complète, accompagnement de A à Z. Dès 50 000 FCFA.",
+      description: "Créez votre entreprise au Cameroun avec l'aide de nos experts. Établissement, SAS, SARL, SARLU, Association : immatriculation complète, accompagnement de A à Z. Dès 50 000 FCFA.",
       keywords: ['création entreprise cameroun', 'créer société cameroun', 'SAS cameroun', 'SARL cameroun', 'immatriculation RCCM', 'OHADA'],
       openGraph: {
         title: "Création d'Entreprise au Cameroun | SAS, SARL, SARLU, Association",
-        description: "Créez votre entreprise au Cameroun avec l'aide de nos experts. Établissement, SAS, SARL, SARLU, Association — immatriculation complète, accompagnement de A à Z. Dès 50 000 FCFA.",
+        description: "Créez votre entreprise au Cameroun avec l'aide de nos experts. Établissement, SAS, SARL, SARLU, Association : immatriculation complète, accompagnement de A à Z. Dès 50 000 FCFA.",
         type: 'website',
         siteName: 'Legal Cameroun',
       },
       twitter: {
         card: 'summary_large_image',
         title: "Création d'Entreprise au Cameroun | SAS, SARL, SARLU, Association",
-        description: "Créez votre entreprise au Cameroun avec l'aide de nos experts. Établissement, SAS, SARL, SARLU, Association — immatriculation complète, accompagnement de A à Z. Dès 50 000 FCFA.",
+        description: "Créez votre entreprise au Cameroun avec l'aide de nos experts. Établissement, SAS, SARL, SARLU, Association : immatriculation complète, accompagnement de A à Z. Dès 50 000 FCFA.",
       },
     },
     en: {

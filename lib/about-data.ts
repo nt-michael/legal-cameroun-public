@@ -45,8 +45,8 @@ export const aboutHeroData = {
     en: 'We are not just a legal service.',
   } as BilingualText,
   highlight: {
-    fr: 'Nous sommes l\'équipe qui comprend que votre entreprise est unique — comme vous.',
-    en: 'We are the team that understands your business is unique — just like you.',
+    fr: 'Nous sommes l\'équipe qui comprend que votre entreprise est unique, comme vous.',
+    en: 'We are the team that understands your business is unique, just like you.',
   } as BilingualText,
   description: {
     fr: '+500 entrepreneurs accompagnés en 5 ans, une conviction :',
@@ -57,8 +57,8 @@ export const aboutHeroData = {
     en: 'Zero stress, speed, proximity, and local expertise make the difference.',
   } as BilingualText,
   origin: {
-    fr: 'Legal Cameroun est né de RODEC Conseils — un cabinet multinational d\'expertise-comptable et juridique implanté à Paris, Douala et Cotonou.',
-    en: 'Legal Cameroun was born from RODEC Conseils — a multinational accounting and legal firm established in Paris, Douala, and Cotonou.',
+    fr: 'Legal Cameroun est né de RODEC Conseils, un cabinet multinational d\'expertise-comptable et juridique implanté à Paris, Douala et Cotonou.',
+    en: 'Legal Cameroun was born from RODEC Conseils, a multinational accounting and legal firm established in Paris, Douala, and Cotonou.',
   } as BilingualText,
   promise: {
     fr: 'Ici, à Akwa, nous combinons la rigueur européenne et la chaleur camerounaise pour vous offrir un accompagnement sur mesure... où que vous soyez.',
@@ -164,8 +164,8 @@ export const whoWeAreData = {
     en: 'We are a team of sworn lawyers and chartered accountants passionate about Cameroonian business law (including OHADA).',
   } as BilingualText,
   diversity: {
-    fr: 'Certains ont grandi à Douala, d\'autres ont étudié à Paris ou Cotonou — mais tous parlent le même langage : celui de l\'entrepreneur qui veut avancer vite, bien et sans se ruiner.',
-    en: 'Some grew up in Douala, others studied in Paris or Cotonou — but all speak the same language: that of the entrepreneur who wants to move forward quickly, effectively, and without breaking the bank.',
+    fr: 'Certains ont grandi à Douala, d\'autres ont étudié à Paris ou Cotonou, mais tous parlent le même langage : celui de l\'entrepreneur qui veut avancer vite, bien et sans se ruiner.',
+    en: 'Some grew up in Douala, others studied in Paris or Cotonou, but all speak the same language: that of the entrepreneur who wants to move forward quickly, effectively, and without breaking the bank.',
   } as BilingualText,
   loves: [
     {
@@ -186,8 +186,8 @@ export const whoWeAreData = {
     } as BilingualText,
   ],
   promise: {
-    fr: 'Votre entreprise est unique → Notre accompagnement l\'est aussi.',
-    en: 'Your business is unique → Our support is too.',
+    fr: 'Votre entreprise est unique. Notre accompagnement l\'est aussi.',
+    en: 'Your business is unique. Our support is too.',
   } as BilingualText,
 };
 
@@ -200,8 +200,8 @@ export const valuesData: ValueCard[] = [
       en: 'Proximity & Warmth',
     },
     description: {
-      fr: 'Nous sommes à Douala, à deux pas de vous. En visio ou en présentiel — on vous écoute vraiment.',
-      en: 'We are in Douala, just a step away from you. Via video call or in person — we truly listen.',
+      fr: 'Nous sommes à Douala, à deux pas de vous. En visio ou en présentiel, on vous écoute vraiment.',
+      en: 'We are in Douala, just a step away from you. Via video call or in person, we truly listen.',
     },
   },
   {
@@ -222,8 +222,8 @@ export const valuesData: ValueCard[] = [
       en: 'Simplicity & Speed',
     },
     description: {
-      fr: 'Questionnaire en ligne → Dossier prêt en 48h (Premium). Zéro paperasse inutile.',
-      en: 'Online questionnaire → File ready in 48h (Premium). Zero unnecessary paperwork.',
+      fr: 'Questionnaire en ligne, puis dossier prêt en 48h (Premium). Zéro paperasse inutile.',
+      en: 'Online questionnaire, then file ready in 48h (Premium). Zero unnecessary paperwork.',
     },
   },
   {
@@ -364,8 +364,8 @@ export const finalCtaData = {
     en: 'Ready to Write the Next Chapter of Your Story?',
   } as BilingualText,
   description: {
-    fr: 'Que vous démarriez, transformiez ou transmettiez votre entreprise — où que vous soyez au Cameroun, nous sommes là, à vos côtés.',
-    en: 'Whether you are starting, growing, or passing on your business — wherever you are in Cameroon, we are here, by your side.',
+    fr: 'Que vous démarriez, transformiez ou transmettiez votre entreprise, où que vous soyez au Cameroun, nous sommes là, à vos côtés.',
+    en: 'Whether you are starting, growing, or passing on your business, wherever you are in Cameroon, we are here, by your side.',
   } as BilingualText,
   primaryCta: {
     text: {

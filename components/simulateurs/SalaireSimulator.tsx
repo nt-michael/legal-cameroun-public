@@ -74,7 +74,7 @@ const simText = {
   net: { fr: 'Net', en: 'Net' },
   exportPdf: { fr: 'Exporter PDF', en: 'Export PDF' },
   shareWhatsapp: { fr: 'Partager sur WhatsApp', en: 'Share on WhatsApp' },
-  disclaimer: { fr: 'Bas\u00e9 sur CGI 2026 et taux CNPS \u2014 Non contractuel. Consultez un expert pour vos calculs de paie r\u00e9els.', en: 'Based on CGI 2026 and CNPS rates \u2014 Non-contractual. Consult an expert for your actual payroll calculations.' },
+  disclaimer: { fr: 'Bas\u00e9 sur CGI 2026 et taux CNPS. Non contractuel. Consultez un expert pour vos calculs de paie r\u00e9els.', en: 'Based on CGI 2026 and CNPS rates. Non-contractual. Consult an expert for your actual payroll calculations.' },
 };
 
 type ViewType = 'salarie' | 'employeur';

@@ -34,7 +34,7 @@ const simText = {
   deductible: { fr: 'D\u00e9ductible', en: 'Deductible' },
   exportPdf: { fr: 'Exporter PDF', en: 'Export PDF' },
   shareWhatsapp: { fr: 'Partager sur WhatsApp', en: 'Share on WhatsApp' },
-  disclaimer: { fr: 'Bas\u00e9 sur CGI 2026 \u2014 Non contractuel. Consultez un juriste pour vos d\u00e9clarations fiscales r\u00e9elles.', en: 'Based on CGI 2026 \u2014 Non-contractual. Consult a lawyer for your actual tax filings.' },
+  disclaimer: { fr: 'Bas\u00e9 sur CGI 2026. Non contractuel. Consultez un juriste pour vos d\u00e9clarations fiscales r\u00e9elles.', en: 'Based on CGI 2026. Non-contractual. Consult a lawyer for your actual tax filings.' },
 };
 
 type TabType = 'ventes' | 'achats';

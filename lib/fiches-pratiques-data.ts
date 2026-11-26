@@ -50,14 +50,14 @@ export const fichesHubData = {
       en: 'Simple, clear, and practical guides for your legal & tax procedures in Cameroon.',
     },
     description: {
-      fr: 'Téléchargez, consultez, appliquez — tout est fait pour vous faciliter la vie d\'entrepreneur.',
-      en: 'Download, read, apply — everything is designed to make your life as an entrepreneur easier.',
+      fr: 'Téléchargez, consultez, appliquez : tout est fait pour vous faciliter la vie d\'entrepreneur.',
+      en: 'Download, read, apply: everything is designed to make your life as an entrepreneur easier.',
     },
   },
   footer: {
     text: {
-      fr: 'Ces fiches sont offertes par Legal Cameroun (RODEC Conseils – Douala, Paris, Cotonou).',
-      en: 'These guides are provided by Legal Cameroun (RODEC Conseils – Douala, Paris, Cotonou).',
+      fr: 'Ces fiches sont offertes par Legal Cameroun (RODEC Conseils, à Douala, Paris et Cotonou).',
+      en: 'These guides are provided by Legal Cameroun (RODEC Conseils, in Douala, Paris and Cotonou).',
     },
     question: {
       fr: 'Besoin d\'accompagnement personnalisé ?',
@@ -93,13 +93,13 @@ export const fichesPratiques: FichePratique[] = [
       en: 'Transfer Pricing',
     },
     description: {
-      fr: 'Avant et après l\'adhésion à l\'OCDE – Guide pratique complet.',
-      en: 'Before and after OECD membership – Complete practical guide.',
+      fr: 'Avant et après l\'adhésion à l\'OCDE : guide pratique complet.',
+      en: 'Before and after OECD membership: complete practical guide.',
     },
     icon: 'scale',
     heroIntro: {
-      fr: 'Avant et après l\'adhésion à l\'OCDE – Un guide essentiel pour les groupes et opérations transfrontalières.',
-      en: 'Before and after OECD membership – An essential guide for cross-border groups and operations.',
+      fr: 'Avant et après l\'adhésion à l\'OCDE : un guide essentiel pour les groupes et opérations transfrontalières.',
+      en: 'Before and after OECD membership: an essential guide for cross-border groups and operations.',
     },
     content: [
       {
@@ -145,8 +145,8 @@ export const fichesPratiques: FichePratique[] = [
     resources: [
       {
         title: {
-          fr: 'Télécharger le Guide PDF – Les Règles Camerounaises sur les Prix de Transfert',
-          en: 'Download the PDF Guide – Cameroonian Transfer Pricing Rules',
+          fr: 'Télécharger le Guide PDF : Les Règles Camerounaises sur les Prix de Transfert',
+          en: 'Download the PDF Guide: Cameroonian Transfer Pricing Rules',
         },
         url: `${WC_SITE_URL}/wp-content/uploads/Les-Regles-Camerounaises-sur-les-Prix-de-Transfert.pdf`,
         type: 'pdf',
@@ -177,13 +177,13 @@ export const fichesPratiques: FichePratique[] = [
       en: 'Company vs Branch',
     },
     description: {
-      fr: 'Avantages, inconvénients, définitions – pour faire le bon choix dès le départ.',
-      en: 'Advantages, disadvantages, definitions – to make the right choice from the start.',
+      fr: 'Avantages, inconvénients et définitions pour faire le bon choix dès le départ.',
+      en: 'Advantages, disadvantages and definitions to make the right choice from the start.',
     },
     icon: 'building',
     heroIntro: {
-      fr: 'Définitions claires, avantages, inconvénients – pour lancer votre activité sans regret.',
-      en: 'Clear definitions, advantages, disadvantages – to launch your business with no regrets.',
+      fr: 'Définitions claires, avantages et inconvénients pour lancer votre activité sans regret.',
+      en: 'Clear definitions, advantages and disadvantages to launch your business with no regrets.',
     },
     content: [
       {
@@ -299,8 +299,8 @@ export const fichesPratiques: FichePratique[] = [
     resources: [
       {
         title: {
-          fr: 'Télécharger le Guide PDF – Comment choisir entre Société et Établissement',
-          en: 'Download the PDF Guide – How to choose between Company and Branch',
+          fr: 'Télécharger le Guide PDF : Comment choisir entre Société et Établissement',
+          en: 'Download the PDF Guide: How to choose between Company and Branch',
         },
         url: `${WC_SITE_URL}/wp-content/uploads/Comment-choisir-entre-Societe-et-Etablissement-Ce-quil-faut-savoir.pdf`,
         type: 'pdf',
@@ -336,8 +336,8 @@ export const fichesPratiques: FichePratique[] = [
     },
     icon: 'laptop',
     heroIntro: {
-      fr: 'Maîtrisez le nouveau système électronique de la DGI – étape par étape.',
-      en: 'Master the new electronic system of the DGI – step by step.',
+      fr: 'Maîtrisez le nouveau système électronique de la DGI, étape par étape.',
+      en: 'Master the new electronic system of the DGI, step by step.',
     },
     content: [
       {
@@ -479,8 +479,8 @@ export const fichesPratiques: FichePratique[] = [
             en: 'Fill in your contact information',
           },
           {
-            fr: 'Confirmez votre rendez-vous – vous recevrez un rappel par email',
-            en: 'Confirm your appointment – you will receive a reminder by email',
+            fr: 'Confirmez votre rendez-vous. Vous recevrez un rappel par email',
+            en: 'Confirm your appointment. You will receive a reminder by email',
           },
         ],
       },

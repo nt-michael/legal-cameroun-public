@@ -22,7 +22,7 @@ export async function generateMetadata(): Promise<Metadata> {
       openGraph: {
         title: "Société ou Établissement : Ce qu'il faut savoir pour choisir",
         description:
-          'Définitions claires, avantages, inconvénients – pour lancer votre activité sans regret.',
+          'Définitions claires, avantages et inconvénients pour lancer votre activité sans regret.',
         type: 'article',
         siteName: 'Legal Cameroun',
       },
@@ -44,7 +44,7 @@ export async function generateMetadata(): Promise<Metadata> {
       ],
       openGraph: {
         title: 'Company vs Branch Office: What You Need to Know',
-        description: 'Clear definitions, advantages and disadvantages – to launch your business without regret.',
+        description: 'Clear definitions, advantages and disadvantages to launch your business without regret.',
         type: 'article',
         siteName: 'Legal Cameroun',
       },

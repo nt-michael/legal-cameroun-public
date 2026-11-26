@@ -9,7 +9,7 @@ import { BilingualText, getText } from '@/lib/translations';
 const templateText = {
   backToSimulators: { fr: 'Retour aux Simulateurs', en: 'Back to Simulators' },
   badge: { fr: 'Simulateur Fiscal', en: 'Tax Simulator' },
-  privacyNote: { fr: 'Calculs 100% locaux — Aucune donnée sauvegardée', en: '100% local calculations — No data saved' },
+  privacyNote: { fr: 'Calculs 100% locaux. Aucune donnée sauvegardée', en: '100% local calculations. No data saved' },
   needHelp: { fr: 'Besoin d\'aide avec vos déclarations fiscales ?', en: 'Need help with your tax filings?' },
   helpSubtitle: { fr: 'Nos experts sont disponibles pour vous accompagner dans vos démarches et interpréter vos résultats.', en: 'Our experts are available to guide you through your procedures and interpret your results.' },
   contactExpert: { fr: 'Contacter un Expert', en: 'Contact an Expert' },

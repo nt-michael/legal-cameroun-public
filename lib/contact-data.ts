@@ -37,8 +37,8 @@ export const contactHeroData = {
     en: 'Whether it\'s a quick business setup in Bonabéri, an urgent amendment, or just a question about your articles of incorporation... we truly listen.',
   } as BilingualText,
   responseTime: {
-    fr: 'Contactez-nous dès aujourd\'hui — réponse sous 48h (souvent plus rapide !)',
-    en: 'Contact us today — response within 48h (often faster!)',
+    fr: 'Contactez-nous dès aujourd\'hui. Réponse sous 48h (souvent plus rapide !)',
+    en: 'Contact us today. Response within 48h (often faster!)',
   } as BilingualText,
   trustBadge: {
     fr: '+500 entrepreneurs nous font déjà confiance depuis 5 ans.',
@@ -127,8 +127,8 @@ export const whyContactItems: WhyContactItem[] = [
     icon: 'user',
     title: { fr: 'Réponse humaine', en: 'Human Response' },
     description: {
-      fr: 'Pas de chatbot — un juriste réel vous répond.',
-      en: 'No chatbot — a real legal expert answers you.',
+      fr: 'Pas de chatbot : un juriste réel vous répond.',
+      en: 'No chatbot: a real legal expert answers you.',
     },
   },
   {
@@ -247,6 +247,6 @@ export const formLabels = {
 
 // Footer note under offices
 export const officesFooterNote: BilingualText = {
-  fr: 'Nous combinons l\'expertise internationale et la proximité camerounaise. Que vous soyez à Douala, Yaoundé, ou à l\'étranger — on s\'adapte à vous.',
-  en: 'We combine international expertise with Cameroonian proximity. Whether you\'re in Douala, Yaounde, or abroad — we adapt to you.',
+  fr: 'Nous combinons l\'expertise internationale et la proximité camerounaise. Que vous soyez à Douala, Yaoundé, ou à l\'étranger, on s\'adapte à vous.',
+  en: 'We combine international expertise with Cameroonian proximity. Whether you\'re in Douala, Yaounde, or abroad, we adapt to you.',
 };
