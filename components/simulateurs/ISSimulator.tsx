@@ -29,7 +29,7 @@ const simText = {
   profitBreakdown: { fr: 'R\u00e9partition du b\u00e9n\u00e9fice', en: 'Profit Breakdown' },
   exportPdf: { fr: 'Exporter PDF', en: 'Export PDF' },
   shareWhatsapp: { fr: 'Partager sur WhatsApp', en: 'Share on WhatsApp' },
-  disclaimer: { fr: 'Bas\u00e9 sur CGI 2026. Non contractuel. Consultez un juriste pour vos d\u00e9clarations fiscales r\u00e9elles.', en: 'Based on CGI 2026. Non-contractual. Consult a lawyer for your actual tax filings.' },
+  disclaimer: { fr: 'Bas\u00e9 sur le CGI 2026. Non contractuel. Consultez un juriste pour vos d\u00e9clarations fiscales r\u00e9elles.', en: 'Based on CGI 2026. Non-contractual. Consult a lawyer for your actual tax filings.' },
 };
 
 export default function ISSimulator() {

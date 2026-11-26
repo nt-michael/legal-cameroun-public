@@ -145,7 +145,7 @@ export const fichesPratiques: FichePratique[] = [
     resources: [
       {
         title: {
-          fr: 'Télécharger le Guide PDF : Les Règles Camerounaises sur les Prix de Transfert',
+          fr: 'Télécharger le guide PDF : les règles camerounaises sur les prix de transfert',
           en: 'Download the PDF Guide: Cameroonian Transfer Pricing Rules',
         },
         url: `${WC_SITE_URL}/wp-content/uploads/Les-Regles-Camerounaises-sur-les-Prix-de-Transfert.pdf`,
@@ -299,7 +299,7 @@ export const fichesPratiques: FichePratique[] = [
     resources: [
       {
         title: {
-          fr: 'Télécharger le Guide PDF : Comment choisir entre Société et Établissement',
+          fr: 'Télécharger le guide PDF : comment choisir entre société et établissement',
           en: 'Download the PDF Guide: How to choose between Company and Branch',
         },
         url: `${WC_SITE_URL}/wp-content/uploads/Comment-choisir-entre-Societe-et-Etablissement-Ce-quil-faut-savoir.pdf`,
@@ -479,7 +479,7 @@ export const fichesPratiques: FichePratique[] = [
             en: 'Fill in your contact information',
           },
           {
-            fr: 'Confirmez votre rendez-vous. Vous recevrez un rappel par email',
+            fr: 'Confirmez votre rendez-vous. Vous recevrez un rappel par e-mail',
             en: 'Confirm your appointment. You will receive a reminder by email',
           },
         ],

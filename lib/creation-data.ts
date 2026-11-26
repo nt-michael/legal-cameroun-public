@@ -92,7 +92,7 @@ export const whyChooseUs = [
   {
     icon: 'speed',
     title: { fr: 'Rapidité', en: 'Speed' },
-    description: { fr: 'Questionnaire en ligne, puis traitement en 48h.', en: 'Online questionnaire, then processing in 48h.' },
+    description: { fr: 'Questionnaire en ligne, puis traitement en 48\u00a0h.', en: 'Online questionnaire, then processing in 48h.' },
   },
   {
     icon: 'reliability',
@@ -402,7 +402,7 @@ export const subpagesData: Record<string, SubpageData> = {
       {
         number: 2,
         title: { fr: 'On s\'occupe de tout', en: 'We handle everything' },
-        description: { fr: 'Nos juristes valident, gèrent le greffe et l\'annonce légale jusqu\'au RCCM.', en: 'Our lawyers validate, manage the court registry and legal notice through to the RCCM.' },
+        description: { fr: 'Nos juristes valident le dossier, gèrent le greffe et l\'annonce légale jusqu\'au RCCM.', en: 'Our lawyers validate the file, manage the court registry and the legal notice through to the RCCM.' },
       },
       {
         number: 3,

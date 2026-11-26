@@ -503,7 +503,7 @@ export const heroData = {
     en: 'Estimate your taxes and contributions in just a few clicks. Calculations based on the 2026 General Tax Code and current DGI/CNPS rates.',
   } as BilingualText,
   privacyNote: {
-    fr: 'Calculs 100% locaux. Aucune donnée sauvegardée',
+    fr: 'Calculs 100\u00a0% locaux. Aucune donnée sauvegardée',
     en: '100% local calculations. No data saved',
   } as BilingualText,
   disclaimer: {

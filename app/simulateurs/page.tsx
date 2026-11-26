@@ -6,18 +6,18 @@ import { createPageMetadata } from '@/lib/seo-utils';
 export async function generateMetadata(): Promise<Metadata> {
   return createPageMetadata('/simulateurs', {
     fr: {
-      title: 'Simulateurs Fiscaux Gratuits | TVA, IS, Salaire au Cameroun | Legal Cameroun',
+      title: 'Simulateurs fiscaux gratuits | TVA, IS, salaire au Cameroun | Legal Cameroun',
       description: "Calculez vos impôts et charges au Cameroun gratuitement : TVA 19,25%, Impôt sur les Sociétés, charges salariales CNPS/IRPP. Outils basés sur le CGI 2026.",
       keywords: ['simulateur fiscal cameroun', 'calculateur TVA', 'impôt sociétés cameroun', 'CNPS 2026', 'IRPP cameroun', 'charges salariales'],
       openGraph: {
-        title: 'Simulateurs Fiscaux Gratuits | TVA, IS, Salaire au Cameroun | Legal Cameroun',
+        title: 'Simulateurs fiscaux gratuits | TVA, IS, salaire au Cameroun | Legal Cameroun',
         description: "Calculez vos impôts et charges au Cameroun gratuitement : TVA 19,25%, Impôt sur les Sociétés, charges salariales CNPS/IRPP. Outils basés sur le CGI 2026.",
         type: 'website',
         siteName: 'Legal Cameroun',
       },
       twitter: {
         card: 'summary_large_image',
-        title: 'Simulateurs Fiscaux Gratuits | TVA, IS, Salaire au Cameroun | Legal Cameroun',
+        title: 'Simulateurs fiscaux gratuits | TVA, IS, salaire au Cameroun | Legal Cameroun',
         description: "Calculez vos impôts et charges au Cameroun gratuitement : TVA 19,25%, Impôt sur les Sociétés, charges salariales CNPS/IRPP. Outils basés sur le CGI 2026.",
       },
     },

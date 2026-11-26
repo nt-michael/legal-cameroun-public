@@ -57,7 +57,7 @@ export const aboutHeroData = {
     en: 'Zero stress, speed, proximity, and local expertise make the difference.',
   } as BilingualText,
   origin: {
-    fr: 'Legal Cameroun est né de RODEC Conseils, un cabinet multinational d\'expertise-comptable et juridique implanté à Paris, Douala et Cotonou.',
+    fr: 'Legal Cameroun est né de RODEC Conseils, un cabinet multinational d\'expertise comptable et juridique implanté à Paris, Douala et Cotonou.',
     en: 'Legal Cameroun was born from RODEC Conseils, a multinational accounting and legal firm established in Paris, Douala, and Cotonou.',
   } as BilingualText,
   promise: {
@@ -222,7 +222,7 @@ export const valuesData: ValueCard[] = [
       en: 'Simplicity & Speed',
     },
     description: {
-      fr: 'Questionnaire en ligne, puis dossier prêt en 48h (Premium). Zéro paperasse inutile.',
+      fr: 'Questionnaire en ligne, puis dossier prêt en 48\u00a0h (Premium). Zéro paperasse inutile.',
       en: 'Online questionnaire, then file ready in 48h (Premium). Zero unnecessary paperwork.',
     },
   },

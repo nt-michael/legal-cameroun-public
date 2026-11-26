@@ -10,7 +10,7 @@ const sectionText = {
   badge: { fr: 'Notre Réseau', en: 'Our Network' },
   title: { fr: 'Présents là où Vous Êtes', en: 'Present Where You Are' },
   subtitle: {
-    fr: 'Du Boulevard de la Liberté à Akwa jusqu\'à Levallois-Perret, nous connectons les mondes pour votre succès.',
+    fr: 'Du boulevard de la Liberté à Akwa jusqu\'à Levallois-Perret, nous connectons les mondes pour votre succès.',
     en: 'From Boulevard de la Liberté in Akwa to Levallois-Perret, we connect worlds for your success.',
   },
   headquarters: { fr: 'Siège principal', en: 'Headquarters' },
