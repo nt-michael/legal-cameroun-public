@@ -14,6 +14,9 @@ import {
   subscribeConsent,
 } from '@/lib/consent';
 
+// 13 months of 30.4 days, in seconds
+const GA_COOKIE_LIFETIME_SECONDS = 13 * 30.4 * 24 * 60 * 60;
+
 const text = {
   title: { fr: 'Mesure d’audience', en: 'Audience measurement' },
   body: {
@@ -59,11 +62,13 @@ export default function CookieConsent() {
       {consent === 'granted' && (
         <>
           <Script src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`} strategy="afterInteractive" />
+          {/* Cookies last 13 months at most (privacy policy, section 5): GA's default is 2 years,
+              and cookie_update: false stops each new visit from pushing the expiry back */}
           <Script id="ga-init" strategy="afterInteractive">
             {`window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
-gtag('config', '${GA_ID}');`}
+gtag('config', '${GA_ID}', { cookie_expires: ${GA_COOKIE_LIFETIME_SECONDS}, cookie_update: false });`}
           </Script>
         </>
       )}
