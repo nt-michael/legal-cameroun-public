@@ -70,7 +70,7 @@ export default function UrgentContact() {
       case 'calendar':
         return 'bg-primary-500 hover:bg-primary-600 text-white';
       case 'whatsapp':
-        return 'bg-green-600 hover:bg-green-700 text-white';
+        return 'bg-green-700 hover:bg-green-800 text-white';
       default:
         return 'bg-gray-500 hover:bg-gray-600 text-white';
     }

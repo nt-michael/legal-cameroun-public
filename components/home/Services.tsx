@@ -172,7 +172,7 @@ export default function Services() {
             href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(sectionText.whatsappMessage[language])}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-xl font-semibold transition-all duration-300 shadow-lg shadow-green-600/20 hover:scale-105"
+            className="inline-flex items-center gap-2 bg-green-700 hover:bg-green-800 text-white px-8 py-4 rounded-xl font-semibold transition-all duration-300 shadow-lg shadow-green-600/20 hover:scale-105"
           >
             <Image src="/custom-icons/SVG/52ICONE_bleue.svg" alt="WhatsApp" width={20} height={20}
               className="brightness-0 invert" />
