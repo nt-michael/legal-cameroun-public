@@ -2,8 +2,8 @@
 
 import { useEffect, useRef } from 'react';
 import Link from 'next/link';
-import * as THREE from 'three';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { drawParticles } from './heroParticles';
 
 const heroContent = {
   badge: {
@@ -41,117 +41,12 @@ export default function Hero() {
 
   useEffect(() => {
     if (!canvasRef.current) return;
-
-    const canvas = canvasRef.current;
-    const section = sectionRef.current;
-    const scene = new THREE.Scene();
-    const width = canvas.clientWidth || window.innerWidth;
-    const height = canvas.clientHeight || window.innerHeight;
-    const camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000);
-    const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
-
-    renderer.setSize(width, height, false);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-
-    // Create particles
-    const particlesGeometry = new THREE.BufferGeometry();
-    // Fewer particles on phones keeps scrolling smooth on modest devices
-    const particlesCount = window.innerWidth < 768 ? 700 : 2000;
-    const posArray = new Float32Array(particlesCount * 3);
-
-    for (let i = 0; i < particlesCount * 3; i++) {
-      posArray[i] = (Math.random() - 0.5) * 10;
-    }
-
-    particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
-
-    const particlesMaterial = new THREE.PointsMaterial({
-      size: 0.02,
-      color: 0x26819b,
-      transparent: true,
-      opacity: 0.8,
-      blending: THREE.AdditiveBlending,
-    });
-
-    const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
-    scene.add(particlesMesh);
-
-    camera.position.z = 3;
-
-    // Mouse movement effect
-    let mouseX = 0;
-    let mouseY = 0;
-    let isVisible = true;
-    let animationId: number;
-
-    const handleMouseMove = (event: MouseEvent) => {
-      mouseX = (event.clientX / window.innerWidth) * 2 - 1;
-      mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
-    };
-
-    window.addEventListener('mousemove', handleMouseMove);
-
-    // Handle resize
-    const handleResize = () => {
-      const width = canvas.clientWidth;
-      const height = canvas.clientHeight;
-      camera.aspect = width / height;
-      camera.updateProjectionMatrix();
-      renderer.setSize(width, height, false);
-    };
-
-    window.addEventListener('resize', handleResize);
-
-    // Visibility observer - pause animation when not visible
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        isVisible = entry.isIntersecting;
-      },
-      { threshold: 0 }
-    );
-
-    if (section) {
-      observer.observe(section);
-    }
-
-    // Animation loop - only runs when visible
-    const animate = () => {
-      animationId = requestAnimationFrame(animate);
-
-      if (!isVisible) return;
-
-      particlesMesh.rotation.x += 0.0003;
-      particlesMesh.rotation.y += 0.0005;
-
-      // Smooth mouse follow
-      particlesMesh.rotation.x += mouseY * 0.0003;
-      particlesMesh.rotation.y += mouseX * 0.0003;
-
-      renderer.render(scene, camera);
-    };
-
-    // With reduced motion requested, draw the particles once and keep them still
-    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (reduceMotion) {
-      renderer.render(scene, camera);
-    } else {
-      animate();
-    }
-
-    return () => {
-      cancelAnimationFrame(animationId);
-      window.removeEventListener('mousemove', handleMouseMove);
-      window.removeEventListener('resize', handleResize);
-      observer.disconnect();
-      renderer.dispose();
-      particlesGeometry.dispose();
-      particlesMaterial.dispose();
-    };
+    return drawParticles(canvasRef.current, sectionRef.current);
   }, []);
 
   return (
     <section ref={sectionRef} className="relative min-h-[70svh] lg:min-h-[78vh] flex items-center justify-center overflow-hidden pt-28 pb-20" style={{ background: 'linear-gradient(to bottom right, #041c28, #0a3d4f, #041c28)' }}>
-      {/* Three.js Canvas */}
+      {/* Particle canvas, drawn by heroParticles.ts */}
       <canvas
         ref={canvasRef}
         className="absolute inset-0 w-full h-full"
