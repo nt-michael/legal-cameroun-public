@@ -65,11 +65,11 @@ export default function Hero() {
               </span>
             </div>
 
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 animate-fade-in-up animation-delay-100">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 animate-slide-in-up animation-delay-100">
               {heroContent.title1[language]}
             </h1>
 
-            <p className="text-lg sm:text-xl text-gray-300 max-w-2xl mx-auto lg:mx-0 mb-8 animate-fade-in-up animation-delay-200">
+            <p className="text-lg sm:text-xl text-gray-300 max-w-2xl mx-auto lg:mx-0 mb-8 animate-slide-in-up animation-delay-200">
               {heroContent.subtitle[language]}
             </p>
 
