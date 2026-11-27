@@ -144,6 +144,8 @@ export default function BlogPreview({ posts }: BlogPreviewProps) {
                   className="inline-flex items-center text-primary-600 font-medium group-hover:gap-2 transition-all"
                 >
                   {sectionText.readMore[language]}
+                  {/* Hidden article title, so screen readers and Google know where each "Read more" leads */}
+                  <span className="sr-only">{language === 'fr' ? ' : ' : ': '}{post.title}</span>
                   <svg className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                   </svg>
