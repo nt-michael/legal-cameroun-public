@@ -18,12 +18,12 @@ import { SITE_URL, DEFAULT_SHARE_IMAGE } from "@/lib/site-config";
 
 const inriaSans = localFont({
   src: [
-    { path: '../public/fonts/inria_sans/InriaSans-Light.ttf', weight: '300', style: 'normal' },
-    { path: '../public/fonts/inria_sans/InriaSans-LightItalic.ttf', weight: '300', style: 'italic' },
-    { path: '../public/fonts/inria_sans/InriaSans-Regular.ttf', weight: '400', style: 'normal' },
-    { path: '../public/fonts/inria_sans/InriaSans-Italic.ttf', weight: '400', style: 'italic' },
-    { path: '../public/fonts/inria_sans/InriaSans-Bold.ttf', weight: '700', style: 'normal' },
-    { path: '../public/fonts/inria_sans/InriaSans-BoldItalic.ttf', weight: '700', style: 'italic' },
+    { path: '../public/fonts/inria_sans/InriaSans-Light.woff2', weight: '300', style: 'normal' },
+    { path: '../public/fonts/inria_sans/InriaSans-LightItalic.woff2', weight: '300', style: 'italic' },
+    { path: '../public/fonts/inria_sans/InriaSans-Regular.woff2', weight: '400', style: 'normal' },
+    { path: '../public/fonts/inria_sans/InriaSans-Italic.woff2', weight: '400', style: 'italic' },
+    { path: '../public/fonts/inria_sans/InriaSans-Bold.woff2', weight: '700', style: 'normal' },
+    { path: '../public/fonts/inria_sans/InriaSans-BoldItalic.woff2', weight: '700', style: 'italic' },
   ],
   variable: '--font-inria-sans',
   display: 'swap',
