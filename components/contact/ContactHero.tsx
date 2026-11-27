@@ -192,7 +192,7 @@ export default function ContactHero() {
                   key={action.text[language]}
                   ref={index === 2 ? phoneBtnRef : null}
                   href={action.href}
-                  className="inline-flex flex-col items-center justify-center bg-green-600 text-white px-6 py-4 rounded-xl font-semibold hover:bg-green-700 transition-all duration-300 shadow-lg shadow-green-600/30"
+                  className="inline-flex flex-col items-center justify-center bg-green-700 text-white px-6 py-4 rounded-xl font-semibold hover:bg-green-800 transition-all duration-300 shadow-lg shadow-green-600/30"
                 >
                   <span className="flex items-center gap-2">
                     {actionIcons[action.icon]}
